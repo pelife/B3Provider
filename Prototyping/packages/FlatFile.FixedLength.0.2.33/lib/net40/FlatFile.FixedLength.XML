@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FlatFile.FixedLength</name>
+    </assembly>
+    <members>
+        <member name="T:FlatFile.FixedLength.IDetailRecord">
+            <summary>
+            Interface IDetailRecord
+            </summary>
+            <remarks>
+            Used to decorate a record as a detail type in a master/detail relationship
+            </remarks>
+        </member>
+        <member name="T:FlatFile.FixedLength.IMasterRecord">
+            <summary>
+            Interface IMasterRecord
+            </summary>
+            <remarks>
+            Used to decorate a record as a master type in a master/detail relationship.
+            </remarks>
+        </member>
+        <member name="P:FlatFile.FixedLength.IMasterRecord.DetailRecords">
+            <summary>
+            Gets the detail records.
+            </summary>
+            <value>The detail records.</value>
+            <remarks>
+            This list will be populated with related detail records when parsing a fixed length file with the <see cref="T:FlatFile.Core.IFlatFileMultiEngine"/>
+            </remarks>
+        </member>
+        <member name="T:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine">
+            <summary>
+            Class FixedLengthFileMultiEngine.
+            </summary>
+        </member>
+        <member name="F:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.handleEntryReadError">
+            <summary>
+            The handle entry read error func
+            </summary>
+        </member>
+        <member name="F:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.layoutDescriptors">
+            <summary>
+            The layout descriptors for this engine
+            </summary>
+        </member>
+        <member name="F:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.lineBuilderFactory">
+            <summary>
+            The line builder factory
+            </summary>
+        </member>
+        <member name="F:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.lineParserFactory">
+            <summary>
+            The line parser factory
+            </summary>
+        </member>
+        <member name="F:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.typeSelectorFunc">
+            <summary>
+            The type selector function used to determine the layout for a given line
+            </summary>
+        </member>
+        <member name="F:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.results">
+            <summary>
+            The results of a call to <see cref="M:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.Read(System.IO.Stream)"/> are stored in this Dictionary by type
+            </summary>
+        </member>
+        <member name="F:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.lastMasterRecord">
+            <summary>
+            The last record parsed that implements <see cref="T:FlatFile.FixedLength.IMasterRecord"/>
+            </summary>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.#ctor(System.Collections.Generic.IEnumerable{FlatFile.Core.ILayoutDescriptor{FlatFile.FixedLength.IFixedFieldSettingsContainer}},System.Func{System.String,System.Type},FlatFile.FixedLength.IFixedLengthLineBuilderFactory,FlatFile.FixedLength.IFixedLengthLineParserFactory,System.Func{System.String,System.Exception,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine"/> class.
+            </summary>
+            <param name="layoutDescriptors">The layout descriptors.</param>
+            <param name="typeSelectorFunc">The type selector function.</param>
+            <param name="lineBuilderFactory">The line builder factory.</param>
+            <param name="lineParserFactory">The line parser factory.</param>
+            <param name="handleEntryReadError">The handle entry read error.</param>
+            <exception cref="T:System.ArgumentNullException">typeSelectorFunc</exception>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.GetRecords``1">
+            <summary>
+            Gets any records of type <typeparamref name="T"/> read by <see cref="M:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.Read(System.IO.Stream)"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>IEnumerable&lt;T&gt;.</returns>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.TryParseLine``1(System.String,System.Int32,``0@)">
+            <summary>
+            Tries to parse the line.
+            </summary>
+            <typeparam name="TEntity">The type of the t entity.</typeparam>
+            <param name="line">The line.</param>
+            <param name="lineNumber">The line number.</param>
+            <param name="entity">The entity.</param>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.Read(System.IO.Stream)">
+            <summary>
+            Reads the specified stream.
+            </summary>
+            <param name="stream">The stream.</param>
+            <exception cref="T:FlatFile.Core.Exceptions.ParseLineException">Impossible to parse line</exception>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.HandleMasterDetail``1(``0,System.Boolean@)">
+            <summary>
+            Handles any master/detail relationships for this <paramref name="entry"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entry">The entry.</param>
+            <param name="isDetailRecord">if set to <c>true</c> [is detail record] and should not be added to the results dictionary.</param>
+        </member>
+        <member name="P:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.LineBuilder">
+            <summary>
+            Gets the line builder.
+            </summary>
+            <value>The line builder.</value>
+            <remarks>The <see cref="T:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine"/> does not contain just a single line builder.</remarks>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="P:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.LineParser">
+            <summary>
+            Gets the line parser.
+            </summary>
+            <value>The line parser.</value>
+            <remarks>The <see cref="T:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine"/> does not contain just a single line parser.</remarks>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="P:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.LayoutDescriptor">
+            <summary>
+            Gets the layout descriptor.
+            </summary>
+            <remarks>The <see cref="T:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine"/> does not contain just a single layout.</remarks>
+            <value>The layout descriptor.</value>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="P:FlatFile.FixedLength.Implementation.FixedLengthFileMultiEngine.HasHeader">
+            <summary>
+            Gets or sets a value indicating whether this instance has a file header.
+            </summary>
+            <value><c>true</c> if this instance has a file header; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:FlatFile.FixedLength.IFixedLengthLineParserFactory">
+            <summary>
+            Interface IFixedLengthLineParserFactory
+            </summary>
+        </member>
+        <member name="M:FlatFile.FixedLength.IFixedLengthLineParserFactory.RegisterLineParser``1(System.Type)">
+            <summary>
+            Registers the line parser <typeparamref name="TParser"/> for lines matching <paramref name="targetType"/>.
+            </summary>
+            <typeparam name="TParser">The type of the t parser.</typeparam>
+            <param name="targetType">The target record type.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:FlatFile.FixedLength.IFixedLengthLineParserFactory.RegisterLineParser``1(FlatFile.Core.ILayoutDescriptor{FlatFile.Core.Base.IFieldSettings})">
+            <summary>
+            Registers the line parser <typeparamref name="TParser"/> for lines matching <paramref name="targetLayout"/>.
+            </summary>
+            <typeparam name="TParser">The type of the t parser.</typeparam>
+            <param name="targetLayout">The target layout.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:FlatFile.FixedLength.Implementation.FixedLengthFileEngine">
+            <summary>
+            Class FixedLengthFileEngine.
+            </summary>
+        </member>
+        <member name="F:FlatFile.FixedLength.Implementation.FixedLengthFileEngine.lineBuilderFactory">
+            <summary>
+            The line builder factory
+            </summary>
+        </member>
+        <member name="F:FlatFile.FixedLength.Implementation.FixedLengthFileEngine.lineParserFactory">
+            <summary>
+            The line parser factory
+            </summary>
+        </member>
+        <member name="F:FlatFile.FixedLength.Implementation.FixedLengthFileEngine.layoutDescriptor">
+            <summary>
+            The layout descriptor
+            </summary>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthFileEngine.#ctor(FlatFile.Core.ILayoutDescriptor{FlatFile.FixedLength.IFixedFieldSettingsContainer},FlatFile.FixedLength.IFixedLengthLineBuilderFactory,FlatFile.FixedLength.IFixedLengthLineParserFactory,System.Func{System.String,System.Exception,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:FlatFile.FixedLength.Implementation.FixedLengthFileEngine"/> class.
+            </summary>
+            <param name="layoutDescriptor">The layout descriptor.</param>
+            <param name="lineBuilderFactory">The line builder factory.</param>
+            <param name="lineParserFactory">The line parser factory.</param>
+            <param name="handleEntryReadError">The handle entry read error.</param>
+        </member>
+        <member name="P:FlatFile.FixedLength.Implementation.FixedLengthFileEngine.LineBuilder">
+            <summary>
+            Gets the line builder.
+            </summary>
+            <value>The line builder.</value>
+        </member>
+        <member name="P:FlatFile.FixedLength.Implementation.FixedLengthFileEngine.LineParser">
+            <summary>
+            Gets the line parser.
+            </summary>
+            <value>The line parser.</value>
+        </member>
+        <member name="P:FlatFile.FixedLength.Implementation.FixedLengthFileEngine.LayoutDescriptor">
+            <summary>
+            Gets the layout descriptor.
+            </summary>
+            <value>The layout descriptor.</value>
+        </member>
+        <member name="T:FlatFile.FixedLength.Implementation.FixedLengthFileEngineFactory">
+            <summary>
+            Class FixedLengthFileEngineFactory.
+            </summary>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthFileEngineFactory.RegisterLineParser``1(System.Type)">
+            <summary>
+            Registers the line parser <typeparamref name="TParser"/> for lines matching <paramref name="targetType"/>.
+            </summary>
+            <typeparam name="TParser">The type of the t parser.</typeparam>
+            <param name="targetType">The target record type.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthFileEngineFactory.RegisterLineParser``1(FlatFile.Core.ILayoutDescriptor{FlatFile.Core.Base.IFieldSettings})">
+            <summary>
+            Registers the line parser <typeparamref name="TParser"/> for lines matching <paramref name="targetLayout"/>.
+            </summary>
+            <typeparam name="TParser">The type of the t parser.</typeparam>
+            <param name="targetLayout">The target layout.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthFileEngineFactory.GetEngine(FlatFile.Core.ILayoutDescriptor{FlatFile.FixedLength.IFixedFieldSettingsContainer},System.Func{System.String,System.Exception,System.Boolean})">
+            <summary>
+            Gets the <see cref="T:FlatFile.Core.IFlatFileEngine"/>.
+            </summary>
+            <param name="descriptor">The descriptor.</param>
+            <param name="handleEntryReadError">The handle entry read error func.</param>
+            <returns>IFlatFileEngine.</returns>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthFileEngineFactory.GetEngine(System.Collections.Generic.IEnumerable{FlatFile.Core.ILayoutDescriptor{FlatFile.FixedLength.IFixedFieldSettingsContainer}},System.Func{System.String,System.Type},System.Func{System.String,System.Exception,System.Boolean})">
+            <summary>
+            Gets the <see cref="T:FlatFile.Core.IFlatFileMultiEngine"/>.
+            </summary>
+            <param name="layoutDescriptors">The layout descriptors.</param>
+            <param name="typeSelectorFunc">The type selector function.</param>
+            <param name="handleEntryReadError">The handle entry read error func.</param>
+            <returns>IFlatFileMultiEngine.</returns>
+        </member>
+        <member name="T:FlatFile.FixedLength.Implementation.FixedLengthLineParserFactory">
+            <summary>
+            Class FixedLengthLineParserFactory.
+            </summary>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthLineParserFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:FlatFile.FixedLength.Implementation.FixedLengthLineParserFactory"/> class.
+            </summary>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthLineParserFactory.#ctor(System.Collections.Generic.IDictionary{System.Type,System.Type})">
+            <summary>
+            Initializes a new instance of the <see cref="T:FlatFile.FixedLength.Implementation.FixedLengthLineParserFactory"/> class.
+            </summary>
+            <param name="lineParserRegistry">The line parser registry.</param>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthLineParserFactory.#ctor(System.Collections.Generic.IDictionary{System.Type,FlatFile.Core.ILayoutDescriptor{FlatFile.FixedLength.IFixedFieldSettingsContainer}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:FlatFile.FixedLength.Implementation.FixedLengthLineParserFactory"/> class.
+            </summary>
+            <param name="lineParserRegistry">The line parser registry.</param>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthLineParserFactory.GetParser(FlatFile.Core.ILayoutDescriptor{FlatFile.FixedLength.IFixedFieldSettingsContainer})">
+            <summary>
+            Gets the parser.
+            </summary>
+            <param name="descriptor">The descriptor.</param>
+            <returns>IFixedLengthLineParser.</returns>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthLineParserFactory.RegisterLineParser``1(System.Type)">
+            <summary>
+            Registers the line parser <typeparamref name="TParser" /> for lines matching <paramref name="targetType" />.
+            </summary>
+            <typeparam name="TParser">The type of the t parser.</typeparam>
+            <param name="targetType">The target record type.</param>
+        </member>
+        <member name="M:FlatFile.FixedLength.Implementation.FixedLengthLineParserFactory.RegisterLineParser``1(FlatFile.Core.ILayoutDescriptor{FlatFile.Core.Base.IFieldSettings})">
+            <summary>
+            Registers the line parser <typeparamref name="TParser" /> for lines matching <paramref name="targetLayout" />.
+            </summary>
+            <typeparam name="TParser">The type of the t parser.</typeparam>
+            <param name="targetLayout">The target layout.</param>
+        </member>
+    </members>
+</doc>

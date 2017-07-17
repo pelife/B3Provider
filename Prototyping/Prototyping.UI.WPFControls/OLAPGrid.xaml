@@ -1,0 +1,29 @@
+﻿<Grid xmlns:syncfusion="http://schemas.syncfusion.com/wpf"  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:Class="Prototyping.UI.WPFControls.OLAPGrid"
+      Background="#DCDCDC"
+      Width="375"
+      Height="250"
+      Name="OlapGridRoot"
+      Loaded="Init">
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />        
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />        
+    </Grid.RowDefinitions>
+
+    <!--<syncfusion:OlapGrid 
+        HorizontalAlignment="Left"         
+        Name="MainGrid" 
+        VerticalAlignment="Top" 
+        AllowSelection="True" 
+        AllowResizeColumns="True" 
+        ResizeRowsToFit="False" 
+        ClipToBounds="True" 
+        EnableColumnHeaderContextMenu="True" 
+        EnableRowHeaderContextMenu="True" 
+        Focusable="False" 
+        ShowConditionalFormats="True" />-->
+</Grid>

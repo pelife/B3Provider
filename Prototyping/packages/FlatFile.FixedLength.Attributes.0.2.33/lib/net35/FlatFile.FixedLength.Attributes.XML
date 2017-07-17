@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FlatFile.FixedLength.Attributes</name>
+    </assembly>
+    <members>
+        <member name="T:FlatFile.FixedLength.Attributes.FlatFileEngineFactoryExtensions">
+            <summary>
+            Class FlatFileEngineFactoryExtensions.
+            </summary>
+        </member>
+        <member name="M:FlatFile.FixedLength.Attributes.FlatFileEngineFactoryExtensions.GetEngine``1(FlatFile.Core.IFlatFileEngineFactory{FlatFile.Core.ILayoutDescriptor{FlatFile.FixedLength.IFixedFieldSettingsContainer},FlatFile.FixedLength.IFixedFieldSettingsContainer},System.Func{System.String,System.Exception,System.Boolean})">
+            <summary>
+            Gets the engine.
+            </summary>
+            <typeparam name="TEntity">The type of the t entity.</typeparam>
+            <param name="engineFactory">The engine factory.</param>
+            <param name="handleEntryReadError">The handle entry read error.</param>
+            <returns>IFlatFileEngine.</returns>
+        </member>
+        <member name="M:FlatFile.FixedLength.Attributes.FlatFileEngineFactoryExtensions.GetEngine(FlatFile.FixedLength.Implementation.FixedLengthFileEngineFactory,System.Collections.Generic.IEnumerable{System.Type},System.Func{System.String,System.Type},System.Func{System.String,System.Exception,System.Boolean})">
+            <summary>
+            Gets the engine.
+            </summary>
+            <param name="engineFactory">The engine factory.</param>
+            <param name="recordTypes">The record types.</param>
+            <param name="typeSelectorFunc">The type selector function.</param>
+            <param name="handleEntryReadError">The handle entry read error.</param>
+            <returns>IFlatFileMultiEngine.</returns>
+        </member>
+    </members>
+</doc>

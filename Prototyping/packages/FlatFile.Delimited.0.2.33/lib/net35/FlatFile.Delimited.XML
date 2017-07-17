@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FlatFile.Delimited</name>
+    </assembly>
+    <members>
+        <member name="T:FlatFile.Delimited.Implementation.DelimitedFileEngineFactory">
+            <summary>
+            Class DelimitedFileEngineFactory.
+            </summary>
+        </member>
+        <member name="M:FlatFile.Delimited.Implementation.DelimitedFileEngineFactory.GetEngine(FlatFile.Delimited.IDelimitedLayoutDescriptor,System.Func{System.String,System.Exception,System.Boolean})">
+            <summary>
+            Gets the <see cref="T:FlatFile.Core.IFlatFileEngine"/>.
+            </summary>
+            <param name="descriptor">The descriptor.</param>
+            <param name="handleEntryReadError">The handle entry read error func.</param>
+            <returns>IFlatFileEngine.</returns>
+        </member>
+        <member name="T:FlatFile.Delimited.Implementation.DelimitedFileEngine">
+            <summary>
+            Class DelimitedFileEngine.
+            </summary>
+        </member>
+        <member name="F:FlatFile.Delimited.Implementation.DelimitedFileEngine._builderFactory">
+            <summary>
+            The line builder factory
+            </summary>
+        </member>
+        <member name="F:FlatFile.Delimited.Implementation.DelimitedFileEngine._parserFactory">
+            <summary>
+            The line parser factory
+            </summary>
+        </member>
+        <member name="F:FlatFile.Delimited.Implementation.DelimitedFileEngine._layoutDescriptor">
+            <summary>
+            The layout descriptor
+            </summary>
+        </member>
+        <member name="M:FlatFile.Delimited.Implementation.DelimitedFileEngine.#ctor(FlatFile.Delimited.IDelimitedLayoutDescriptor,FlatFile.Delimited.IDelimitedLineBuilderFactory,FlatFile.Delimited.IDelimitedLineParserFactory,System.Func{System.String,System.Exception,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:FlatFile.Delimited.Implementation.DelimitedFileEngine"/> class.
+            </summary>
+            <param name="layoutDescriptor">The layout descriptor.</param>
+            <param name="builderFactory">The builder factory.</param>
+            <param name="parserFactory">The parser factory.</param>
+            <param name="handleEntryReadError">The handle entry read error.</param>
+        </member>
+        <member name="M:FlatFile.Delimited.Implementation.DelimitedFileEngine.WriteHeader(System.IO.TextWriter)">
+            <summary>
+            Writes the header.
+            </summary>
+            <param name="writer">The writer.</param>
+        </member>
+        <member name="P:FlatFile.Delimited.Implementation.DelimitedFileEngine.LineBuilder">
+            <summary>
+            Gets the line builder.
+            </summary>
+            <value>The line builder.</value>
+        </member>
+        <member name="P:FlatFile.Delimited.Implementation.DelimitedFileEngine.LineParser">
+            <summary>
+            Gets the line parser.
+            </summary>
+            <value>The line parser.</value>
+        </member>
+        <member name="P:FlatFile.Delimited.Implementation.DelimitedFileEngine.LayoutDescriptor">
+            <summary>
+            Gets the layout descriptor.
+            </summary>
+            <value>The layout descriptor.</value>
+        </member>
+    </members>
+</doc>

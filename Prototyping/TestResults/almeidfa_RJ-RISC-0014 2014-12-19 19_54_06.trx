@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="975182e3-4a06-4d42-8954-7f2e44832913" name="almeidfa@RJ-RISC-0014 2014-12-19 19:54:06" runUser="DOMAIN\almeidfa" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="7aeccb53-309a-402d-8be5-983e83f26f2b">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="almeidfa_RJ-RISC-0014 2014-12-19 19_54_06">
+      <DeploymentItem filename="G:\felipe\programming\projects\prototyping\Prototyping\packages\Common.Logging.2.3.1\lib\net40\Common.Logging.dll" />
+      <DeploymentItem filename="G:\felipe\programming\projects\prototyping\Prototyping\Prototyping.Code\bin\Debug\Prototyping.Code.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-12-19T19:54:06.9392535-02:00" queuing="2014-12-19T19:54:08.2402535-02:00" start="2014-12-19T19:54:08.3632535-02:00" finish="2014-12-19T19:54:09.4422535-02:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="1" executed="1" error="1" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestMethod1" storage="g:\felipe\programming\projects\prototyping\prototyping\prototyping.code.tests\bin\debug\prototyping.code.tests.dll" id="f4841711-36b0-d577-c39a-32060ff51d0a">
+      <Execution id="0c523607-c74b-4852-b976-18e39eab3a5c" />
+      <TestMethod codeBase="G:/felipe/programming/projects/prototyping/Prototyping/Prototyping.Code.Tests/bin/Debug/Prototyping.Code.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Prototyping.Code.Tests.CoachBaseRepositoryTests, Prototyping.Code.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethod1" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="f4841711-36b0-d577-c39a-32060ff51d0a" executionId="0c523607-c74b-4852-b976-18e39eab3a5c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="0c523607-c74b-4852-b976-18e39eab3a5c" testId="f4841711-36b0-d577-c39a-32060ff51d0a" testName="TestMethod1" computerName="RJ-RISC-0014" startTime="2014-12-19T19:54:08.4942535-02:00" endTime="2014-12-19T19:54:09.4222535-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c523607-c74b-4852-b976-18e39eab3a5c">
+      <Output>
+        <ErrorInfo>
+          <Message>Unit Test Adapter threw exception: 
+The type initializer for 'Microsoft.VisualStudio.TestTools.Diagnostics.EqtTrace' threw an exception.
+Configuration system failed to initialize
+Unrecognized configuration section sectionGroup. (G:\felipe\programming\projects\prototyping\Prototyping\Prototyping.Code.Tests\bin\Debug\Prototyping.Code.Tests.DLL.config line 3).</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>
