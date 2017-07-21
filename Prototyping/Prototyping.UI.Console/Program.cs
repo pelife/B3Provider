@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net;
-using System.ComponentModel;
-using Excel = Microsoft.Office.Interop.Excel;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
-using CliverSoft;
-using CenterSpace.NMath.Core;
+﻿using CenterSpace.NMath.Core;
+using Common.Logging;
 using Prototyping.Code.Download.MarketData.Bovespa;
-using Prototyping.Code.Download.MarketData;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Prototyping.UI.Console
 {
@@ -24,18 +22,43 @@ namespace Prototyping.UI.Console
         //    System.Console.ReadLine();
         //}
 
+        static ILog _logger = LogManager.GetLogger<Program>();
+
         static void Main(string[] args)
         {
             //Example2();
-            Example3();
+            //Example3();
             //Example4();
 
             //Code.Calc.Runner.ConsolePricer.run();
 
+            Example3();
+            Example5();
             System.Console.WriteLine("press <enter> to exit");
             System.Console.ReadLine();
         }
 
+        public static void Example5()
+        {
+            var enderecoArquivoCotacao = @"G:\felipe\programming\git\prototyping\source_data\COTAHIST\COTAHIST_A2017\COTAHIST_A2017.TXT";
+
+            //download
+            //read
+            //save
+
+            //read
+            _logger.Info("running example 5");
+            using (var stream = new FileInfo(enderecoArquivoCotacao).Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                var reader = new COTAHISTReader();
+                var resultado = reader.Read(stream);
+
+                var petr = resultado.Registros.Where(x => x.CodigoNegociacao.IndexOf("petr", StringComparison.InvariantCultureIgnoreCase) >= 0).ToList();
+            }
+            _logger.Info("finished running example 5");
+            
+
+        }
 
         public static void Example4()
         {
@@ -44,8 +67,15 @@ namespace Prototyping.UI.Console
 
         public static void Example3()
         {
-            var reader = new ReaderBDI();
-            reader.Read();
+            string enderecoArquivoBDI = @"G:\shared\bdi0713\BDIN";
+            _logger.Info("running example 3");
+            using (var stream = new FileInfo(enderecoArquivoBDI).Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                var reader = new BDIReader();
+                var resultado = reader.Read(stream);
+                
+            }
+            _logger.Info("finished running example 3");            
         }
 
 
