@@ -1,0 +1,2 @@
+http://bvmf.bmfbovespa.com.br/InstDados/SerHist/COTAHIST_A2017.ZIP
+http://bvmf.bmfbovespa.com.br/InstDados/SerHist/COTAHIST_A<YYYY>.ZIP

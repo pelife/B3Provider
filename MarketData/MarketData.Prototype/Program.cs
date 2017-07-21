@@ -79,7 +79,7 @@ namespace MarketData.Prototype
             FixedLengthSchema schema = new FixedLengthSchema();
             schema.AddColumn(new Int32Column("TIPREG"), 2);      // 0                                                                      // FIXED “01”
             schema.AddColumn(new DateTimeColumn("DATE_OF_EXCHANGE") { InputFormat = "yyyyMMdd", OutputFormat = "yyyyMMdd" }, 8);       // DATE OF EXCHANGE FORMAT “YYYYMMDD”
-            schema.AddColumn(new StringColumn("CODBDI"), 2);     // 2                                                                      // CODBDI – BDI CODE  (USED TO CLASSIFY THE PAPERS IN THE DAILY INFORMATION BULLETIN SEE ATTACHED TABLE)
+            schema.AddColumn(new StringColumn("CODBDI"), 2 );     // 2                                                                      // CODBDI – BDI CODE  (USED TO CLASSIFY THE PAPERS IN THE DAILY INFORMATION BULLETIN SEE ATTACHED TABLE)
             schema.AddColumn(new StringColumn("CODNEG"), 12);    // 3                                                                      // PAPER NEGOTIATION CODE
             schema.AddColumn(new Int32Column("TPMERC"), 3);      // 4
             schema.AddColumn(new StringColumn("NOMRES"), 12);    // 5
