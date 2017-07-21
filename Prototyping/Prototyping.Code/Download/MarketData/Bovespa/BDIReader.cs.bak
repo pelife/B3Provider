@@ -1,15 +1,12 @@
-﻿using FlatFile.FixedLength.Implementation;
+﻿using FlatFile.Core;
+using FlatFile.FixedLength;
+using FlatFile.FixedLength.Implementation;
+using Prototyping.Code.Download.MarketData.Bovespa.Converter;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
-using System.Threading.Tasks;
-using FlatFile.Core;
-using FlatFile.FixedLength;
-using System.Globalization;
-using Prototyping.Code.Download.MarketData.Bovespa;
-using Prototyping.Code.Download.MarketData.Bovespa.Converter;
 
 namespace Prototyping.Code.Download.MarketData.Bovespa
 {
@@ -373,17 +370,17 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
         public BDIResumoDiarioIOPVLayout()
         {
             this.WithMember(x => x.Tipo, c => c.WithLength(2))
-            .WithMember(x => x.Identificador, c => c.WithLength(2))
-            .WithMember(x => x.Sigla, c => c.WithLength(4).WithTypeConverter<BDIStringTypeConverter>())
-            .WithMember(x => x.NomeResumido, c => c.WithLength(12).WithTypeConverter<BDIStringTypeConverter>())
-            .WithMember(x => x.Nome, c => c.WithLength(30).WithTypeConverter<BDIStringTypeConverter>())
-            .WithMember(x => x.Abertura, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
-            .WithMember(x => x.Maximo, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
-            .WithMember(x => x.Minimo, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
-            .WithMember(x => x.Media, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
-            .WithMember(x => x.Fechamento, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
-            .WithMember(x => x.SinalEvolucaoPercentualFechamento, c => c.WithLength(1))
-            .WithMember(x => x.EvolucaoPercentualFechamento, c => c.WithLength(5).WithTypeConverter<BDIDouble100TypeConverter>());
+                .WithMember(x => x.Identificador, c => c.WithLength(2))
+                .WithMember(x => x.Sigla, c => c.WithLength(4).WithTypeConverter<BDIStringTypeConverter>())
+                .WithMember(x => x.NomeResumido, c => c.WithLength(12).WithTypeConverter<BDIStringTypeConverter>())
+                .WithMember(x => x.Nome, c => c.WithLength(30).WithTypeConverter<BDIStringTypeConverter>())
+                .WithMember(x => x.Abertura, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
+                .WithMember(x => x.Maximo, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
+                .WithMember(x => x.Minimo, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
+                .WithMember(x => x.Media, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
+                .WithMember(x => x.Fechamento, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
+                .WithMember(x => x.SinalEvolucaoPercentualFechamento, c => c.WithLength(1))
+                .WithMember(x => x.EvolucaoPercentualFechamento, c => c.WithLength(5).WithTypeConverter<BDIDouble100TypeConverter>());
         }
     }
 
@@ -415,11 +412,11 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
             var flatFile = factory.GetEngine(layouts,
                 line =>
                 {
-                    // For each line, return the proper record type.
-                    // The mapping for this line will be loaded based on that type.
-                    // In this simple example, the first character determines the
-                    // record type.
-                    if (String.IsNullOrEmpty(line) || line.Length < 1) return null;
+                        // For each line, return the proper record type.
+                        // The mapping for this line will be loaded based on that type.
+                        // In this simple example, the first character determines the
+                        // record type.
+                        if (String.IsNullOrEmpty(line) || line.Length < 1) return null;
                     switch (line.Substring(0, 2))
                     {
                         case "00":
@@ -463,6 +460,4 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
 
         }
     }
-
-
 }

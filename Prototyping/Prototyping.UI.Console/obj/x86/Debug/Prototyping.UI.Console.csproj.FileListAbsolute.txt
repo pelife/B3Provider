@@ -27,3 +27,6 @@ G:\felipe\programming\projects\prototyping\Prototyping\Prototyping.UI.Console\bi
 G:\felipe\programming\projects\prototyping\Prototyping\Prototyping.UI.Console\bin\Debug\FlatFile.FixedLength.xml
 G:\felipe\programming\projects\prototyping\Prototyping\Prototyping.UI.Console\bin\Debug\FlatFile.Core.pdb
 G:\felipe\programming\projects\prototyping\Prototyping\Prototyping.UI.Console\bin\Debug\FlatFile.Core.xml
+G:\felipe\programming\git\prototyping\Prototyping\Prototyping.UI.Console\obj\x86\Debug\Prototyping.UI.Console.csprojResolveAssemblyReference.cache
+G:\felipe\programming\git\prototyping\Prototyping\Prototyping.UI.Console\obj\x86\Debug\Prototyping.exe
+G:\felipe\programming\git\prototyping\Prototyping\Prototyping.UI.Console\obj\x86\Debug\Prototyping.pdb

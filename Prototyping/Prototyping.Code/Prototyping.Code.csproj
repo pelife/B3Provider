@@ -98,6 +98,7 @@
     <Compile Include="Calc\Runner\MCPricer.cs" />
     <Compile Include="Calc\StochasticDifferentialEquation\ISDE.cs" />
     <Compile Include="CoachBaseRepository.cs" />
+    <Compile Include="Download\MarketData\Bovespa\COTAHISTReader.cs" />
     <Compile Include="Download\MarketData\Bovespa\Reader.cs" />
     <Compile Include="Download\MarketData\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

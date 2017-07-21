@@ -1,15 +1,175 @@
-﻿using FlatFile.Core;
-using FlatFile.FixedLength;
-using FlatFile.FixedLength.Implementation;
-using Prototyping.Code.Download.MarketData.Bovespa.Converter;
+﻿using FlatFile.FixedLength.Implementation;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Threading.Tasks;
+using FlatFile.Core;
+using FlatFile.FixedLength;
+using System.Globalization;
+using Prototyping.Code.Download.MarketData.Bovespa;
 
 namespace Prototyping.Code.Download.MarketData.Bovespa
 {
+
+    public class BDIDateTypeConverter : ITypeConverter
+    {
+        public bool CanConvertFrom(Type type)
+        {
+            bool ret = typeof(String) == type;
+            return ret;
+        }
+
+        public bool CanConvertTo(Type type)
+        {
+            bool ret = typeof(System.DateTime) == type;
+            return ret;
+        }
+
+        public object ConvertFromString(string source)
+        {
+            DateTime? newDate = null;
+            newDate = ParseDateTime(source);
+            return newDate;
+        }
+
+        public string ConvertToString(object source)
+        {
+            string dateFormated = string.Empty;
+            DateTime? oldDate = (System.DateTime?)source;
+
+            if (oldDate.HasValue)
+                dateFormated = oldDate.Value.ToString("yyyyMMdd");
+
+            return dateFormated;
+        }
+
+        private DateTime? ParseDateTime(
+            string dateToParse,
+            string[] formats = null,
+            IFormatProvider provider = null,
+            DateTimeStyles styles = DateTimeStyles.AssumeLocal)
+        {
+            string[] CUSTOM_DATE_FORMATS = new string[]
+                {
+                    "yyyyMMddTHHmmssZ",
+                    "yyyyMMddTHHmmZ",
+                    "yyyyMMddTHHmmss",
+                    "yyyyMMddTHHmm",
+                    "yyyyMMddHHmmss",
+                    "yyyyMMddHHmm",
+                    "yyyyMMdd",
+                    "yyyy-MM-dd-HH-mm-ss",
+                    "yyyy-MM-dd-HH-mm",
+                    "yyyy-MM-dd",
+                    "MM-dd-yyyy"
+                };
+
+            if (formats == null)
+            {
+                formats = CUSTOM_DATE_FORMATS;
+            }
+
+            DateTime validDate;
+
+            foreach (var format in formats)
+            {
+                if (format.EndsWith("Z"))
+                {
+                    if (DateTime.TryParseExact(dateToParse, format,
+                             provider,
+                             DateTimeStyles.AssumeUniversal,
+                             out validDate))
+                    {
+                        return validDate;
+                    }
+                }
+                else
+                {
+                    if (DateTime.TryParseExact(dateToParse, format,
+                             provider, styles, out validDate))
+                    {
+                        return validDate;
+                    }
+                }
+            }
+
+            return null;
+        }
+    }
+
+    public class BDIStringTypeConverter : ITypeConverter
+    {
+        public bool CanConvertFrom(Type type)
+        {
+            bool ret = typeof(String) == type;
+            return ret;
+        }
+
+        public bool CanConvertTo(Type type)
+        {
+            bool ret = typeof(System.String) == type;
+            return ret;
+        }
+
+        public object ConvertFromString(string source)
+        {
+            string newDate = string.Empty;
+            if (!string.IsNullOrEmpty(source))
+                newDate = source.Trim();
+            return newDate;
+        }
+
+        public string ConvertToString(object source)
+        {
+            string dateFormated = string.Empty;
+            string oldDate = (string)source;
+
+            if (!string.IsNullOrEmpty(oldDate))
+                dateFormated = oldDate.Trim();
+
+            return dateFormated;
+        }
+    }
+
+    public class BDIDouble100TypeConverter : ITypeConverter
+    {
+        public bool CanConvertFrom(Type type)
+        {
+            bool ret = typeof(String) == type;
+            return ret;
+        }
+
+        public bool CanConvertTo(Type type)
+        {
+            bool ret = typeof(System.Double) == type;
+            return ret;
+        }
+
+        public object ConvertFromString(string source)
+        {
+            double? newDouble = null;
+            double doubleAux = 0.0;
+            if (!string.IsNullOrEmpty(source))
+                if (double.TryParse(source, out doubleAux))
+                {
+                    doubleAux = doubleAux / 100;
+                    newDouble = doubleAux;
+                }
+            return newDouble;
+        }
+
+        public string ConvertToString(object source)
+        {
+            string doubleFormated = string.Empty;
+            double? oldDouble = (double?)source;
+            if (oldDouble.HasValue)
+                doubleFormated = oldDouble.Value.ToString("N2");
+
+            return doubleFormated;
+        }
+    }
 
     public class BDIHeader
     {
@@ -370,34 +530,36 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
         public BDIResumoDiarioIOPVLayout()
         {
             this.WithMember(x => x.Tipo, c => c.WithLength(2))
-                .WithMember(x => x.Identificador, c => c.WithLength(2))
-                .WithMember(x => x.Sigla, c => c.WithLength(4).WithTypeConverter<BDIStringTypeConverter>())
-                .WithMember(x => x.NomeResumido, c => c.WithLength(12).WithTypeConverter<BDIStringTypeConverter>())
-                .WithMember(x => x.Nome, c => c.WithLength(30).WithTypeConverter<BDIStringTypeConverter>())
-                .WithMember(x => x.Abertura, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
-                .WithMember(x => x.Maximo, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
-                .WithMember(x => x.Minimo, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
-                .WithMember(x => x.Media, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
-                .WithMember(x => x.Fechamento, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
-                .WithMember(x => x.SinalEvolucaoPercentualFechamento, c => c.WithLength(1))
-                .WithMember(x => x.EvolucaoPercentualFechamento, c => c.WithLength(5).WithTypeConverter<BDIDouble100TypeConverter>());
+            .WithMember(x => x.Identificador, c => c.WithLength(2))
+            .WithMember(x => x.Sigla, c => c.WithLength(4).WithTypeConverter<BDIStringTypeConverter>())
+            .WithMember(x => x.NomeResumido, c => c.WithLength(12).WithTypeConverter<BDIStringTypeConverter>())
+            .WithMember(x => x.Nome, c => c.WithLength(30).WithTypeConverter<BDIStringTypeConverter>())
+            .WithMember(x => x.Abertura, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
+            .WithMember(x => x.Maximo, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
+            .WithMember(x => x.Minimo, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
+            .WithMember(x => x.Media, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
+            .WithMember(x => x.Fechamento, c => c.WithLength(7).WithTypeConverter<BDIDouble100TypeConverter>())
+            .WithMember(x => x.SinalEvolucaoPercentualFechamento, c => c.WithLength(1))
+            .WithMember(x => x.EvolucaoPercentualFechamento, c => c.WithLength(5).WithTypeConverter<BDIDouble100TypeConverter>());
         }
     }
 
 
     public class BDIReader
     {
-        public BDIResultado Read(Stream streamToRead)
-        {
-            BDIResultado resultado = null;
+        const string enderecoArquivoBDI = @"G:\shared\bdi0713\BDIN";
 
+        public void Read()
+        {
             //
             var factory = new FixedLengthFileEngineFactory();
-
-            // If using attribute mapping, pass an array of record types
-            // rather than layout instances
-            var layouts = new ILayoutDescriptor<IFixedFieldSettingsContainer>[]
+            using (var stream = new FileInfo(enderecoArquivoBDI).Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var streamReader = new StreamReader(stream, Encoding.ASCII))
             {
+                // If using attribute mapping, pass an array of record types
+                // rather than layout instances
+                var layouts = new ILayoutDescriptor<IFixedFieldSettingsContainer>[]
+                {
                     new BDIHeaderLayout()
                     ,new BDIIndiceLayout()
                     ,new BDINegociosPapelLayout()
@@ -407,57 +569,56 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
                     ,new BDIMaisNegociadasMercadoVistaLayout()
                     ,new BDIMaisNegociadasMercadoLayout()
                     ,new BDIResumoDiarioIOPVLayout()
-            };
 
-            var flatFile = factory.GetEngine(layouts,
-                line =>
-                {
+                };
+
+                var flatFile = factory.GetEngine(layouts,
+                    line =>
+                    {
                         // For each line, return the proper record type.
                         // The mapping for this line will be loaded based on that type.
                         // In this simple example, the first character determines the
                         // record type.
                         if (String.IsNullOrEmpty(line) || line.Length < 1) return null;
-                    switch (line.Substring(0, 2))
-                    {
-                        case "00":
-                            return typeof(BDIHeader);
-                        case "01":
-                            return typeof(BDIIndice);
-                        case "02":
-                            return typeof(BDINegociosPapel);
-                        case "04":
-                            return typeof(BDIMaiorOscilacaoVista);
-                        case "05":
-                            return typeof(BDIMaiorOscilacaoAcoesIBOV);
-                        case "06":
-                            return typeof(BDIMaisNegociadasMercadoVista);
-                        case "07":
-                            return typeof(BDIMaisNegociadasMercado);
-                        case "08":
-                            return typeof(BDIResumoDiarioIOPV);
-                        case "99":
-                            return typeof(BDITrailer);
-                    }
-                    return null;
-                });
+                        switch (line.Substring(0, 2))
+                        {
+                            case "00":
+                                return typeof(BDIHeader);
+                            case "01":
+                                return typeof(BDIIndice);
+                            case "02":
+                                return typeof(BDINegociosPapel);
+                            case "04":
+                                return typeof(BDIMaiorOscilacaoVista);
+                            case "05":
+                                return typeof(BDIMaiorOscilacaoAcoesIBOV);
+                            case "06":
+                                return typeof(BDIMaisNegociadasMercadoVista);
+                            case "07":
+                                return typeof(BDIMaisNegociadasMercado);
+                            case "08":
+                                return typeof(BDIResumoDiarioIOPV);
+                            case "99":
+                                return typeof(BDITrailer);
+                        }
+                        return null;
+                    });
 
 
-            flatFile.Read(streamToRead);
+                flatFile.Read(stream);
 
-            resultado = new BDIResultado();
-
-            resultado.Header = flatFile.GetRecords<BDIHeader>().FirstOrDefault();
-            resultado.Indices = flatFile.GetRecords<BDIIndice>().ToList();
-            resultado.Negocios = flatFile.GetRecords<BDINegociosPapel>().ToList();
-            resultado.OscilacaoVista = flatFile.GetRecords<BDIMaiorOscilacaoVista>().ToList();
-            resultado.OscilacaoAcoesIBOV = flatFile.GetRecords<BDIMaiorOscilacaoAcoesIBOV>().ToList();
-            resultado.MaisNegociadasMercadoVista = flatFile.GetRecords<BDIMaisNegociadasMercadoVista>().ToList();
-            resultado.BDIMaisNegociadasMercado = flatFile.GetRecords<BDIMaisNegociadasMercado>().ToList();
-            resultado.ResumoDiarioIOPV = flatFile.GetRecords<BDIResumoDiarioIOPV>().ToList();
-            resultado.Trailer = flatFile.GetRecords<BDITrailer>().FirstOrDefault();
-
-            return resultado;
-
+                var header = flatFile.GetRecords<BDIHeader>().FirstOrDefault();
+                var indices = flatFile.GetRecords<BDIIndice>().ToList();
+                var negocios = flatFile.GetRecords<BDINegociosPapel>().ToList();
+                var oscilaVista = flatFile.GetRecords<BDIMaiorOscilacaoVista>().ToList();
+                var oscilaIbov = flatFile.GetRecords<BDIMaiorOscilacaoAcoesIBOV>().ToList();
+                var maisNegociadasVista = flatFile.GetRecords<BDIMaisNegociadasMercadoVista>().ToList();
+                var maisNegociadasMerca = flatFile.GetRecords<BDIMaisNegociadasMercado>().ToList();
+                var IOPV = flatFile.GetRecords<BDIResumoDiarioIOPV>().ToList();
+                var trailer = flatFile.GetRecords<BDITrailer>().FirstOrDefault();
+            }
         }
     }
+
+
 }
