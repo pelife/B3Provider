@@ -1,0 +1,31 @@
+- arquivos cblc
+	http://www.cblc.com.br/cblc/consultas/Arquivos/DBTCER9999.txt
+	http://www.cblc.com.br/cblc/consultas/Arquivos/SEDE9999.txt
+	http://www.cblc.com.br/cblc/consultas/Arquivos/DBTC20170718.dat
+
+- bovespa
+	http://www.bmfbovespa.com.br/cias-listadas/empresas-listadas/BuscaEmpresaListada.aspx?Nome=TCSL3&idioma=pt-br
+
+- cetip
+	ftp://ftp.cetip.com.br/IndiceDI/
+	#http://www.cetip.com.br/astec/series_v05/paginas/taxadi_i1.htm
+	ftp://ftp.cetip.com.br/MediaCDI
+
+- ibge
+	ftp://ftp.ibge.gov.br/Precos_Indices_de_Precos_ao_Consumidor/IPCA/Serie_Historica/ipca_SerieHist.zip
+	ftp://ftp.ibge.gov.br/Precos_Indices_de_Precos_ao_Consumidor/INPC/Serie_Historica/inpc_SerieHist.zip
+
+- bmf
+	ftp://ftp.bmf.com.br/IndicadoresEconomicos
+
+-bovespa
+	COTAHIST_A2016.TXT
+	BD_Final.txt
+	Indic.txt
+	PUWEB.TXT
+
+-ambima 
+	http://www.anbima.com.br/feriados/arqs/feriados_nacionais.xls.
+
+2017574514156
+
