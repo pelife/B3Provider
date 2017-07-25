@@ -27,5 +27,22 @@
 -ambima 
 	http://www.anbima.com.br/feriados/arqs/feriados_nacionais.xls.
 
-2017574514156
+-tesouro
+	http://www.tesouro.gov.br/documents/10180/378339/DP_Valores_Nominais_NTNC.xls
+	http://www.tesouro.gov.br/documents/10180/378339/DP_Valores_Nominais_NTNB.xls
 
+	NTNB Principal
+	
+	2017 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=345:862552
+	2016 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=365:801088
+	2015 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=322:34546
+	2014 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=316:59406
+	2013 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=310:790631
+	2012 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=304:13597
+	2011 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=298:22116
+	2010 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=292:22483
+	2009 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=286:69609
+	2008 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=280:778568
+	2007 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=274:23800
+	2006 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=268:10053
+	2005 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=262:32686
