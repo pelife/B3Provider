@@ -32,7 +32,7 @@
 	http://www.tesouro.gov.br/documents/10180/378339/DP_Valores_Nominais_NTNB.xls
 
 	NTNB Principal
-	
+
 	2017 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=345:862552
 	2016 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=365:801088
 	2015 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=322:34546
@@ -46,3 +46,8 @@
 	2007 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=274:23800
 	2006 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=268:10053
 	2005 - http://sisweb.tesouro.gov.br/apex/COSIS_SISTD.obtem_arquivo?p_id=262:32686
+
+-bmf
+    ftp://ftp.bmf.com.br/MarketData/Bovespa-Vista/
+    ftp://ftp.bmf.com.br/MarketData/Bovespa-Opcoes/
+    ftp://ftp.bmf.com.br/MarketData/BMF/
