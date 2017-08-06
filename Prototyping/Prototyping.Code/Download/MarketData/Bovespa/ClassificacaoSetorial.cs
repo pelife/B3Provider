@@ -24,15 +24,18 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
 
                 // uncompress file
                 using (ZipArchive zip = ZipFile.Open(filePath, ZipArchiveMode.Read))
+                using (var ms = new MemoryStream())
                 {
-                    if (zip.Entries.Count > 0)
+                    var entry = zip.Entries.First();
+                    if (entry != null)
                     {
-                        var streamArquvoExcel = zip.Entries[0].Open(); // possivel ler sem salvar o arquivo
+                        using (var stream = entry.Open())
+                        {
+                            stream.CopyTo(ms);
+                            ms.Position = 0; // rewind
+                        }
 
-                        // Auto-detect format, supports:
-                        //  - Binary Excel files (2.0-2003 format; *.xls)
-                        //  - OpenXml Excel files (2007 format; *.xlsx)
-                        using (var reader = ExcelReaderFactory.CreateReader(streamArquvoExcel))
+                        using (var reader = ExcelReaderFactory.CreateReader(ms))
                         {
 
                             // Choose one of either 1 or 2:
@@ -48,15 +51,10 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
 
                             // 2. Use the AsDataSet extension method
                             var result = reader.AsDataSet();
-
-                            // The result of each spreadsheet is in result.Tables
                         }
                     }
                 }
-                
             }
-
         }
-
     }
 }

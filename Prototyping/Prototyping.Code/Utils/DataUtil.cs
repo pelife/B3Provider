@@ -1,15 +1,15 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-namespace MktRisk.Infra.CommonFunctions
+
+namespace Prototyping.Code.Utils
 {
 
     /// -----------------------------------------------------------------------------
-    /// Project	 : Pactual.Framework.Common
-    /// Class	 : Framework.Pactual.Framework.Common.DataUtil
+    /// Project	 : .Framework.Common
+    /// Class	 : Framework..Framework.Common.DataUtil
     /// 
     /// -----------------------------------------------------------------------------
     /// <summary>
@@ -65,7 +65,7 @@ namespace MktRisk.Infra.CommonFunctions
                         for (lSht_Col = 0; lSht_Col <= rDtt_Temp.Columns.Count - 1; lSht_Col++)
                         {
                             // se um for nulo e o outro nao
-                            if (Information.IsDBNull(lDtr_Temp[lSht_Col, DataRowVersion.Current]) ^ Information.IsDBNull(lDtr_Temp[lSht_Col, DataRowVersion.Proposed]))
+                            if (DBNull.Value.Equals(lDtr_Temp[lSht_Col, DataRowVersion.Current]) ^ DBNull.Value.Equals(lDtr_Temp[lSht_Col, DataRowVersion.Proposed]))
                             {
                                 // nao sao iguais
                                 return false;
@@ -73,7 +73,7 @@ namespace MktRisk.Infra.CommonFunctions
                             else
                             {
                                 // nao pode ser nulos
-                                if (!Information.IsDBNull(lDtr_Temp[lSht_Col, DataRowVersion.Current]) & !Information.IsDBNull(lDtr_Temp[lSht_Col, DataRowVersion.Proposed]))
+                                if (!DBNull.Value.Equals(lDtr_Temp[lSht_Col, DataRowVersion.Current]) & !DBNull.Value.Equals(lDtr_Temp[lSht_Col, DataRowVersion.Proposed]))
                                 {
                                     // compara original e atual
                                     if ((lDtr_Temp[lSht_Col, DataRowVersion.Current] != lDtr_Temp[lSht_Col, DataRowVersion.Proposed]))
@@ -679,7 +679,7 @@ namespace MktRisk.Infra.CommonFunctions
         /// -----------------------------------------------------------------------------
         public static string AdjustDate(System.DateTime vDat_Date)
         {
-            return Microsoft.VisualBasic.Strings.Format(vDat_Date, "yyyy/MM/dd");
+            return vDat_Date.ToString("yyyy/MM/dd");
         }
 
         /// -----------------------------------------------------------------------------
@@ -696,7 +696,7 @@ namespace MktRisk.Infra.CommonFunctions
         /// -----------------------------------------------------------------------------
         public static string AdjustDateAndTime(System.DateTime vDat_Date)
         {
-            return Microsoft.VisualBasic.Strings.Format(vDat_Date, "yyyy/MM/dd HH:mm:ss");
+            return vDat_Date.ToString("yyyy/MM/dd HH:mm:ss");
         }
 
         /// -----------------------------------------------------------------------------
@@ -713,7 +713,7 @@ namespace MktRisk.Infra.CommonFunctions
         /// -----------------------------------------------------------------------------
         public static string AdjustNumber(double vDbl_Number)
         {
-            return Microsoft.VisualBasic.Strings.Format(vDbl_Number, "#0.00000000");
+            return vDbl_Number.ToString("#0.00000000");
         }
 
         /// -----------------------------------------------------------------------------
@@ -1112,7 +1112,7 @@ namespace MktRisk.Infra.CommonFunctions
 
                                 // tem valor valido?
 
-                                if ((Information.IsDBNull(lDrv_Row[lCfg_Column.Name]) == false))
+                                if ((DBNull.Value.Equals(lDrv_Row[lCfg_Column.Name]) == false))
                                 {
                                     // pega valor
                                     lObj_Value = lDrv_Row[lCfg_Column.Name];
@@ -1124,7 +1124,7 @@ namespace MktRisk.Infra.CommonFunctions
                                     if ((lStr_Format.Length > 0))
                                     {
                                         // com formatacao
-                                        lStr_Value = Microsoft.VisualBasic.Strings.Format(lObj_Value, lStr_Format);
+                                        lStr_Value = string.Format(lStr_Format, lObj_Value);
                                     }
                                     else
                                     {
@@ -1413,7 +1413,7 @@ namespace MktRisk.Infra.CommonFunctions
                     lObj_ValorUnico = vDtr_Row[lStr_ColumnName];
 
                     //Se for nulo
-                    if ((Information.IsDBNull(lObj_ValorUnico)))
+                    if ((DBNull.Value.Equals(lObj_ValorUnico)))
                     {
                         //Atribuir NULL ao valor unico
                         lObj_ValorUnico = "NULL";
@@ -1442,7 +1442,7 @@ namespace MktRisk.Infra.CommonFunctions
         #region " Classes relacionadas (ColumnsConfigToString) "
 
         /// -----------------------------------------------------------------------------
-        /// Project	 : Pactual.Framework.Common
+        /// Project	 : .Framework.Common
         /// Class	 : Framework.Common.ColumnsConfigToString
         /// 
         /// -----------------------------------------------------------------------------
@@ -1591,7 +1591,7 @@ namespace MktRisk.Infra.CommonFunctions
             #region " Classe interna (ColumnConfig) "
 
             /// -----------------------------------------------------------------------------
-            /// Project	 : Pactual.Framework.Common
+            /// Project	 : .Framework.Common
             /// Class	 : Framework.Common.ColumnsConfigToString.ColumnConfig
             /// 
             /// -----------------------------------------------------------------------------
@@ -1772,7 +1772,7 @@ namespace MktRisk.Infra.CommonFunctions
 
 		}
 
-        private static System.Text.StringBuilder DataRowsToCSV(DataRow[] vArr_Rows, bool vBln_IncludeHeader = true, string vStr_Separator = Constants.vbTab, string vStr_Prefix = "", string vStr_Sufix = "", string vStr_ChildRelationName = "", System.Text.StringBuilder rTxt_Output = null)
+        private static System.Text.StringBuilder DataRowsToCSV(DataRow[] vArr_Rows, bool vBln_IncludeHeader = true, string vStr_Separator = Constants.Tab, string vStr_Prefix = "", string vStr_Sufix = "", string vStr_ChildRelationName = "", System.Text.StringBuilder rTxt_Output = null)
 		{
 			DataColumn lObj_Column = null;
 			DataRow lDtr_Data = null;
@@ -1809,7 +1809,7 @@ namespace MktRisk.Infra.CommonFunctions
 					for (lInt_Pos = 0; lInt_Pos <= lInt_ColCount - 1; lInt_Pos++) {
 						lObj_Column = lDtt_Table.Columns[lInt_Pos];
 
-						if ((Information.IsDBNull(lDtr_Data[lObj_Column]))) {
+						if ((DBNull.Value.Equals(lDtr_Data[lObj_Column]))) {
 							rTxt_Output.Append(vStr_Prefix + "" + vStr_Sufix + vStr_Separator);
 						} else {
 							if ((object.ReferenceEquals(lObj_Column.DataType, typeof(string)))) {

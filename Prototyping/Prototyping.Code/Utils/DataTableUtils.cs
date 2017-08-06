@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -444,7 +443,7 @@ namespace Prototyping.Code.Utils
                 _LinhaTabelaConversao = _LinhaTabelaConversao_loopVariable;
                 for (_IndiceColunas = 0; _IndiceColunas <= TabelaParaTransformar.Columns.Count - 1; _IndiceColunas++)
                 {
-                    if (!Information.IsDBNull(_LinhaTabelaConversao[_IndiceColunas]))
+                    if (!DBNull.Value.Equals(_LinhaTabelaConversao[_IndiceColunas]))
                     {
                         _ResultadoConversao.Append(_LinhaTabelaConversao[_IndiceColunas].ToString().Replace(",", ""));
                     }

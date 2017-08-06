@@ -106,7 +106,7 @@
     <Compile Include="Calc\Random\IRandomGenerator.cs" />
     <Compile Include="Calc\Runner\MCPricer.cs" />
     <Compile Include="Calc\StochasticDifferentialEquation\ISDE.cs" />
-	<Compile Include="CoachBaseRepository.cs" />
+    <Compile Include="CoachBaseRepository.cs" />
     <Compile Include="Download\MarketData\Bovespa\ClassificacaoSetorial.cs" />
     <Compile Include="Download\MarketData\Bovespa\Converter\BDIDateTypeConverter.cs" />
     <Compile Include="Download\MarketData\Bovespa\Converter\BDIDouble100TypeConverter.cs" />
@@ -116,6 +116,10 @@
     <Compile Include="Download\MarketData\Class1.cs" />
     <Compile Include="Download\MarketData\TesouroDireto\Intradia\TesouroIntradia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\ControlChars.cs" />
+    <Compile Include="Utils\DataTableUtils.cs" />
+    <Compile Include="Utils\DataUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
