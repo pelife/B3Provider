@@ -32,10 +32,17 @@ namespace Prototyping.UI.Console
 
             //Code.Calc.Runner.ConsolePricer.run();
 
-            Example3();
-            Example5();
+            //Example3();
+            //Example5();
+            Example7();
             System.Console.WriteLine("press <enter> to exit");
             System.Console.ReadLine();
+        }
+
+        public static void Example7()
+        {
+            var classi = new ClassificacaoSetorial();
+            classi.DownloadFile();
         }
 
         public static void Example5()
