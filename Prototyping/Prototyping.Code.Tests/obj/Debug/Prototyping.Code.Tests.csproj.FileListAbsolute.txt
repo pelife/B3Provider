@@ -58,3 +58,6 @@ G:\felipe\programming\git\prototyping\Prototyping\Prototyping.Code.Tests\bin\Deb
 G:\felipe\programming\git\prototyping\Prototyping\Prototyping.Code.Tests\bin\Debug\FlatFile.FixedLength.xml
 G:\felipe\programming\git\prototyping\Prototyping\Prototyping.Code.Tests\bin\Debug\NMathShared.netmodule
 G:\felipe\programming\git\prototyping\Prototyping\Prototyping.Code.Tests\bin\Debug\NMathKernel.netmodule
+G:\felipe\programming\git\prototyping\Prototyping\Prototyping.Code.Tests\bin\Debug\HtmlAgilityPack.dll
+G:\felipe\programming\git\prototyping\Prototyping\Prototyping.Code.Tests\bin\Debug\HtmlAgilityPack.pdb
+G:\felipe\programming\git\prototyping\Prototyping\Prototyping.Code.Tests\bin\Debug\HtmlAgilityPack.xml

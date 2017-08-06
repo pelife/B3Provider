@@ -68,6 +68,9 @@
     <Reference Include="FlatFile.FixedLength.Attributes, Version=0.2.33.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FlatFile.FixedLength.Attributes.0.2.33\lib\net45\FlatFile.FixedLength.Attributes.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.5.1.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.5.1\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -98,9 +101,13 @@
     <Compile Include="Calc\Runner\MCPricer.cs" />
     <Compile Include="Calc\StochasticDifferentialEquation\ISDE.cs" />
     <Compile Include="CoachBaseRepository.cs" />
+    <Compile Include="Download\MarketData\Bovespa\Converter\BDIDateTypeConverter.cs" />
+    <Compile Include="Download\MarketData\Bovespa\Converter\BDIDouble100TypeConverter.cs" />
+    <Compile Include="Download\MarketData\Bovespa\Converter\BDIStringTypeConverter.cs" />
     <Compile Include="Download\MarketData\Bovespa\COTAHISTReader.cs" />
     <Compile Include="Download\MarketData\Bovespa\Reader.cs" />
     <Compile Include="Download\MarketData\Class1.cs" />
+    <Compile Include="Download\MarketData\TesouroDireto\Intradia\TesouroIntradia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

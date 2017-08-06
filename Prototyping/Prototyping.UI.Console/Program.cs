@@ -1,6 +1,7 @@
 ﻿using CenterSpace.NMath.Core;
 using Common.Logging;
 using Prototyping.Code.Download.MarketData.Bovespa;
+using Prototyping.Code.Download.MarketData.TesouroDireto.Intradia;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -32,12 +33,17 @@ namespace Prototyping.UI.Console
 
             //Code.Calc.Runner.ConsolePricer.run();
 
-            Example3();
-            Example5();
+            //Example3();
+            //Example5();
+            Example6();
             System.Console.WriteLine("press <enter> to exit");
             System.Console.ReadLine();
         }
 
+        public static void Example6()
+        {
+            TesouroIntradia.Run();
+        }
         public static void Example5()
         {
             var enderecoArquivoCotacao = @"G:\felipe\programming\git\prototyping\source_data\COTAHIST\COTAHIST_A2017\COTAHIST_A2017.TXT";
