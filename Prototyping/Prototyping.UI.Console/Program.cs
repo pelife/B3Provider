@@ -35,7 +35,8 @@ namespace Prototyping.UI.Console
 
             //Example3();
             //Example5();
-            Example6();
+            //Example6();
+            Example7();
             System.Console.WriteLine("press <enter> to exit");
             System.Console.ReadLine();
         }
@@ -44,6 +45,13 @@ namespace Prototyping.UI.Console
         {
             TesouroIntradia.Run();
         }
+
+        public static void Example7()
+        {
+            var classi = new ClassificacaoSetorial();
+            classi.DownloadFile();
+        }
+
         public static void Example5()
         {
             var enderecoArquivoCotacao = @"G:\felipe\programming\git\prototyping\source_data\COTAHIST\COTAHIST_A2017\COTAHIST_A2017.TXT";
