@@ -9,6 +9,8 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Text;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Prototyping.UI.Console
@@ -36,9 +38,27 @@ namespace Prototyping.UI.Console
             //Example3();
             //Example5();
             //Example6();
+            var sh = Hash("teste");
             Example7();
             System.Console.WriteLine("press <enter> to exit");
             System.Console.ReadLine();
+        }
+
+        static double Hash(string input)
+        {
+            using (SHA1Managed sha1 = new SHA1Managed())
+            {
+                var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
+                var sb = new StringBuilder(hash.Length * 2);
+
+                foreach (byte b in hash)
+                {
+                    // can be "x2" if you want lowercase
+                    sb.Append(b.ToString("N0"));
+                }
+
+                return double.Parse (sb.ToString());
+            }
         }
 
         public static void Example6()
@@ -98,7 +118,7 @@ namespace Prototyping.UI.Console
             // Create a RandomNumberGenerator.UniformRandomNumber delegate object
             // from the method System.Random.NextDouble().
             var sysRand = new Random();
-            var uniformDeviates = new RandomNumberGenerator.UniformRandomNumber(sysRand.NextDouble);
+            var uniformDeviates = new CenterSpace.NMath.Core.RandomNumberGenerator.UniformRandomNumber(sysRand.NextDouble);
 
             // Now, construct a binomial random number generator using this delegate to
             // generate uniformly distributed random deviates between 0 and 1 (the 
@@ -125,7 +145,7 @@ namespace Prototyping.UI.Console
             var mt = new RandGenMTwist(seed);
             
             // Create the delegate.
-            uniformDeviates = new RandomNumberGenerator.UniformRandomNumber(mt.NextDouble);
+            uniformDeviates = new CenterSpace.NMath.Core.RandomNumberGenerator.UniformRandomNumber(mt.NextDouble);
 
             // Use the delegate to generate the uniform deviates necessary to for the 
             // binomial generator.

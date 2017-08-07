@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using Prototyping.Code.Utils;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace Prototyping.Code.Download.MarketData.Bovespa
 {
@@ -35,7 +36,7 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
             string empresaCodigo = string.Empty;
             string empresaSegmento = string.Empty;
 
-            List<EmpresaSetorInfo> empresas = null;           
+            List<EmpresaSetorInfo> empresas = null;
 
             using (var client = new WebClient())
             {
@@ -71,11 +72,11 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
                                     valorColuna4 = reader.GetString(3);
                                     valorColuna5 = reader.GetString(4);
 
-                                    if ( 
-                                        !string.IsNullOrEmpty(valorColuna1) 
-                                        && !string.IsNullOrEmpty(valorColuna2) 
+                                    if (
+                                        !string.IsNullOrEmpty(valorColuna1)
+                                        && !string.IsNullOrEmpty(valorColuna2)
                                         && !string.IsNullOrEmpty(valorColuna3)
-                                        && string.IsNullOrEmpty(valorColuna4) 
+                                        && string.IsNullOrEmpty(valorColuna4)
                                         && string.IsNullOrEmpty(valorColuna5))
                                     {
                                         //primeira categoria
@@ -95,12 +96,12 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
                                         segmento = valorColuna3.Trim();
                                     }
 
-                                   if (
-                                        string.IsNullOrEmpty(valorColuna1)
-                                        && !string.IsNullOrEmpty(valorColuna2)
-                                        && !string.IsNullOrEmpty(valorColuna3)
-                                        && string.IsNullOrEmpty(valorColuna4)
-                                        && string.IsNullOrEmpty(valorColuna5))
+                                    if (
+                                         string.IsNullOrEmpty(valorColuna1)
+                                         && !string.IsNullOrEmpty(valorColuna2)
+                                         && !string.IsNullOrEmpty(valorColuna3)
+                                         && string.IsNullOrEmpty(valorColuna4)
+                                         && string.IsNullOrEmpty(valorColuna5))
                                     {
                                         //trocou subsetor
                                         subsetor = valorColuna2.Trim();
@@ -116,7 +117,7 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
                                         //empresa
                                         empresa = valorColuna3.Trim();
                                         empresaCodigo = valorColuna4.Trim();
-                                        empresaSegmento = valorColuna5.Trim();
+                                        empresaSegmento = string.IsNullOrEmpty(valorColuna5) ? string.Empty : valorColuna5.Trim();
                                     }
 
                                     if (!string.IsNullOrEmpty(setorEconomico) &&
@@ -146,14 +147,110 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
                     }
                 }
             }
+
+            if (empresas != null && empresas.Count > 0)
+            {
+                SalvarBase(empresas);
+            }
+        }
+
+        private void SalvarBase(List<EmpresaSetorInfo> empresas)
+        {
+            var tabela = TransformarTabela(empresas);
+            Salvar(tabela);
+        }
+
+        static DataTable TransformarTabela(List<EmpresaSetorInfo> empresas)
+        {
+            DataTable tabelaEmpresas = null;
+            DataRow empresa = null;
+
+            tabelaEmpresas = new DataTable("TB_TMP_RAW_BOVESPA_CLASSIFICACAO_SETORIAL");
+            tabelaEmpresas.Columns.Add(new DataColumn("NM_SETOR_ECONOMICO", Type.GetType("System.String")));
+            tabelaEmpresas.Columns.Add(new DataColumn("NM_SUBSETOR_ECONOMICO", Type.GetType("System.String")));
+            tabelaEmpresas.Columns.Add(new DataColumn("NM_SEGMENTO_ECONOMICO", Type.GetType("System.String")));
+
+            tabelaEmpresas.Columns.Add(new DataColumn("NM_EMPRESA", Type.GetType("System.String")));
+            tabelaEmpresas.Columns.Add(new DataColumn("SG_EMPRESA", Type.GetType("System.String")));
+            tabelaEmpresas.Columns.Add(new DataColumn("SG_EMPRESA_SEGMENTO", Type.GetType("System.String")));
+            tabelaEmpresas.Columns.Add(new DataColumn("NR_HASH", Type.GetType("System.Double")));
+
+            if (empresas != null && empresas.Count > 0)
+            {
+                foreach (var umaEmpresa in empresas)
+                {
+                    empresa = tabelaEmpresas.NewRow();
+
+                    empresa["NM_SETOR_ECONOMICO"] = umaEmpresa.SetorEconomico;
+                    empresa["NM_SUBSETOR_ECONOMICO"] = umaEmpresa.SubSetorEconomico;
+                    empresa["NM_SEGMENTO_ECONOMICO"] = umaEmpresa.SegmentoEconomico;
+                    empresa["NM_EMPRESA"] = umaEmpresa.Empresa;
+                    empresa["SG_EMPRESA"] = umaEmpresa.Codigo;
+                    empresa["SG_EMPRESA_SEGMENTO"] = umaEmpresa.Segmento;
+                    empresa["NR_HASH"] = umaEmpresa.ComputeHash();
+
+                    tabelaEmpresas.Rows.Add(empresa);
+                }
+            }
+
+            return tabelaEmpresas;
+        }
+
+        static void Salvar(DataTable valoresInserir)
+        {
+            string connectionString = GetConnectionString();
+            // Open a sourceConnection to the AdventureWorks database.
+
+            // Open the destination connection. In the real world you would 
+            // not use SqlBulkCopy to move data from one table to the other 
+            // in the same database. This is for demonstration purposes only.
+            using (SqlConnection destinationConnection = new SqlConnection(connectionString))
+            {
+                destinationConnection.Open();
+
+                // Set up the bulk copy object. 
+                // Note that the column positions in the source
+                // data reader match the column positions in 
+                // the destination table so there is no need to
+                // map columns.
+                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(destinationConnection))
+                {
+                    bulkCopy.DestinationTableName =
+                        "DATA_IMPORT.TB_TMP_RAW_BOVESPA_CLASSIFICACAO_SETORIAL";
+
+                    try
+                    {
+                        // Write from the source to the destination.
+                        bulkCopy.WriteToServer(valoresInserir);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    finally
+                    {
+                        // Close the SqlDataReader. The SqlBulkCopy
+                        // object is automatically closed at the end
+                        // of the using block.
+                        //reader.Close();
+                    }
+                }
+            }
         }
 
 
+        private static string GetConnectionString()
+        // To avoid storing the sourceConnection string in your code, 
+        // you can retrieve it from a configuration file. 
+        {
+            var connection = System.Configuration.ConfigurationManager.ConnectionStrings["default"];
+            return connection.ConnectionString;
+        }
     }
 
     public class EmpresaSetorInfo
     {
-       public string SetorEconomico { get; set; }
+        public string SetorEconomico { get; set; }
         public string SubSetorEconomico { get; set; }
         public string SegmentoEconomico { get; set; }
         public string Empresa { get; set; }
@@ -163,6 +260,24 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
         public override string ToString()
         {
             return string.Format("{0}-{1}-{2}-{3}-{4}-{5}", SetorEconomico, SubSetorEconomico, SegmentoEconomico, Empresa, Codigo, Segmento);
+        }
+
+        public double ComputeHash()
+        {
+            using (System.Security.Cryptography.SHA1Managed sha1 = new System.Security.Cryptography.SHA1Managed())
+            {
+                var hash = sha1.ComputeHash(System.Text.Encoding.UTF8.GetBytes(this.ToString()));
+                var sb = new System.Text.StringBuilder(hash.Length * 2);
+
+                foreach (byte b in hash)
+                {
+                    // can be "x2" if you want lowercase
+                    sb.Append(b.ToString("N0"));
+                }
+
+                return double.Parse(sb.ToString());
+            }
+
         }
     }
 }
