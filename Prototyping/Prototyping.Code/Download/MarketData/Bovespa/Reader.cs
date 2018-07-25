@@ -413,7 +413,7 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
             };
 
             var flatFile = factory.GetEngine(layouts,
-                line =>
+                (line, lineNumber) =>
                 {
                     // For each line, return the proper record type.
                     // The mapping for this line will be loaded based on that type.
@@ -442,7 +442,7 @@ namespace Prototyping.Code.Download.MarketData.Bovespa
                             return typeof(BDITrailer);
                     }
                     return null;
-                });
+                }, null);
 
 
             flatFile.Read(streamToRead);

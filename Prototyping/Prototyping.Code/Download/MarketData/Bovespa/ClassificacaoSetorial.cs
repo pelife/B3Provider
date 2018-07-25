@@ -1,13 +1,12 @@
 ﻿using ExcelDataReader;
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.IO.Compression;
-using System.Net;
-using System.Data;
 using System.Linq;
-using Prototyping.Code.Utils;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Net;
 
 namespace Prototyping.Code.Download.MarketData.Bovespa
 {

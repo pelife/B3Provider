@@ -32,17 +32,44 @@ namespace Prototyping.UI.Console
             //Example2();
             //Example3();
             //Example4();
-
             //Code.Calc.Runner.ConsolePricer.run();
-
             //Example3();
             //Example5();
             //Example6();
-            var sh = Hash("teste");
-            Example7();
+            //var sh = Hash("teste");
+            //Example7();
+
+            String path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            _logger.Info("comecou");
+            //Example5();
+            Example11();
+            //Example7();
+            _logger.Info("terminou");
             System.Console.WriteLine("press <enter> to exit");
             System.Console.ReadLine();
         }
+
+
+        static void Example11()
+        {
+            Stopwatch _perfWatch;
+
+            var example = new Examples.Example11();
+            _perfWatch = Stopwatch.StartNew();
+            //example.Run();
+            _perfWatch.Stop();
+            // Write hours, minutes and seconds.
+            _logger.Info(string.Format("Time elapsed: {0:hh\\:mm\\:ss\\.fff}", _perfWatch.Elapsed));
+
+
+            _perfWatch = Stopwatch.StartNew();
+            //example.ReadBVBG02802();
+             example.ReadBVBG08601();
+            _perfWatch.Stop();
+            _logger.Info(string.Format("Time elapsed: {0:hh\\:mm\\:ss\\.fff}", _perfWatch.Elapsed));
+
+        }
+
 
         static double Hash(string input)
         {
@@ -74,7 +101,7 @@ namespace Prototyping.UI.Console
 
         public static void Example5()
         {
-            var enderecoArquivoCotacao = @"G:\felipe\programming\git\prototyping\source_data\COTAHIST\COTAHIST_A2017\COTAHIST_A2017.TXT";
+            var enderecoArquivoCotacao = @"C:\Users\Master\Documents\projects\prototyping\source_data\COTAHIST\COTAHIST_A2017\COTAHIST_A2017.TXT";
 
             //download
             //read
@@ -87,7 +114,15 @@ namespace Prototyping.UI.Console
                 var reader = new COTAHISTReader();
                 var resultado = reader.Read(stream);
 
+                var primeiro = resultado.Registros.FirstOrDefault();
+
                 var petr = resultado.Registros.Where(x => x.CodigoNegociacao.IndexOf("petr", StringComparison.InvariantCultureIgnoreCase) >= 0).ToList();
+                //78 OPCOES DE COMPRA
+                //82 OPCOES DE VENDA
+                var petrOpcoesCall = petr.Where(x => x.CodigoBDI.Equals("78", StringComparison.InvariantCultureIgnoreCase) && x.DataVencimento >= DateTime.Today).ToList();
+                var petrOpcoesPut = petr.Where(x => x.CodigoBDI.Equals("82", StringComparison.InvariantCultureIgnoreCase) && x.DataVencimento >= DateTime.Today).ToList();
+
+
             }
             _logger.Info("finished running example 5");
             

@@ -33,45 +33,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.BonusSkins.v18.1">
-      
+    <Reference Include="DevExpress.BonusSkins.v16.2">
+      <HintPath>..\..\lib\dx\DevExpress.BonusSkins.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v18.1.UI, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      
+    <Reference Include="DevExpress.Dashboard.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\dx\DevExpress.Dashboard.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Dashboard.v18.1.Core, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      
+    <Reference Include="DevExpress.Data.v16.2">
+      <HintPath>..\..\lib\dx\DevExpress.Data.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v18.1">
-      
+    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\dx\DevExpress.Images.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Images.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      
+    <Reference Include="DevExpress.Utils.v16.2">
+      <HintPath>..\..\lib\dx\DevExpress.Utils.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Utils.v18.1">
-      
+    <Reference Include="DevExpress.Sparkline.v16.2.Core">
+      <HintPath>..\..\lib\dx\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Sparkline.v18.1.Core">
-      
+    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\dx\DevExpress.XtraBars.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      
+    <Reference Include="DevExpress.XtraEditors.v16.2">
+      <HintPath>..\..\lib\dx\DevExpress.XtraEditors.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v18.1">
-      
-    </Reference>
-    <Reference Include="DevExpress.Office.v18.1.Core">
-      
-    </Reference>
-    <Reference Include="DevExpress.RichEdit.v18.1.Core">
-      
-    </Reference>
-    <Reference Include="DevExpress.RichEdit.v18.1.Export">
-      
-    </Reference>
-    <Reference Include="DevExpress.Printing.v18.1.Core">
-      
+    <Reference Include="DevExpress.Printing.v16.2.Core">
+      <HintPath>..\..\lib\dx\DevExpress.Printing.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
