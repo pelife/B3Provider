@@ -43,33 +43,13 @@ namespace B3Provider
     /// </summary>
     public class B3ProviderConfig
     {
-        #region "private members"
-        /// <summary>
-        /// Path to where the files from B3 will be downloaded to        
-        /// </summary>
-        private string _downloadPath = string.Empty;
-        private ReadStrategy _readingStrategy = ReadStrategy.ZipFileReadMostRecent;
-        #endregion
-
         #region "properties"
         /// <summary>
         /// Path to where the files from B3 will be downloaded to
         /// if not defined, it automatically sets it to 
         /// Environment.SpecialFolder.CommonApplicationData\B3Provider
         /// </summary>
-        public string DownloadPath
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_downloadPath))
-                {
-                    _downloadPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "B3Provider");
-                }
-
-                return _downloadPath;
-            }
-            set { _downloadPath = value; }
-        }
+        public string DownloadPath { get; set; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "B3Provider");      
 
         /// <summary>
         /// true to replace existing files if necessary otherwise false
@@ -79,7 +59,7 @@ namespace B3Provider
         /// <summary>
         /// Reading strategy to load files
         /// </summary>
-        public ReadStrategy ReadStrategy { get; set; }
+        public ReadStrategy ReadStrategy { get; set; } = ReadStrategy.ZipFileReadMostRecent;
         #endregion
 
     }

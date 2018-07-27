@@ -37,7 +37,7 @@ namespace B3Provider
     using System.Net;
 
     /// <summary>
-    /// Class responsable to download files from B3 FTP website.
+    /// Class responsable to download files from B3 FTP and HTTP website.
     /// </summary>
     public class B3Dowloader : IB3Downloader
     {
@@ -60,6 +60,14 @@ namespace B3Provider
         #endregion
 
         #region "IB3Downloader methods"
+        /// <summary>
+        /// Method that downloads from the FTP site the file containing the Index File BVBG.087.01
+        /// </summary>
+        /// <param name="dateToDownload">Date of reference to download the file</param>
+        /// <param name="replaceIfExists">True to replace the file in case it already exists</param>
+        /// <returns>
+        /// file path where the file was saved to.
+        /// </returns>
         public string DownloadIndexFile(DateTime? dateToDownload, bool replaceIfExists)
         {
             var dateDowload = DefineDateIfNotDefined(dateToDownload);
@@ -69,6 +77,14 @@ namespace B3Provider
             return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
         }
 
+        /// <summary>
+        /// Method that downloads from the FTP site the file containing the Indicators File BVBG.029.02
+        /// </summary>
+        /// <param name="dateToDownload">Date of reference to download the file</param>
+        /// <param name="replaceIfExists">True to replace the file in case it already exists</param>
+        /// <returns>
+        /// file path where the file was saved to.
+        /// </returns>
         public string DownloadIndicatorFile(DateTime? dateToDownload, bool replaceIfExists)
         {
             var dateDowload = DefineDateIfNotDefined(dateToDownload);
@@ -78,6 +94,14 @@ namespace B3Provider
             return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);            
         }
 
+        /// <summary>
+        /// Method that downloads from the FTP site the file containing the Instruments File BVBG.028.02
+        /// </summary>
+        /// <param name="dateToDownload">Date of reference to download the file</param>
+        /// <param name="replaceIfExists">True to replace the file in case it already exists</param>
+        /// <returns>
+        /// file path where the file was saved to.
+        /// </returns>
         public string DownloadInstrumentFile(DateTime? dateToDownload, bool replaceIfExists)
         {
             var dateDowload = DefineDateIfNotDefined(dateToDownload);
@@ -87,6 +111,14 @@ namespace B3Provider
             return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
         }
 
+        /// <summary>
+        /// Method that downloads from the FTP site the file containing the Quotes File BVBG.086.01
+        /// </summary>
+        /// <param name="dateToDownload">Date of reference to download the file</param>
+        /// <param name="replaceIfExists">True to replace the file in case it already exists</param>
+        /// <returns>
+        /// file path where the file was saved to.
+        /// </returns>
         public string DownloadQuoteFile(DateTime? dateToDownload, bool replaceIfExists)
         {
             var dateDowload = DefineDateIfNotDefined(dateToDownload);
@@ -96,6 +128,14 @@ namespace B3Provider
             return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
         }
 
+        /// <summary>
+        /// Method that downloads from the FTP site the file containing the Historic Quotes File COTAHIST
+        /// </summary>
+        /// <param name="yearToDownload">year that one wants to download the complete history of prices</param>
+        /// <param name="replaceIfExists">True to replace the file in case it already exists</param>
+        /// <returns>
+        /// file path where the file was saved to.
+        /// </returns>        
         public string DownloadYearHistoricFile(int yearToDownload, bool replaceIfExists)
         {
             var fileName = string.Format("COTAHIST_A{0}.ZIP", yearToDownload);

@@ -34,10 +34,21 @@ namespace B3Provider
     using B3Provider.Readers;
     using System;
 
+    /// <summary>
+    /// Factory class to get the correct type of reader according to the type of register intended to read.
+    /// </summary>
     public static class ReaderFactory
     {
+        /// <summary>
+        /// Factory Method to create the correct type of reader acording to generic type specified.
+        /// </summary>
+        /// <typeparam name="T">Type of register that one wants to read</typeparam>
+        /// <returns>
+        /// Class that implements the methods required to read the type of registers specified.
+        /// </returns>
         public static IReader<T> CreateReader<T>()
         {
+            //TODO: implement all the types of readers
             if (typeof(T) == typeof(B3EquityInfo))
             {
                 return (IReader<T>)new B3EquityInfoReader();
@@ -51,6 +62,14 @@ namespace B3Provider
             throw new InvalidOperationException();
         }
 
+        /// <summary>
+        /// Factory Method to create the correct type of reader acording to generic type specified.
+        /// </summary>
+        /// <typeparam name="T">Type of register that one wants to read</typeparam>        
+        /// <param name="strategy">Reading strategy to be assigned to the returning reader.</param>        
+        /// <returns>
+        /// Class that implements the methods required to read the type of registers specified.
+        /// </returns>        
         public static IReader<T> CreateReader<T>(ReadStrategy strategy)
         {
             var reader = CreateReader<T>();

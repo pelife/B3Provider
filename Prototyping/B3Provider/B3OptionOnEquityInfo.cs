@@ -29,9 +29,105 @@
  */
 #endregion
 
+using System;
+
 namespace B3Provider
 {
+    /// <summary>
+    /// Enumeration that indicates the type of Option Call or Put
+    /// </summary>
+    public enum B3OptionOnEquityTypeInfo : short
+    {
+        /// <summary>
+        /// Call option is an obligation to sell at a price to call issuer.
+        /// </summary>
+        Call = 1
+
+       /// <summary>
+       /// Put option is an obligation to buy at a price to call issuer.
+       /// </summary>
+       , Put = -1
+    }
+
+    /// <summary>
+    /// Enumeration that indicates the Exercise Style of Option American or European
+    /// </summary>
+    public enum B3OptionOnEquityStyleInfo : short
+    {
+        /// <summary>
+        /// Can be exercised any time prior to the expiration date
+        /// </summary>
+        American = 1
+
+       /// <summary>
+       /// Can be exercised only in the expiration date
+       /// </summary>
+       , European = 2
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class B3OptionOnEquityInfo
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public long? B3ID { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ISIN { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Description { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Ticker { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double? Strike { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string StrikeCurrency { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public B3OptionOnEquityStyleInfo Style { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public B3OptionOnEquityTypeInfo Type { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? Expiration { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Currency { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? LoadDate { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public long? B3IDUnderlying { get; internal set; }
     }
 }

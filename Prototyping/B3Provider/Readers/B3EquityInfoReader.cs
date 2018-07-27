@@ -38,8 +38,20 @@ namespace B3Provider.Readers
     using System.Xml;
     using B3Provider.Util;
 
+    /// <summary>
+    /// Method responsible for reading all the equity info from B3 instrument file
+    /// </summary>
     public class B3EquityInfoReader : AbstractReader<B3EquityInfo>
     {
+
+        #region "public methods"
+        /// <summary>
+        /// Method responsible to read records from file
+        /// </summary>
+        /// <param name="filePath">File to read records from</param>
+        /// <returns>
+        /// List of all equity instruments found
+        /// </returns>
         public override IList<B3EquityInfo> ReadRecords(string filePath)
         {
             var listOfEquity = new List<B3EquityInfo>();
@@ -58,7 +70,16 @@ namespace B3Provider.Readers
             DeleteDirectory(temporaryPath);
             return listOfEquity;
         }
+        #endregion
 
+        #region "private methods"
+        /// <summary>
+        /// Internal private file responsible to read records of equities from file
+        /// </summary>
+        /// <param name="filePath">File path to read equity records from</param>
+        /// <returns>
+        /// All equities found in file
+        /// </returns>
         private IList<B3EquityInfo> ReadFile(string filePath)
         {
             IList<B3EquityInfo> equityInfo = null;
@@ -106,5 +127,6 @@ namespace B3Provider.Readers
 
             return equityInfo;
         }
+        #endregion
     }
 }

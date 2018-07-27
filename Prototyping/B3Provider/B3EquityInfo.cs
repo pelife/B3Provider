@@ -34,16 +34,54 @@ namespace B3Provider
 {
     using System;
 
+    /// <summary>
+    /// Class that represents a stock (equity)
+    /// </summary>
     public class B3EquityInfo
     {
+        /// <summary>
+        /// B3 Internal identification of the instrument
+        /// </summary>
         public long? B3ID { get; set; }
+
+        /// <summary>
+        /// ISIN world public instrument identification
+        /// </summary>
         public string ISIN { get; set; }
+
+        /// <summary>
+        /// Name of issuer company
+        /// </summary>
         public string CompanyName { get; set; }
+
+        /// <summary>
+        /// Description of the instrument
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Ticker of most common refered to symbol of the stock
+        /// </summary>
         public string Ticker { get; set; }
+
+        /// <summary>
+        /// Trading currency of the stock
+        /// </summary>
         public string Currency { get; set; }
+
+        /// <summary>
+        /// Market capitalization of the company (size of the company)
+        /// </summary>
         public long? MarketCapitalization { get; set; }
+
+        /// <summary>
+        /// Last price that was presented into the instrument file (not quote)
+        /// </summary>
         public double? LastPrice { get; set; }
+
+        /// <summary>
+        /// The date of the last instrument file read
+        /// </summary>
         public DateTime? LoadDate { get; set; }
     }
 }

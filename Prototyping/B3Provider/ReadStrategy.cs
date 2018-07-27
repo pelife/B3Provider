@@ -36,7 +36,14 @@ namespace B3Provider
     /// </summary>
     public enum ReadStrategy : short
     {
+        /// <summary>
+        /// reads only the most recent file found into a zip archive
+        /// </summary>
         ZipFileReadMostRecent = 1,
+
+        /// <summary>
+        /// reads all the files found into a zip archive
+        /// </summary>
         ZipFileReadAllOverrideRepeated = 2        
     }
 }

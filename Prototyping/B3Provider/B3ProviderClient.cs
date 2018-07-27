@@ -35,6 +35,7 @@
 namespace B3Provider
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
 
     /// <summary>
@@ -60,7 +61,19 @@ namespace B3Provider
         private B3ProviderConfig _configuration = null;
         private B3Dowloader _downloader = null;
         private bool _setupExecuted = false;
-        #endregion       
+        #endregion
+
+        #region "properties to records found in files"
+        /// <summary>
+        /// All equity information found in a file.
+        /// </summary>
+        public IList<B3EquityInfo> EquityInstruments{get;set;} = null;
+
+        /// <summary>
+        /// All options on equity found in a file.
+        /// </summary>
+        public IList<B3OptionOnEquityInfo> OptionInstruments { get; set; } = null;
+        #endregion
 
         #region "public methods"
         /// <summary>
@@ -72,28 +85,38 @@ namespace B3Provider
             _setupExecuted = true;
         }
 
+        /// <summary>
+        /// Load all the instruments found in files
+        /// </summary>
         public void LoadInstruments()
         {
             SetupIfNotSetup();
             var filePath = _downloader.DownloadInstrumentFile(null, _configuration.ReplaceExistingFiles);
 
             var equityReader = ReaderFactory.CreateReader<B3EquityInfo>(_configuration.ReadStrategy);
-            var equityInfo = equityReader.ReadRecords(filePath);
+            EquityInstruments = equityReader.ReadRecords(filePath);
 
             var optionsReader = ReaderFactory.CreateReader<B3OptionOnEquityInfo>(_configuration.ReadStrategy);
-            var optionsInfo = optionsReader.ReadRecords(filePath);
+            OptionInstruments = optionsReader.ReadRecords(filePath);
         }
 
+        /// <summary>
+        /// Load all the quotes found  in files (for a specific date)
+        /// </summary>
         public void LoadQuotes()
         {
             SetupIfNotSetup();
             var filePath = _downloader.DownloadQuoteFile(null, _configuration.ReplaceExistingFiles);
         }
 
-        public void LoadHistoricQuotes()
+        /// <summary>
+        /// Load all the quotes found  in files (for a year file)
+        /// </summary>
+        /// <param name="yearToReadHistory"></param>
+        public void LoadHistoricQuotes(int yearToReadHistory)
         {
             SetupIfNotSetup();
-            var filePath = _downloader.DownloadYearHistoricFile(2017, _configuration.ReplaceExistingFiles);
+            var filePath = _downloader.DownloadYearHistoricFile(yearToReadHistory, _configuration.ReplaceExistingFiles);
         }
 
         #endregion

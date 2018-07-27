@@ -42,8 +42,7 @@ namespace B3Provider
     {
         /// <summary>
         /// Method that is going to actually read the file(s) that are informed acording to the reading strategy
-        /// </summary>
-        /// 
+        /// </summary>        
         /// <returns>
         /// List of records found in the file informed
         /// </returns>
@@ -52,6 +51,6 @@ namespace B3Provider
         /// <summary>
         /// Defines the method that the reader will read files
         /// </summary>
-        ReadStrategy? ReadStrategy { get; set; }
+        ReadStrategy ReadStrategy { get; set; }
     }
 }
