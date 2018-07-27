@@ -58,14 +58,25 @@ namespace B3ProviderTesting
         [TestMethod]
         public void B3ProviderMustFindOptions()
         {
-            var config = new B3Provider.B3ProviderConfig();
+            // create a configuration instance
+            var config = new B3ProviderConfig();
+
+            // define properties
             config.ReplaceExistingFiles = true;
 
-            var client = new B3Provider.B3ProviderClient(config);
+            // create an instance of the client
+            var client = new B3ProviderClient(config);
+
+            // load all instruments into memory
             client.LoadInstruments();
 
+            // get information about PETR4 stock (the most popular in B3)
             var equity = client.EquityInstruments.Where(e => e.Ticker.Equals("PETR4", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+
+            // get information about option calls on PETR4 stock 
             var optionsCalls = client.OptionInstruments.Where(o => o.B3IDUnderlying == equity.B3ID && o.Type == B3OptionOnEquityTypeInfo.Call).ToList();
+
+            // get information about option puts on PETR4 stock 
             var optionsPuts = client.OptionInstruments.Where(o => o.B3IDUnderlying == equity.B3ID && o.Type == B3OptionOnEquityTypeInfo.Put).ToList();
         }
     }
