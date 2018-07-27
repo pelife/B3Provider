@@ -60,7 +60,7 @@ His project is available in <a href='https://gist.github.com/wilsonfreitas/a8754
 
 ## License
 B3Provider is available on github <a href='https://github.com/pelife/prototyping'>here</a>
-under <a href='https://github.com/pelife/prototyping/MIT-LICENSE.txt'>MIT license</a>.
+under <a href='https://github.com/pelife/prototyping/blob/master/MIT-LICENSE.txt'>MIT license</a>.
 If you hit bugs, fill issues on github.
 Feel free to fork, modify and have fun with it :)
 
