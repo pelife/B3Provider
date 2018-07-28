@@ -29,7 +29,7 @@
  */
 #endregion
 
-namespace B3Provider.Util
+namespace B3Provider.Utils
 {
     using System;
     using System.ComponentModel;

@@ -31,7 +31,7 @@
 
 namespace B3Provider
 {
-    using B3Provider.Util;
+    using B3Provider.Utils;
     using System;
     using System.IO;
     using System.Net;

@@ -28,15 +28,14 @@
  * - Felipe Bahiana Almeida <felipe.almeida@gmail.com> https://www.linkedin.com/in/felipe-almeida-ba222577
  */
 #endregion
-
-
+ 
 namespace B3Provider.Readers
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Xml;
-    using B3Provider.Util;
+    using B3Provider.Utils;
 
     /// <summary>
     /// Method responsible for reading all the equity info from B3 instrument file

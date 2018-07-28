@@ -76,6 +76,18 @@ namespace B3ProviderTesting
         }
 
         [TestMethod]
+        public void B3ProviderMustDownloadHistoricQuoteFiles()
+        {
+            var config = new B3Provider.B3ProviderConfig();
+            config.ReplaceExistingFiles = true;
+
+            var client = new B3Provider.B3ProviderClient(config);
+            client.LoadHistoricQuotes(2018);
+
+        }
+
+
+        [TestMethod]
         public void B3ProviderMustFindOptions()
         {
             // create a configuration instance

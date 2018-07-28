@@ -35,7 +35,7 @@ namespace B3Provider.Readers
     using System.Collections.Generic;
     using System.Globalization;
     using System.Xml;
-    using B3Provider.Util;
+    using B3Provider.Utils;
 
     /// <summary>
     /// Method responsible for reading all the options on equity info from B3 instrument file

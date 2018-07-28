@@ -124,6 +124,9 @@ namespace B3Provider
         {
             SetupIfNotSetup();
             var filePath = _downloader.DownloadYearHistoricFile(yearToReadHistory, _configuration.ReplaceExistingFiles);
+
+            var historicMarketDataReader = ReaderFactory.CreateReader<B3HistoricMarketDataInfo>(_configuration.ReadStrategy);
+            var historic = historicMarketDataReader.ReadRecords(filePath);
         }
 
         #endregion
