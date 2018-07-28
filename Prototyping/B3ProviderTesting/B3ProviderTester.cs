@@ -40,7 +40,7 @@ namespace B3ProviderTesting
     public class B3ProviderTester
     {
         [TestMethod]
-        public void B3ProviderMustDownloadFiles()
+        public void B3ProviderMustDownloadInstrumentFiles()
         {
             var config = new B3Provider.B3ProviderConfig();
             config.ReplaceExistingFiles = true;
@@ -53,6 +53,26 @@ namespace B3ProviderTesting
 
             Assert.AreNotEqual(0, client.EquityInstruments.Count);
             Assert.AreNotEqual(0, client.OptionInstruments.Count);
+        }
+
+        [TestMethod]
+        public void B3ProviderMustDownloadQuoteFiles()
+        {
+            var config = new B3Provider.B3ProviderConfig();
+            config.ReplaceExistingFiles = true;
+
+            var client = new B3Provider.B3ProviderClient(config);
+            client.LoadQuotes();
+
+            // get information about PETR4 stock (the most popular in B3)
+            var petr4 = client.CurrentMarketData.Where(e =>
+                e.Ticker.Equals("PETR4", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+
+            var usim5 = client.CurrentMarketData.Where(e =>
+                e.Ticker.Equals("USIM5", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+
+            var bbdc4 = client.CurrentMarketData.Where(e =>
+                e.Ticker.Equals("BBDC4", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
         }
 
         [TestMethod]
@@ -70,14 +90,23 @@ namespace B3ProviderTesting
             // load all instruments into memory
             client.LoadInstruments();
 
+            // load all instruments into memory
+            client.LoadQuotes();
+
             // get information about PETR4 stock (the most popular in B3)
-            var equity = client.EquityInstruments.Where(e => e.Ticker.Equals("PETR4", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+            var equity = client.EquityInstruments.Where(e => 
+                e.Ticker.Equals("PETR4", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
 
             // get information about option calls on PETR4 stock 
-            var optionsCalls = client.OptionInstruments.Where(o => o.B3IDUnderlying == equity.B3ID && o.Type == B3OptionOnEquityTypeInfo.Call).ToList();
+            var optionsCalls = client.OptionInstruments.Where(o => o.B3IDUnderlying == equity.B3ID 
+                && o.Type == B3OptionOnEquityTypeInfo.Call).ToList();
 
             // get information about option puts on PETR4 stock 
-            var optionsPuts = client.OptionInstruments.Where(o => o.B3IDUnderlying == equity.B3ID && o.Type == B3OptionOnEquityTypeInfo.Put).ToList();
+            var optionsPuts = client.OptionInstruments.Where(o => o.B3IDUnderlying == equity.B3ID 
+                && o.Type == B3OptionOnEquityTypeInfo.Put).ToList();
         }
+
+
+
     }
 }

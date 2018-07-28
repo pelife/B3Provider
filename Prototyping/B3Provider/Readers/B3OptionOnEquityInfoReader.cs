@@ -60,8 +60,8 @@ namespace B3Provider.Readers
             {
                 foreach (string oneFileToRead in filesToRead)
                 {
-                    var equityInfo = ReadFile(oneFileToRead);
-                    listOfOptionsOnEquity.AddRange(equityInfo);
+                    var optionsOnEquityInfo = ReadFile(oneFileToRead);
+                    listOfOptionsOnEquity.AddRange(optionsOnEquityInfo);
                 }
             }
 

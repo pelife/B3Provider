@@ -73,7 +73,11 @@ namespace B3Provider
         /// All options on equity found in a file.
         /// </summary>
         public IList<B3OptionOnEquityInfo> OptionInstruments { get; set; } = null;
+
+        public IList<B3MarketDataInfo> CurrentMarketData { get; set; } = null;
         #endregion
+
+
 
         #region "public methods"
         /// <summary>
@@ -107,6 +111,9 @@ namespace B3Provider
         {
             SetupIfNotSetup();
             var filePath = _downloader.DownloadQuoteFile(null, _configuration.ReplaceExistingFiles);
+
+            var marketDataReader = ReaderFactory.CreateReader<B3MarketDataInfo>(_configuration.ReadStrategy);
+            CurrentMarketData = marketDataReader.ReadRecords(filePath);
         }
 
         /// <summary>

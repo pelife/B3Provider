@@ -59,6 +59,12 @@ namespace B3Provider
                 return (IReader<T>)new B3OptionOnEquityInfoReader();
             }
 
+            if (typeof(T) == typeof(B3MarketDataInfo))
+            {
+                return (IReader<T>)new B3MarketDataInfoReader();
+            }
+
+            
             throw new InvalidOperationException();
         }
 

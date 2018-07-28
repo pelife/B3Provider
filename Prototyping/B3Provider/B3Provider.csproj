@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="B3MarketDataInfo.cs" />
+    <Compile Include="Readers\B3MarketDataInfoReader.cs" />
     <Compile Include="Util\B3DateUtils.cs" />
     <Compile Include="B3Dowloader.cs" />
     <Compile Include="B3EquityInfo.cs" />
