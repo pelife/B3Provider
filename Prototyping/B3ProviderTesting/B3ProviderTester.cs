@@ -105,6 +105,9 @@ namespace B3ProviderTesting
             // load all instruments into memory
             client.LoadQuotes();
 
+            // load all instruments into memory
+            client.LoadHistoricQuotes(2018);
+
             // get information about PETR4 stock (the most popular in B3)
             var equity = client.EquityInstruments.Where(e => 
                 e.Ticker.Equals("PETR4", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
@@ -112,6 +115,8 @@ namespace B3ProviderTesting
             // get information about option calls on PETR4 stock 
             var optionsCalls = client.OptionInstruments.Where(o => o.B3IDUnderlying == equity.B3ID 
                 && o.Type == B3OptionOnEquityTypeInfo.Call).ToList();
+
+            var historicQuotes = client.HistoricMarketData.Where(md => md.Ticker == optionsCalls.FirstOrDefault().Ticker).ToList();
 
             // get information about option puts on PETR4 stock 
             var optionsPuts = client.OptionInstruments.Where(o => o.B3IDUnderlying == equity.B3ID 

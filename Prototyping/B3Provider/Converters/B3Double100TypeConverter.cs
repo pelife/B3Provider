@@ -34,6 +34,9 @@ namespace B3Provider.Converters
     using FlatFile.Core;
     using System;
 
+    /// <summary>
+    /// double base100 double converter to be used by the class that reads flat files
+    /// </summary>
     public class B3Double100TypeConverter : ITypeConverter
     {
         public bool CanConvertFrom(Type type)

@@ -75,9 +75,9 @@ namespace B3Provider
         public IList<B3OptionOnEquityInfo> OptionInstruments { get; set; } = null;
 
         public IList<B3MarketDataInfo> CurrentMarketData { get; set; } = null;
+
+        public IList<B3HistoricMarketDataInfo> HistoricMarketData { get; set; } = null;
         #endregion
-
-
 
         #region "public methods"
         /// <summary>
@@ -126,7 +126,7 @@ namespace B3Provider
             var filePath = _downloader.DownloadYearHistoricFile(yearToReadHistory, _configuration.ReplaceExistingFiles);
 
             var historicMarketDataReader = ReaderFactory.CreateReader<B3HistoricMarketDataInfo>(_configuration.ReadStrategy);
-            var historic = historicMarketDataReader.ReadRecords(filePath);
+            HistoricMarketData = historicMarketDataReader.ReadRecords(filePath);
         }
 
         #endregion

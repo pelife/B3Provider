@@ -34,8 +34,14 @@ namespace B3Provider.Layouts
     using B3Provider.Converters;
     using FlatFile.FixedLength.Implementation;
 
+    /// <summary>
+    /// class that represents the layout of trailer of file cotahist to be read from the framework
+    /// </summary>
     public sealed class B3COTAHISTTrailerLayout : FixedLayout<B3HistoricMarketDataTrailerInfo>
     {
+        /// <summary>
+        /// Default constructor where we map all the properties of the returnin class <see cref="B3HistoricMarketDataTrailerInfo"/>
+        /// </summary>
         public B3COTAHISTTrailerLayout()
         {
             this.WithMember(x => x.Type, c => c.WithLength(2))

@@ -50,9 +50,12 @@ namespace B3Provider.Utils
             DateTime _previousDay;
             if (!referenceDate.HasValue)
                 referenceDate = DateTime.Today;
+
+            _previousDay = referenceDate.Value;
+
             do
             {
-                _previousDay = referenceDate.Value.Subtract(TimeSpan.FromDays(1));
+                _previousDay  = _previousDay.Subtract(TimeSpan.FromDays(1));
             }
             while (IsHoliday(_previousDay) || IsWeekend(_previousDay));
 

@@ -36,6 +36,9 @@ namespace B3Provider.Converters
     using System;
     using System.Globalization;
 
+    /// <summary>
+    /// Date time converter to be used by the class that reads flat files
+    /// </summary>
     public class B3DateTypeConverter : ITypeConverter
     {
         public bool CanConvertFrom(Type type)
@@ -122,4 +125,5 @@ namespace B3Provider.Converters
             return null;
         }
     }
+      
 }

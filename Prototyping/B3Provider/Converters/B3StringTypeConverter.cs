@@ -35,6 +35,9 @@ namespace B3Provider.Converters
     using FlatFile.Core;
     using System;
 
+    /// <summary>
+    /// string converter to be used by the class that reads flat files it removes excess of spaces
+    /// </summary>
     public class B3StringTypeConverter : ITypeConverter
     {
         public bool CanConvertFrom(Type type)

@@ -43,7 +43,7 @@ namespace B3Provider
         //public string CodigoBDI { get; set; }                   //CODBDI - CÓDIGO BDI --X02
         public string BDICode { get; set; }                   //CODBDI - CÓDIGO BDI --X02
         //public string CodigoNegociacao { get; set; }            //CODNEG - CÓDIGO DE NEGOCIAÇÃO DO PAPEL --X12
-        public string TradeCode { get; set; }            //CODNEG - CÓDIGO DE NEGOCIAÇÃO DO PAPEL --X12
+        public string Ticker { get; set; }            //CODNEG - CÓDIGO DE NEGOCIAÇÃO DO PAPEL --X12
         //public string CodigoTipoMercado { get; set; }           //TPMERC - TIPO DE MERCADO  --N03
         public string MarketTypeCode { get; set; }           //TPMERC - TIPO DE MERCADO  --N03
         //public string NomeResumido { get; set; }                //NOMRES - NOME RESUMIDO DA EMPRESA EMISSORA DO PAPEL --X12
