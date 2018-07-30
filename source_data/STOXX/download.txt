@@ -1,2 +1,0 @@
-https://www.stoxx.com/document/Indices/Current/HistoricalData/h_vstoxx.txt
-https://www.stoxx.com/document/Indices/Current/HistoricalData/hbrbcpe.txt
