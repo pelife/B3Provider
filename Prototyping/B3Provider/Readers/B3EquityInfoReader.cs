@@ -39,7 +39,7 @@ namespace B3Provider.Readers
     using B3Provider.Utils;
 
     /// <summary>
-    /// Method responsible for reading all the equity info from B3 instrument file
+    /// Class responsible for reading all the equity info from B3 instrument file
     /// </summary>
     public class B3EquityInfoReader : AbstractReader<B3EquityInfo>
     {

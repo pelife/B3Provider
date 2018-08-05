@@ -31,13 +31,58 @@
 
 namespace B3Provider.Records
 {
+    /// <summary>
+    /// Class that represents the Economic Market Sector of a company listed in
+    /// B3 stock exchange (former BM&F Bovespa) Brazil.
+    /// </summary>
     public class B3SectorClassifcationInfo
     {
+        /// <summary>
+        /// 1st level of classification 
+        /// Examples
+        /// Bens Industriais
+        /// Materiais Básicos
+        /// </summary>
         public string EconomicSector { get; internal set; }
+
+        /// <summary>
+        /// 2nd level of classification 
+        /// Examples
+        /// Bens Industriais
+        ///     Construção e Engenharia
+        /// Materiais Básicos
+        ///     Mineração
+        /// </summary>
         public string EconomicSubSector { get; internal set; }
+
+        /// <summary>
+        /// 3rd level of classification 
+        /// Examples
+        /// Bens Industriais
+        ///     Construção e Engenharia
+        ///         Produtos para Construção
+        ///         Construção Pesada
+        ///         Engenharia Consultiva
+        /// Materiais Básicos
+        ///     Mineração
+        ///         Minerais Metálicos
+        ///         Minerais Não Metálicos
+        /// </summary>
         public string EconomicSegment { get; internal set; }
-        public string Company { get; internal set; }
-        public string CompanyCode { get; internal set; }
-        public string CompanySegment { get; internal set; }
+
+        /// <summary>
+        /// Name of the company classificated
+        /// </summary>
+        public string CompanyName { get; internal set; }
+
+        /// <summary>
+        /// Listing code of the company classificated
+        /// </summary>
+        public string CompanyListingCode { get; internal set; }
+
+        /// <summary>
+        /// Listing segment of the company classificated
+        /// </summary>
+        public string CompanyListingSegment { get; internal set; }
     }
 }

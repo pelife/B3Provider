@@ -170,9 +170,9 @@ namespace B3Provider.Readers
                                 EconomicSector = setorEconomico,
                                 EconomicSubSector = subsetor,
                                 EconomicSegment = segmento,
-                                Company = empresa,
-                                CompanyCode = empresaCodigo,
-                                CompanySegment = empresaSegmento
+                                CompanyName = empresa,
+                                CompanyListingCode = empresaCodigo,
+                                CompanyListingSegment = empresaSegmento
                             });
 
                             empresa = string.Empty;

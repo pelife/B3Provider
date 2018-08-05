@@ -38,8 +38,20 @@ namespace B3Provider.Readers
     using System.Globalization;
     using System.Xml;
 
+    /// <summary>
+    /// Class responsible for reading all the Daily Market Data info from B3 Daily quotes file
+    /// </summary>
     public class B3MarketDataInfoReader : AbstractReader<B3MarketDataInfo>
     {
+        #region "public methods"
+
+        /// <summary>
+        /// Method responsible to read records from file of daily quotes file
+        /// </summary>
+        /// <param name="filePath">File to read records from</param>
+        /// <returns>
+        /// List of all daily quotes file
+        /// </returns>
         public override IList<B3MarketDataInfo> ReadRecords(string filePath)
         {
             var listOfMarketData = new List<B3MarketDataInfo>();
@@ -58,7 +70,16 @@ namespace B3Provider.Readers
             DeleteDirectory(temporaryPath);
             return listOfMarketData;
         }
+        #endregion
 
+        #region "private methods"
+        /// <summary>
+        /// Internal private file responsible to read records of daily quotes from file
+        /// </summary>
+        /// <param name="filePath">File path to read daily quotes records from</param>
+        /// <returns>
+        /// All daily quotes found in the file
+        /// </returns>
         private IList<B3MarketDataInfo> ReadFile(string filePath)
         {
             IList<B3MarketDataInfo> marketDataInfo = null;
@@ -153,5 +174,7 @@ namespace B3Provider.Readers
             }
             return marketDataInfo;
         }
+
+        #endregion
     }
 }

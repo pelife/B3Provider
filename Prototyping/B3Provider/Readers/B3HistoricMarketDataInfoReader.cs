@@ -39,8 +39,19 @@ namespace B3Provider.Readers
     using System.IO;
     using System.Linq;
 
+    /// <summary>
+    /// Class responsible for reading all the Historic Market Data info from B3 Historic quotes file
+    /// </summary>
     public class B3HistoricMarketDataInfoReader : AbstractReader<B3HistoricMarketDataInfo>
     {
+        #region "public methods"
+        /// <summary>
+        /// Method responsible to read records from file of historic quotes
+        /// </summary>
+        /// <param name="filePath">File to read records from</param>
+        /// <returns>
+        /// List of all historic quotes found inf file
+        /// </returns>
         public override IList<B3HistoricMarketDataInfo> ReadRecords(string filePath)
         {
             var listOfQuotes = new List<B3HistoricMarketDataInfo>();
@@ -59,7 +70,17 @@ namespace B3Provider.Readers
             DeleteDirectory(temporaryPath);
             return listOfQuotes;
         }
+        #endregion
 
+        #region "private methods"
+
+        /// <summary>
+        /// Internal private file responsible to read records of historic quotes from file
+        /// </summary>
+        /// <param name="filePath">File path to read histori quotes records from</param>
+        /// <returns>
+        /// All historic quotes found in the file
+        /// </returns>
         private IList<B3HistoricMarketDataInfo> ReadFile(string filePath)
         {
             IList<B3HistoricMarketDataInfo> historicQuote = null;
@@ -72,6 +93,13 @@ namespace B3Provider.Readers
             return historicQuote;
         }
 
+        /// <summary>
+        /// Internal private file responsible to read records of historic quotes from stream
+        /// </summary>
+        /// <param name="streamToRead">Stream to read records from</param>
+        /// <returns>
+        /// All historic quotes found in the stream
+        /// </returns>
         private B3HistoricMarketDataContentInfo ReadStream(Stream streamToRead)
         {
             B3HistoricMarketDataContentInfo resultado = null;
@@ -117,5 +145,6 @@ namespace B3Provider.Readers
 
             return resultado;
         }
+        #endregion
     }
 }
