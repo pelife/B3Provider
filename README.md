@@ -13,16 +13,22 @@ N/A
 ## Tech/framework used
 For now N/A
 But probably will use:
-- Flat files reading framework
+- Flat files reading framework: <a href='https://github.com/forcewake/FlatFile'>FlatFile</a>
+- Excel files reading framework: <a href='https://github.com/ExcelDataReader/ExcelDataReader'>ExcelDataReader</a>
 - Logging framework
 
 ## Features
 
 - [x] Equity Instruments Loading
 - [x] Options on Equities Instruments Loading
+- [x] Loading Daily Quotes Files
+- [x] Loading Historic Quotes Files
+- [x] Company Sector Classification Files
 - [ ] Loading Indexes Files
-- [ ] Loading Daily Quotes Files
-- [ ] Loading Historic Quotes Files
+- [ ] Smart downloads (only when needed)
+- [ ] Save info to database
+- [ ] Load info from database
+- [ ] Support to asynchronous operations
 
 ## Code Example
 
