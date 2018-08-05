@@ -35,6 +35,7 @@ namespace B3Provider.Readers
     using System.Collections.Generic;
     using System.Globalization;
     using System.Xml;
+    using B3Provider.Records;
     using B3Provider.Utils;
 
     /// <summary>

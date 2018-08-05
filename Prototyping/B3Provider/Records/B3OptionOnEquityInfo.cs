@@ -1,6 +1,6 @@
 ﻿#region License
 /*
- * B3EquityInfo.cs
+ * B3OptionOnEquityInfo.cs
  *
  * The MIT License
  *
@@ -29,59 +29,74 @@
  */
 #endregion
 
-
-namespace B3Provider
+namespace B3Provider.Records
 {
     using System;
+     
 
     /// <summary>
-    /// Class that represents a stock (equity)
+    /// 
     /// </summary>
-    public class B3EquityInfo
+    public class B3OptionOnEquityInfo
     {
         /// <summary>
-        /// B3 Internal identification of the instrument
+        /// 
         /// </summary>
-        public long? B3ID { get; set; }
+        public long? B3ID { get; internal set; }
 
         /// <summary>
-        /// ISIN world public instrument identification
+        /// 
         /// </summary>
-        public string ISIN { get; set; }
+        public string ISIN { get; internal set; }
 
         /// <summary>
-        /// Name of issuer company
+        /// 
         /// </summary>
-        public string CompanyName { get; set; }
+        public string Description { get; internal set; }
 
         /// <summary>
-        /// Description of the instrument
+        /// 
         /// </summary>
-        public string Description { get; set; }
+        public string Ticker { get; internal set; }
 
         /// <summary>
-        /// Ticker of most common refered to symbol of the stock
+        /// 
         /// </summary>
-        public string Ticker { get; set; }
+        public double? Strike { get; internal set; }
 
         /// <summary>
-        /// Trading currency of the stock
+        /// 
         /// </summary>
-        public string Currency { get; set; }
+        public string StrikeCurrency { get; internal set; }
 
         /// <summary>
-        /// Market capitalization of the company (size of the company)
+        /// 
         /// </summary>
-        public long? MarketCapitalization { get; set; }
+        public B3OptionOnEquityStyleInfo Style { get; set; }
 
         /// <summary>
-        /// Last price that was presented into the instrument file (not quote)
+        /// 
         /// </summary>
-        public double? LastPrice { get; set; }
+        public B3OptionOnEquityTypeInfo Type { get; set; }
 
         /// <summary>
-        /// The date of the last instrument file read
+        /// 
         /// </summary>
-        public DateTime? LoadDate { get; set; }
+        public DateTime? Expiration { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Currency { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? LoadDate { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public long? B3IDUnderlying { get; internal set; }
     }
 }

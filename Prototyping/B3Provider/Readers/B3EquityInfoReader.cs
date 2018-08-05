@@ -35,6 +35,7 @@ namespace B3Provider.Readers
     using System.Collections.Generic;
     using System.Globalization;
     using System.Xml;
+    using B3Provider.Records;
     using B3Provider.Utils;
 
     /// <summary>
@@ -42,7 +43,6 @@ namespace B3Provider.Readers
     /// </summary>
     public class B3EquityInfoReader : AbstractReader<B3EquityInfo>
     {
-
         #region "public methods"
         /// <summary>
         /// Method responsible to read records from file
@@ -123,7 +123,6 @@ namespace B3Provider.Readers
                     equityInfo.Add(oneEquityInfo);
                 }
             }
-
             return equityInfo;
         }
         #endregion

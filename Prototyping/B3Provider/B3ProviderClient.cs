@@ -34,9 +34,11 @@
 /// </summary>
 namespace B3Provider
 {
+    using B3Provider.Records;
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
 
     /// <summary>
     /// Class that provide data made available by Brazil Stock Market (B3 former BMF Bovespa)
@@ -67,16 +69,28 @@ namespace B3Provider
         /// <summary>
         /// All equity information found in a file.
         /// </summary>
-        public IList<B3EquityInfo> EquityInstruments{get;set;} = null;
+        public IList<B3EquityInfo> EquityInstruments { get; set; } = null;
 
         /// <summary>
         /// All options on equity found in a file.
         /// </summary>
         public IList<B3OptionOnEquityInfo> OptionInstruments { get; set; } = null;
 
+        /// <summary>
+        /// Current market data (princes in the same day of the instruments file)
+        /// </summary>
         public IList<B3MarketDataInfo> CurrentMarketData { get; set; } = null;
 
+        /// <summary>
+        /// Historic market data past princes
+        /// </summary>
         public IList<B3HistoricMarketDataInfo> HistoricMarketData { get; set; } = null;
+
+        /// <summary>
+        /// Index to convert an instrument ticker to internal ID
+        /// </summary>
+        public IDictionary<string, long> TickerIDIndex { get; private set; } = new Dictionary<string, long>();
+
         #endregion
 
         #region "public methods"
@@ -94,14 +108,21 @@ namespace B3Provider
         /// </summary>
         public void LoadInstruments()
         {
+            Dictionary<string, long> tickerIDIndexDictionary = null;
+
             SetupIfNotSetup();
             var filePath = _downloader.DownloadInstrumentFile(null, _configuration.ReplaceExistingFiles);
 
             var equityReader = ReaderFactory.CreateReader<B3EquityInfo>(_configuration.ReadStrategy);
             EquityInstruments = equityReader.ReadRecords(filePath);
 
+            tickerIDIndexDictionary = EquityInstruments.ToDictionary(k => k.Ticker, v => v.B3ID.HasValue? v.B3ID.Value :0);
+            TickerIDIndex = TickerIDIndex.Union(tickerIDIndexDictionary).ToDictionary(k => k.Key, v => v.Value);
+
             var optionsReader = ReaderFactory.CreateReader<B3OptionOnEquityInfo>(_configuration.ReadStrategy);
             OptionInstruments = optionsReader.ReadRecords(filePath);
+            tickerIDIndexDictionary = OptionInstruments.ToDictionary(k => k.Ticker, v => v.B3ID.HasValue ? v.B3ID.Value : 0);
+            TickerIDIndex = TickerIDIndex.Union(tickerIDIndexDictionary).ToDictionary(k => k.Key, v => v.Value);
         }
 
         /// <summary>

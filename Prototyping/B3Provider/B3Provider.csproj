@@ -60,11 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="B3HistoricMarketDataContentInfo.cs" />
-    <Compile Include="B3HistoricMarketDataHeaderInfo.cs" />
-    <Compile Include="B3HistoricMarketDataInfo.cs" />
-    <Compile Include="B3HistoricMarketDataTrailerInfo.cs" />
-    <Compile Include="B3MarketDataInfo.cs" />
+    <Compile Include="Records\B3HistoricMarketDataContentInfo.cs" />
+    <Compile Include="Records\B3HistoricMarketDataHeaderInfo.cs" />
+    <Compile Include="Records\B3HistoricMarketDataInfo.cs" />
+    <Compile Include="Records\B3HistoricMarketDataTrailerInfo.cs" />
+    <Compile Include="Records\B3MarketDataInfo.cs" />
     <Compile Include="Converters\B3DateTypeConverter.cs" />
     <Compile Include="Converters\B3Double100TypeConverter.cs" />
     <Compile Include="Converters\B3StringTypeConverter.cs" />
@@ -73,12 +73,14 @@
     <Compile Include="Layouts\B3COTAHISTTrailerLayout.cs" />
     <Compile Include="Readers\B3HistoricMarketDataInfoReader.cs" />
     <Compile Include="Readers\B3MarketDataInfoReader.cs" />
+    <Compile Include="Records\B3OptionOnEquityStyleInfo.cs" />
+    <Compile Include="Records\B3OptionOnEquityTypeInfo.cs" />
     <Compile Include="Utils\B3DateUtils.cs" />
     <Compile Include="B3Dowloader.cs" />
-    <Compile Include="B3EquityInfo.cs" />
-    <Compile Include="B3FutureInfo.cs" />
-    <Compile Include="B3OptionOnEquityInfo.cs" />
-    <Compile Include="B3OptionOnSpot.cs" />
+    <Compile Include="Records\B3EquityInfo.cs" />
+    <Compile Include="Records\B3FutureInfo.cs" />
+    <Compile Include="Records\B3OptionOnEquityInfo.cs" />
+    <Compile Include="Records\B3OptionOnSpot.cs" />
     <Compile Include="B3ProviderClient.cs" />
     <Compile Include="B3ProviderConfig.cs" />
     <Compile Include="IB3Downloader.cs" />

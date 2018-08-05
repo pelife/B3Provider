@@ -29,7 +29,7 @@
  */
 #endregion
 
-namespace B3Provider
+namespace B3Provider.Records
 {
     using System;
 

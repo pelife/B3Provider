@@ -1,6 +1,6 @@
 ﻿#region License
 /*
- * B3HistoricMarketDataHeaderInfo.cs
+ * B3FutureInfo.cs
  *
  * The MIT License
  *
@@ -28,20 +28,10 @@
  * - Felipe Bahiana Almeida <felipe.almeida@gmail.com> https://www.linkedin.com/in/felipe-almeida-ba222577
  */
 #endregion
- 
-namespace B3Provider
-{
-    using System;
 
-    public class B3HistoricMarketDataHeaderInfo
+namespace B3Provider.Records
+{
+    public class B3FutureInfo
     {
-        //public int Tipo { get; set; }                //TIPO DE REGISTRO
-        public int Type { get; set; }                //TIPO DE REGISTRO
-        //public string NomeArquivo { get; set; }      //NOME DO ARQUIVO
-        public string FileName { get; set; }      //NOME DO ARQUIVO
-        //public string Origem { get; set; }           //CÓDIGO DA ORIGEM
-        public string Origin { get; set; }           //CÓDIGO DA ORIGEM
-        //public DateTime DataGeracao { get; set; }    //DATA DA GERAÇÃO DO ARQUIVO
-        public DateTime Generated { get; set; }    //DATA DA GERAÇÃO DO ARQUIVO
     }
 }

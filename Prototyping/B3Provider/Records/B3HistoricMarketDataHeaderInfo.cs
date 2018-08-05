@@ -1,6 +1,6 @@
 ﻿#region License
 /*
- * B3FutureInfo.cs
+ * B3HistoricMarketDataHeaderInfo.cs
  *
  * The MIT License
  *
@@ -29,9 +29,19 @@
  */
 #endregion
 
-namespace B3Provider
+namespace B3Provider.Records
 {
-    public class B3FutureInfo
+    using System;
+
+    public class B3HistoricMarketDataHeaderInfo
     {
+        //public int Tipo { get; set; }                //TIPO DE REGISTRO
+        public int Type { get; set; }                //TIPO DE REGISTRO
+        //public string NomeArquivo { get; set; }      //NOME DO ARQUIVO
+        public string FileName { get; set; }      //NOME DO ARQUIVO
+        //public string Origem { get; set; }           //CÓDIGO DA ORIGEM
+        public string Origin { get; set; }           //CÓDIGO DA ORIGEM
+        //public DateTime DataGeracao { get; set; }    //DATA DA GERAÇÃO DO ARQUIVO
+        public DateTime Generated { get; set; }    //DATA DA GERAÇÃO DO ARQUIVO
     }
 }

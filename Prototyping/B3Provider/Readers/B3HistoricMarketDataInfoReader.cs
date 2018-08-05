@@ -31,6 +31,7 @@
 namespace B3Provider.Readers
 {
     using B3Provider.Layouts;
+    using B3Provider.Records;
     using FlatFile.Core;
     using FlatFile.FixedLength;
     using FlatFile.FixedLength.Implementation;

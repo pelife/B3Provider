@@ -32,6 +32,7 @@
 namespace B3Provider
 {
     using B3Provider.Readers;
+    using B3Provider.Records;
     using System;
 
     /// <summary>

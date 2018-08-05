@@ -32,6 +32,7 @@
 namespace B3Provider.Layouts
 {
     using B3Provider.Converters;
+    using B3Provider.Records;
     using FlatFile.FixedLength.Implementation;
 
     /// <summary>

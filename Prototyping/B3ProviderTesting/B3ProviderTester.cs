@@ -34,6 +34,7 @@ namespace B3ProviderTesting
     using System;
     using System.Linq;
     using B3Provider;
+    using B3Provider.Records;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
