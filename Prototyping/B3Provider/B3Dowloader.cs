@@ -129,7 +129,7 @@ namespace B3Provider
         }
 
         /// <summary>
-        /// Method that downloads from the FTP site the file containing the Historic Quotes File COTAHIST
+        /// Method that downloads from the HTTP site the file containing the Historic Quotes File COTAHIST
         /// </summary>
         /// <param name="yearToDownload">year that one wants to download the complete history of prices</param>
         /// <param name="replaceIfExists">True to replace the file in case it already exists</param>
@@ -140,6 +140,19 @@ namespace B3Provider
         {
             var fileName = string.Format("COTAHIST_A{0}.ZIP", yearToDownload);
             return DownloadHTTPFile(@"http://bvmf.bmfbovespa.com.br/InstDados/SerHist/", fileName, string.Empty, replaceIfExists);
+        }
+
+        /// <summary>
+        /// Method to download file containing sector classification of B3 companies
+        /// </summary>
+        /// <param name="replaceIfExists">if the files exists it will be replaced</param>
+        /// <returns>
+        /// Path where the downloader saved the file to
+        /// </returns>
+        public string DownloadSectorClassificationFile(bool replaceIfExists)
+        {
+            var destinationPath = string.Format("classificacao_setorial-{0}.zip", DateTime.Now.ToString("yyyy-MM-dd"));
+            return DownloadHTTPFile(@"http://www.bmfbovespa.com.br/lumis/portal/file/fileDownload.jsp?fileId=8AA8D0975A2D7918015A3C81693D4CA4", string.Empty, destinationPath, replaceIfExists);
         }
         #endregion
 
@@ -298,6 +311,7 @@ namespace B3Provider
 
             return modified;
         }
+       
         #endregion
     }
 }

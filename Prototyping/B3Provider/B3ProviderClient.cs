@@ -91,6 +91,11 @@ namespace B3Provider
         /// </summary>
         public IDictionary<string, long> TickerIDIndex { get; private set; } = new Dictionary<string, long>();
 
+        /// <summary>
+        /// Colection of market sector classification to companies listed on B3 stock exchange. 
+        /// </summary>
+        public IList<B3SectorClassifcationInfo> SectorClassification { get; set; } = null;
+
         #endregion
 
         #region "public methods"
@@ -140,7 +145,11 @@ namespace B3Provider
         /// <summary>
         /// Load all the quotes found  in files (for a year file)
         /// </summary>
-        /// <param name="yearToReadHistory"></param>
+        /// <param name="yearToReadHistory">
+        /// year of historic quotes file
+        /// they are separated per year ans that's why we need to inform
+        /// this parameter
+        /// </param>
         public void LoadHistoricQuotes(int yearToReadHistory)
         {
             SetupIfNotSetup();
@@ -148,6 +157,18 @@ namespace B3Provider
 
             var historicMarketDataReader = ReaderFactory.CreateReader<B3HistoricMarketDataInfo>(_configuration.ReadStrategy);
             HistoricMarketData = historicMarketDataReader.ReadRecords(filePath);
+        }
+
+        /// <summary>
+        /// Load all the company sector info found  in file
+        /// </summary>
+        public void LoadSectorClassification()
+        {
+            SetupIfNotSetup();
+            var filePath = _downloader.DownloadSectorClassificationFile(_configuration.ReplaceExistingFiles);
+
+            var sectorClassificationDataReader = ReaderFactory.CreateReader<B3SectorClassifcationInfo>(_configuration.ReadStrategy);
+            SectorClassification = sectorClassificationDataReader.ReadRecords(filePath);
         }
 
         #endregion

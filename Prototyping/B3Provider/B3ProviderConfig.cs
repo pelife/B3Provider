@@ -45,6 +45,13 @@ namespace B3Provider
     {
         #region "properties"
         /// <summary>
+        /// Base path to save all files including (database, download data, logs, etc)
+        /// if not defined, it automatically sets it to 
+        /// Environment.SpecialFolder.CommonApplicationData\B3Provider
+        /// </summary>
+        public string BasePath { get; set; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "B3Provider");
+
+        /// <summary>
         /// Path to where the files from B3 will be downloaded to
         /// if not defined, it automatically sets it to 
         /// Environment.SpecialFolder.CommonApplicationData\B3Provider

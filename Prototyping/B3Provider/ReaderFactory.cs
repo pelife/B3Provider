@@ -53,23 +53,23 @@ namespace B3Provider
             if (typeof(T) == typeof(B3EquityInfo))
             {
                 return (IReader<T>)new B3EquityInfoReader();
-            }
-            
+            }            
             if (typeof(T) == typeof(B3OptionOnEquityInfo))
             {
                 return (IReader<T>)new B3OptionOnEquityInfoReader();
             }
-
             if (typeof(T) == typeof(B3MarketDataInfo))
             {
                 return (IReader<T>)new B3MarketDataInfoReader();
             }
-
             if (typeof(T) == typeof(B3HistoricMarketDataInfo))
             {
                 return (IReader<T>)new B3HistoricMarketDataInfoReader();
             }
-
+            if (typeof(T) == typeof(B3SectorClassifcationInfo))
+            {
+                return (IReader<T>)new B3SectorClassifcationInfoReader();
+            }
 
             throw new InvalidOperationException();
         }

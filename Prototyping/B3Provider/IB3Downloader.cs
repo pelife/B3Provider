@@ -85,5 +85,14 @@ namespace B3Provider
         /// Path where the downloader saved the file to
         /// </returns>
         string DownloadYearHistoricFile(int yearToDownload, bool replaceIfExists);
+
+        /// <summary>
+        /// Method to download file containing sector classification of B3 companies
+        /// </summary>
+        /// <param name="replaceIfExists">if the files exists it will be replaced</param>
+        /// <returns>
+        /// Path where the downloader saved the file to
+        /// </returns>
+        string DownloadSectorClassificationFile(bool replaceIfExists);
     }
 }
