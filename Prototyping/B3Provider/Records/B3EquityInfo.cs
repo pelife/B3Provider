@@ -83,5 +83,10 @@ namespace B3Provider.Records
         /// The date of the last instrument file read
         /// </summary>
         public DateTime? LoadDate { get; set; }
+
+        /// <summary>
+        /// Company Market sector classification
+        /// </summary>
+        public B3SectorClassifcationInfo SectorClassification { get; set; }
     }
 }

@@ -51,12 +51,22 @@ namespace B3Provider
         /// </summary>
         public string BasePath { get; set; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "B3Provider");
 
+        public string DownloadPathSufix { get; set; } = "downloads";
+        public string DatabasePathSufix { get; set; } = "database";
+
         /// <summary>
         /// Path to where the files from B3 will be downloaded to
         /// if not defined, it automatically sets it to 
-        /// Environment.SpecialFolder.CommonApplicationData\B3Provider
+        /// Environment.SpecialFolder.CommonApplicationData\B3Provider\downloads
         /// </summary>
-        public string DownloadPath { get; set; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "B3Provider");      
+        public string DownloadPath { get { return Path.Combine(BasePath, DownloadPathSufix); } } 
+
+        /// <summary>
+        /// Path to where the files from B3 will be stored into database
+        /// if not defined, it automatically sets it to 
+        /// Environment.SpecialFolder.CommonApplicationData\B3Provider\database
+        /// </summary>
+        public string DatabasePath { get { return Path.Combine(BasePath, DatabasePathSufix); } }
 
         /// <summary>
         /// true to replace existing files if necessary otherwise false

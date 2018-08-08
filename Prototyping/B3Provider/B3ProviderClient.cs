@@ -34,6 +34,7 @@
 /// </summary>
 namespace B3Provider
 {
+    using B3Provider.Database;
     using B3Provider.Records;
     using System;
     using System.Collections.Generic;
@@ -56,12 +57,14 @@ namespace B3Provider
         {
             _configuration = configuration ?? throw new ArgumentNullException("configuration", "the parameter configuration of type B3ProviderConfig cannot be null");
             _downloader = new B3Dowloader(_configuration.DownloadPath);
+            _databaseContext = new B3ProviderDbContext();
         }
         #endregion
 
         #region "private members"
         private B3ProviderConfig _configuration = null;
         private B3Dowloader _downloader = null;
+        private B3ProviderDbContext _databaseContext = null;
         private bool _setupExecuted = false;
         #endregion
 
@@ -120,15 +123,22 @@ namespace B3Provider
 
             var equityReader = ReaderFactory.CreateReader<B3EquityInfo>(_configuration.ReadStrategy);
             EquityInstruments = equityReader.ReadRecords(filePath);
+            _databaseContext.EquityInstruments.AddRange(EquityInstruments);
+            _databaseContext.SaveChangesAsync();
 
-            tickerIDIndexDictionary = EquityInstruments.ToDictionary(k => k.Ticker, v => v.B3ID.HasValue? v.B3ID.Value :0);
+            tickerIDIndexDictionary = EquityInstruments.ToDictionary(k => k.Ticker, v => v.B3ID.HasValue ? v.B3ID.Value : 0);
             TickerIDIndex = TickerIDIndex.Union(tickerIDIndexDictionary).ToDictionary(k => k.Key, v => v.Value);
 
             var optionsReader = ReaderFactory.CreateReader<B3OptionOnEquityInfo>(_configuration.ReadStrategy);
             OptionInstruments = optionsReader.ReadRecords(filePath);
+
             tickerIDIndexDictionary = OptionInstruments.ToDictionary(k => k.Ticker, v => v.B3ID.HasValue ? v.B3ID.Value : 0);
             TickerIDIndex = TickerIDIndex.Union(tickerIDIndexDictionary).ToDictionary(k => k.Key, v => v.Value);
-        }
+
+            //load sector classification to apply to companies
+            LoadSectorClassification();
+            ApplySectorClassification();
+        }        
 
         /// <summary>
         /// Load all the quotes found  in files (for a specific date)
@@ -189,9 +199,41 @@ namespace B3Provider
         /// </summary>
         private void SetupFileSystem()
         {
+            var pathToCreate = string.Empty;
             //if directory does exist, it will return directory info to that
             //if directory does not exist, it will be created
-            Directory.CreateDirectory(_configuration.DownloadPath);            
+            Directory.CreateDirectory(_configuration.BasePath);
+            pathToCreate = Path.Combine(_configuration.BasePath, _configuration.DownloadPath);
+            Directory.CreateDirectory(pathToCreate);
+            pathToCreate = Path.Combine(_configuration.BasePath, _configuration.DatabasePath);
+            Directory.CreateDirectory(pathToCreate);
+            //use AppDomain.SetData to set the DataDirectory
+            AppDomain.CurrentDomain.SetData("DataDirectory", pathToCreate);
+        }
+
+        /// <summary>
+        /// Apply Market Classification to equity instruments
+        /// </summary>
+        private void ApplySectorClassification()
+        {
+            foreach (var oneEquityInstrument in EquityInstruments)
+            {
+                var oneClassification = SectorClassification.Where(e =>
+                                            e.CompanyListingCode.Equals(
+                                                oneEquityInstrument.Ticker.Substring(0, e.CompanyListingCode.Length)
+                                                , StringComparison.InvariantCultureIgnoreCase)
+                                            ).FirstOrDefault();
+
+                if (oneClassification == null)
+                {
+                    oneClassification = new B3SectorClassifcationInfo();
+                    oneClassification.EconomicSector = "N/A";
+                    oneClassification.EconomicSegment = "N/A";
+                    oneClassification.EconomicSubSector = "N/A";
+                }
+
+                oneEquityInstrument.SectorClassification = oneClassification;
+            }
         }
 
         #endregion
