@@ -35,15 +35,15 @@ namespace B3Provider.Records
 
     public class B3HistoricMarketDataTrailerInfo
     {
-        //public int Tipo { get; set; }            //TIPO DE REGISTRO
-        public int Type { get; set; }            //TIPO DE REGISTRO
-        //public string NomeArquivo { get; set; }     //NOME DO ARQUIVO
-        public string FileName { get; set; }     //NOME DO ARQUIVO
-        //public string Origem { get; set; }          //CÓDIGO DA ORIGEM
+        
+        public int Type { get; set; }               //TIPO DE REGISTRO
+        
+        public string FileName { get; set; }        //NOME DO ARQUIVO
+        
         public string Origin { get; set; }          //CÓDIGO DA ORIGEM
-        //public DateTime DataGeracao { get; set; }   //DATA DA GERAÇÃO DO ARQUIVO
-        public DateTime Generated{ get; set; }   //DATA DA GERAÇÃO DO ARQUIVO
-        //public int TotalRegistros { get; set; }     //TOTAL DE REGISTROS
+        
+        public DateTime Generated{ get; set; }      //DATA DA GERAÇÃO DO ARQUIVO
+        
         public int NumberOfRecords { get; set; }     //TOTAL DE REGISTROS
     }
 }

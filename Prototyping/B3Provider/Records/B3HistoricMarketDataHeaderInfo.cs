@@ -32,16 +32,29 @@
 namespace B3Provider.Records
 {
     using System;
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class B3HistoricMarketDataHeaderInfo
     {
-        //public int Tipo { get; set; }                //TIPO DE REGISTRO
-        public int Type { get; set; }                //TIPO DE REGISTRO
-        //public string NomeArquivo { get; set; }      //NOME DO ARQUIVO
-        public string FileName { get; set; }      //NOME DO ARQUIVO
-        //public string Origem { get; set; }           //CÓDIGO DA ORIGEM
-        public string Origin { get; set; }           //CÓDIGO DA ORIGEM
-        //public DateTime DataGeracao { get; set; }    //DATA DA GERAÇÃO DO ARQUIVO
+         /// <summary>
+         /// 
+         /// </summary>
+        public int Type { get; set; }                //TIPO DE REGISTRO     
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string FileName { get; set; }      //NOME DO ARQUIVO     
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Origin { get; set; }           //CÓDIGO DA ORIGEM     
+
+        /// <summary>
+        /// 
+        /// </summary>
         public DateTime Generated { get; set; }    //DATA DA GERAÇÃO DO ARQUIVO
     }
 }

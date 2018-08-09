@@ -117,7 +117,7 @@ namespace B3Provider.Readers
                     oneOptionOnEquityInfo.Strike = oneOptionOnEquityNode["ExrcPric"].InnerText.ToNullable<double>(cultureNumericAmerica);
                     oneOptionOnEquityInfo.StrikeCurrency = oneOptionOnEquityNode["ExrcPric"].Attributes["Ccy"].Value;
 
-                    var stringHelperStyle = oneOptionOnEquityNode["ExrcPric"].InnerText;
+                    var stringHelperStyle = oneOptionOnEquityNode["ExrcStyle"].InnerText;
                     oneOptionOnEquityInfo.Style =
                         (!string.IsNullOrEmpty(stringHelperStyle) && stringHelperStyle.Equals("EURO", StringComparison.InvariantCultureIgnoreCase)) ?
                             B3OptionOnEquityStyleInfo.European : B3OptionOnEquityStyleInfo.American;

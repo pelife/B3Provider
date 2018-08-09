@@ -51,15 +51,37 @@ namespace B3Provider
         /// </summary>
         public string BasePath { get; set; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "B3Provider");
 
+        #region "download config"
+        /// <summary>
+        ///  subpath where files are going to be downloaded to.
+        /// </summary>
         public string DownloadPathSufix { get; set; } = "downloads";
-        public string DatabasePathSufix { get; set; } = "database";
-
+        
         /// <summary>
         /// Path to where the files from B3 will be downloaded to
         /// if not defined, it automatically sets it to 
         /// Environment.SpecialFolder.CommonApplicationData\B3Provider\downloads
         /// </summary>
         public string DownloadPath { get { return Path.Combine(BasePath, DownloadPathSufix); } } 
+        
+        /// <summary>
+        /// true to replace existing files if necessary otherwise false
+        /// </summary>
+        public bool ReplaceExistingFiles { get; set; }
+        #endregion
+
+        #region "reading config"
+        /// <summary>
+        /// Reading strategy to load files
+        /// </summary>
+        public ReadStrategy ReadStrategy { get; set; } = ReadStrategy.ZipFileReadMostRecent;
+        #endregion
+
+        #region "database config"
+        /// <summary>
+        ///  subpath where database files are going to be stored to.
+        /// </summary>
+        public string DatabasePathSufix { get; set; } = "database";
 
         /// <summary>
         /// Path to where the files from B3 will be stored into database
@@ -67,16 +89,8 @@ namespace B3Provider
         /// Environment.SpecialFolder.CommonApplicationData\B3Provider\database
         /// </summary>
         public string DatabasePath { get { return Path.Combine(BasePath, DatabasePathSufix); } }
-
-        /// <summary>
-        /// true to replace existing files if necessary otherwise false
-        /// </summary>
-        public bool ReplaceExistingFiles { get; set; }
-
-        /// <summary>
-        /// Reading strategy to load files
-        /// </summary>
-        public ReadStrategy ReadStrategy { get; set; } = ReadStrategy.ZipFileReadMostRecent;
+        #endregion
+        
         #endregion
 
     }

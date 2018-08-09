@@ -32,70 +32,74 @@
 namespace B3Provider.Records
 {
     using System;
-     
+
 
     /// <summary>
-    /// 
+    /// Class that represents a option on stock (equity)
     /// </summary>
     public class B3OptionOnEquityInfo
     {
         /// <summary>
-        /// 
+        /// B3 Internal identification of the instrument
         /// </summary>
         public long? B3ID { get; internal set; }
 
         /// <summary>
-        /// 
+        /// ISIN world public instrument identification
         /// </summary>
         public string ISIN { get; internal set; }
 
         /// <summary>
-        /// 
+        /// Description of the instrument
         /// </summary>
         public string Description { get; internal set; }
 
         /// <summary>
-        /// 
+        /// Ticker of most common refered to symbol of the option
         /// </summary>
         public string Ticker { get; internal set; }
 
         /// <summary>
-        /// 
+        /// Strike price of the option
         /// </summary>
         public double? Strike { get; internal set; }
 
         /// <summary>
-        /// 
+        /// Currency in which strike price is expressed
         /// </summary>
         public string StrikeCurrency { get; internal set; }
 
         /// <summary>
-        /// 
+        /// Style of the option American or European
+        /// European option may be exercised only at the expiration date
+        /// American option on the other hand may be exercised at any time before the expiration date
         /// </summary>
         public B3OptionOnEquityStyleInfo Style { get; set; }
 
         /// <summary>
-        /// 
+        /// Typw of the option Call or Put
+        /// Call provide the holder the right (but not the obligation) to purchase an underlying asset at a specified price (the strike price)
+        /// Put give the holder the right to sell an underlying asset at a specified price (the strike price)        
         /// </summary>
         public B3OptionOnEquityTypeInfo Type { get; set; }
 
         /// <summary>
-        /// 
+        /// Expiration date of the option
         /// </summary>
         public DateTime? Expiration { get; set; }
 
         /// <summary>
-        /// 
+        /// Currency in which price of the option is expressed
         /// </summary>
         public string Currency { get; internal set; }
 
         /// <summary>
-        /// 
+        /// The date of the last instrument file read
         /// </summary>
         public DateTime? LoadDate { get; internal set; }
 
         /// <summary>
-        /// 
+        /// B3 Internal identification of the underlying instrument
         /// </summary>
         public long? B3IDUnderlying { get; internal set; }
     }
