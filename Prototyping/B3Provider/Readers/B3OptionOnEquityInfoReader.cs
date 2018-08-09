@@ -115,9 +115,8 @@ namespace B3Provider.Readers
                     oneOptionOnEquityInfo.Description = noDescricao.InnerText.RemoveMultipleSpaces().Trim();
                     oneOptionOnEquityInfo.Ticker = oneOptionOnEquityNode["TckrSymb"].InnerText;
                     oneOptionOnEquityInfo.Strike = oneOptionOnEquityNode["ExrcPric"].InnerText.ToNullable<double>(cultureNumericAmerica);
-                    oneOptionOnEquityInfo.StrikeCurrency = oneOptionOnEquityNode["ExrcPric"].Attributes["Ccy"].Value;
-
-                    var stringHelperStyle = oneOptionOnEquityNode["ExrcStyle"].InnerText;
+                    oneOptionOnEquityInfo.StrikeCurrency = oneOptionOnEquityNode["ExrcPric"].Attributes["Ccy"].Value;                    
+                    var stringHelperStyle = oneOptionOnEquityNode["OptnStyle"].InnerText;
                     oneOptionOnEquityInfo.Style =
                         (!string.IsNullOrEmpty(stringHelperStyle) && stringHelperStyle.Equals("EURO", StringComparison.InvariantCultureIgnoreCase)) ?
                             B3OptionOnEquityStyleInfo.European : B3OptionOnEquityStyleInfo.American;

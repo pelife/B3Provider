@@ -32,7 +32,10 @@ namespace B3Provider.Database
 {
     using B3Provider.Records;
     using SQLite.CodeFirst;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
+    using System.Data.Entity.Infrastructure.Annotations;
+    using System.Data.Entity.ModelConfiguration;
 
     public class B3ProviderDbContext : DbContext
     {
@@ -42,20 +45,9 @@ namespace B3Provider.Database
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<B3EquityInfo>().Map(
-                e =>
-                {
-                    e.Property(p => p.B3ID).HasColumnName("id_b3");
-                    e.Property(p => p.B3ID).HasColumnName("tx_ticker");
-                    e.Property(p => p.B3ID).HasColumnName("tx_isin");
-                    e.Property(p => p.B3ID).HasColumnName("tx_company_name");
-                    e.Property(p => p.B3ID).HasColumnName("tx_description");
-                    e.Property(p => p.B3ID).HasColumnName("tx_trading_ccy");
-                    e.Property(p => p.B3ID).HasColumnName("vl_market_capitalization");
-                    e.Property(p => p.B3ID).HasColumnName("vl_last_price");
-                    e.Property(p => p.B3ID).HasColumnName("dt_update");                    
-                }).ToTable("tb_b3_equity_info")
-                .HasKey(e => e.B3ID);
+            
+            modelBuilder.Configurations.Add(new B3SectorClassifcationInfoEntityConfiguration());
+            modelBuilder.Configurations.Add(new B3EquityInfoEntityConfiguration());
 
             var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<B3ProviderDbContext>(modelBuilder);            
             Database.SetInitializer(sqliteConnectionInitializer);
@@ -85,4 +77,52 @@ namespace B3Provider.Database
             //);
         }
     }
+
+    public class B3SectorClassifcationInfoEntityConfiguration : EntityTypeConfiguration<B3SectorClassifcationInfo>
+    {
+        public B3SectorClassifcationInfoEntityConfiguration()
+        {
+            ToTable("tb_b3_sector_classification");
+            HasKey(k => k.ID).Property(p => p.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).HasColumnName("id_sector");            
+            Property(p => p.EconomicSector).HasColumnName("tx_economic_sector").IsRequired();
+            Property(p => p.EconomicSubSector).HasColumnName("tx_economic_subsector").IsRequired();
+            Property(p => p.EconomicSegment).HasColumnName("tx_economic_segment").IsRequired();
+            Property(p => p.CompanyName).HasColumnName("tx_company_name").IsRequired();
+            Property(p => p.CompanyListingCode).HasColumnName("tx_company_listing_code").IsRequired();
+            Property(p => p.CompanyListingSegment).HasColumnName("tx_company_listing_segment").IsRequired();
+        }
+        
+    }
+
+    public class B3EquityInfoEntityConfiguration : EntityTypeConfiguration<B3EquityInfo>
+    {
+        public B3EquityInfoEntityConfiguration()
+        {
+            ToTable("tb_b3_equity_info");
+            HasKey(k => k.B3ID);
+            Property(p => p.B3ID).HasColumnName("id_b3").IsRequired();
+
+            Property(p => p.Ticker).HasColumnName("tx_ticker").IsRequired()
+                .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(
+                        new IndexAttribute("ix_tx_ticker", 1) { IsUnique = true }));
+
+            Property(p => p.ISIN).HasColumnName("tx_isin").IsRequired()
+                .HasColumnAnnotation(
+                        IndexAnnotation.AnnotationName,
+                        new IndexAnnotation(
+                            new IndexAttribute("ix_tx_isin", 2) { IsUnique = true }));
+
+            Property(p => p.CompanyName).HasColumnName("tx_company_name").IsRequired();
+            Property(p => p.Description).HasColumnName("tx_description").IsRequired();
+            Property(p => p.Currency).HasColumnName("tx_trading_ccy").IsRequired();
+            Property(p => p.MarketCapitalization).HasColumnName("vl_market_capitalization").IsRequired();
+            Property(p => p.LastPrice).HasColumnName("vl_last_price").IsRequired();
+            Property(p => p.LoadDate).HasColumnName("dt_update").IsRequired();
+            Ignore(t => t.SectorClassification);
+
+        }
+    }
 }
+

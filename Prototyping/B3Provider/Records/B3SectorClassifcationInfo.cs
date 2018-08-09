@@ -38,6 +38,11 @@ namespace B3Provider.Records
     public class B3SectorClassifcationInfo
     {
         /// <summary>
+        /// Hash of the classification to be used as a key
+        /// </summary>
+        public long ID { get; set; }
+
+        /// <summary>
         /// 1st level of classification 
         /// Examples
         /// Bens Industriais

@@ -57,7 +57,7 @@ namespace B3Provider
         {
             _configuration = configuration ?? throw new ArgumentNullException("configuration", "the parameter configuration of type B3ProviderConfig cannot be null");
             _downloader = new B3Dowloader(_configuration.DownloadPath);
-            _databaseContext = new B3ProviderDbContext();
+            //_databaseContext = new B3ProviderDbContext();
         }
         #endregion
 
@@ -123,8 +123,9 @@ namespace B3Provider
 
             var equityReader = ReaderFactory.CreateReader<B3EquityInfo>(_configuration.ReadStrategy);
             EquityInstruments = equityReader.ReadRecords(filePath);
-            _databaseContext.EquityInstruments.AddRange(EquityInstruments);
-            _databaseContext.SaveChangesAsync();
+            //_databaseContext.EquityInstruments.AddRange(EquityInstruments);
+            //_databaseContext.SaveChangesAsync();
+            //_databaseContext.SaveChanges();
 
             tickerIDIndexDictionary = EquityInstruments.ToDictionary(k => k.Ticker, v => v.B3ID.HasValue ? v.B3ID.Value : 0);
             TickerIDIndex = TickerIDIndex.Union(tickerIDIndexDictionary).ToDictionary(k => k.Key, v => v.Value);

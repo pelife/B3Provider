@@ -87,6 +87,6 @@ namespace B3Provider.Records
         /// <summary>
         /// Company Market sector classification
         /// </summary>
-        public B3SectorClassifcationInfo SectorClassification { get; set; }
+        public virtual B3SectorClassifcationInfo SectorClassification { get; set; }
     }
 }
