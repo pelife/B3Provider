@@ -171,7 +171,8 @@ namespace B3Provider
             if (DateTime.Now.Hour >= 17)
                 return DateTime.Today;
 
-            return B3DateUtils.PreviousWorkDate(dateToDownload);
+            //TODO: pass the collection of hollydays
+            return dateToDownload.PreviousBusinessDay(null);
         }
         #endregion
 

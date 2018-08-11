@@ -102,7 +102,7 @@
     <Compile Include="Records\B3OptionOnEquityStyleInfo.cs" />
     <Compile Include="Records\B3OptionOnEquityTypeInfo.cs" />
     <Compile Include="Records\B3SectorClassifcationInfo.cs" />
-    <Compile Include="Utils\B3DateUtils.cs" />
+    <Compile Include="Utils\B3DateUtilsExtensions.cs" />
     <Compile Include="B3Dowloader.cs" />
     <Compile Include="Records\B3EquityInfo.cs" />
     <Compile Include="Records\B3FutureInfo.cs" />
