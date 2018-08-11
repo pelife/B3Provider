@@ -88,6 +88,19 @@ namespace B3ProviderTesting
         }
 
         [TestMethod]
+        public void B3ProviderMustDownloadHistoricQuoteFilesFromMultipleYears()
+        {
+            var config = new B3ProviderConfig();
+            config.ReplaceExistingFiles = true;
+
+            var client = new B3ProviderClient(config);
+            client.LoadHistoricQuotes(2018);
+            client.LoadHistoricQuotes(2017);
+            client.LoadHistoricQuotes(2016);
+
+        }
+
+        [TestMethod]
         public void B3ProviderMustFindOptions()
         {
             // create a configuration instance
@@ -116,7 +129,7 @@ namespace B3ProviderTesting
             var optionsCalls = client.OptionInstruments.Where(o => o.B3IDUnderlying == equity.B3ID
                 && o.Type == B3OptionOnEquityTypeInfo.Call).ToList();
 
-            var historicQuotes = client.HistoricMarketData.Where(md => md.Ticker == optionsCalls.FirstOrDefault().Ticker).ToList();
+            var historicQuotes = client.GetHistoricMarketData().Where(md => md.Ticker == optionsCalls.FirstOrDefault().Ticker).ToList();
 
             // get information about option puts on PETR4 stock 
             var optionsPuts = client.OptionInstruments.Where(o => o.B3IDUnderlying == equity.B3ID
@@ -141,5 +154,7 @@ namespace B3ProviderTesting
 
             Assert.AreNotEqual(0, client.SectorClassification.Count);
         }
+
+
     }
 }

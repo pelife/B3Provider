@@ -87,7 +87,7 @@ namespace B3Provider
         /// <summary>
         /// Historic market data past princes
         /// </summary>
-        public IList<B3HistoricMarketDataInfo> HistoricMarketData { get; set; } = null;
+        public IDictionary<int,IList<B3HistoricMarketDataInfo>> HistoricMarketData { get; set; } = new Dictionary<int, IList<B3HistoricMarketDataInfo>>();
 
         /// <summary>
         /// Index to convert an instrument ticker to internal ID
@@ -167,8 +167,26 @@ namespace B3Provider
             var filePath = _downloader.DownloadYearHistoricFile(yearToReadHistory, _configuration.ReplaceExistingFiles);
 
             var historicMarketDataReader = ReaderFactory.CreateReader<B3HistoricMarketDataInfo>(_configuration.ReadStrategy);
-            HistoricMarketData = historicMarketDataReader.ReadRecords(filePath);
+            HistoricMarketData[yearToReadHistory] = historicMarketDataReader.ReadRecords(filePath);
         }
+
+        /// <summary>
+        /// Get market data from all years loaded into the provider.
+        /// </summary>
+        /// <returns></returns>
+        public IList<B3HistoricMarketDataInfo> GetHistoricMarketData()
+        {
+            IList<B3HistoricMarketDataInfo> _result = null;
+            if (HistoricMarketData != null && HistoricMarketData.Count > 0)
+            {
+                foreach (KeyValuePair<int, IList<B3HistoricMarketDataInfo>> oneItem in HistoricMarketData)
+                {
+                    _result = _result==null ? oneItem.Value : _result.Concat(oneItem.Value).ToList();
+                }
+            }
+            return _result;
+        }
+
 
         /// <summary>
         /// Load all the company sector info found  in file

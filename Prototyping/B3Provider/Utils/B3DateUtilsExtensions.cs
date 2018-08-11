@@ -41,7 +41,6 @@ namespace B3Provider.Utils
     public static partial class B3DateUtilsExtensions
     {
         #region "public methods"
-
         #region "actual days"
         public static DateTime FirstDayOfWeek(this DateTime? dt)
         {
