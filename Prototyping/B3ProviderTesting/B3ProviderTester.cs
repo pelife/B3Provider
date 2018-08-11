@@ -34,6 +34,7 @@ namespace B3ProviderTesting
     using System;
     using System.Linq;
     using B3Provider;
+    using B3Provider.Utils;
     using B3Provider.Records;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -84,6 +85,41 @@ namespace B3ProviderTesting
 
             var client = new B3Provider.B3ProviderClient(config);
             client.LoadHistoricQuotes(2018);
+
+            var quotesPETR4 = client.GetHistoricMarketData().Where(e => e.Ticker.Equals("PETR4")).OrderByDescending(e => e.TradeDate).ToList();
+        }
+
+        [TestMethod]
+        public void B3ProviderMustDownloadHistoricQuoteFilesGetUtilDates()
+        {
+            var config = new B3Provider.B3ProviderConfig();
+            config.ReplaceExistingFiles = true;
+
+            var client = new B3Provider.B3ProviderClient(config);
+            client.LoadHistoricQuotes(2018);
+            client.LoadHistoricQuotes(2017);
+
+            DateTime? utilDatesStart = null;
+            var utilDates = utilDatesStart.UtilDates(null);
+            var quotesPETR4 = client.GetHistoricMarketData().Where(e => e.Ticker.Equals("PETR4")).OrderByDescending(e => e.TradeDate).ToList();
+
+            var currentQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.CurrentDate).FirstOrDefault();
+            var oneDayQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.OneDayDate).FirstOrDefault();
+            var oneWeekQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.OneWeekDate).FirstOrDefault();
+            var oneMonthQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.OneMonthDate).FirstOrDefault();
+            var oneQuarteQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.OneQuarterDate).FirstOrDefault();
+            var oneYearQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.OneYearDate).FirstOrDefault();
+
+            var varDiaria = ((currentQuote?.Last ?? 1) / (oneDayQuote?.Last ?? 1)) - 1;
+            var varSemanal = ((currentQuote?.Last ?? 1 )/ (oneWeekQuote?.Last ?? 1)) - 1;
+            var varMensal = ((currentQuote?.Last ?? 1 )/ (oneMonthQuote?.Last ?? 1)) - 1;
+            var varTrimestral = ((currentQuote?.Last ?? 1 )/ (oneQuarteQuote?.Last ?? 1)) - 1;
+            var varAnual = ((currentQuote?.Last ?? 1) / (oneYearQuote?.Last ?? 1)) - 1;
+
+            var WTDQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.WTDDate).FirstOrDefault();
+            var MTDQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.MTDDate).FirstOrDefault();
+            var QTDQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.QTDDate).FirstOrDefault();
+            var YTDQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.YTDDate).FirstOrDefault();
 
         }
 

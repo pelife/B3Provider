@@ -208,7 +208,7 @@ namespace B3Provider.Utils
             while (numberOfDaysAgo > 0)
             {
                 resultDate = resultDate.Subtract(TimeSpan.FromDays(1));
-                if (!IsHoliday(resultDate, holidays) || !IsWeekend(resultDate))
+                if (!IsHoliday(resultDate, holidays) && !IsWeekend(resultDate))
                     numberOfDaysAgo--;
             }
             return resultDate;

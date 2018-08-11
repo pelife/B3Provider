@@ -48,11 +48,11 @@ namespace B3Provider.Layouts
             WithMember(x => x.Type, c => c.WithLength(2))                                                                               //2     -   2  N(02) 01 02
                 .WithMember(x => x.TradeDate, c => c.WithLength(8).WithTypeConverter<B3DateTypeConverter>())                            //10    -   8  N(08) 03 10
                 .WithMember(x => x.BDICode, c => c.WithLength(2).WithTypeConverter<B3StringTypeConverter>())                            //12    -   2  X(02) 11 12
-                .WithMember(x => x.Ticker, c => c.WithLength(12).WithTypeConverter<B3StringTypeConverter>())                         //24    -   12 X(12) 13 24
+                .WithMember(x => x.Ticker, c => c.WithLength(12).WithTypeConverter<B3StringTypeConverter>())                            //24    -   12 X(12) 13 24
                 .WithMember(x => x.MarketTypeCode, c => c.WithLength(3))                                                                //27    -   3  N(03) 25 27 
                 .WithMember(x => x.ShortName, c => c.WithLength(12).WithTypeConverter<B3StringTypeConverter>())                         //39    -   12 X(12) 28 39
                 .WithMember(x => x.Specification, c => c.WithLength(10).WithTypeConverter<B3StringTypeConverter>())                     //40    -   10 X(10) 40 49
-                .WithMember(x => x.ForwardDaysToExpiry, c => c.WithLength(2))                                                           //43    -   3  X(03) 50 52
+                .WithMember(x => x.ForwardDaysToExpiry, c => c.WithLength(3))                                                           //43    -   3  X(03) 50 52
                 .WithMember(x => x.ReferenceCurrency, c => c.WithLength(4).WithTypeConverter<B3StringTypeConverter>())                  //47    -   4  X(04) 53 56
                 .WithMember(x => x.Opening, c => c.WithLength(13).WithTypeConverter<B3Double100TypeConverter>())                        //60    -   13 (11)V99 57 69
                 .WithMember(x => x.Maximum, c => c.WithLength(13).WithTypeConverter<B3Double100TypeConverter>())                        //73    -   13 (11)V99 70 82
