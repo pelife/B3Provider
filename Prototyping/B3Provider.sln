@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B3Provider", "B3Provider\B3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B3ProviderTesting", "B3ProviderTesting\B3ProviderTesting.csproj", "{394DFA98-2E84-4DDC-AD63-EB86FC212026}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B3ProviderExplorer", "B3ProviderExplorer\B3ProviderExplorer.csproj", "{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,18 @@ Global
 		{394DFA98-2E84-4DDC-AD63-EB86FC212026}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{394DFA98-2E84-4DDC-AD63-EB86FC212026}.Release|x86.ActiveCfg = Release|Any CPU
 		{394DFA98-2E84-4DDC-AD63-EB86FC212026}.Release|x86.Build.0 = Release|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Debug|x86.Build.0 = Debug|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Release|x86.ActiveCfg = Release|Any CPU
+		{AD7AB4E5-EBAE-4967-8B24-DBDD450F2092}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
