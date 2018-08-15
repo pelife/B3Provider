@@ -33,7 +33,6 @@ namespace B3Provider.Records
 {
     using System;
 
-
     /// <summary>
     /// Class that represents a option on stock (equity)
     /// </summary>
@@ -42,32 +41,32 @@ namespace B3Provider.Records
         /// <summary>
         /// B3 Internal identification of the instrument
         /// </summary>
-        public long? B3ID { get; internal set; }
+        public long? B3ID { get; set; }
 
         /// <summary>
         /// ISIN world public instrument identification
         /// </summary>
-        public string ISIN { get; internal set; }
+        public string ISIN { get; set; }
 
         /// <summary>
         /// Description of the instrument
         /// </summary>
-        public string Description { get; internal set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Ticker of most common refered to symbol of the option
         /// </summary>
-        public string Ticker { get; internal set; }
+        public string Ticker { get; set; }
 
         /// <summary>
         /// Strike price of the option
         /// </summary>
-        public double? Strike { get; internal set; }
+        public double? Strike { get; set; }
 
         /// <summary>
         /// Currency in which strike price is expressed
         /// </summary>
-        public string StrikeCurrency { get; internal set; }
+        public string StrikeCurrency { get; set; }
 
         /// <summary>
         /// Style of the option American or European
@@ -91,16 +90,16 @@ namespace B3Provider.Records
         /// <summary>
         /// Currency in which price of the option is expressed
         /// </summary>
-        public string Currency { get; internal set; }
+        public string Currency { get; set; }
 
         /// <summary>
         /// The date of the last instrument file read
         /// </summary>
-        public DateTime? LoadDate { get; internal set; }
+        public DateTime? LoadDate { get; set; }
 
         /// <summary>
         /// B3 Internal identification of the underlying instrument
         /// </summary>
-        public long? B3IDUnderlying { get; internal set; }
+        public long? B3IDUnderlying { get; set; }
     }
 }
