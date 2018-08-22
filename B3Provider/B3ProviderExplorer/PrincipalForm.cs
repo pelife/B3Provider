@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using DevExpress.XtraBars.Docking2010.Views;
-using DevExpress.XtraBars;
-using DevExpress.XtraBars.Navigation;
-using NLog;
-
-namespace B3ProviderExplorer
+﻿namespace B3ProviderExplorer
 {
+    using B3ProviderExplorer.Logging;
+    using DevExpress.XtraBars;
+    using DevExpress.XtraBars.Docking2010.Views;
+    using DevExpress.XtraBars.Navigation;
+    using DevExpress.XtraEditors;
+    using NLog;
+    using System;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+
     public partial class PrincipalForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         private static Logger logger;
+
+        public static BindingList<LogEventInfo> LogCollection { get; set; } = new BindingList<LogEventInfo>();
 
         XtraUserControl employeesUserControl;
         XtraUserControl customersUserControl;
@@ -102,8 +101,30 @@ namespace B3ProviderExplorer
 
         private void PrincipalForm_Load(object sender, EventArgs e)
         {
+            var memoryTarget = LogManager.Configuration.AllTargets.Where(t => t is MemoryEventTarget).FirstOrDefault() as MemoryEventTarget;
+
+            if (memoryTarget != null)
+                memoryTarget.EventReceived += MemoryTarget_EventReceived;
+
+            loggingGridControl.DataSource = LogCollection;
+
             logger = LogManager.GetLogger("PrincipalForm");
-            logger.Info("Started");
+            logger.Info("Started");            
         }
+
+        private void MemoryTarget_EventReceived(LogEventInfo message)
+        {
+            if (InvokeRequired)
+                BeginInvoke(new Action(() => EventReceivedIternal(message)));
+            else
+                EventReceivedIternal(message);
+        }
+
+        private void EventReceivedIternal(LogEventInfo message)
+        {
+            if (LogCollection.Count >= 50) LogCollection.RemoveAt(LogCollection.Count - 1);
+            LogCollection.Add(message);
+        }
+
     }
 };

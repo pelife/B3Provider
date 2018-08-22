@@ -115,6 +115,7 @@
     <Compile Include="Controls\QuotesUserControl.Designer.cs">
       <DependentUpon>QuotesUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logging\MemoryEventTarget.cs" />
     <Compile Include="PrincipalForm.cs">
       <SubType>Form</SubType>
     </Compile>

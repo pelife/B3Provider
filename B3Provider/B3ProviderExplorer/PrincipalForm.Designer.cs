@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SuperToolTip superToolTip9 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem9 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem9 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip10 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem10 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem10 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip11 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem11 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem11 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip12 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem12 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem12 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem7 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip8 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem8 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem8 = new DevExpress.Utils.ToolTipItem();
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.skinRibbonGalleryBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barSubItemNavigation = new DevExpress.XtraBars.BarSubItem();
@@ -51,10 +51,6 @@
             this.ribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.dockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.hideContainerBottom = new DevExpress.XtraBars.Docking.AutoHideContainer();
-            this.LoggingDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.loggingRichTextBox = new System.Windows.Forms.RichTextBox();
             this.ExploreMenuBarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -71,18 +67,29 @@
             this.aceLoadHistory = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.acgExplore = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.aceAll = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.LoggingDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
+            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.loggingGridControl = new DevExpress.XtraGrid.GridControl();
+            this.loggingGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.ExploreMenu = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.sequenceIDgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.loggerNamegridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.timeLoggergridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.levelGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.messageGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.exceptionGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
-            this.hideContainerBottom.SuspendLayout();
-            this.LoggingDockPanel.SuspendLayout();
-            this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenuBarManager)).BeginInit();
             this.NavigationDockPanel.SuspendLayout();
             this.dockPanel_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).BeginInit();
+            this.LoggingDockPanel.SuspendLayout();
+            this.dockPanel1_Container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loggingGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loggingGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenu)).BeginInit();
@@ -170,12 +177,11 @@
             // 
             // dockManager
             // 
-            this.dockManager.AutoHideContainers.AddRange(new DevExpress.XtraBars.Docking.AutoHideContainer[] {
-            this.hideContainerBottom});
             this.dockManager.Form = this;
             this.dockManager.MenuManager = this.ExploreMenuBarManager;
             this.dockManager.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
-            this.NavigationDockPanel});
+            this.NavigationDockPanel,
+            this.LoggingDockPanel});
             this.dockManager.TopZIndexControls.AddRange(new string[] {
             "DevExpress.XtraBars.BarDockControl",
             "DevExpress.XtraBars.StandaloneBarDockControl",
@@ -186,49 +192,6 @@
             "DevExpress.XtraBars.Ribbon.RibbonControl",
             "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
             "DevExpress.XtraBars.Navigation.TileNavPane"});
-            // 
-            // hideContainerBottom
-            // 
-            this.hideContainerBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            this.hideContainerBottom.Controls.Add(this.LoggingDockPanel);
-            this.hideContainerBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.hideContainerBottom.Location = new System.Drawing.Point(0, 549);
-            this.hideContainerBottom.Name = "hideContainerBottom";
-            this.hideContainerBottom.Size = new System.Drawing.Size(790, 19);
-            // 
-            // LoggingDockPanel
-            // 
-            this.LoggingDockPanel.Controls.Add(this.dockPanel1_Container);
-            this.LoggingDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
-            this.LoggingDockPanel.ID = new System.Guid("e42bd751-e192-43eb-ba4b-9f45ec351f22");
-            this.LoggingDockPanel.Location = new System.Drawing.Point(0, 0);
-            this.LoggingDockPanel.Name = "LoggingDockPanel";
-            this.LoggingDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
-            this.LoggingDockPanel.SavedDock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
-            this.LoggingDockPanel.SavedIndex = 1;
-            this.LoggingDockPanel.SavedSizeFactor = 1D;
-            this.LoggingDockPanel.Size = new System.Drawing.Size(790, 200);
-            this.LoggingDockPanel.Text = "Logging";
-            this.LoggingDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.AutoHide;
-            // 
-            // dockPanel1_Container
-            // 
-            this.dockPanel1_Container.Controls.Add(this.loggingRichTextBox);
-            this.dockPanel1_Container.Location = new System.Drawing.Point(4, 24);
-            this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(782, 172);
-            this.dockPanel1_Container.TabIndex = 0;
-            // 
-            // loggingRichTextBox
-            // 
-            this.loggingRichTextBox.AcceptsTab = true;
-            this.loggingRichTextBox.AutoWordSelection = true;
-            this.loggingRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.loggingRichTextBox.Location = new System.Drawing.Point(0, 0);
-            this.loggingRichTextBox.Name = "loggingRichTextBox";
-            this.loggingRichTextBox.Size = new System.Drawing.Size(782, 172);
-            this.loggingRichTextBox.TabIndex = 0;
-            this.loggingRichTextBox.Text = "";
             // 
             // ExploreMenuBarManager
             // 
@@ -289,7 +252,7 @@
             this.NavigationDockPanel.Name = "NavigationDockPanel";
             this.NavigationDockPanel.OriginalSize = new System.Drawing.Size(204, 200);
             this.NavigationDockPanel.SavedSizeFactor = 0D;
-            this.NavigationDockPanel.Size = new System.Drawing.Size(204, 406);
+            this.NavigationDockPanel.Size = new System.Drawing.Size(204, 425);
             this.NavigationDockPanel.Text = "Navigation";
             // 
             // dockPanel_Container
@@ -297,7 +260,7 @@
             this.dockPanel_Container.Controls.Add(this.accordionControl);
             this.dockPanel_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel_Container.Name = "dockPanel_Container";
-            this.dockPanel_Container.Size = new System.Drawing.Size(195, 379);
+            this.dockPanel_Container.Size = new System.Drawing.Size(195, 398);
             this.dockPanel_Container.TabIndex = 0;
             // 
             // accordionControl
@@ -308,7 +271,7 @@
             this.mainAccordionGroup});
             this.accordionControl.Location = new System.Drawing.Point(0, 0);
             this.accordionControl.Name = "accordionControl";
-            this.accordionControl.Size = new System.Drawing.Size(195, 379);
+            this.accordionControl.Size = new System.Drawing.Size(195, 398);
             this.accordionControl.TabIndex = 0;
             this.accordionControl.Text = "accordionControl";
             // 
@@ -341,12 +304,12 @@
             // 
             this.aceLoadInstruments.Name = "aceLoadInstruments";
             this.aceLoadInstruments.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem9.Text = "Load instruments";
-            toolTipItem9.LeftIndent = 6;
-            toolTipItem9.Text = "Load intrument information from source";
-            superToolTip9.Items.Add(toolTipTitleItem9);
-            superToolTip9.Items.Add(toolTipItem9);
-            this.aceLoadInstruments.SuperTip = superToolTip9;
+            toolTipTitleItem5.Text = "Load instruments";
+            toolTipItem5.LeftIndent = 6;
+            toolTipItem5.Text = "Load intrument information from source";
+            superToolTip5.Items.Add(toolTipTitleItem5);
+            superToolTip5.Items.Add(toolTipItem5);
+            this.aceLoadInstruments.SuperTip = superToolTip5;
             this.aceLoadInstruments.Text = "Intruments";
             this.aceLoadInstruments.Click += new System.EventHandler(this.aceLoadInstruments_Click);
             // 
@@ -354,12 +317,12 @@
             // 
             this.aceLoadCurrentMarketData.Name = "aceLoadCurrentMarketData";
             this.aceLoadCurrentMarketData.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem10.Text = "Load prices";
-            toolTipItem10.LeftIndent = 6;
-            toolTipItem10.Text = "Load current intrument price information from source";
-            superToolTip10.Items.Add(toolTipTitleItem10);
-            superToolTip10.Items.Add(toolTipItem10);
-            this.aceLoadCurrentMarketData.SuperTip = superToolTip10;
+            toolTipTitleItem6.Text = "Load prices";
+            toolTipItem6.LeftIndent = 6;
+            toolTipItem6.Text = "Load current intrument price information from source";
+            superToolTip6.Items.Add(toolTipTitleItem6);
+            superToolTip6.Items.Add(toolTipItem6);
+            this.aceLoadCurrentMarketData.SuperTip = superToolTip6;
             this.aceLoadCurrentMarketData.Text = "Prices";
             this.aceLoadCurrentMarketData.Click += new System.EventHandler(this.aceLoadCurrentMarketData_Click);
             // 
@@ -367,12 +330,12 @@
             // 
             this.aceLoadHistory.Name = "aceLoadHistory";
             this.aceLoadHistory.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem11.Text = "Load historic";
-            toolTipItem11.LeftIndent = 6;
-            toolTipItem11.Text = "Load historic prices of intruments from source";
-            superToolTip11.Items.Add(toolTipTitleItem11);
-            superToolTip11.Items.Add(toolTipItem11);
-            this.aceLoadHistory.SuperTip = superToolTip11;
+            toolTipTitleItem7.Text = "Load historic";
+            toolTipItem7.LeftIndent = 6;
+            toolTipItem7.Text = "Load historic prices of intruments from source";
+            superToolTip7.Items.Add(toolTipTitleItem7);
+            superToolTip7.Items.Add(toolTipItem7);
+            this.aceLoadHistory.SuperTip = superToolTip7;
             this.aceLoadHistory.Text = "Historic";
             this.aceLoadHistory.Click += new System.EventHandler(this.aceLoadHistory_Click);
             // 
@@ -387,12 +350,12 @@
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl),
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons)});
             this.acgExplore.Name = "acgExplore";
-            toolTipTitleItem12.Text = "Explore";
-            toolTipItem12.LeftIndent = 6;
-            toolTipItem12.Text = "Discover what is happening to instruments";
-            superToolTip12.Items.Add(toolTipTitleItem12);
-            superToolTip12.Items.Add(toolTipItem12);
-            this.acgExplore.SuperTip = superToolTip12;
+            toolTipTitleItem8.Text = "Explore";
+            toolTipItem8.LeftIndent = 6;
+            toolTipItem8.Text = "Discover what is happening to instruments";
+            superToolTip8.Items.Add(toolTipTitleItem8);
+            superToolTip8.Items.Add(toolTipItem8);
+            this.acgExplore.SuperTip = superToolTip8;
             this.acgExplore.Text = "Explore";
             // 
             // aceAll
@@ -400,6 +363,50 @@
             this.aceAll.Name = "aceAll";
             this.aceAll.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.aceAll.Text = "All";
+            // 
+            // LoggingDockPanel
+            // 
+            this.LoggingDockPanel.Controls.Add(this.dockPanel1_Container);
+            this.LoggingDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
+            this.LoggingDockPanel.ID = new System.Guid("e42bd751-e192-43eb-ba4b-9f45ec351f22");
+            this.LoggingDockPanel.Location = new System.Drawing.Point(204, 368);
+            this.LoggingDockPanel.Name = "LoggingDockPanel";
+            this.LoggingDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
+            this.LoggingDockPanel.SavedSizeFactor = 0D;
+            this.LoggingDockPanel.Size = new System.Drawing.Size(586, 200);
+            this.LoggingDockPanel.Text = "Logging";
+            // 
+            // dockPanel1_Container
+            // 
+            this.dockPanel1_Container.Controls.Add(this.loggingGridControl);
+            this.dockPanel1_Container.Location = new System.Drawing.Point(4, 24);
+            this.dockPanel1_Container.Name = "dockPanel1_Container";
+            this.dockPanel1_Container.Size = new System.Drawing.Size(578, 172);
+            this.dockPanel1_Container.TabIndex = 0;
+            // 
+            // loggingGridControl
+            // 
+            this.loggingGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.loggingGridControl.Location = new System.Drawing.Point(0, 0);
+            this.loggingGridControl.MainView = this.loggingGridView;
+            this.loggingGridControl.MenuManager = this.ribbonControl;
+            this.loggingGridControl.Name = "loggingGridControl";
+            this.loggingGridControl.Size = new System.Drawing.Size(578, 172);
+            this.loggingGridControl.TabIndex = 0;
+            this.loggingGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.loggingGridView});
+            // 
+            // loggingGridView
+            // 
+            this.loggingGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.sequenceIDgridColumn,
+            this.loggerNamegridColumn,
+            this.levelGridColumn,
+            this.timeLoggergridColumn,
+            this.messageGridColumn,
+            this.exceptionGridColumn});
+            this.loggingGridView.GridControl = this.loggingGridControl;
+            this.loggingGridView.Name = "loggingGridView";
             // 
             // tabbedView
             // 
@@ -421,13 +428,67 @@
             this.ExploreMenu.Manager = this.ExploreMenuBarManager;
             this.ExploreMenu.Name = "ExploreMenu";
             // 
+            // sequenceIDgridColumn
+            // 
+            this.sequenceIDgridColumn.Caption = "Sequence";
+            this.sequenceIDgridColumn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.sequenceIDgridColumn.FieldName = "SequenceID";
+            this.sequenceIDgridColumn.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.sequenceIDgridColumn.Name = "sequenceIDgridColumn";
+            this.sequenceIDgridColumn.Visible = true;
+            this.sequenceIDgridColumn.VisibleIndex = 0;
+            // 
+            // loggerNamegridColumn
+            // 
+            this.loggerNamegridColumn.Caption = "Name";
+            this.loggerNamegridColumn.FieldName = "LoggerName";
+            this.loggerNamegridColumn.Name = "loggerNamegridColumn";
+            this.loggerNamegridColumn.Visible = true;
+            this.loggerNamegridColumn.VisibleIndex = 1;
+            // 
+            // timeLoggergridColumn
+            // 
+            this.timeLoggergridColumn.Caption = "Time";
+            this.timeLoggergridColumn.DisplayFormat.FormatString = "dd/MM/yyyy hh:mm:ss";
+            this.timeLoggergridColumn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.timeLoggergridColumn.FieldName = "TimeStamp";
+            this.timeLoggergridColumn.GroupFormat.FormatString = "dd/MM/yyyy hh:mm:ss";
+            this.timeLoggergridColumn.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.timeLoggergridColumn.Name = "timeLoggergridColumn";
+            this.timeLoggergridColumn.Visible = true;
+            this.timeLoggergridColumn.VisibleIndex = 2;
+            // 
+            // levelGridColumn
+            // 
+            this.levelGridColumn.Caption = "Level";
+            this.levelGridColumn.FieldName = "Level";
+            this.levelGridColumn.Name = "levelGridColumn";
+            this.levelGridColumn.Visible = true;
+            this.levelGridColumn.VisibleIndex = 3;
+            // 
+            // messageGridColumn
+            // 
+            this.messageGridColumn.Caption = "Message";
+            this.messageGridColumn.FieldName = "FormattedMessage";
+            this.messageGridColumn.Name = "messageGridColumn";
+            this.messageGridColumn.Visible = true;
+            this.messageGridColumn.VisibleIndex = 4;
+            // 
+            // exceptionGridColumn
+            // 
+            this.exceptionGridColumn.Caption = "Exception";
+            this.exceptionGridColumn.FieldName = "Exception";
+            this.exceptionGridColumn.Name = "exceptionGridColumn";
+            this.exceptionGridColumn.Visible = true;
+            this.exceptionGridColumn.VisibleIndex = 5;
+            // 
             // PrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(790, 599);
+            this.Controls.Add(this.LoggingDockPanel);
             this.Controls.Add(this.NavigationDockPanel);
-            this.Controls.Add(this.hideContainerBottom);
             this.Controls.Add(this.ribbonControl);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.barDockControlLeft);
@@ -440,13 +501,14 @@
             this.Load += new System.EventHandler(this.PrincipalForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();
-            this.hideContainerBottom.ResumeLayout(false);
-            this.LoggingDockPanel.ResumeLayout(false);
-            this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenuBarManager)).EndInit();
             this.NavigationDockPanel.ResumeLayout(false);
             this.dockPanel_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).EndInit();
+            this.LoggingDockPanel.ResumeLayout(false);
+            this.dockPanel1_Container.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.loggingGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loggingGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenu)).EndInit();
@@ -487,7 +549,13 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private System.Windows.Forms.RichTextBox loggingRichTextBox;
-        private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerBottom;
+        private DevExpress.XtraGrid.GridControl loggingGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView loggingGridView;
+        private DevExpress.XtraGrid.Columns.GridColumn sequenceIDgridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn loggerNamegridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn timeLoggergridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn levelGridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn messageGridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn exceptionGridColumn;
     }
 }
