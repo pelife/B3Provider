@@ -31,7 +31,9 @@
 namespace B3Provider.Database
 {
     using B3Provider.Records;
+    using NLog;
     using SQLite.CodeFirst;
+    using System;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure.Annotations;
@@ -39,10 +41,14 @@ namespace B3Provider.Database
 
     public class B3ProviderDbContext : DbContext
     {
+        public B3ProviderDbContext(Action<string> logger)
+        {
+            this.Database.Log = logger;
+        }
+
         public DbSet<B3EquityInfo> EquityInstruments { get; set; }
-
-        //public DbSet<B3OptionOnEquityInfo> OptionsOnEquityInstruments { get; set; }
-
+        public DbSet<B3SectorClassifcationInfo> SectorClassification { get; set; }
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             
@@ -57,8 +63,6 @@ namespace B3Provider.Database
             //.Property(p => p.Ti).HasColumnName("tx_ticker")
             //.Property(p => p.B3ID).HasColumnName("id_b3")
             //.Property(p => p.B3ID).HasColumnName("id_b3")
-
-
 
             //base.OnModelCreating(modelBuilder);
 

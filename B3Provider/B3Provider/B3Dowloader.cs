@@ -152,7 +152,9 @@ namespace B3Provider
         public string DownloadSectorClassificationFile(bool replaceIfExists)
         {
             var destinationPath = string.Format("classificacao_setorial-{0}.zip", DateTime.Now.ToString("yyyy-MM-dd"));
-            return DownloadHTTPFile(@"http://www.bmfbovespa.com.br/lumis/portal/file/fileDownload.jsp?fileId=8AA8D0975A2D7918015A3C81693D4CA4", string.Empty, destinationPath, replaceIfExists);
+            //return DownloadHTTPFile(@"http://www.bmfbovespa.com.br/lumis/portal/file/fileDownload.jsp?fileId=8AA8D0975A2D7918015A3C81693D4CA4", string.Empty, destinationPath, replaceIfExists);
+            return DownloadHTTPFile(@"http://www.b3.com.br/lumis/portal/file/fileDownload.jsp?fileId=8AA8D0975A2D7918015A3C81693D4CA4", string.Empty, destinationPath, replaceIfExists);
+            
         }
         #endregion
 

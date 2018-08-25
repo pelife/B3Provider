@@ -36,6 +36,7 @@ namespace B3Provider
 {
     using B3Provider.Database;
     using B3Provider.Records;
+    using NLog;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -47,6 +48,16 @@ namespace B3Provider
     /// </summary>
     public class B3ProviderClient
     {
+        private readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private readonly Logger _databaseLogger = LogManager.GetLogger("Database");
+
+        #region "private members"
+        private B3ProviderConfig _configuration = null;
+        private B3Dowloader _downloader = null;
+        private B3ProviderDbContext _databaseContext = null;
+        private bool _setupExecuted = false;
+        #endregion
+
         #region "ctor"
         /// <summary>
         /// Defaulf constructor, it receives the path to where the files that are going to be downloaded from
@@ -57,15 +68,8 @@ namespace B3Provider
         {
             _configuration = configuration ?? throw new ArgumentNullException("configuration", "the parameter configuration of type B3ProviderConfig cannot be null");
             _downloader = new B3Dowloader(_configuration.DownloadPath);
-            //_databaseContext = new B3ProviderDbContext();
+            _databaseContext = new B3ProviderDbContext((message => _databaseLogger.Info(message)));            
         }
-        #endregion
-
-        #region "private members"
-        private B3ProviderConfig _configuration = null;
-        private B3Dowloader _downloader = null;
-        private B3ProviderDbContext _databaseContext = null;
-        private bool _setupExecuted = false;
         #endregion
 
         #region "properties to records found in files"
@@ -118,27 +122,36 @@ namespace B3Provider
         {
             Dictionary<string, long> tickerIDIndexDictionary = null;
 
+            _logger.Info("setup provider");
             SetupIfNotSetup();
+
+            _logger.Info("downloading file of instruments");
             var filePath = _downloader.DownloadInstrumentFile(null, _configuration.ReplaceExistingFiles);
 
+            _logger.Info("reading equities");
             var equityReader = ReaderFactory.CreateReader<B3EquityInfo>(_configuration.ReadStrategy);
             EquityInstruments = equityReader.ReadRecords(filePath);
-            //_databaseContext.EquityInstruments.AddRange(EquityInstruments);
-            //_databaseContext.SaveChangesAsync();
-            //_databaseContext.SaveChanges();
 
+            _logger.Info("indexing equities");
             tickerIDIndexDictionary = EquityInstruments.ToDictionary(k => k.Ticker, v => v.B3ID.HasValue ? v.B3ID.Value : 0);
             TickerIDIndex = TickerIDIndex.Union(tickerIDIndexDictionary).ToDictionary(k => k.Key, v => v.Value);
 
+            _logger.Info("reading options");
             var optionsReader = ReaderFactory.CreateReader<B3OptionOnEquityInfo>(_configuration.ReadStrategy);
             OptionInstruments = optionsReader.ReadRecords(filePath);
 
+            _logger.Info("indexing options");
             tickerIDIndexDictionary = OptionInstruments.ToDictionary(k => k.Ticker, v => v.B3ID.HasValue ? v.B3ID.Value : 0);
             TickerIDIndex = TickerIDIndex.Union(tickerIDIndexDictionary).ToDictionary(k => k.Key, v => v.Value);
 
-            //load sector classification to apply to companies
+            _logger.Info("loading sector classification");
             LoadSectorClassification();
+
+            _logger.Info("applying sector classification");
             ApplySectorClassification();
+
+            _logger.Info("saving to database");
+            SaveAllToDatabase();
         }        
 
         /// <summary>
@@ -146,9 +159,13 @@ namespace B3Provider
         /// </summary>
         public void LoadQuotes()
         {
+            _logger.Info("setup provider");
             SetupIfNotSetup();
+
+            _logger.Info("downloading file of current market data");
             var filePath = _downloader.DownloadQuoteFile(null, _configuration.ReplaceExistingFiles);
 
+            _logger.Info("reading file of current market data");
             var marketDataReader = ReaderFactory.CreateReader<B3MarketDataInfo>(_configuration.ReadStrategy);
             CurrentMarketData = marketDataReader.ReadRecords(filePath);
         }
@@ -163,9 +180,13 @@ namespace B3Provider
         /// </param>
         public void LoadHistoricQuotes(int yearToReadHistory)
         {
+            _logger.Info("setup provider");
             SetupIfNotSetup();
+
+            _logger.Info("downloading file of historic market data");
             var filePath = _downloader.DownloadYearHistoricFile(yearToReadHistory, _configuration.ReplaceExistingFiles);
 
+            _logger.Info("reading file of historic market data");
             var historicMarketDataReader = ReaderFactory.CreateReader<B3HistoricMarketDataInfo>(_configuration.ReadStrategy);
             HistoricMarketData[yearToReadHistory] = historicMarketDataReader.ReadRecords(filePath);
         }
@@ -193,9 +214,13 @@ namespace B3Provider
         /// </summary>
         public void LoadSectorClassification()
         {
+            _logger.Info("setup provider");
             SetupIfNotSetup();
+
+            _logger.Info("downloading file of sector classification");
             var filePath = _downloader.DownloadSectorClassificationFile(_configuration.ReplaceExistingFiles);
 
+            _logger.Info("reading file of sector classification");
             var sectorClassificationDataReader = ReaderFactory.CreateReader<B3SectorClassifcationInfo>(_configuration.ReadStrategy);
             SectorClassification = sectorClassificationDataReader.ReadRecords(filePath);
         }
@@ -254,6 +279,55 @@ namespace B3Provider
                 oneEquityInstrument.SectorClassification = oneClassification;
             }
         }
+
+        /// <summary>
+        /// Save all types of records to the database
+        /// </summary>
+        private void SaveAllToDatabase()
+        {
+            SaveSectorClassificationDataToDatabase();
+            SaveEquityInstrumentsToDatabase();
+            SaveOptionsOnEquityInstrumentsToDatabase();
+            SaveCurrentMarketDataToDatabase();
+            SaveHistoricMarketDataToDatabase();
+        }
+
+        private void SaveSectorClassificationDataToDatabase()
+        {
+            if (_databaseContext == null) return;
+            foreach (var oneSectorClassification in SectorClassification)
+            {
+                var alreadyExists = _databaseContext.SectorClassification.Where
+                        (s => s.CompanyListingCode.Equals(oneSectorClassification.CompanyListingCode, StringComparison.InvariantCultureIgnoreCase))
+                        .FirstOrDefault();
+                if (alreadyExists == null)
+                    _databaseContext.SectorClassification.Add(oneSectorClassification);
+            }
+
+            _databaseContext.SaveChanges();
+        }
+
+        private void SaveEquityInstrumentsToDatabase()
+        {
+
+        }
+
+        private void SaveOptionsOnEquityInstrumentsToDatabase()
+        {
+
+        }
+
+        private void SaveCurrentMarketDataToDatabase()
+        {
+
+        }
+
+        private void SaveHistoricMarketDataToDatabase()
+        {
+
+        }
+
+        
 
         #endregion
 

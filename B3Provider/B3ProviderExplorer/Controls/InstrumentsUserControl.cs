@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraBars;
-using DevExpress.XtraEditors;
-using System.ComponentModel.DataAnnotations;
-using DevExpress.XtraGrid.Views.Grid;
-
-namespace B3ProviderExplorer.Controls
+﻿namespace B3ProviderExplorer.Controls
 {
+    using DevExpress.XtraBars;
+    using DevExpress.XtraGrid.Views.Grid;
+    using System;
+    using System.Data;
+    using System.Linq;
+
     public partial class InstrumentsUserControl : DevExpress.XtraEditors.XtraUserControl
     {
         private B3Provider.B3ProviderConfig providerClientConfig = null;
