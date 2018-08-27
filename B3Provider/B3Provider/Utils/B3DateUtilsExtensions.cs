@@ -108,6 +108,17 @@ namespace B3Provider.Utils
         #endregion
 
         #region "business days"
+        public static DateTime CurrentOrPreviousBusinessDay(this DateTime? dt, IList<DateTime> holidays)
+        {
+            if (!dt.HasValue)
+                dt = DateTime.Today;
+
+            if (!IsHoliday(dt.Value, holidays) && !IsWeekend(dt.Value))
+                return dt.Value;
+
+            return dt.NBusinessDaysAgo(1, holidays);
+        }
+
         /// <summary>
         /// Calculates the previous work date according to a date informed
         /// </summary>

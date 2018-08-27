@@ -151,7 +151,7 @@ namespace B3Provider
             ApplySectorClassification();
 
             _logger.Info("saving to database");
-            SaveAllToDatabase();
+            //SaveAllToDatabase();
         }        
 
         /// <summary>
@@ -300,6 +300,7 @@ namespace B3Provider
                 var alreadyExists = _databaseContext.SectorClassification.Where
                         (s => s.CompanyListingCode.Equals(oneSectorClassification.CompanyListingCode, StringComparison.InvariantCultureIgnoreCase))
                         .FirstOrDefault();
+
                 if (alreadyExists == null)
                     _databaseContext.SectorClassification.Add(oneSectorClassification);
             }
@@ -309,7 +310,20 @@ namespace B3Provider
 
         private void SaveEquityInstrumentsToDatabase()
         {
+            if (_databaseContext == null) return;
+            foreach (var oneEquityInstrument in EquityInstruments)
+            {
+                var alreadyExists = _databaseContext.EquityInstruments.Where
+                        (s => s.B3ID.HasValue 
+                        && oneEquityInstrument.B3ID.HasValue 
+                        && s.B3ID.Value.Equals(oneEquityInstrument.B3ID.Value))
+                        .FirstOrDefault();
 
+                if (alreadyExists == null)
+                    _databaseContext.EquityInstruments.Add(oneEquityInstrument);
+            }
+
+            _databaseContext.SaveChanges();
         }
 
         private void SaveOptionsOnEquityInstrumentsToDatabase()

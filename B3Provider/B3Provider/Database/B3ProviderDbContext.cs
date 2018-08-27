@@ -46,39 +46,23 @@ namespace B3Provider.Database
             this.Database.Log = logger;
         }
 
-        public DbSet<B3EquityInfo> EquityInstruments { get; set; }
         public DbSet<B3SectorClassifcationInfo> SectorClassification { get; set; }
-        
+        public DbSet<B3EquityInfo> EquityInstruments { get; set; }        
+        //public DbSet<B3OptionOnEquityInfo> OptionsOnEquityInstruments { get; set; }
+        //public DbSet<B3MarketDataInfo> MarketDataInfo { get; set; }
+        //public DbSet<B3HistoricMarketDataInfo> HistoricMarketDataInfo { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
+
             modelBuilder.Configurations.Add(new B3SectorClassifcationInfoEntityConfiguration());
             modelBuilder.Configurations.Add(new B3EquityInfoEntityConfiguration());
+            //modelBuilder.Configurations.Add(new B3OptionOnEquityInfoEntityConfiguration());
+            //modelBuilder.Configurations.Add(new B3MarketDataInfoEntityConfiguration());
+            //modelBuilder.Configurations.Add(new B3HistoricMarketDataInfoEntityConfiguration());
 
-            var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<B3ProviderDbContext>(modelBuilder);            
+            var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<B3ProviderDbContext>(modelBuilder);
             Database.SetInitializer(sqliteConnectionInitializer);
-
-            //.ToTable("tb_b3_equity_info")
-            //.Property(p => p.B3ID).HasColumnName("id_b3")
-            //.Property(p => p.Ti).HasColumnName("tx_ticker")
-            //.Property(p => p.B3ID).HasColumnName("id_b3")
-            //.Property(p => p.B3ID).HasColumnName("id_b3")
-
-            //base.OnModelCreating(modelBuilder);
-
-            //create table `tb_b3_equity_info` 
-            //(
-            //	`id_b3`						integer unique,
-            //	`tx_ticker`					text unique,
-            //	`tx_isin`					text unique,
-            //	`tx_company_name`			text,
-            //	`tx_description`			text,
-            //	`tx_trading_ccy`			text,
-            //	`vl_market_capitalization`	real,
-            //	`vl_last_price`				real,
-            //	`dt_update`					text,
-            //	primary key(id_b3)
-            //);
         }
     }
 
@@ -87,15 +71,20 @@ namespace B3Provider.Database
         public B3SectorClassifcationInfoEntityConfiguration()
         {
             ToTable("tb_b3_sector_classification");
-            HasKey(k => k.ID).Property(p => p.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).HasColumnName("id_sector");            
+            HasKey(k => k.ID).Property(p => p.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).HasColumnName("id_sector");
             Property(p => p.EconomicSector).HasColumnName("tx_economic_sector").IsRequired();
             Property(p => p.EconomicSubSector).HasColumnName("tx_economic_subsector").IsRequired();
             Property(p => p.EconomicSegment).HasColumnName("tx_economic_segment").IsRequired();
             Property(p => p.CompanyName).HasColumnName("tx_company_name").IsRequired();
-            Property(p => p.CompanyListingCode).HasColumnName("tx_company_listing_code").IsRequired();
+            Property(p => p.CompanyListingCode).HasColumnName("tx_company_listing_code").IsRequired()
+                 .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(
+                        new IndexAttribute("ix_tx_company_listing_code", 1) { IsUnique = true }));
+
             Property(p => p.CompanyListingSegment).HasColumnName("tx_company_listing_segment").IsRequired();
         }
-        
+
     }
 
     public class B3EquityInfoEntityConfiguration : EntityTypeConfiguration<B3EquityInfo>
@@ -128,5 +117,18 @@ namespace B3Provider.Database
 
         }
     }
+
+    public class B3OptionOnEquityInfoEntityConfiguration : EntityTypeConfiguration<B3OptionOnEquityInfo>
+    {
+    }
+
+    public class B3MarketDataInfoEntityConfiguration : EntityTypeConfiguration<B3MarketDataInfo>
+    {
+    }
+
+    public class B3HistoricMarketDataInfoEntityConfiguration : EntityTypeConfiguration<B3HistoricMarketDataInfo>
+    {
+    }
+
 }
 

@@ -168,13 +168,16 @@ namespace B3Provider
         /// </returns>
         private DateTime DefineDateIfNotDefined(DateTime? dateToDownload)
         {
+            DateTime? value;
             if (dateToDownload.HasValue)
-                return dateToDownload.Value;
+                value = dateToDownload.Value;
             if (DateTime.Now.Hour >= 17)
-                return DateTime.Today;
+                value = DateTime.Today;
+            else
+                value = DateTime.Today.Subtract(TimeSpan.FromDays(1));
 
             //TODO: pass the collection of hollydays
-            return dateToDownload.PreviousBusinessDay(null);
+            return value.CurrentOrPreviousBusinessDay(null);
         }
         #endregion
 
