@@ -120,7 +120,7 @@ namespace B3Provider.Readers
                     oneMarketDataInfo.InternationalFinancialVolume = noMarketData["IntlFinVol"]?.InnerText.ToNullable<double>(cultureNumericAmerica) ?? null;
                     oneMarketDataInfo.InternationalFinancialVolumeCurrency = noMarketData["IntlFinVol"]?.Attributes["Ccy"]?.InnerText ?? null;
                     oneMarketDataInfo.OpenInterest = noMarketData["OpnIntrst"]?.InnerText.ToNullable<double>(cultureNumericAmerica);
-                    oneMarketDataInfo.QuantityVolume = noMarketData["FinInstrmQty"]?.InnerText.ToNullable<int>();
+                    oneMarketDataInfo.QuantityVolume = noMarketData["FinInstrmQty"]?.InnerText.ToNullable<long>();
                     oneMarketDataInfo.BestBidPrice = noMarketData["BestBidPric"]?.InnerText.ToNullable<double>(cultureNumericAmerica) ?? null;
                     oneMarketDataInfo.BestBidPriceCurrency = noMarketData["BestBidPric"]?.Attributes["Ccy"]?.InnerText ?? null;
                     oneMarketDataInfo.BestAskPrice = noMarketData["BestAskPric"]?.InnerText.ToNullable<double>(cultureNumericAmerica) ?? null;
@@ -137,8 +137,8 @@ namespace B3Provider.Readers
                     oneMarketDataInfo.LastPriceCurrency = noMarketData["LastPric"]?.Attributes["Ccy"]?.InnerText ?? null;
                     oneMarketDataInfo.RegularTransactionQuantity = noMarketData["RglrTxsQty"]?.InnerText.ToNullable<int>() ?? null;
                     oneMarketDataInfo.NonRegularTransactionQuantity = noMarketData["NonRglrTxsQty"]?.InnerText.ToNullable<int>() ?? null;
-                    oneMarketDataInfo.RegularTradedContracts = noMarketData["RglrTraddCtrcts"]?.InnerText.ToNullable<int>() ?? null;
-                    oneMarketDataInfo.NonRegularTradedContracts = noMarketData["NonRglrTraddCtrcts"]?.InnerText.ToNullable<int>() ?? null;
+                    oneMarketDataInfo.RegularTradedContracts = noMarketData["RglrTraddCtrcts"]?.InnerText.ToNullable<long>() ?? null;
+                    oneMarketDataInfo.NonRegularTradedContracts = noMarketData["NonRglrTraddCtrcts"]?.InnerText.ToNullable<long>() ?? null;
                     oneMarketDataInfo.NationalRegularVolume = noMarketData["NtlRglrVol"]?.InnerText.ToNullable<double>(cultureNumericAmerica) ?? null;
                     oneMarketDataInfo.NationalRegularVolumeCurrency = noMarketData["NtlRglrVol"]?.Attributes["Ccy"]?.InnerText ?? null;
                     oneMarketDataInfo.NationalNonRegularVolume = noMarketData["NtlNonRglrVol"]?.InnerText.ToNullable<double>(cultureNumericAmerica) ?? null;

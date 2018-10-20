@@ -29,18 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem7 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip8 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem8 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem8 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.XtraSplashScreen.SplashScreenManager MainSplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::B3ProviderExplorer.SplashScreen1), true, true, true);
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.skinRibbonGalleryBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barSubItemNavigation = new DevExpress.XtraBars.BarSubItem();
@@ -71,15 +72,15 @@
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.loggingGridControl = new DevExpress.XtraGrid.GridControl();
             this.loggingGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.sequenceIDgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.loggerNamegridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.levelGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.timeLoggergridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.messageGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.exceptionGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.ExploreMenu = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.sequenceIDgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.loggerNamegridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timeLoggergridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.levelGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.messageGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.exceptionGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenuBarManager)).BeginInit();
@@ -304,12 +305,12 @@
             // 
             this.aceLoadInstruments.Name = "aceLoadInstruments";
             this.aceLoadInstruments.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem5.Text = "Load instruments";
-            toolTipItem5.LeftIndent = 6;
-            toolTipItem5.Text = "Load intrument information from source";
-            superToolTip5.Items.Add(toolTipTitleItem5);
-            superToolTip5.Items.Add(toolTipItem5);
-            this.aceLoadInstruments.SuperTip = superToolTip5;
+            toolTipTitleItem1.Text = "Load instruments";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "Load intrument information from source";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            this.aceLoadInstruments.SuperTip = superToolTip1;
             this.aceLoadInstruments.Text = "Intruments";
             this.aceLoadInstruments.Click += new System.EventHandler(this.aceLoadInstruments_Click);
             // 
@@ -317,12 +318,12 @@
             // 
             this.aceLoadCurrentMarketData.Name = "aceLoadCurrentMarketData";
             this.aceLoadCurrentMarketData.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem6.Text = "Load prices";
-            toolTipItem6.LeftIndent = 6;
-            toolTipItem6.Text = "Load current intrument price information from source";
-            superToolTip6.Items.Add(toolTipTitleItem6);
-            superToolTip6.Items.Add(toolTipItem6);
-            this.aceLoadCurrentMarketData.SuperTip = superToolTip6;
+            toolTipTitleItem2.Text = "Load prices";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "Load current intrument price information from source";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
+            this.aceLoadCurrentMarketData.SuperTip = superToolTip2;
             this.aceLoadCurrentMarketData.Text = "Prices";
             this.aceLoadCurrentMarketData.Click += new System.EventHandler(this.aceLoadCurrentMarketData_Click);
             // 
@@ -330,12 +331,12 @@
             // 
             this.aceLoadHistory.Name = "aceLoadHistory";
             this.aceLoadHistory.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem7.Text = "Load historic";
-            toolTipItem7.LeftIndent = 6;
-            toolTipItem7.Text = "Load historic prices of intruments from source";
-            superToolTip7.Items.Add(toolTipTitleItem7);
-            superToolTip7.Items.Add(toolTipItem7);
-            this.aceLoadHistory.SuperTip = superToolTip7;
+            toolTipTitleItem3.Text = "Load historic";
+            toolTipItem3.LeftIndent = 6;
+            toolTipItem3.Text = "Load historic prices of intruments from source";
+            superToolTip3.Items.Add(toolTipTitleItem3);
+            superToolTip3.Items.Add(toolTipItem3);
+            this.aceLoadHistory.SuperTip = superToolTip3;
             this.aceLoadHistory.Text = "Historic";
             this.aceLoadHistory.Click += new System.EventHandler(this.aceLoadHistory_Click);
             // 
@@ -350,12 +351,12 @@
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl),
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons)});
             this.acgExplore.Name = "acgExplore";
-            toolTipTitleItem8.Text = "Explore";
-            toolTipItem8.LeftIndent = 6;
-            toolTipItem8.Text = "Discover what is happening to instruments";
-            superToolTip8.Items.Add(toolTipTitleItem8);
-            superToolTip8.Items.Add(toolTipItem8);
-            this.acgExplore.SuperTip = superToolTip8;
+            toolTipTitleItem4.Text = "Explore";
+            toolTipItem4.LeftIndent = 6;
+            toolTipItem4.Text = "Discover what is happening to instruments";
+            superToolTip4.Items.Add(toolTipTitleItem4);
+            superToolTip4.Items.Add(toolTipItem4);
+            this.acgExplore.SuperTip = superToolTip4;
             this.acgExplore.Text = "Explore";
             // 
             // aceAll
@@ -408,6 +409,60 @@
             this.loggingGridView.GridControl = this.loggingGridControl;
             this.loggingGridView.Name = "loggingGridView";
             // 
+            // sequenceIDgridColumn
+            // 
+            this.sequenceIDgridColumn.Caption = "Sequence";
+            this.sequenceIDgridColumn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.sequenceIDgridColumn.FieldName = "SequenceID";
+            this.sequenceIDgridColumn.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.sequenceIDgridColumn.Name = "sequenceIDgridColumn";
+            this.sequenceIDgridColumn.Visible = true;
+            this.sequenceIDgridColumn.VisibleIndex = 0;
+            // 
+            // loggerNamegridColumn
+            // 
+            this.loggerNamegridColumn.Caption = "Name";
+            this.loggerNamegridColumn.FieldName = "LoggerName";
+            this.loggerNamegridColumn.Name = "loggerNamegridColumn";
+            this.loggerNamegridColumn.Visible = true;
+            this.loggerNamegridColumn.VisibleIndex = 1;
+            // 
+            // levelGridColumn
+            // 
+            this.levelGridColumn.Caption = "Level";
+            this.levelGridColumn.FieldName = "Level";
+            this.levelGridColumn.Name = "levelGridColumn";
+            this.levelGridColumn.Visible = true;
+            this.levelGridColumn.VisibleIndex = 3;
+            // 
+            // timeLoggergridColumn
+            // 
+            this.timeLoggergridColumn.Caption = "Time";
+            this.timeLoggergridColumn.DisplayFormat.FormatString = "dd/MM/yyyy hh:mm:ss";
+            this.timeLoggergridColumn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.timeLoggergridColumn.FieldName = "TimeStamp";
+            this.timeLoggergridColumn.GroupFormat.FormatString = "dd/MM/yyyy hh:mm:ss";
+            this.timeLoggergridColumn.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.timeLoggergridColumn.Name = "timeLoggergridColumn";
+            this.timeLoggergridColumn.Visible = true;
+            this.timeLoggergridColumn.VisibleIndex = 2;
+            // 
+            // messageGridColumn
+            // 
+            this.messageGridColumn.Caption = "Message";
+            this.messageGridColumn.FieldName = "FormattedMessage";
+            this.messageGridColumn.Name = "messageGridColumn";
+            this.messageGridColumn.Visible = true;
+            this.messageGridColumn.VisibleIndex = 4;
+            // 
+            // exceptionGridColumn
+            // 
+            this.exceptionGridColumn.Caption = "Exception";
+            this.exceptionGridColumn.FieldName = "Exception";
+            this.exceptionGridColumn.Name = "exceptionGridColumn";
+            this.exceptionGridColumn.Visible = true;
+            this.exceptionGridColumn.VisibleIndex = 5;
+            // 
             // tabbedView
             // 
             this.tabbedView.DocumentClosed += new DevExpress.XtraBars.Docking2010.Views.DocumentEventHandler(this.tabbedView_DocumentClosed);
@@ -428,59 +483,9 @@
             this.ExploreMenu.Manager = this.ExploreMenuBarManager;
             this.ExploreMenu.Name = "ExploreMenu";
             // 
-            // sequenceIDgridColumn
+            // MainSplashScreenManager
             // 
-            this.sequenceIDgridColumn.Caption = "Sequence";
-            this.sequenceIDgridColumn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.sequenceIDgridColumn.FieldName = "SequenceID";
-            this.sequenceIDgridColumn.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.sequenceIDgridColumn.Name = "sequenceIDgridColumn";
-            this.sequenceIDgridColumn.Visible = true;
-            this.sequenceIDgridColumn.VisibleIndex = 0;
-            // 
-            // loggerNamegridColumn
-            // 
-            this.loggerNamegridColumn.Caption = "Name";
-            this.loggerNamegridColumn.FieldName = "LoggerName";
-            this.loggerNamegridColumn.Name = "loggerNamegridColumn";
-            this.loggerNamegridColumn.Visible = true;
-            this.loggerNamegridColumn.VisibleIndex = 1;
-            // 
-            // timeLoggergridColumn
-            // 
-            this.timeLoggergridColumn.Caption = "Time";
-            this.timeLoggergridColumn.DisplayFormat.FormatString = "dd/MM/yyyy hh:mm:ss";
-            this.timeLoggergridColumn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.timeLoggergridColumn.FieldName = "TimeStamp";
-            this.timeLoggergridColumn.GroupFormat.FormatString = "dd/MM/yyyy hh:mm:ss";
-            this.timeLoggergridColumn.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.timeLoggergridColumn.Name = "timeLoggergridColumn";
-            this.timeLoggergridColumn.Visible = true;
-            this.timeLoggergridColumn.VisibleIndex = 2;
-            // 
-            // levelGridColumn
-            // 
-            this.levelGridColumn.Caption = "Level";
-            this.levelGridColumn.FieldName = "Level";
-            this.levelGridColumn.Name = "levelGridColumn";
-            this.levelGridColumn.Visible = true;
-            this.levelGridColumn.VisibleIndex = 3;
-            // 
-            // messageGridColumn
-            // 
-            this.messageGridColumn.Caption = "Message";
-            this.messageGridColumn.FieldName = "FormattedMessage";
-            this.messageGridColumn.Name = "messageGridColumn";
-            this.messageGridColumn.Visible = true;
-            this.messageGridColumn.VisibleIndex = 4;
-            // 
-            // exceptionGridColumn
-            // 
-            this.exceptionGridColumn.Caption = "Exception";
-            this.exceptionGridColumn.FieldName = "Exception";
-            this.exceptionGridColumn.Name = "exceptionGridColumn";
-            this.exceptionGridColumn.Visible = true;
-            this.exceptionGridColumn.VisibleIndex = 5;
+            MainSplashScreenManager.ClosingDelay = 500;
             // 
             // PrincipalForm
             // 

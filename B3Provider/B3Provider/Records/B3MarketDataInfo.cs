@@ -43,7 +43,7 @@ namespace B3Provider.Records
         public double? InternationalFinancialVolume { get; set; }
         public string InternationalFinancialVolumeCurrency { get; set; }
         public double? OpenInterest { get; set; }
-        public int? QuantityVolume { get; set; }
+        public long? QuantityVolume { get; set; }
         public double? BestBidPrice { get; set; }
         public string BestBidPriceCurrency { get; set; }
         public double? BestAskPrice { get; set; }
@@ -60,8 +60,8 @@ namespace B3Provider.Records
         public string LastPriceCurrency { get; set; }
         public int? RegularTransactionQuantity { get; set; }
         public int? NonRegularTransactionQuantity { get; set; }
-        public int? RegularTradedContracts { get; set; }
-        public int? NonRegularTradedContracts { get; set; }
+        public long? RegularTradedContracts { get; set; }
+        public long? NonRegularTradedContracts { get; set; }
         public double? NationalRegularVolume { get; set; }
         public string NationalRegularVolumeCurrency { get; set; }
         public double? NationalNonRegularVolume { get; set; }

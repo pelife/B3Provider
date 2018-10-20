@@ -31,6 +31,17 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.mainOptionView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colOptionB3ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOptionISIN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOptionDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOptionTicker = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOptionStrike = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOptionStrikeCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOptionStrikeStyle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOptionType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOptionExpiration = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOptionLoadDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOptionUnderlyingID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl = new DevExpress.XtraGrid.GridControl();
             this.bdsEquity = new System.Windows.Forms.BindingSource(this.components);
             this.mainEquityView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -63,17 +74,7 @@
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.colOptionB3ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionISIN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionTicker = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionStrike = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionStrikeCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionStrikeStyle = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionType = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionExpiration = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionLoadDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionUnderlyingID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.MainSplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::B3ProviderExplorer.Controls.WaitForm1), true, true, typeof(System.Windows.Forms.UserControl), true);
             ((System.ComponentModel.ISupportInitialize)(this.mainOptionView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsEquity)).BeginInit();
@@ -97,6 +98,112 @@
             this.colOptionUnderlyingID});
             this.mainOptionView.GridControl = this.gridControl;
             this.mainOptionView.Name = "mainOptionView";
+            // 
+            // colOptionB3ID
+            // 
+            this.colOptionB3ID.Caption = "B3 ID";
+            this.colOptionB3ID.DisplayFormat.FormatString = "G";
+            this.colOptionB3ID.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colOptionB3ID.FieldName = "B3ID";
+            this.colOptionB3ID.GroupFormat.FormatString = "G";
+            this.colOptionB3ID.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colOptionB3ID.Name = "colOptionB3ID";
+            this.colOptionB3ID.Visible = true;
+            this.colOptionB3ID.VisibleIndex = 0;
+            // 
+            // colOptionISIN
+            // 
+            this.colOptionISIN.Caption = "ISIN";
+            this.colOptionISIN.FieldName = "ISIN";
+            this.colOptionISIN.Name = "colOptionISIN";
+            this.colOptionISIN.Visible = true;
+            this.colOptionISIN.VisibleIndex = 1;
+            // 
+            // colOptionDescription
+            // 
+            this.colOptionDescription.Caption = "Description";
+            this.colOptionDescription.FieldName = "Description";
+            this.colOptionDescription.Name = "colOptionDescription";
+            this.colOptionDescription.Visible = true;
+            this.colOptionDescription.VisibleIndex = 2;
+            // 
+            // colOptionTicker
+            // 
+            this.colOptionTicker.Caption = "Ticker";
+            this.colOptionTicker.FieldName = "Ticker";
+            this.colOptionTicker.Name = "colOptionTicker";
+            this.colOptionTicker.Visible = true;
+            this.colOptionTicker.VisibleIndex = 3;
+            // 
+            // colOptionStrike
+            // 
+            this.colOptionStrike.Caption = "Strike";
+            this.colOptionStrike.DisplayFormat.FormatString = "C2";
+            this.colOptionStrike.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colOptionStrike.FieldName = "Strike";
+            this.colOptionStrike.GroupFormat.FormatString = "C2";
+            this.colOptionStrike.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colOptionStrike.Name = "colOptionStrike";
+            this.colOptionStrike.Visible = true;
+            this.colOptionStrike.VisibleIndex = 4;
+            // 
+            // colOptionStrikeCurrency
+            // 
+            this.colOptionStrikeCurrency.Caption = "Strike Currency";
+            this.colOptionStrikeCurrency.FieldName = "StrikeCurrency";
+            this.colOptionStrikeCurrency.Name = "colOptionStrikeCurrency";
+            this.colOptionStrikeCurrency.Visible = true;
+            this.colOptionStrikeCurrency.VisibleIndex = 5;
+            // 
+            // colOptionStrikeStyle
+            // 
+            this.colOptionStrikeStyle.Caption = "Style";
+            this.colOptionStrikeStyle.FieldName = "Style";
+            this.colOptionStrikeStyle.Name = "colOptionStrikeStyle";
+            this.colOptionStrikeStyle.Visible = true;
+            this.colOptionStrikeStyle.VisibleIndex = 6;
+            // 
+            // colOptionType
+            // 
+            this.colOptionType.Caption = "Type";
+            this.colOptionType.FieldName = "Type";
+            this.colOptionType.Name = "colOptionType";
+            this.colOptionType.Visible = true;
+            this.colOptionType.VisibleIndex = 7;
+            // 
+            // colOptionExpiration
+            // 
+            this.colOptionExpiration.Caption = "Expiration";
+            this.colOptionExpiration.DisplayFormat.FormatString = "d";
+            this.colOptionExpiration.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colOptionExpiration.FieldName = "Expiration";
+            this.colOptionExpiration.GroupFormat.FormatString = "d";
+            this.colOptionExpiration.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colOptionExpiration.Name = "colOptionExpiration";
+            this.colOptionExpiration.Visible = true;
+            this.colOptionExpiration.VisibleIndex = 8;
+            // 
+            // colOptionLoadDate
+            // 
+            this.colOptionLoadDate.Caption = "Load Date";
+            this.colOptionLoadDate.DisplayFormat.FormatString = "d";
+            this.colOptionLoadDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colOptionLoadDate.FieldName = "LoadDate";
+            this.colOptionLoadDate.GroupFormat.FormatString = "d";
+            this.colOptionLoadDate.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colOptionLoadDate.Name = "colOptionLoadDate";
+            this.colOptionLoadDate.Visible = true;
+            this.colOptionLoadDate.VisibleIndex = 9;
+            // 
+            // colOptionUnderlyingID
+            // 
+            this.colOptionUnderlyingID.Caption = "B3 ID Underlying";
+            this.colOptionUnderlyingID.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colOptionUnderlyingID.FieldName = "B3IDUnderlying";
+            this.colOptionUnderlyingID.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colOptionUnderlyingID.Name = "colOptionUnderlyingID";
+            this.colOptionUnderlyingID.Visible = true;
+            this.colOptionUnderlyingID.VisibleIndex = 10;
             // 
             // gridControl
             // 
@@ -165,7 +272,7 @@
             // colLastPrice
             // 
             this.colLastPrice.DisplayFormat.FormatString = "C2";
-            this.colLastPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colLastPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric ;
             this.colLastPrice.FieldName = "LastPrice";
             this.colLastPrice.GroupFormat.FormatString = "C2";
             this.colLastPrice.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -408,111 +515,9 @@
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
-            // colOptionB3ID
+            // MainSplashScreenManager
             // 
-            this.colOptionB3ID.Caption = "B3 ID";
-            this.colOptionB3ID.DisplayFormat.FormatString = "G";
-            this.colOptionB3ID.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionB3ID.FieldName = "B3ID";
-            this.colOptionB3ID.GroupFormat.FormatString = "G";
-            this.colOptionB3ID.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionB3ID.Name = "colOptionB3ID";
-            this.colOptionB3ID.Visible = true;
-            this.colOptionB3ID.VisibleIndex = 0;
-            // 
-            // colOptionISIN
-            // 
-            this.colOptionISIN.Caption = "ISIN";
-            this.colOptionISIN.FieldName = "ISIN";
-            this.colOptionISIN.Name = "colOptionISIN";
-            this.colOptionISIN.Visible = true;
-            this.colOptionISIN.VisibleIndex = 1;
-            // 
-            // colOptionDescription
-            // 
-            this.colOptionDescription.Caption = "Description";
-            this.colOptionDescription.FieldName = "Description";
-            this.colOptionDescription.Name = "colOptionDescription";
-            this.colOptionDescription.Visible = true;
-            this.colOptionDescription.VisibleIndex = 2;
-            // 
-            // colOptionTicker
-            // 
-            this.colOptionTicker.Caption = "Ticker";
-            this.colOptionTicker.FieldName = "Ticker";
-            this.colOptionTicker.Name = "colOptionTicker";
-            this.colOptionTicker.Visible = true;
-            this.colOptionTicker.VisibleIndex = 3;
-            // 
-            // colOptionStrike
-            // 
-            this.colOptionStrike.Caption = "Strike";
-            this.colOptionStrike.DisplayFormat.FormatString = "C2";
-            this.colOptionStrike.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionStrike.FieldName = "Strike";
-            this.colOptionStrike.GroupFormat.FormatString = "C2";
-            this.colOptionStrike.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionStrike.Name = "colOptionStrike";
-            this.colOptionStrike.Visible = true;
-            this.colOptionStrike.VisibleIndex = 4;
-            // 
-            // colOptionStrikeCurrency
-            // 
-            this.colOptionStrikeCurrency.Caption = "Strike Currency";
-            this.colOptionStrikeCurrency.FieldName = "StrikeCurrency";
-            this.colOptionStrikeCurrency.Name = "colOptionStrikeCurrency";
-            this.colOptionStrikeCurrency.Visible = true;
-            this.colOptionStrikeCurrency.VisibleIndex = 5;
-            // 
-            // colOptionStrikeStyle
-            // 
-            this.colOptionStrikeStyle.Caption = "Style";
-            this.colOptionStrikeStyle.FieldName = "Style";
-            this.colOptionStrikeStyle.Name = "colOptionStrikeStyle";
-            this.colOptionStrikeStyle.Visible = true;
-            this.colOptionStrikeStyle.VisibleIndex = 6;
-            // 
-            // colOptionType
-            // 
-            this.colOptionType.Caption = "Type";
-            this.colOptionType.FieldName = "Type";
-            this.colOptionType.Name = "colOptionType";
-            this.colOptionType.Visible = true;
-            this.colOptionType.VisibleIndex = 7;
-            // 
-            // colOptionExpiration
-            // 
-            this.colOptionExpiration.Caption = "Expiration";
-            this.colOptionExpiration.DisplayFormat.FormatString = "d";
-            this.colOptionExpiration.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colOptionExpiration.FieldName = "Expiration";
-            this.colOptionExpiration.GroupFormat.FormatString = "d";
-            this.colOptionExpiration.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colOptionExpiration.Name = "colOptionExpiration";
-            this.colOptionExpiration.Visible = true;
-            this.colOptionExpiration.VisibleIndex = 8;
-            // 
-            // colOptionLoadDate
-            // 
-            this.colOptionLoadDate.Caption = "Load Date";
-            this.colOptionLoadDate.DisplayFormat.FormatString = "d";
-            this.colOptionLoadDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colOptionLoadDate.FieldName = "LoadDate";
-            this.colOptionLoadDate.GroupFormat.FormatString = "d";
-            this.colOptionLoadDate.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colOptionLoadDate.Name = "colOptionLoadDate";
-            this.colOptionLoadDate.Visible = true;
-            this.colOptionLoadDate.VisibleIndex = 9;
-            // 
-            // colOptionUnderlyingID
-            // 
-            this.colOptionUnderlyingID.Caption = "B3 ID Underlying";
-            this.colOptionUnderlyingID.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionUnderlyingID.FieldName = "B3IDUnderlying";
-            this.colOptionUnderlyingID.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionUnderlyingID.Name = "colOptionUnderlyingID";
-            this.colOptionUnderlyingID.Visible = true;
-            this.colOptionUnderlyingID.VisibleIndex = 10;
+            this.MainSplashScreenManager.ClosingDelay = 500;
             // 
             // InstrumentsUserControl
             // 
@@ -580,5 +585,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colOptionExpiration;
         private DevExpress.XtraGrid.Columns.GridColumn colOptionLoadDate;
         private DevExpress.XtraGrid.Columns.GridColumn colOptionUnderlyingID;
+        private DevExpress.XtraSplashScreen.SplashScreenManager MainSplashScreenManager;
     }
 }

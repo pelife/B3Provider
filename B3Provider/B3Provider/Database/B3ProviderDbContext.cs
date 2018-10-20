@@ -47,18 +47,18 @@ namespace B3Provider.Database
 
         public DbSet<B3SectorClassifcationInfo> SectorClassification { get; set; }
         public DbSet<B3EquityInfo> EquityInstruments { get; set; }
-        public DbSet<B3OptionOnEquityInfo> OptionsOnEquityInstruments { get; set; }
-        public DbSet<B3MarketDataInfo> MarketDataInfo { get; set; }
-        public DbSet<B3HistoricMarketDataInfo> HistoricMarketDataInfo { get; set; }
+        //public DbSet<B3OptionOnEquityInfo> OptionsOnEquityInstruments { get; set; }
+        //public DbSet<B3MarketDataInfo> MarketDataInfo { get; set; }
+        //public DbSet<B3HistoricMarketDataInfo> HistoricMarketDataInfo { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
             modelBuilder.Configurations.Add(new B3SectorClassifcationInfoEntityConfiguration());
             modelBuilder.Configurations.Add(new B3EquityInfoEntityConfiguration());
-            modelBuilder.Configurations.Add(new B3OptionOnEquityInfoEntityConfiguration());
-            modelBuilder.Configurations.Add(new B3MarketDataInfoEntityConfiguration());
-            modelBuilder.Configurations.Add(new B3HistoricMarketDataInfoEntityConfiguration());
+            //modelBuilder.Configurations.Add(new B3OptionOnEquityInfoEntityConfiguration());
+            //modelBuilder.Configurations.Add(new B3MarketDataInfoEntityConfiguration());
+            //modelBuilder.Configurations.Add(new B3HistoricMarketDataInfoEntityConfiguration());
 
             var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<B3ProviderDbContext>(modelBuilder);
             Database.SetInitializer(sqliteConnectionInitializer);
