@@ -138,6 +138,8 @@
     <Compile Include="Controls\WaitForm1.Designer.cs">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
+    <Compile Include="DTO\OHCLVDTO.cs" />
+    <Compile Include="DTO\EquityPriceInfoDTO.cs" />
     <Compile Include="Logging\MemoryEventTarget.cs" />
     <Compile Include="PrincipalForm.cs">
       <SubType>Form</SubType>
@@ -182,6 +184,7 @@
     <None Include="app.config" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\B3Provider.Records.B3EquityInfo.datasource" />

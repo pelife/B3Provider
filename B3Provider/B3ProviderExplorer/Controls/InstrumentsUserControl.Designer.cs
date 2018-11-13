@@ -29,7 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstrumentsUserControl));
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
             this.mainOptionView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colOptionB3ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOptionISIN = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -67,19 +71,26 @@
             this.bbiStocks = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.bbiFilter = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiClosingDate = new DevExpress.XtraBars.BarEditItem();
+            this.ridClosingDate = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgEquity = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgConfiguration = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.MainSplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::B3ProviderExplorer.Controls.WaitForm1), true, true, typeof(System.Windows.Forms.UserControl), true);
+            this.bbiNextClose = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiPreviousClose = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainOptionView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsEquity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainEquityView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // mainOptionView
@@ -209,10 +220,10 @@
             // 
             this.gridControl.DataSource = this.bdsEquity;
             this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.LevelTemplate = this.mainOptionView;
-            gridLevelNode2.RelationName = "Level1";
+            gridLevelNode1.LevelTemplate = this.mainOptionView;
+            gridLevelNode1.RelationName = "Level1";
             this.gridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.gridControl.Location = new System.Drawing.Point(0, 116);
             this.gridControl.MainView = this.mainEquityView;
             this.gridControl.MenuManager = this.ribbonControl;
@@ -272,7 +283,7 @@
             // colLastPrice
             // 
             this.colLastPrice.DisplayFormat.FormatString = "C2";
-            this.colLastPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric ;
+            this.colLastPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colLastPrice.FieldName = "LastPrice";
             this.colLastPrice.GroupFormat.FormatString = "C2";
             this.colLastPrice.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -373,12 +384,17 @@
             this.bbiRefresh,
             this.bbiStocks,
             this.barButtonItem4,
-            this.bbiFilter});
+            this.bbiFilter,
+            this.bbiClosingDate,
+            this.bbiNextClose,
+            this.bbiPreviousClose});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 26;
+            this.ribbonControl.MaxItemId = 29;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
+            this.ribbonControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.ridClosingDate});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl.Size = new System.Drawing.Size(800, 116);
@@ -454,12 +470,41 @@
             this.bbiFilter.ImageOptions.ImageUri.Uri = "Filter";
             this.bbiFilter.Name = "bbiFilter";
             // 
+            // bbiClosingDate
+            // 
+            this.bbiClosingDate.Caption = "Close";
+            this.bbiClosingDate.Edit = this.ridClosingDate;
+            this.bbiClosingDate.EditWidth = 120;
+            this.bbiClosingDate.Hint = "Close date you want results";
+            this.bbiClosingDate.Id = 26;
+            this.bbiClosingDate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiClosingDate.ImageOptions.Image")));
+            this.bbiClosingDate.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiClosingDate.ImageOptions.LargeImage")));
+            this.bbiClosingDate.Name = "bbiClosingDate";
+            this.bbiClosingDate.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            toolTipTitleItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            toolTipTitleItem1.Text = "Close session date";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "Specify the close session reference of the calculations.";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            this.bbiClosingDate.SuperTip = superToolTip1;
+            // 
+            // ridClosingDate
+            // 
+            this.ridClosingDate.AutoHeight = false;
+            this.ridClosingDate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ridClosingDate.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ridClosingDate.Name = "ridClosingDate";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroup2,
-            this.rpgEquity});
+            this.rpgEquity,
+            this.rpgConfiguration});
             this.ribbonPage1.MergeOrder = 1;
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Home";
@@ -491,6 +536,15 @@
             this.rpgEquity.Name = "rpgEquity";
             this.rpgEquity.Text = "Equity";
             // 
+            // rpgConfiguration
+            // 
+            this.rpgConfiguration.ItemLinks.Add(this.bbiClosingDate);
+            this.rpgConfiguration.ItemLinks.Add(this.bbiNextClose);
+            this.rpgConfiguration.ItemLinks.Add(this.bbiPreviousClose);
+            this.rpgConfiguration.ItemsLayout = DevExpress.XtraBars.Ribbon.RibbonPageGroupItemsLayout.TwoRows;
+            this.rpgConfiguration.Name = "rpgConfiguration";
+            this.rpgConfiguration.Text = "Configuration";
+            // 
             // ribbonStatusBar
             // 
             this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
@@ -519,6 +573,23 @@
             // 
             this.MainSplashScreenManager.ClosingDelay = 500;
             // 
+            // bbiNextClose
+            // 
+            this.bbiNextClose.Hint = "Next";
+            this.bbiNextClose.Id = 27;
+            this.bbiNextClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiNextClose.ImageOptions.Image")));
+            this.bbiNextClose.Name = "bbiNextClose";
+            this.bbiNextClose.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
+            this.bbiNextClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiNextClose_ItemClick);
+            // 
+            // bbiPreviousClose
+            // 
+            this.bbiPreviousClose.Hint = "Previous";
+            this.bbiPreviousClose.Id = 28;
+            this.bbiPreviousClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiPreviousClose.ImageOptions.Image")));
+            this.bbiPreviousClose.Name = "bbiPreviousClose";
+            this.bbiPreviousClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiPreviousClose_ItemClick);
+            // 
             // InstrumentsUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -534,6 +605,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsEquity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainEquityView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -586,5 +659,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn colOptionLoadDate;
         private DevExpress.XtraGrid.Columns.GridColumn colOptionUnderlyingID;
         private DevExpress.XtraSplashScreen.SplashScreenManager MainSplashScreenManager;
+        private DevExpress.XtraBars.BarEditItem bbiClosingDate;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit ridClosingDate;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgConfiguration;
+        private DevExpress.XtraBars.BarButtonItem bbiNextClose;
+        private DevExpress.XtraBars.BarButtonItem bbiPreviousClose;
     }
 }

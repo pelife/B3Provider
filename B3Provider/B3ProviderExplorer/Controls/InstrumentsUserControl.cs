@@ -103,7 +103,7 @@
 
         private void mainEquityView_MasterRowGetRelationName(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationNameEventArgs e)
         {
-            e.RelationName = "Options";
+            e.RelationName = "";            
         }
 
         private void mainEquityView_MasterRowGetChildList(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventArgs e)
@@ -126,6 +126,16 @@
         private void mainEquityView_MasterRowGetRelationCount(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationCountEventArgs e)
         {
             e.RelationCount = 1;
+        }
+
+        private void bbiPreviousClose_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void bbiNextClose_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
         }
     }
 }
