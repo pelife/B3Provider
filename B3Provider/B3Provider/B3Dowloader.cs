@@ -32,7 +32,9 @@
 namespace B3Provider
 {
     using B3Provider.Utils;
+    using NLog;
     using System;
+    using System.Diagnostics;
     using System.IO;
     using System.Net;
 
@@ -52,11 +54,19 @@ namespace B3Provider
         }
         #endregion
 
+        #region "private variables"
+        private WebClient _webClient = null; // Our WebClient that will be doing the downloading for us
+        private Stopwatch _sw = null;        // The stopwatch which we will be using to calculate the download speed
+        private readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        #endregion
+
         #region "properties"
         /// <summary>
         /// File Path to download files to
         /// </summary>
         public string DownloadPath { get; set; }
+
+        public Logger Logger => _logger;
         #endregion
 
         #region "IB3Downloader methods"
@@ -91,7 +101,7 @@ namespace B3Provider
             var fileName = string.Format("II{0:yyMMdd}.zip", dateDowload);
             var fileDirectory = "IPN/TS/BVBG.029.02/";
 
-            return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);            
+            return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
         }
 
         /// <summary>
@@ -139,7 +149,7 @@ namespace B3Provider
         public string DownloadYearHistoricFile(int yearToDownload, bool replaceIfExists)
         {
             var fileName = string.Format("COTAHIST_A{0}.ZIP", yearToDownload);
-            return DownloadHTTPFile(@"http://bvmf.bmfbovespa.com.br/InstDados/SerHist/", fileName, string.Empty, replaceIfExists);
+            return DownloadHTTPFile1(@"http://bvmf.bmfbovespa.com.br/InstDados/SerHist/", fileName, string.Empty, replaceIfExists);
         }
 
         /// <summary>
@@ -154,7 +164,7 @@ namespace B3Provider
             var destinationPath = string.Format("classificacao_setorial-{0}.zip", DateTime.Now.ToString("yyyy-MM-dd"));
             //return DownloadHTTPFile(@"http://www.bmfbovespa.com.br/lumis/portal/file/fileDownload.jsp?fileId=8AA8D0975A2D7918015A3C81693D4CA4", string.Empty, destinationPath, replaceIfExists);
             return DownloadHTTPFile(@"http://www.b3.com.br/lumis/portal/file/fileDownload.jsp?fileId=8AA8D0975A2D7918015A3C81693D4CA4", string.Empty, destinationPath, replaceIfExists);
-            
+
         }
         #endregion
 
@@ -170,11 +180,18 @@ namespace B3Provider
         {
             DateTime? value;
             if (dateToDownload.HasValue)
+            {
                 value = dateToDownload.Value;
+            }
+
             if (DateTime.Now.Hour >= 17)
+            {
                 value = DateTime.Today;
+            }
             else
+            {
                 value = DateTime.Today.Subtract(TimeSpan.FromDays(1));
+            }
 
             //TODO: pass the collection of hollydays
             return value.CurrentOrPreviousBusinessDay(null);
@@ -200,11 +217,15 @@ namespace B3Provider
             webRequest.Timeout = 3000;
 
             if (string.IsNullOrEmpty(destinationFileName))
+            {
                 destinationFileName = httpFileName; // filename will be the same as directory;
+            }
 
             var detinationPath = Path.Combine(DownloadPath, destinationFileName);
             if (!replaceIfExists && File.Exists(detinationPath)) //not to be replaced and already exists
+            {
                 return detinationPath;
+            }
 
             try
             {
@@ -215,8 +236,13 @@ namespace B3Provider
                     webResponse.GetResponseStream().CopyTo(fileStream);
                 }
             }
-            catch (Exception)
+            catch (IOException ex)
             {
+                _logger.Error(ex, "Generic Exception");
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Generic Exception");
 
                 detinationPath = string.Empty;
                 throw;
@@ -224,6 +250,94 @@ namespace B3Provider
 
             return detinationPath;
         }
+        
+        private string DownloadHTTPFile1(string httpURL, string httpFileName, string destinationFileName, bool replaceIfExists)
+        {
+            var destinationFileDownload = string.Concat(httpURL, httpFileName);
+            var detinationPath = string.Empty;
+
+
+            if (string.IsNullOrEmpty(destinationFileName))
+            {
+                destinationFileName = httpFileName; // filename will be the same as directory;
+            }
+            detinationPath = Path.Combine(DownloadPath, destinationFileName);
+
+            if (!replaceIfExists && File.Exists(detinationPath)) //not to be replaced and already exists
+            {
+                return detinationPath;
+            }
+
+            using (_webClient = new WebClient())
+            {
+                _webClient.DownloadFileCompleted += WebClient_DownloadFileCompleted;
+                _webClient.DownloadProgressChanged += WebClient_DownloadProgressChanged;                
+                // The variable that will be holding the url address (making sure it starts with http://)
+                Uri URL = destinationFileDownload.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ? new Uri(destinationFileDownload) : new Uri("http://" + destinationFileDownload);
+
+                // Start the stopwatch which we will be using to calculate the download speed
+                _sw = Stopwatch.StartNew();
+
+                try
+                {
+                    // Start downloading the file
+                    _webClient.DownloadFileAsync(URL, detinationPath);
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex, "Generic Exception");
+                }
+            }
+
+            return detinationPath;
+        }
+
+        private void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            // Calculate download speed and output it to labelSpeed.
+            //labelSpeed.Text = string.Format("{0} kb/s", (e.BytesReceived / 1024d / sw.Elapsed.TotalSeconds).ToString("0.00"));
+            var speed = (e.BytesReceived / 1024d / _sw.Elapsed.TotalSeconds);
+            var percentage = e.ProgressPercentage;
+            var downloaded = (e.BytesReceived / 1024d / 1024d);
+            var downloadTotal = (e.TotalBytesToReceive / 1024d / 1024d);
+
+            var message = string.Format("{0} kb/s | {1} % | {2} MB's/{3} MB's", speed.ToString("0.00"), percentage, downloaded.ToString("0.00"), downloadTotal.ToString("0.00"));
+
+            _logger.Info(message);
+            System.Diagnostics.Trace.WriteLine(message);
+            // Update the progressbar percentage only when the value is not the same.
+            //progressBar.Value = e.ProgressPercentage;
+
+            // Show the percentage on our label.
+            //labelPerc.Text = e.ProgressPercentage.ToString() + "%";
+
+            // Update the label with how much data have been downloaded so far and the total size of the file we are currently downloading
+            //labelDownloaded.Text = string.Format("{0} MB's / {1} MB's",
+            //    (e.BytesReceived / 1024d / 1024d).ToString("0.00"),
+            //    (e.TotalBytesToReceive / 1024d / 1024d).ToString("0.00"));
+        }
+
+        private void WebClient_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            // Reset the stopwatch.
+            //_sw.Reset();
+            _sw.Stop();
+
+            if (e.Error != null)
+            {
+                _logger.Error(e.Error,  "Download has been fault.");
+            }
+
+            if (e.Cancelled == true)
+            {
+                _logger.Info("Download has been canceled.");
+            }
+            else
+            {
+                _logger.Info("Download completed!");
+            }
+        }
+
         #endregion
 
         #region "download files from ftp"
@@ -245,11 +359,15 @@ namespace B3Provider
             ftpRequest.UseBinary = true;
 
             if (string.IsNullOrEmpty(destinationFileName))
+            {
                 destinationFileName = ftpFileName; // filename will be the same as directory;
+            }
 
             var detinationPath = Path.Combine(DownloadPath, destinationFileName);
             if (!replaceIfExists && File.Exists(detinationPath)) //not to be replaced and already exists
+            {
                 return detinationPath;
+            }
 
             var fileSize = GetFileSize(ftpDirectory, ftpFileName);
             var fileDate = GetFileDateTime(ftpDirectory, ftpFileName);
@@ -287,7 +405,7 @@ namespace B3Provider
             var ftpRequest = (FtpWebRequest)WebRequest.Create(destinationFileDownload);
             ftpRequest.Method = WebRequestMethods.Ftp.GetFileSize;
             ftpRequest.UseBinary = true;
-            
+
             var ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
             size = ftpResponse.ContentLength;
             ftpResponse.Close();
@@ -317,7 +435,7 @@ namespace B3Provider
 
             return modified;
         }
-       
+
         #endregion
     }
 }

@@ -37,6 +37,10 @@ namespace B3ProviderTesting
     using B3Provider.Utils;
     using B3Provider.Records;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NLog;
+
+
+    //using NLog;
 
     [TestClass]
     public class B3ProviderTester
@@ -92,11 +96,18 @@ namespace B3ProviderTesting
         [TestMethod]
         public void B3ProviderMustDownloadHistoricQuoteFilesGetUtilDates()
         {
+            Logger logger = TestLogManager.Instance.GetLogger("B3ProviderTester");
+          
+            logger.Info("teste");
+          
+
             var config = new B3Provider.B3ProviderConfig();
             config.ReplaceExistingFiles = true;
 
             var client = new B3Provider.B3ProviderClient(config);
+            logger.Info("inicio 2018");
             client.LoadHistoricQuotes(2018);
+            logger.Info("fim 2018");
             client.LoadHistoricQuotes(2017);
 
             DateTime? utilDatesStart = null;

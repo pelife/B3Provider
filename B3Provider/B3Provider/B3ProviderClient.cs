@@ -185,7 +185,8 @@ namespace B3Provider
 
             _logger.Info("downloading file of historic market data");
             var filePath = _downloader.DownloadYearHistoricFile(yearToReadHistory, _configuration.ReplaceExistingFiles);
-
+            //sleep 30 seconds to watch download.
+            System.Threading.Thread.Sleep(30000);
             _logger.Info("reading file of historic market data");
             var historicMarketDataReader = ReaderFactory.CreateReader<B3HistoricMarketDataInfo>(_configuration.ReadStrategy);
             HistoricMarketData[yearToReadHistory] = historicMarketDataReader.ReadRecords(filePath);

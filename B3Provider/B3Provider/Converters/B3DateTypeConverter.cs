@@ -79,16 +79,16 @@ namespace B3Provider.Converters
         {
             string[] CUSTOM_DATE_FORMATS = new string[]
                 {
+                    "yyyyMMdd",
+                    "yyyy-MM-dd",
                     "yyyyMMddTHHmmssZ",
                     "yyyyMMddTHHmmZ",
                     "yyyyMMddTHHmmss",
                     "yyyyMMddTHHmm",
                     "yyyyMMddHHmmss",
-                    "yyyyMMddHHmm",
-                    "yyyyMMdd",
+                    "yyyyMMddHHmm",                    
                     "yyyy-MM-dd-HH-mm-ss",
-                    "yyyy-MM-dd-HH-mm",
-                    "yyyy-MM-dd",
+                    "yyyy-MM-dd-HH-mm",                    
                     "MM-dd-yyyy",
                     "dd-MM-yyyy"
                 };
