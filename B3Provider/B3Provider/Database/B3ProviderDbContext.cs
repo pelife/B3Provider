@@ -38,8 +38,15 @@ namespace B3Provider.Database
     using System.Data.Entity.Infrastructure.Annotations;
     using System.Data.Entity.ModelConfiguration;
 
+    /// <summary>
+    /// Class responsible for persistence of data related to B3 Provider
+    /// </summary>
     public class B3ProviderDbContext : DbContext
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="logger">Logger to view what is happening under the hood</param>
         public B3ProviderDbContext(Action<string> logger)
         {
             this.Database.Log = logger;

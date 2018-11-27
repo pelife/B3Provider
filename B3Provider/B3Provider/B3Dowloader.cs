@@ -149,7 +149,7 @@ namespace B3Provider
         public string DownloadYearHistoricFile(int yearToDownload, bool replaceIfExists)
         {
             var fileName = string.Format("COTAHIST_A{0}.ZIP", yearToDownload);
-            return DownloadHTTPFile1(@"http://bvmf.bmfbovespa.com.br/InstDados/SerHist/", fileName, string.Empty, replaceIfExists);
+            return DownloadHTTPFile(@"http://bvmf.bmfbovespa.com.br/InstDados/SerHist/", fileName, string.Empty, replaceIfExists);
         }
 
         /// <summary>
