@@ -1,0 +1,4 @@
+TODO:
+1 - incluir as colunas de variação dos ativos (1d(1), 1w(5), 1m(22), 1y(252), WTD, MTD, QTD, YTD)
+2 - incluir um novo teste para verificar quanto tempo leva antes e depois de ter o mapa dos ativos
+2 - separar as grids em duas (ao invés de mestre detalhe)
