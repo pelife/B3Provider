@@ -198,12 +198,14 @@ namespace B3Provider
             HistoricMarketData[yearToReadHistory] = records;
 
             //if the map already exists, it should merge (2018, 2017, 2016)
+            /*
             HistoricMarketDataMap =records.GroupBy(historic => historic.Ticker)
                                    .AsParallel()
                                    .ToDictionary(group => group.Key,
                                        components => components.GroupBy(c => c.TradeDate)
                                        .AsParallel()
                                        .ToDictionary(g => g.Key, g => g.FirstOrDefault()));
+            */
 
 
         }
