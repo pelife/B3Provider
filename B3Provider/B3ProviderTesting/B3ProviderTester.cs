@@ -137,13 +137,29 @@ namespace B3ProviderTesting
         [TestMethod]
         public void B3ProviderMustDownloadHistoricQuoteFilesFromMultipleYears()
         {
+            var logger = TestLogManager.Instance.GetLogger("B3ProviderTesting");
             var config = new B3ProviderConfig();
             config.ReplaceExistingFiles = true;
 
             var client = new B3ProviderClient(config);
+            var stopWatch = new System.Diagnostics.Stopwatch();
+            var finalPath = string.Empty;
+
+            stopWatch.Start();
             client.LoadHistoricQuotes(2018);
+            stopWatch.Stop();
+            logger.Info(string.Format("downloaded in: {0:hh\\:mm\\:ss\\.fff}", stopWatch.Elapsed));
+            stopWatch.Reset();
+            stopWatch.Start();
             client.LoadHistoricQuotes(2017);
+            stopWatch.Stop();
+            logger.Info(string.Format("downloaded in: {0:hh\\:mm\\:ss\\.fff}", stopWatch.Elapsed));
+            stopWatch.Reset();
+            stopWatch.Start();
             client.LoadHistoricQuotes(2016);
+            stopWatch.Stop();
+            logger.Info(string.Format("downloaded in: {0:hh\\:mm\\:ss\\.fff}", stopWatch.Elapsed));
+
 
         }
 

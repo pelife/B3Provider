@@ -68,7 +68,7 @@ namespace B3Provider
         {
             _configuration = configuration ?? throw new ArgumentNullException("configuration", "the parameter configuration of type B3ProviderConfig cannot be null");
             _downloader = new B3Dowloader(_configuration.DownloadPath);
-            _databaseContext = new B3ProviderDbContext((message => _databaseLogger.Info(message)));            
+            _databaseContext = new B3ProviderDbContext((message => _databaseLogger.Info(message)));
         }
         #endregion
 
@@ -91,7 +91,12 @@ namespace B3Provider
         /// <summary>
         /// Historic market data past princes
         /// </summary>
-        public IDictionary<int,IList<B3HistoricMarketDataInfo>> HistoricMarketData { get; set; } = new Dictionary<int, IList<B3HistoricMarketDataInfo>>();
+        public IDictionary<int, IList<B3HistoricMarketDataInfo>> HistoricMarketData { get; set; } = new Dictionary<int, IList<B3HistoricMarketDataInfo>>();
+
+        /// <summary>
+        /// Historic market data past princes map
+        /// </summary>
+        public Dictionary<string, Dictionary<DateTime, B3HistoricMarketDataInfo>> HistoricMarketDataMap { get; set; } = null;
 
         /// <summary>
         /// Index to convert an instrument ticker to internal ID
@@ -152,7 +157,7 @@ namespace B3Provider
 
             _logger.Info("saving to database");
             //SaveAllToDatabase();
-        }        
+        }
 
         /// <summary>
         /// Load all the quotes found  in files (for a specific date)
@@ -189,7 +194,18 @@ namespace B3Provider
             System.Threading.Thread.Sleep(30000);
             _logger.Info("reading file of historic market data");
             var historicMarketDataReader = ReaderFactory.CreateReader<B3HistoricMarketDataInfo>(_configuration.ReadStrategy);
-            HistoricMarketData[yearToReadHistory] = historicMarketDataReader.ReadRecords(filePath);
+            var records = historicMarketDataReader.ReadRecords(filePath);
+            HistoricMarketData[yearToReadHistory] = records;
+
+            //if the map already exists, it should merge (2018, 2017, 2016)
+            HistoricMarketDataMap =records.GroupBy(historic => historic.Ticker)
+                                   .AsParallel()
+                                   .ToDictionary(group => group.Key,
+                                       components => components.GroupBy(c => c.TradeDate)
+                                       .AsParallel()
+                                       .ToDictionary(g => g.Key, g => g.FirstOrDefault()));
+
+
         }
 
         /// <summary>
@@ -203,7 +219,7 @@ namespace B3Provider
             {
                 foreach (KeyValuePair<int, IList<B3HistoricMarketDataInfo>> oneItem in HistoricMarketData)
                 {
-                    _result = _result==null ? oneItem.Value : _result.Concat(oneItem.Value).ToList();
+                    _result = _result == null ? oneItem.Value : _result.Concat(oneItem.Value).ToList();
                 }
             }
             return _result;
@@ -236,7 +252,9 @@ namespace B3Provider
         private void SetupIfNotSetup()
         {
             if (!_setupExecuted)
+            {
                 Setup();
+            }
         }
 
         /// <summary>
@@ -295,7 +313,11 @@ namespace B3Provider
 
         private void SaveSectorClassificationDataToDatabase()
         {
-            if (_databaseContext == null) return;
+            if (_databaseContext == null)
+            {
+                return;
+            }
+
             foreach (var oneSectorClassification in SectorClassification)
             {
                 var alreadyExists = _databaseContext.SectorClassification.Where
@@ -303,7 +325,9 @@ namespace B3Provider
                         .FirstOrDefault();
 
                 if (alreadyExists == null)
+                {
                     _databaseContext.SectorClassification.Add(oneSectorClassification);
+                }
             }
 
             _databaseContext.SaveChanges();
@@ -311,17 +335,23 @@ namespace B3Provider
 
         private void SaveEquityInstrumentsToDatabase()
         {
-            if (_databaseContext == null) return;
+            if (_databaseContext == null)
+            {
+                return;
+            }
+
             foreach (var oneEquityInstrument in EquityInstruments)
             {
                 var alreadyExists = _databaseContext.EquityInstruments.Where
-                        (s => s.B3ID.HasValue 
-                        && oneEquityInstrument.B3ID.HasValue 
+                        (s => s.B3ID.HasValue
+                        && oneEquityInstrument.B3ID.HasValue
                         && s.B3ID.Value.Equals(oneEquityInstrument.B3ID.Value))
                         .FirstOrDefault();
 
                 if (alreadyExists == null)
+                {
                     _databaseContext.EquityInstruments.Add(oneEquityInstrument);
+                }
             }
 
             _databaseContext.SaveChanges();
@@ -342,7 +372,7 @@ namespace B3Provider
 
         }
 
-        
+
 
         #endregion
 

@@ -86,7 +86,7 @@ namespace B3Provider.Readers
             IList<B3HistoricMarketDataInfo> historicQuote = null;
 
             using (var stream = new FileInfo(filePath).Open(FileMode.Open, FileAccess.Read, FileShare.Read))
-            {   
+            {
                 var resultado = ReadStream(stream);
                 historicQuote = resultado.Records;
             }
@@ -123,7 +123,8 @@ namespace B3Provider.Readers
                       // The mapping for this line will be loaded based on that type.
                       // In this simple example, the first character determines the
                       // record type.
-                      if (string.IsNullOrEmpty(line) || line.Length < 1) return null;
+                      if (string.IsNullOrEmpty(line) || line.Length < 1) { return null; }
+
                       switch (line.Substring(0, 2))
                       {
                           case "00":
@@ -136,7 +137,7 @@ namespace B3Provider.Readers
                       return null;
                   });
 
-            flatFile.Read(streamToRead);           
+            flatFile.Read(streamToRead);
 
             resultado = new B3HistoricMarketDataContentInfo();
             resultado.Header = flatFile.GetRecords<B3HistoricMarketDataHeaderInfo>().FirstOrDefault();
