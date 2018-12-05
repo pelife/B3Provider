@@ -1,6 +1,6 @@
 ﻿#region License
 /*
- * B3FutureInfo.cs
+ * B3IntegerTypeConverter.cs
  *
  * The MIT License
  *
@@ -29,28 +29,45 @@
  */
 #endregion
 
-namespace B3Provider.Records
+namespace B3Provider.Converters
 {
-    public class B3FutureInfo
+    using FlatFile.Core;
+    using System;
+
+    /// <summary>
+    /// converts one integer but if string is empty returns 0
+    /// </summary>
+    public class B3IntegerTypeConverter : ITypeConverter
     {
-        /// <summary>
-        /// B3 Internal identification of the instrument
-        /// </summary>
-        public long? B3ID { get; set; }
+        public bool CanConvertFrom(Type type)
+        {
+            bool ret = typeof(String) == type;
+            return ret;
+        }
 
-        /// <summary>
-        /// ISIN world public instrument identification
-        /// </summary>
-        public string ISIN { get; set; }
+        public bool CanConvertTo(Type type)
+        {
+            bool ret = typeof(System.Int32) == type;
+            return ret;
+        }
 
-        /// <summary>
-        /// Description of the instrument 2
-        /// </summary>
-        public string AssetDescription { get; set; }
+        public object ConvertFromString(string source)
+        {
+            int intAux = 0;
+            if (!string.IsNullOrEmpty(source))
+                int.TryParse(source, out intAux);
+                
+            return intAux;
+        }
 
-        /// <summary>
-        /// Description of the instrument
-        /// </summary>
-        public string Description { get; set; }
+        public string ConvertToString(object source)
+        {
+            string intFormated = string.Empty;
+            int? oldInt = (int?)source;
+            if (oldInt.HasValue)
+                intFormated = oldInt.Value.ToString();
+
+            return intFormated;
+        }
     }
 }

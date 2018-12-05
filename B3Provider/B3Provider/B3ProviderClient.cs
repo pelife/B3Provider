@@ -185,29 +185,38 @@ namespace B3Provider
         /// </param>
         public void LoadHistoricQuotes(int yearToReadHistory)
         {
+            System.Diagnostics.Stopwatch stopWatch = null;
+
             _logger.Info("setup provider");
             SetupIfNotSetup();
 
             _logger.Info("downloading file of historic market data");
             var filePath = _downloader.DownloadYearHistoricFile(yearToReadHistory, _configuration.ReplaceExistingFiles);
-            //sleep 30 seconds to watch download.
-            System.Threading.Thread.Sleep(30000);
-            _logger.Info("reading file of historic market data");
+
+            _logger.Info("factoring reader");
             var historicMarketDataReader = ReaderFactory.CreateReader<B3HistoricMarketDataInfo>(_configuration.ReadStrategy);
+
+            _logger.Info("reading records");
             var records = historicMarketDataReader.ReadRecords(filePath);
+
+            _logger.Info("transform records to map");
+            var recordsMap = records.GroupBy(historic => historic.Ticker)                   // group by ticker
+                                   .AsParallel()                                            // parallel
+                                   .ToDictionary(group => group.Key,                        // use ticker as key
+                                       components => components.GroupBy(c => c.TradeDate)   // value is a new dictionary with dates as keys
+                                       .AsParallel()                                        // parallel
+                                       .ToDictionary(g => g.Key, g => g.FirstOrDefault())); // use date as key and quote as values
+                                                                                            // example:
+                                                                                            //  var lastPrice =recordsMap["IBOV"].[new DateTime(2018,1,2)].Last;
+                                                                                            // store records in the by year dictionary
             HistoricMarketData[yearToReadHistory] = records;
 
+            stopWatch = System.Diagnostics.Stopwatch.StartNew();
             //if the map already exists, it should merge (2018, 2017, 2016)
-            /*
-            HistoricMarketDataMap =records.GroupBy(historic => historic.Ticker)
-                                   .AsParallel()
-                                   .ToDictionary(group => group.Key,
-                                       components => components.GroupBy(c => c.TradeDate)
-                                       .AsParallel()
-                                       .ToDictionary(g => g.Key, g => g.FirstOrDefault()));
-            */
-
-
+            HistoricMarketDataMap = MergeHistoricMarketDataMap(HistoricMarketDataMap, recordsMap);
+            stopWatch.Stop();
+            System.Diagnostics.Trace.WriteLine(string.Format("HistoricMarketDataMap in: {0:hh\\:mm\\:ss\\.fff}", stopWatch.Elapsed));
+            
         }
 
         /// <summary>
@@ -247,6 +256,61 @@ namespace B3Provider
         #endregion
 
         #region "private methods"
+
+        /// <summary>
+        /// Method to merge two historic market dictionaries
+        /// </summary>
+        /// <param name="firstMarketDataMarket"></param>
+        /// <param name="secondMarketDataMarket"></param>
+        /// <returns>
+        /// </returns>
+        private Dictionary<string, Dictionary<DateTime, B3HistoricMarketDataInfo>> MergeHistoricMarketDataMap(Dictionary<string, Dictionary<DateTime, B3HistoricMarketDataInfo>> firstMarketDataMarket, Dictionary<string, Dictionary<DateTime, B3HistoricMarketDataInfo>> secondMarketDataMarket)
+        {
+            // if second dictionary is null, nothing to do here, return first
+            if (secondMarketDataMarket == null)
+            {
+                return firstMarketDataMarket;
+            }
+
+            // if first is null, then the secondo must be the first
+            if (firstMarketDataMarket == null)
+            {
+                return secondMarketDataMarket;
+            }
+
+            // keys in both dictionaries
+            var keysInBoth = firstMarketDataMarket.Keys.Where(k => secondMarketDataMarket.ContainsKey(k)).ToList();
+            // keys in second but not in first
+            var keysInSecondOnly = secondMarketDataMarket.Keys.Except(firstMarketDataMarket.Keys);
+
+            //for each key, if present in both dictionaries, merge dates
+            //if present in the first but not in second, do nothing
+            //if present in the second, but not in the first, include in first
+            foreach (var oneKeyinBoth in keysInBoth)
+            {
+                // first inner dictionary
+                var firstInnerDictionary = firstMarketDataMarket[oneKeyinBoth];
+                // seconds inner dictionary
+                var secondInnerDictionary = secondMarketDataMarket[oneKeyinBoth];
+                // keys in second only
+                var keysInSecondOnlyInner = firstInnerDictionary.Keys.Where(k => secondInnerDictionary.ContainsKey(k)).ToList();
+
+                // adding keys in second dictionary to the first
+                foreach (var oneKeyinSecondOnlyInner in keysInSecondOnlyInner)
+                {
+                    firstInnerDictionary[oneKeyinSecondOnlyInner] = secondInnerDictionary[oneKeyinSecondOnlyInner];
+                }
+            }
+
+            foreach (var oneKeyinSecondOnly in keysInSecondOnly)
+            {
+                //adding new entry to market data dictionary
+                firstMarketDataMarket[oneKeyinSecondOnly] = secondMarketDataMarket[oneKeyinSecondOnly];
+            }
+
+            return firstMarketDataMarket;
+        }
+
         /// <summary>
         /// Method that checks if provider is initialized and setup if it was not performed by calling
         /// code already.

@@ -40,17 +40,17 @@ namespace B3Provider.Records
         
         public DateTime TradeDate { get; set; }                     //DATA DO PREGÃO --N08
         
-        public string BDICode { get; set; }                         //CODBDI - CÓDIGO BDI --X02
+        public int BDICode { get; set; }                            //CODBDI - CÓDIGO BDI --X02
         
         public string Ticker { get; set; }                          //CODNEG - CÓDIGO DE NEGOCIAÇÃO DO PAPEL --X12
         
-        public string MarketTypeCode { get; set; }                  //TPMERC - TIPO DE MERCADO  --N03
+        public int MarketTypeCode { get; set; }                     //TPMERC - TIPO DE MERCADO  --N03
         
         public string ShortName { get; set; }                       //NOMRES - NOME RESUMIDO DA EMPRESA EMISSORA DO PAPEL --X12
         
         public string Specification { get; set; }                   //ESPECI - ESPECIFICAÇÃO DO PAPEL --X10
         
-        public string ForwardDaysToExpiry { get; set; }             //PRAZOT - PRAZO EM DIAS DO MERCADO A TERMO--X03
+        public int ForwardDaysToExpiry { get; set; }                //PRAZOT - PRAZO EM DIAS DO MERCADO A TERMO--X03
         
         public string ReferenceCurrency { get; set; }               //MODREF - MOEDA DE REFERÊNCIA --X04
         

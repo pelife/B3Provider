@@ -31,13 +31,13 @@
 
 namespace B3ProviderTesting
 {
-    using System;
-    using System.Linq;
     using B3Provider;
-    using B3Provider.Utils;
     using B3Provider.Records;
+    using B3Provider.Utils;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NLog;
+    using System;
+    using System.Linq;
 
 
     //using NLog;
@@ -97,9 +97,9 @@ namespace B3ProviderTesting
         public void B3ProviderMustDownloadHistoricQuoteFilesGetUtilDates()
         {
             Logger logger = TestLogManager.Instance.GetLogger("B3ProviderTester");
-          
+
             logger.Info("teste");
-          
+
 
             var config = new B3Provider.B3ProviderConfig();
             config.ReplaceExistingFiles = true;
@@ -122,9 +122,9 @@ namespace B3ProviderTesting
             var oneYearQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.OneYearDate).FirstOrDefault();
 
             var varDiaria = ((currentQuote?.Last ?? 1) / (oneDayQuote?.Last ?? 1)) - 1;
-            var varSemanal = ((currentQuote?.Last ?? 1 )/ (oneWeekQuote?.Last ?? 1)) - 1;
-            var varMensal = ((currentQuote?.Last ?? 1 )/ (oneMonthQuote?.Last ?? 1)) - 1;
-            var varTrimestral = ((currentQuote?.Last ?? 1 )/ (oneQuarteQuote?.Last ?? 1)) - 1;
+            var varSemanal = ((currentQuote?.Last ?? 1) / (oneWeekQuote?.Last ?? 1)) - 1;
+            var varMensal = ((currentQuote?.Last ?? 1) / (oneMonthQuote?.Last ?? 1)) - 1;
+            var varTrimestral = ((currentQuote?.Last ?? 1) / (oneQuarteQuote?.Last ?? 1)) - 1;
             var varAnual = ((currentQuote?.Last ?? 1) / (oneYearQuote?.Last ?? 1)) - 1;
 
             var WTDQuote = quotesPETR4.Where(e => e.TradeDate == utilDates.WTDDate).FirstOrDefault();
@@ -197,6 +197,42 @@ namespace B3ProviderTesting
             // get information about option puts on PETR4 stock 
             var optionsPuts = client.OptionInstruments.Where(o => o.B3IDUnderlying == equity.B3ID
                 && o.Type == B3OptionOnEquityTypeInfo.Put).ToList();
+        }
+
+        [TestMethod]
+        public void AggreegatingFilesDownload()
+        {
+            System.Diagnostics.Stopwatch stopWatch = null;
+
+            var logger = TestLogManager.Instance.GetLogger("B3ProviderTesting");
+
+            //var summary = BenchmarkRunner.Run<BenchmarkDownloader>();
+            
+
+            // create a configuration instance
+            var config = new B3ProviderConfig();
+
+            // define properties
+            config.ReplaceExistingFiles = true;
+
+            // create an instance of the client
+            var client = new B3ProviderClient(config);
+
+            stopWatch = System.Diagnostics.Stopwatch.StartNew();
+            client.LoadHistoricQuotes(2018);
+            stopWatch.Stop();
+            logger.Info(string.Format("loaded in: {0:hh\\:mm\\:ss\\.fff}", stopWatch.Elapsed));
+            stopWatch = System.Diagnostics.Stopwatch.StartNew();
+            client.LoadHistoricQuotes(2017);
+            stopWatch.Stop();
+            logger.Info(string.Format("loaded in: {0:hh\\:mm\\:ss\\.fff}", stopWatch.Elapsed));
+            stopWatch = System.Diagnostics.Stopwatch.StartNew();
+            client.LoadHistoricQuotes(2016);
+            stopWatch.Stop();
+            logger.Info(string.Format("loaded in: {0:hh\\:mm\\:ss\\.fff}", stopWatch.Elapsed));
+
+            
+
         }
 
         [TestMethod]

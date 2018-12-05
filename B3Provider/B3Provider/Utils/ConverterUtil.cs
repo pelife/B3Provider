@@ -74,13 +74,16 @@ namespace B3Provider.Utils
             //https://stackoverflow.com/questions/206717/how-do-i-replace-multiple-spaces-with-a-single-space-in-c
             if (!string.IsNullOrEmpty(s))
             {
+                /*
                 RegexOptions options = RegexOptions.None;
                 Regex regex = new Regex("[ ]{2,}", options);
                 s = regex.Replace(s, " ");
+                */
+                //this solution received 536 votes and the above 388
+                s = Regex.Replace(s, @"\s+", " ");
             }
 
-            return s;
-            
+            return s;            
         }
 
         

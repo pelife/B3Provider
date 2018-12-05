@@ -122,9 +122,9 @@ namespace B3ProviderTesting
 
             stopWatch = System.Diagnostics.Stopwatch.StartNew();
             //if the map already exists, it should merge (2018, 2017, 2016)
-            var history2 = historicMarketData.GroupBy(historic => historic.Ticker)                        
+            var history2 = historicMarketData.GroupBy(historic => historic.Ticker)
                                    .ToDictionary(group => group.Key,
-                                       components => components.GroupBy(c => c.TradeDate)                                       
+                                       components => components.GroupBy(c => c.TradeDate)
                                        .ToDictionary(g => g.Key, g => g.FirstOrDefault()));
             stopWatch.Stop();
             logger.Info(string.Format("aggregated in: {0:hh\\:mm\\:ss\\.fff}", stopWatch.Elapsed));

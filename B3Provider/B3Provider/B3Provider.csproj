@@ -91,6 +91,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\B3IntegerTypeConverter.cs" />
     <Compile Include="Database\B3ProviderDbContext.cs" />
     <Compile Include="Readers\B3SectorClassifcationInfoReader.cs" />
     <Compile Include="Records\B3HistoricMarketDataContentInfo.cs" />

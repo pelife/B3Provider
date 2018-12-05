@@ -239,11 +239,12 @@ namespace B3Provider
             catch (IOException ex)
             {
                 _logger.Error(ex, "Generic Exception");
+                detinationPath = string.Empty;
+                throw;
             }
             catch (Exception ex)
             {
                 _logger.Error(ex, "Generic Exception");
-
                 detinationPath = string.Empty;
                 throw;
             }
