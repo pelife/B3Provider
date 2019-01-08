@@ -146,7 +146,9 @@ namespace B3Provider
             OptionInstruments = optionsReader.ReadRecords(filePath);
 
             _logger.Info("indexing options");
-            tickerIDIndexDictionary = OptionInstruments.ToDictionary(k => k.Ticker, v => v.B3ID.HasValue ? v.B3ID.Value : 0);
+            tickerIDIndexDictionary = OptionInstruments
+                                        .GroupBy(x => x.Ticker)                
+                                        .ToDictionary(grp => grp.Key, v => v.First().B3ID.HasValue ? v.First().B3ID.Value : 0);
             TickerIDIndex = TickerIDIndex.Union(tickerIDIndexDictionary).ToDictionary(k => k.Key, v => v.Value);
 
             _logger.Info("loading sector classification");
