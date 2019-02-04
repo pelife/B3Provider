@@ -109,7 +109,9 @@
             loggingGridControl.DataSource = LogCollection;
 
             logger = LogManager.GetLogger("PrincipalForm");
-            logger.Info("Started");            
+            logger.Info("Started");
+
+            MainDateNavigator.HighlightHolidays = true;
         }
 
         private void MemoryTarget_EventReceived(LogEventInfo message)
@@ -126,5 +128,9 @@
             LogCollection.Add(message);
         }
 
+        private void MainDateNavigator_CustomDrawDayNumberCell(object sender, DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventArgs e)
+        {
+
+        }
     }
 };

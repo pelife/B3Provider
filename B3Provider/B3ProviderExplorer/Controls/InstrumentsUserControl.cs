@@ -70,6 +70,18 @@
             if (loggingAction != null)
                 loggingAction.BeginInvoke("Loading Quotes", null, null); //fire and forget
             providerClient.LoadQuotes();
+
+            if (loggingAction != null)
+                loggingAction.BeginInvoke("Loading 2019", null, null); //fire and forget
+            providerClient.LoadHistoricQuotes(2019);
+
+            if (loggingAction != null)
+                loggingAction.BeginInvoke("Loading 2018", null, null); //fire and forget
+            providerClient.LoadHistoricQuotes(2018);
+
+            providerClient.CalculateHistoricChanges();
+
+
         }
 
         private void ChangeLoadingMessage(string message)

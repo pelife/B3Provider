@@ -36,11 +36,13 @@ namespace B3Provider
 {
     using B3Provider.Database;
     using B3Provider.Records;
+    using B3Provider.Utils;
     using NLog;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Class that provide data made available by Brazil Stock Market (B3 former BMF Bovespa)
@@ -70,6 +72,49 @@ namespace B3Provider
             _downloader = new B3Dowloader(_configuration.DownloadPath);
             _databaseContext = new B3ProviderDbContext((message => _databaseLogger.Info(message)));
         }
+
+        public void CalculateHistoricChanges()
+        {
+            DateTime? today = DateTime.Today;
+
+            var utilDates = today.UtilDates(null);
+
+            if (utilDates != null && EquityInstruments != null && HistoricMarketDataMap != null) // if I have the dates to look for quotes, the instruments and historic prices, it is possible to calculate the changes
+            {
+                Parallel.ForEach(EquityInstruments, (oneEquityInstrument) =>
+                {
+
+                    if (HistoricMarketDataMap.ContainsKey(oneEquityInstrument.Ticker))
+                    {
+                        var oneEquityQuotes = HistoricMarketDataMap[oneEquityInstrument.Ticker];
+                        if (oneEquityQuotes != null)
+                        {
+                            var histociData = HistoricMarketData[utilDates.CurrentDate.Year];
+                            var oneIntrumentHistory = histociData.Where(e => e.Ticker.Equals(oneEquityInstrument.Ticker, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+
+                            var currentQuote = oneEquityQuotes.ContainsKey(utilDates.CurrentDate) ? oneEquityQuotes[utilDates.CurrentDate] : null;
+                            var oneDayQuote = oneEquityQuotes.ContainsKey(utilDates.OneDayDate) ? oneEquityQuotes[utilDates.OneDayDate] : null;
+                            var oneWeekQuote = oneEquityQuotes.ContainsKey(utilDates.OneWeekDate) ? oneEquityQuotes[utilDates.OneWeekDate] : null;
+                            var oneMonthQuote = oneEquityQuotes.ContainsKey(utilDates.OneMonthDate) ? oneEquityQuotes[utilDates.OneMonthDate] : null;
+                            var oneQuarteQuote = oneEquityQuotes.ContainsKey(utilDates.OneQuarterDate) ? oneEquityQuotes[utilDates.OneQuarterDate] : null;
+                            var oneYearQuote = oneEquityQuotes.ContainsKey(utilDates.OneYearDate) ? oneEquityQuotes[utilDates.OneYearDate] : null;
+
+                            var varDiaria = ((currentQuote?.Last ?? 1) / (oneDayQuote?.Last ?? 1)) - 1;
+                            var varSemanal = ((currentQuote?.Last ?? 1) / (oneWeekQuote?.Last ?? 1)) - 1;
+                            var varMensal = ((currentQuote?.Last ?? 1) / (oneMonthQuote?.Last ?? 1)) - 1;
+                            var varTrimestral = ((currentQuote?.Last ?? 1) / (oneQuarteQuote?.Last ?? 1)) - 1;
+                            var varAnual = ((currentQuote?.Last ?? 1) / (oneYearQuote?.Last ?? 1)) - 1;
+
+                            var WTDQuote = oneEquityQuotes.ContainsKey(utilDates.WTDDate) ? oneEquityQuotes[utilDates.WTDDate] : null;
+                            var MTDQuote = oneEquityQuotes.ContainsKey(utilDates.MTDDate) ? oneEquityQuotes[utilDates.MTDDate] : null;
+                            var QTDQuote = oneEquityQuotes.ContainsKey(utilDates.QTDDate) ? oneEquityQuotes[utilDates.QTDDate] : null;
+                            var YTDQuote = oneEquityQuotes.ContainsKey(utilDates.YTDDate) ? oneEquityQuotes[utilDates.YTDDate] : null;
+                        }
+                    }
+                });
+            }
+        }
+
         #endregion
 
         #region "properties to records found in files"
@@ -147,7 +192,7 @@ namespace B3Provider
 
             _logger.Info("indexing options");
             tickerIDIndexDictionary = OptionInstruments
-                                        .GroupBy(x => x.Ticker)                
+                                        .GroupBy(x => x.Ticker)
                                         .ToDictionary(grp => grp.Key, v => v.First().B3ID.HasValue ? v.First().B3ID.Value : 0);
             TickerIDIndex = TickerIDIndex.Union(tickerIDIndexDictionary).ToDictionary(k => k.Key, v => v.Value);
 
@@ -218,7 +263,7 @@ namespace B3Provider
             HistoricMarketDataMap = MergeHistoricMarketDataMap(HistoricMarketDataMap, recordsMap);
             stopWatch.Stop();
             System.Diagnostics.Trace.WriteLine(string.Format("HistoricMarketDataMap in: {0:hh\\:mm\\:ss\\.fff}", stopWatch.Elapsed));
-            
+
         }
 
         /// <summary>
