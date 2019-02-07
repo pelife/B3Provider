@@ -2,6 +2,7 @@
 {
     using DevExpress.XtraBars;
     using DevExpress.XtraGrid.Views.Grid;
+    using NLog;
     using System;
     using System.Data;
     using System.Linq;
@@ -10,6 +11,8 @@
 
     public partial class InstrumentsUserControl : DevExpress.XtraEditors.XtraUserControl
     {
+        private readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
         private B3Provider.B3ProviderConfig providerClientConfig = null;
         private B3Provider.B3ProviderClient providerClient = null;
 
@@ -17,9 +20,7 @@
         {
             InitializeComponent();
             providerClientConfig = new B3Provider.B3ProviderConfig();
-            providerClient = new B3Provider.B3ProviderClient(providerClientConfig);
-            //gridControl.DataSource = dataSource;
-            //bsiRecordsCount.Caption = "RECORDS : " + dataSource.Count;
+            providerClient = new B3Provider.B3ProviderClient(providerClientConfig);          
         }
 
         private void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
@@ -90,12 +91,18 @@
         {
             if (this.InvokeRequired)
             {
-                this.Invoke((MethodInvoker)delegate { MainSplashScreenManager.SetWaitFormDescription(message); });
+                this.Invoke((MethodInvoker)delegate { ShowAndLogMessage(message); ; });
             }
             else
             {
-                MainSplashScreenManager.SetWaitFormDescription(message);
+                ShowAndLogMessage(message);
             }
+        }
+
+        private void ShowAndLogMessage(string message)
+        {
+            MainSplashScreenManager.SetWaitFormDescription(message);
+            _logger.Info(message);
         }
 
         private void PostLoadData(Task tarefa)

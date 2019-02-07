@@ -30,18 +30,19 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraSplashScreen.SplashScreenManager MainSplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::B3ProviderExplorer.SplashScreen1), true, true, true);
-            DevExpress.Utils.SuperToolTip superToolTip17 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem17 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem17 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip18 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem18 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem18 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip19 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem19 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem19 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip20 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem20 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem20 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrincipalForm));
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.skinRibbonGalleryBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barSubItemNavigation = new DevExpress.XtraBars.BarSubItem();
@@ -58,6 +59,9 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.DatesDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
+            this.controlContainer1 = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.MainDateNavigator = new DevExpress.XtraScheduler.DateNavigator();
             this.NavigationDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.accordionControl = new DevExpress.XtraBars.Navigation.AccordionControl();
@@ -78,15 +82,16 @@
             this.timeLoggergridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.messageGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.exceptionGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.DatesDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.controlContainer1 = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.MainDateNavigator = new DevExpress.XtraScheduler.DateNavigator();
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.ExploreMenu = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenuBarManager)).BeginInit();
+            this.DatesDockPanel.SuspendLayout();
+            this.controlContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MainDateNavigator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainDateNavigator.CalendarTimeProperties)).BeginInit();
             this.NavigationDockPanel.SuspendLayout();
             this.dockPanel_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).BeginInit();
@@ -94,10 +99,6 @@
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loggingGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loggingGridView)).BeginInit();
-            this.DatesDockPanel.SuspendLayout();
-            this.controlContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MainDateNavigator)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MainDateNavigator.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenu)).BeginInit();
@@ -256,6 +257,40 @@
             this.barButtonItem1.Id = 0;
             this.barButtonItem1.Name = "barButtonItem1";
             // 
+            // DatesDockPanel
+            // 
+            this.DatesDockPanel.Controls.Add(this.controlContainer1);
+            this.DatesDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
+            this.DatesDockPanel.ID = new System.Guid("27fe6c15-da22-4360-b0ea-94655f9eb030");
+            this.DatesDockPanel.Location = new System.Drawing.Point(590, 143);
+            this.DatesDockPanel.Name = "DatesDockPanel";
+            this.DatesDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
+            this.DatesDockPanel.SavedSizeFactor = 0D;
+            this.DatesDockPanel.Size = new System.Drawing.Size(200, 425);
+            this.DatesDockPanel.Text = "Dates";
+            // 
+            // controlContainer1
+            // 
+            this.controlContainer1.Controls.Add(this.MainDateNavigator);
+            this.controlContainer1.Location = new System.Drawing.Point(5, 23);
+            this.controlContainer1.Name = "controlContainer1";
+            this.controlContainer1.Size = new System.Drawing.Size(191, 398);
+            this.controlContainer1.TabIndex = 0;
+            // 
+            // MainDateNavigator
+            // 
+            this.MainDateNavigator.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.MainDateNavigator.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
+            this.MainDateNavigator.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.MainDateNavigator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainDateNavigator.FirstDayOfWeek = System.DayOfWeek.Sunday;
+            this.MainDateNavigator.Location = new System.Drawing.Point(0, 0);
+            this.MainDateNavigator.Name = "MainDateNavigator";
+            this.MainDateNavigator.Size = new System.Drawing.Size(191, 398);
+            this.MainDateNavigator.TabIndex = 0;
+            this.MainDateNavigator.CustomDrawDayNumberCell += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.MainDateNavigator_CustomDrawDayNumberCell);
+            // 
             // NavigationDockPanel
             // 
             this.NavigationDockPanel.Controls.Add(this.dockPanel_Container);
@@ -317,12 +352,12 @@
             // 
             this.aceLoadInstruments.Name = "aceLoadInstruments";
             this.aceLoadInstruments.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem17.Text = "Load instruments";
-            toolTipItem17.LeftIndent = 6;
-            toolTipItem17.Text = "Load intrument information from source";
-            superToolTip17.Items.Add(toolTipTitleItem17);
-            superToolTip17.Items.Add(toolTipItem17);
-            this.aceLoadInstruments.SuperTip = superToolTip17;
+            toolTipTitleItem1.Text = "Load instruments";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "Load intrument information from source";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            this.aceLoadInstruments.SuperTip = superToolTip1;
             this.aceLoadInstruments.Text = "Intruments";
             this.aceLoadInstruments.Click += new System.EventHandler(this.aceLoadInstruments_Click);
             // 
@@ -330,12 +365,12 @@
             // 
             this.aceLoadCurrentMarketData.Name = "aceLoadCurrentMarketData";
             this.aceLoadCurrentMarketData.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem18.Text = "Load prices";
-            toolTipItem18.LeftIndent = 6;
-            toolTipItem18.Text = "Load current intrument price information from source";
-            superToolTip18.Items.Add(toolTipTitleItem18);
-            superToolTip18.Items.Add(toolTipItem18);
-            this.aceLoadCurrentMarketData.SuperTip = superToolTip18;
+            toolTipTitleItem2.Text = "Load prices";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "Load current intrument price information from source";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
+            this.aceLoadCurrentMarketData.SuperTip = superToolTip2;
             this.aceLoadCurrentMarketData.Text = "Prices";
             this.aceLoadCurrentMarketData.Click += new System.EventHandler(this.aceLoadCurrentMarketData_Click);
             // 
@@ -343,12 +378,12 @@
             // 
             this.aceLoadHistory.Name = "aceLoadHistory";
             this.aceLoadHistory.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem19.Text = "Load historic";
-            toolTipItem19.LeftIndent = 6;
-            toolTipItem19.Text = "Load historic prices of intruments from source";
-            superToolTip19.Items.Add(toolTipTitleItem19);
-            superToolTip19.Items.Add(toolTipItem19);
-            this.aceLoadHistory.SuperTip = superToolTip19;
+            toolTipTitleItem3.Text = "Load historic";
+            toolTipItem3.LeftIndent = 6;
+            toolTipItem3.Text = "Load historic prices of intruments from source";
+            superToolTip3.Items.Add(toolTipTitleItem3);
+            superToolTip3.Items.Add(toolTipItem3);
+            this.aceLoadHistory.SuperTip = superToolTip3;
             this.aceLoadHistory.Text = "Historic";
             this.aceLoadHistory.Click += new System.EventHandler(this.aceLoadHistory_Click);
             // 
@@ -363,12 +398,12 @@
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl),
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons)});
             this.acgExplore.Name = "acgExplore";
-            toolTipTitleItem20.Text = "Explore";
-            toolTipItem20.LeftIndent = 6;
-            toolTipItem20.Text = "Discover what is happening to instruments";
-            superToolTip20.Items.Add(toolTipTitleItem20);
-            superToolTip20.Items.Add(toolTipItem20);
-            this.acgExplore.SuperTip = superToolTip20;
+            toolTipTitleItem4.Text = "Explore";
+            toolTipItem4.LeftIndent = 6;
+            toolTipItem4.Text = "Discover what is happening to instruments";
+            superToolTip4.Items.Add(toolTipTitleItem4);
+            superToolTip4.Items.Add(toolTipItem4);
+            this.acgExplore.SuperTip = superToolTip4;
             this.acgExplore.Text = "Explore";
             // 
             // aceAll
@@ -475,40 +510,6 @@
             this.exceptionGridColumn.Visible = true;
             this.exceptionGridColumn.VisibleIndex = 5;
             // 
-            // DatesDockPanel
-            // 
-            this.DatesDockPanel.Controls.Add(this.controlContainer1);
-            this.DatesDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
-            this.DatesDockPanel.ID = new System.Guid("27fe6c15-da22-4360-b0ea-94655f9eb030");
-            this.DatesDockPanel.Location = new System.Drawing.Point(590, 143);
-            this.DatesDockPanel.Name = "DatesDockPanel";
-            this.DatesDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
-            this.DatesDockPanel.SavedSizeFactor = 0D;
-            this.DatesDockPanel.Size = new System.Drawing.Size(200, 425);
-            this.DatesDockPanel.Text = "Dates";
-            // 
-            // controlContainer1
-            // 
-            this.controlContainer1.Controls.Add(this.MainDateNavigator);
-            this.controlContainer1.Location = new System.Drawing.Point(5, 23);
-            this.controlContainer1.Name = "controlContainer1";
-            this.controlContainer1.Size = new System.Drawing.Size(191, 398);
-            this.controlContainer1.TabIndex = 0;
-            // 
-            // MainDateNavigator
-            // 
-            this.MainDateNavigator.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            this.MainDateNavigator.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
-            this.MainDateNavigator.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.MainDateNavigator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainDateNavigator.FirstDayOfWeek = System.DayOfWeek.Sunday;
-            this.MainDateNavigator.Location = new System.Drawing.Point(0, 0);
-            this.MainDateNavigator.Name = "MainDateNavigator";
-            this.MainDateNavigator.Size = new System.Drawing.Size(191, 398);
-            this.MainDateNavigator.TabIndex = 0;
-            this.MainDateNavigator.CustomDrawDayNumberCell += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.MainDateNavigator_CustomDrawDayNumberCell);
-            // 
             // tabbedView
             // 
             this.tabbedView.DocumentClosed += new DevExpress.XtraBars.Docking2010.Views.DocumentEventHandler(this.tabbedView_DocumentClosed);
@@ -543,6 +544,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PrincipalForm";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;
@@ -550,6 +552,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenuBarManager)).EndInit();
+            this.DatesDockPanel.ResumeLayout(false);
+            this.controlContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MainDateNavigator.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainDateNavigator)).EndInit();
             this.NavigationDockPanel.ResumeLayout(false);
             this.dockPanel_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).EndInit();
@@ -557,10 +563,6 @@
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.loggingGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loggingGridView)).EndInit();
-            this.DatesDockPanel.ResumeLayout(false);
-            this.controlContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.MainDateNavigator.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MainDateNavigator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenu)).EndInit();

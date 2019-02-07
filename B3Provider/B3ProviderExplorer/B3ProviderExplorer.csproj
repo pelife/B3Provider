@@ -50,6 +50,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>time_is_money_3.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
@@ -163,6 +166,7 @@
     <Compile Include="SplashScreen1.Designer.cs">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
     </Compile>
+    <Content Include="time_is_money_3.ico" />
     <EmbeddedResource Include="Controls\InstrumentsUserControl.resx">
       <DependentUpon>InstrumentsUserControl.cs</DependentUpon>
     </EmbeddedResource>
