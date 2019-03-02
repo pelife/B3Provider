@@ -48,9 +48,13 @@
             this.barSubItemNavigation = new DevExpress.XtraBars.BarSubItem();
             this.employeesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.customersBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.beiDataReferencia = new DevExpress.XtraBars.BarEditItem();
+            this.riDataReferencia = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.ribbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupNavigation = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgDate = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgSyncronize = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.dockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.ExploreMenuBarManager = new DevExpress.XtraBars.BarManager(this.components);
@@ -85,7 +89,11 @@
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.ExploreMenu = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.bbiStaticData = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiMarketData = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenuBarManager)).BeginInit();
             this.DatesDockPanel.SuspendLayout();
@@ -116,13 +124,18 @@
             this.skinRibbonGalleryBarItem,
             this.barSubItemNavigation,
             this.employeesBarButtonItem,
-            this.customersBarButtonItem});
+            this.customersBarButtonItem,
+            this.beiDataReferencia,
+            this.bbiStaticData,
+            this.bbiMarketData});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 1;
+            this.ribbonControl.MaxItemId = 4;
             this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage});
+            this.ribbonControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.riDataReferencia});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl.Size = new System.Drawing.Size(790, 143);
@@ -158,11 +171,28 @@
             this.customersBarButtonItem.Name = "customersBarButtonItem";
             this.customersBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNavigation_ItemClick);
             // 
+            // beiDataReferencia
+            // 
+            this.beiDataReferencia.Edit = this.riDataReferencia;
+            this.beiDataReferencia.Id = 1;
+            this.beiDataReferencia.Name = "beiDataReferencia";
+            // 
+            // riDataReferencia
+            // 
+            this.riDataReferencia.AutoHeight = false;
+            this.riDataReferencia.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.riDataReferencia.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.riDataReferencia.Name = "riDataReferencia";
+            // 
             // ribbonPage
             // 
             this.ribbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroupNavigation,
-            this.ribbonPageGroup});
+            this.ribbonPageGroup,
+            this.rpgDate,
+            this.rpgSyncronize});
             this.ribbonPage.MergeOrder = 0;
             this.ribbonPage.Name = "ribbonPage";
             this.ribbonPage.Text = "View";
@@ -180,6 +210,22 @@
             this.ribbonPageGroup.Name = "ribbonPageGroup";
             this.ribbonPageGroup.ShowCaptionButton = false;
             this.ribbonPageGroup.Text = "Appearance";
+            // 
+            // rpgDate
+            // 
+            this.rpgDate.AllowMinimize = false;
+            this.rpgDate.AllowTextClipping = false;
+            this.rpgDate.ItemLinks.Add(this.beiDataReferencia);
+            this.rpgDate.ItemsLayout = DevExpress.XtraBars.Ribbon.RibbonPageGroupItemsLayout.TwoRows;
+            this.rpgDate.Name = "rpgDate";
+            this.rpgDate.Text = "Date";
+            // 
+            // rpgSyncronize
+            // 
+            this.rpgSyncronize.ItemLinks.Add(this.bbiStaticData);
+            this.rpgSyncronize.ItemLinks.Add(this.bbiMarketData);
+            this.rpgSyncronize.Name = "rpgSyncronize";
+            this.rpgSyncronize.Text = "Syncronization";
             // 
             // ribbonStatusBar
             // 
@@ -530,6 +576,18 @@
             this.ExploreMenu.Manager = this.ExploreMenuBarManager;
             this.ExploreMenu.Name = "ExploreMenu";
             // 
+            // bbiStaticData
+            // 
+            this.bbiStaticData.Caption = "Static data";
+            this.bbiStaticData.Id = 2;
+            this.bbiStaticData.Name = "bbiStaticData";
+            // 
+            // bbiMarketData
+            // 
+            this.bbiMarketData.Caption = "Market data";
+            this.bbiMarketData.Id = 3;
+            this.bbiMarketData.Name = "bbiMarketData";
+            // 
             // PrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -550,6 +608,8 @@
             this.StatusBar = this.ribbonStatusBar;
             this.Load += new System.EventHandler(this.PrincipalForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenuBarManager)).EndInit();
             this.DatesDockPanel.ResumeLayout(false);
@@ -614,5 +674,11 @@
         private DevExpress.XtraBars.Docking.DockPanel DatesDockPanel;
         private DevExpress.XtraBars.Docking.ControlContainer controlContainer1;
         private DevExpress.XtraScheduler.DateNavigator MainDateNavigator;
+        private DevExpress.XtraBars.BarEditItem beiDataReferencia;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit riDataReferencia;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgDate;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgSyncronize;
+        private DevExpress.XtraBars.BarButtonItem bbiStaticData;
+        private DevExpress.XtraBars.BarButtonItem bbiMarketData;
     }
 }

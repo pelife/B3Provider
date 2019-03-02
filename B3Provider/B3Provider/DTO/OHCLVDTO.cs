@@ -1,4 +1,4 @@
-﻿namespace B3ProviderExplorer.DTO
+﻿namespace B3Provider.DTO
 {
     /// <summary>
     /// Class that stores values of 

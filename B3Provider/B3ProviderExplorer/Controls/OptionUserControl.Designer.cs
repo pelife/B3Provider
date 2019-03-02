@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionUserControl));
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
@@ -47,8 +46,23 @@
             this.colOptionLoadDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOptionUnderlyingID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl = new DevExpress.XtraGrid.GridControl();
-            this.bdsEquity = new System.Windows.Forms.BindingSource(this.components);
-            this.mainEquityView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.bdsOption = new System.Windows.Forms.BindingSource(this.components);
+            this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.bbiPrintPreview = new DevExpress.XtraBars.BarButtonItem();
+            this.bsiRecordsCount = new DevExpress.XtraBars.BarStaticItem();
+            this.bbiNew = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiEdit = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiRefresh = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiClosingDate = new DevExpress.XtraBars.BarEditItem();
+            this.ridClosingDate = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.bbiNextClose = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiPreviousClose = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgOption = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.colCompanyName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTicker = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLastPrice = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -61,33 +75,16 @@
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLoadDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colISIN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.bbiPrintPreview = new DevExpress.XtraBars.BarButtonItem();
-            this.bsiRecordsCount = new DevExpress.XtraBars.BarStaticItem();
-            this.bbiNew = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiEdit = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiDelete = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiRefresh = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiStocks = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiFilter = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiClosingDate = new DevExpress.XtraBars.BarEditItem();
-            this.ridClosingDate = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
-            this.bbiNextClose = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiPreviousClose = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rpgEquity = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.MainSplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::B3ProviderExplorer.Controls.WaitForm1), true, true, typeof(System.Windows.Forms.UserControl), true);
             this.gridSplitContainer1 = new DevExpress.XtraGrid.GridSplitContainer();
+            this.btsOTM = new DevExpress.XtraBars.BarToggleSwitchItem();
+            this.btsATM = new DevExpress.XtraBars.BarToggleSwitchItem();
+            this.btsITM = new DevExpress.XtraBars.BarToggleSwitchItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainOptionView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsEquity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainEquityView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsOption)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate.CalendarTimeProperties)).BeginInit();
@@ -220,51 +217,188 @@
             // 
             // gridControl
             // 
-            this.gridControl.DataSource = this.bdsEquity;
+            this.gridControl.DataSource = this.bdsOption;
             this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.mainOptionView;
-            gridLevelNode1.RelationName = "Level1";
-            this.gridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
             this.gridControl.Location = new System.Drawing.Point(0, 0);
-            this.gridControl.MainView = this.mainEquityView;
+            this.gridControl.MainView = this.mainOptionView;
             this.gridControl.MenuManager = this.ribbonControl;
             this.gridControl.Name = "gridControl";
             this.gridControl.Size = new System.Drawing.Size(800, 457);
             this.gridControl.TabIndex = 2;
             this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.mainEquityView,
             this.mainOptionView});
             // 
-            // bdsEquity
+            // bdsOption
             // 
-            this.bdsEquity.DataSource = typeof(B3Provider.Records.B3EquityInfo);
+            this.bdsOption.DataSource = typeof(B3Provider.Records.B3OptionOnEquityInfo);
             // 
-            // mainEquityView
+            // ribbonControl
             // 
-            this.mainEquityView.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.mainEquityView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCompanyName,
-            this.colTicker,
-            this.colLastPrice,
-            this.colB3ID,
-            this.colMarketCapitalization,
-            this.colSectorClassificationSetorEconomico,
-            this.colSectorClassificationSubsetorEconomico,
-            this.colSectorClassificationSegmentoEconomico,
-            this.colCurrency,
-            this.colDescription,
-            this.colLoadDate,
-            this.colISIN});
-            this.mainEquityView.GridControl = this.gridControl;
-            this.mainEquityView.Name = "mainEquityView";
-            this.mainEquityView.OptionsBehavior.Editable = false;
-            this.mainEquityView.OptionsBehavior.ReadOnly = true;
-            this.mainEquityView.MasterRowEmpty += new DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventHandler(this.mainEquityView_MasterRowEmpty);
-            this.mainEquityView.MasterRowExpanding += new DevExpress.XtraGrid.Views.Grid.MasterRowCanExpandEventHandler(this.mainEquityView_MasterRowExpanding);
-            this.mainEquityView.MasterRowGetChildList += new DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventHandler(this.mainEquityView_MasterRowGetChildList);
-            this.mainEquityView.MasterRowGetRelationName += new DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationNameEventHandler(this.mainEquityView_MasterRowGetRelationName);
-            this.mainEquityView.MasterRowGetRelationCount += new DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationCountEventHandler(this.mainEquityView_MasterRowGetRelationCount);
+            this.ribbonControl.AccessibleDescription = "this.mainOptionView";
+            this.ribbonControl.ExpandCollapseItem.Id = 0;
+            this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.ribbonControl.ExpandCollapseItem,
+            this.bbiPrintPreview,
+            this.bsiRecordsCount,
+            this.bbiNew,
+            this.bbiEdit,
+            this.bbiDelete,
+            this.bbiRefresh,
+            this.bbiClosingDate,
+            this.bbiNextClose,
+            this.bbiPreviousClose,
+            this.btsOTM,
+            this.btsATM,
+            this.btsITM});
+            this.ribbonControl.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl.MaxItemId = 35;
+            this.ribbonControl.Name = "ribbonControl";
+            this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage1});
+            this.ribbonControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.ridClosingDate});
+            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
+            this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
+            this.ribbonControl.Size = new System.Drawing.Size(800, 116);
+            this.ribbonControl.StatusBar = this.ribbonStatusBar;
+            this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
+            // 
+            // bbiPrintPreview
+            // 
+            this.bbiPrintPreview.Caption = "Print Preview";
+            this.bbiPrintPreview.Id = 14;
+            this.bbiPrintPreview.ImageOptions.ImageUri.Uri = "Preview";
+            this.bbiPrintPreview.Name = "bbiPrintPreview";
+            this.bbiPrintPreview.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiPrintPreview_ItemClick);
+            // 
+            // bsiRecordsCount
+            // 
+            this.bsiRecordsCount.Caption = "RECORDS : 0";
+            this.bsiRecordsCount.Id = 15;
+            this.bsiRecordsCount.Name = "bsiRecordsCount";
+            // 
+            // bbiNew
+            // 
+            this.bbiNew.Caption = "New";
+            this.bbiNew.Id = 16;
+            this.bbiNew.ImageOptions.ImageUri.Uri = "New";
+            this.bbiNew.Name = "bbiNew";
+            this.bbiNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // bbiEdit
+            // 
+            this.bbiEdit.Caption = "Edit";
+            this.bbiEdit.Id = 17;
+            this.bbiEdit.ImageOptions.ImageUri.Uri = "Edit";
+            this.bbiEdit.Name = "bbiEdit";
+            this.bbiEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // bbiDelete
+            // 
+            this.bbiDelete.Caption = "Delete";
+            this.bbiDelete.Id = 18;
+            this.bbiDelete.ImageOptions.ImageUri.Uri = "Delete";
+            this.bbiDelete.Name = "bbiDelete";
+            this.bbiDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // bbiRefresh
+            // 
+            this.bbiRefresh.Caption = "Refresh";
+            this.bbiRefresh.Id = 19;
+            this.bbiRefresh.ImageOptions.ImageUri.Uri = "Refresh";
+            this.bbiRefresh.Name = "bbiRefresh";
+            this.bbiRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRefresh_ItemClick);
+            // 
+            // bbiClosingDate
+            // 
+            this.bbiClosingDate.Caption = "Close";
+            this.bbiClosingDate.Edit = this.ridClosingDate;
+            this.bbiClosingDate.EditWidth = 120;
+            this.bbiClosingDate.Hint = "Close date you want results";
+            this.bbiClosingDate.Id = 26;
+            this.bbiClosingDate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiClosingDate.ImageOptions.Image")));
+            this.bbiClosingDate.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiClosingDate.ImageOptions.LargeImage")));
+            this.bbiClosingDate.Name = "bbiClosingDate";
+            this.bbiClosingDate.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            toolTipTitleItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            toolTipTitleItem1.Text = "Close session date";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "Specify the close session reference of the calculations.";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            this.bbiClosingDate.SuperTip = superToolTip1;
+            // 
+            // ridClosingDate
+            // 
+            this.ridClosingDate.AutoHeight = false;
+            this.ridClosingDate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ridClosingDate.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ridClosingDate.Name = "ridClosingDate";
+            // 
+            // bbiNextClose
+            // 
+            this.bbiNextClose.Hint = "Next";
+            this.bbiNextClose.Id = 27;
+            this.bbiNextClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiNextClose.ImageOptions.Image")));
+            this.bbiNextClose.Name = "bbiNextClose";
+            this.bbiNextClose.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
+            this.bbiNextClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiNextClose_ItemClick);
+            // 
+            // bbiPreviousClose
+            // 
+            this.bbiPreviousClose.Hint = "Previous";
+            this.bbiPreviousClose.Id = 28;
+            this.bbiPreviousClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiPreviousClose.ImageOptions.Image")));
+            this.bbiPreviousClose.Name = "bbiPreviousClose";
+            this.bbiPreviousClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiPreviousClose_ItemClick);
+            // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup2,
+            this.rpgOption});
+            this.ribbonPage1.MergeOrder = 1;
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "Home";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.AllowTextClipping = false;
+            this.ribbonPageGroup1.ItemLinks.Add(this.bbiNew);
+            this.ribbonPageGroup1.ItemLinks.Add(this.bbiEdit);
+            this.ribbonPageGroup1.ItemLinks.Add(this.bbiDelete);
+            this.ribbonPageGroup1.ItemLinks.Add(this.bbiRefresh);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.ShowCaptionButton = false;
+            this.ribbonPageGroup1.Text = "Tasks";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.AllowTextClipping = false;
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiPrintPreview);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.ShowCaptionButton = false;
+            this.ribbonPageGroup2.Text = "Print and Export";
+            // 
+            // rpgOption
+            // 
+            this.rpgOption.ItemLinks.Add(this.btsOTM);
+            this.rpgOption.ItemLinks.Add(this.btsATM);
+            this.rpgOption.ItemLinks.Add(this.btsITM);
+            this.rpgOption.ItemsLayout = DevExpress.XtraBars.Ribbon.RibbonPageGroupItemsLayout.ThreeRows;
+            this.rpgOption.Name = "rpgOption";
+            this.rpgOption.Text = "Option";
+            // 
+            // ribbonStatusBar
+            // 
+            this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 573);
+            this.ribbonStatusBar.Name = "ribbonStatusBar";
+            this.ribbonStatusBar.Ribbon = this.ribbonControl;
+            this.ribbonStatusBar.Size = new System.Drawing.Size(800, 27);
             // 
             // colCompanyName
             // 
@@ -373,195 +507,6 @@
             this.colISIN.Visible = true;
             this.colISIN.VisibleIndex = 1;
             // 
-            // ribbonControl
-            // 
-            this.ribbonControl.ExpandCollapseItem.Id = 0;
-            this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ribbonControl.ExpandCollapseItem,
-            this.bbiPrintPreview,
-            this.bsiRecordsCount,
-            this.bbiNew,
-            this.bbiEdit,
-            this.bbiDelete,
-            this.bbiRefresh,
-            this.bbiStocks,
-            this.barButtonItem4,
-            this.bbiFilter,
-            this.bbiClosingDate,
-            this.bbiNextClose,
-            this.bbiPreviousClose});
-            this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 29;
-            this.ribbonControl.Name = "ribbonControl";
-            this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.ribbonPage1});
-            this.ribbonControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.ridClosingDate});
-            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
-            this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(800, 116);
-            this.ribbonControl.StatusBar = this.ribbonStatusBar;
-            this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
-            // 
-            // bbiPrintPreview
-            // 
-            this.bbiPrintPreview.Caption = "Print Preview";
-            this.bbiPrintPreview.Id = 14;
-            this.bbiPrintPreview.ImageOptions.ImageUri.Uri = "Preview";
-            this.bbiPrintPreview.Name = "bbiPrintPreview";
-            this.bbiPrintPreview.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiPrintPreview_ItemClick);
-            // 
-            // bsiRecordsCount
-            // 
-            this.bsiRecordsCount.Caption = "RECORDS : 0";
-            this.bsiRecordsCount.Id = 15;
-            this.bsiRecordsCount.Name = "bsiRecordsCount";
-            // 
-            // bbiNew
-            // 
-            this.bbiNew.Caption = "New";
-            this.bbiNew.Id = 16;
-            this.bbiNew.ImageOptions.ImageUri.Uri = "New";
-            this.bbiNew.Name = "bbiNew";
-            this.bbiNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
-            // bbiEdit
-            // 
-            this.bbiEdit.Caption = "Edit";
-            this.bbiEdit.Id = 17;
-            this.bbiEdit.ImageOptions.ImageUri.Uri = "Edit";
-            this.bbiEdit.Name = "bbiEdit";
-            this.bbiEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
-            // bbiDelete
-            // 
-            this.bbiDelete.Caption = "Delete";
-            this.bbiDelete.Id = 18;
-            this.bbiDelete.ImageOptions.ImageUri.Uri = "Delete";
-            this.bbiDelete.Name = "bbiDelete";
-            this.bbiDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
-            // bbiRefresh
-            // 
-            this.bbiRefresh.Caption = "Refresh";
-            this.bbiRefresh.Id = 19;
-            this.bbiRefresh.ImageOptions.ImageUri.Uri = "Refresh";
-            this.bbiRefresh.Name = "bbiRefresh";
-            this.bbiRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRefresh_ItemClick);
-            // 
-            // bbiStocks
-            // 
-            this.bbiStocks.Caption = "Stocks";
-            this.bbiStocks.Id = 23;
-            this.bbiStocks.ImageOptions.ImageUri.Uri = "Pie;Size32x32;Colored";
-            this.bbiStocks.Name = "bbiStocks";
-            this.bbiStocks.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiStocks_ItemClick);
-            // 
-            // barButtonItem4
-            // 
-            this.barButtonItem4.Caption = "Options";
-            this.barButtonItem4.Id = 24;
-            this.barButtonItem4.ImageOptions.ImageUri.Uri = "Superscript;Size32x32;Colored";
-            this.barButtonItem4.Name = "barButtonItem4";
-            this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
-            // 
-            // bbiFilter
-            // 
-            this.bbiFilter.Caption = "Filter";
-            this.bbiFilter.Id = 25;
-            this.bbiFilter.ImageOptions.ImageUri.Uri = "Filter";
-            this.bbiFilter.Name = "bbiFilter";
-            // 
-            // bbiClosingDate
-            // 
-            this.bbiClosingDate.Caption = "Close";
-            this.bbiClosingDate.Edit = this.ridClosingDate;
-            this.bbiClosingDate.EditWidth = 120;
-            this.bbiClosingDate.Hint = "Close date you want results";
-            this.bbiClosingDate.Id = 26;
-            this.bbiClosingDate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiClosingDate.ImageOptions.Image")));
-            this.bbiClosingDate.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiClosingDate.ImageOptions.LargeImage")));
-            this.bbiClosingDate.Name = "bbiClosingDate";
-            this.bbiClosingDate.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            toolTipTitleItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            toolTipTitleItem1.Text = "Close session date";
-            toolTipItem1.LeftIndent = 6;
-            toolTipItem1.Text = "Specify the close session reference of the calculations.";
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            superToolTip1.Items.Add(toolTipItem1);
-            this.bbiClosingDate.SuperTip = superToolTip1;
-            // 
-            // ridClosingDate
-            // 
-            this.ridClosingDate.AutoHeight = false;
-            this.ridClosingDate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ridClosingDate.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ridClosingDate.Name = "ridClosingDate";
-            // 
-            // bbiNextClose
-            // 
-            this.bbiNextClose.Hint = "Next";
-            this.bbiNextClose.Id = 27;
-            this.bbiNextClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiNextClose.ImageOptions.Image")));
-            this.bbiNextClose.Name = "bbiNextClose";
-            this.bbiNextClose.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
-            this.bbiNextClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiNextClose_ItemClick);
-            // 
-            // bbiPreviousClose
-            // 
-            this.bbiPreviousClose.Hint = "Previous";
-            this.bbiPreviousClose.Id = 28;
-            this.bbiPreviousClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiPreviousClose.ImageOptions.Image")));
-            this.bbiPreviousClose.Name = "bbiPreviousClose";
-            this.bbiPreviousClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiPreviousClose_ItemClick);
-            // 
-            // ribbonPage1
-            // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1,
-            this.ribbonPageGroup2,
-            this.rpgEquity});
-            this.ribbonPage1.MergeOrder = 1;
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Home";
-            // 
-            // ribbonPageGroup1
-            // 
-            this.ribbonPageGroup1.AllowTextClipping = false;
-            this.ribbonPageGroup1.ItemLinks.Add(this.bbiNew);
-            this.ribbonPageGroup1.ItemLinks.Add(this.bbiEdit);
-            this.ribbonPageGroup1.ItemLinks.Add(this.bbiDelete);
-            this.ribbonPageGroup1.ItemLinks.Add(this.bbiRefresh);
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.ShowCaptionButton = false;
-            this.ribbonPageGroup1.Text = "Tasks";
-            // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.AllowTextClipping = false;
-            this.ribbonPageGroup2.ItemLinks.Add(this.bbiPrintPreview);
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.ShowCaptionButton = false;
-            this.ribbonPageGroup2.Text = "Print and Export";
-            // 
-            // rpgEquity
-            // 
-            this.rpgEquity.ItemLinks.Add(this.bbiStocks);
-            this.rpgEquity.ItemLinks.Add(this.barButtonItem4);
-            this.rpgEquity.ItemLinks.Add(this.bbiFilter);
-            this.rpgEquity.Name = "rpgEquity";
-            this.rpgEquity.Text = "Equity";
-            // 
-            // ribbonStatusBar
-            // 
-            this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 573);
-            this.ribbonStatusBar.Name = "ribbonStatusBar";
-            this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(800, 27);
-            // 
             // barButtonItem1
             // 
             this.barButtonItem1.Caption = "New";
@@ -592,20 +537,37 @@
             this.gridSplitContainer1.Size = new System.Drawing.Size(800, 457);
             this.gridSplitContainer1.TabIndex = 5;
             // 
-            // InstrumentsUserControl
+            // btsOTM
+            // 
+            this.btsOTM.Caption = "OTM";
+            this.btsOTM.Id = 32;
+            this.btsOTM.Name = "btsOTM";
+            // 
+            // btsATM
+            // 
+            this.btsATM.Caption = "ATM";
+            this.btsATM.Id = 33;
+            this.btsATM.Name = "btsATM";
+            // 
+            // btsITM
+            // 
+            this.btsITM.Caption = "ITM";
+            this.btsITM.Id = 34;
+            this.btsITM.Name = "btsITM";
+            // 
+            // OptionUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gridSplitContainer1);
             this.Controls.Add(this.ribbonControl);
             this.Controls.Add(this.ribbonStatusBar);
-            this.Name = "InstrumentsUserControl";
+            this.Name = "OptionUserControl";
             this.Size = new System.Drawing.Size(800, 600);
             this.Load += new System.EventHandler(this.InstrumentsUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainOptionView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsEquity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainEquityView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsOption)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate)).EndInit();
@@ -618,8 +580,7 @@
 
         #endregion
 
-        private DevExpress.XtraGrid.GridControl gridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView mainEquityView;
+        private DevExpress.XtraGrid.GridControl gridControl;        
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
@@ -631,13 +592,10 @@
         private DevExpress.XtraBars.BarButtonItem bbiEdit;
         private DevExpress.XtraBars.BarButtonItem bbiDelete;
         private DevExpress.XtraBars.BarButtonItem bbiRefresh;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgEquity;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgOption;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.BarButtonItem bbiStocks;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
-        private DevExpress.XtraBars.BarButtonItem bbiFilter;
-        private System.Windows.Forms.BindingSource bdsEquity;
+        private System.Windows.Forms.BindingSource bdsOption;
         private DevExpress.XtraGrid.Columns.GridColumn colB3ID;
         private DevExpress.XtraGrid.Columns.GridColumn colISIN;
         private DevExpress.XtraGrid.Columns.GridColumn colCompanyName;
@@ -668,5 +626,8 @@
         private DevExpress.XtraBars.BarButtonItem bbiNextClose;
         private DevExpress.XtraBars.BarButtonItem bbiPreviousClose;
         private DevExpress.XtraGrid.GridSplitContainer gridSplitContainer1;
+        private DevExpress.XtraBars.BarToggleSwitchItem btsOTM;
+        private DevExpress.XtraBars.BarToggleSwitchItem btsATM;
+        private DevExpress.XtraBars.BarToggleSwitchItem btsITM;
     }
 }

@@ -48,8 +48,8 @@
 
         private void InstrumentsUserControl_Load(object sender, EventArgs e)
         {
-            PreLoadData();
-            LoadData();
+            //PreLoadData();
+            //LoadData();
         }
 
         private void PreLoadData()

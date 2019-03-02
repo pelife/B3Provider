@@ -93,6 +93,7 @@
   <ItemGroup>
     <Compile Include="Converters\B3IntegerTypeConverter.cs" />
     <Compile Include="Database\B3ProviderDbContext.cs" />
+    <Compile Include="DTO\OptionPriceInfoDTO.cs" />
     <Compile Include="DTO\EquityPriceInfoDTO.cs" />
     <Compile Include="DTO\OHCLVDTO.cs" />
     <Compile Include="Readers\B3SectorClassifcationInfoReader.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Records\B3OptionOnEquityStyleInfo.cs" />
     <Compile Include="Records\B3OptionOnEquityTypeInfo.cs" />
     <Compile Include="Records\B3SectorClassifcationInfo.cs" />
+    <Compile Include="Records\OptionGreeksInfo.cs" />
     <Compile Include="Utils\B3DateUtilsExtensions.cs" />
     <Compile Include="B3Dowloader.cs" />
     <Compile Include="Records\B3EquityInfo.cs" />

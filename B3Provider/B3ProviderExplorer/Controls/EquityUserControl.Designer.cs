@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EquityUserControl));
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
@@ -57,7 +56,7 @@
             this.bbiDelete = new DevExpress.XtraBars.BarButtonItem();
             this.bbiRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.bbiStocks = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiOptions = new DevExpress.XtraBars.BarButtonItem();
             this.bbiFilter = new DevExpress.XtraBars.BarButtonItem();
             this.bbiClosingDate = new DevExpress.XtraBars.BarEditItem();
             this.ridClosingDate = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
@@ -68,22 +67,8 @@
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgEquity = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.MainSplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::B3ProviderExplorer.Controls.WaitForm1), true, true, typeof(System.Windows.Forms.UserControl), true);
             this.gridSplitContainer1 = new DevExpress.XtraGrid.GridSplitContainer();
-            this.colOptionB3ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionISIN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionTicker = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionStrike = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionStrikeCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionStrikeStyle = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionType = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionExpiration = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionLoadDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOptionUnderlyingID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.mainOptionView = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsEquity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainEquityView)).BeginInit();
@@ -92,17 +77,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).BeginInit();
             this.gridSplitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainOptionView)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl
             // 
-            this.gridControl.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.gridControl.DataSource = this.bdsEquity;
             this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.RelationName = "Level1";
-            this.gridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
             this.gridControl.Location = new System.Drawing.Point(0, 0);
             this.gridControl.MainView = this.mainEquityView;
             this.gridControl.MenuManager = this.ribbonControl;
@@ -110,8 +90,7 @@
             this.gridControl.Size = new System.Drawing.Size(800, 457);
             this.gridControl.TabIndex = 2;
             this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.mainEquityView,
-            this.mainOptionView});
+            this.mainEquityView});
             // 
             // bdsEquity
             // 
@@ -136,7 +115,7 @@
             this.mainEquityView.GridControl = this.gridControl;
             this.mainEquityView.Name = "mainEquityView";
             this.mainEquityView.OptionsBehavior.Editable = false;
-            this.mainEquityView.OptionsBehavior.ReadOnly = true;            
+            this.mainEquityView.OptionsBehavior.ReadOnly = true;
             // 
             // colCompanyName
             // 
@@ -257,13 +236,13 @@
             this.bbiDelete,
             this.bbiRefresh,
             this.bbiStocks,
-            this.barButtonItem4,
+            this.bbiOptions,
             this.bbiFilter,
             this.bbiClosingDate,
             this.bbiNextClose,
             this.bbiPreviousClose});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 29;
+            this.ribbonControl.MaxItemId = 30;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -329,12 +308,14 @@
             this.bbiStocks.Name = "bbiStocks";
             this.bbiStocks.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiStocks_ItemClick);
             // 
-            // barButtonItem4
+            // bbiOptions
             // 
-            this.barButtonItem4.Caption = "Options";
-            this.barButtonItem4.Id = 24;
-            this.barButtonItem4.ImageOptions.ImageUri.Uri = "Superscript;Size32x32;Colored";
-            this.barButtonItem4.Name = "barButtonItem4";            
+            this.bbiOptions.Caption = "Options";
+            this.bbiOptions.Enabled = false;
+            this.bbiOptions.Id = 23;
+            this.bbiOptions.ImageOptions.ImageUri.Uri = "Superscript;Size32x32";
+            this.bbiOptions.Name = "bbiOptions";
+            this.bbiOptions.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiOptions_ItemClick);
             // 
             // bbiFilter
             // 
@@ -420,7 +401,7 @@
             // rpgEquity
             // 
             this.rpgEquity.ItemLinks.Add(this.bbiStocks);
-            this.rpgEquity.ItemLinks.Add(this.barButtonItem4);
+            this.rpgEquity.ItemLinks.Add(this.bbiOptions);
             this.rpgEquity.ItemLinks.Add(this.bbiFilter);
             this.rpgEquity.Name = "rpgEquity";
             this.rpgEquity.Text = "Equity";
@@ -432,22 +413,6 @@
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
             this.ribbonStatusBar.Size = new System.Drawing.Size(800, 27);
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "New";
-            this.barButtonItem1.Id = 16;
-            this.barButtonItem1.ImageOptions.ImageUri.Uri = "New";
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Caption = "New";
-            this.barButtonItem2.Id = 16;
-            this.barButtonItem2.ImageOptions.ImageUri.Uri = "New";
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // MainSplashScreenManager
             // 
@@ -462,125 +427,6 @@
             this.gridSplitContainer1.Panel1.Controls.Add(this.gridControl);
             this.gridSplitContainer1.Size = new System.Drawing.Size(800, 457);
             this.gridSplitContainer1.TabIndex = 5;
-            // 
-            // colOptionB3ID
-            // 
-            this.colOptionB3ID.Caption = "B3 ID";
-            this.colOptionB3ID.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionB3ID.FieldName = "B3ID";
-            this.colOptionB3ID.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionB3ID.Name = "colOptionB3ID";
-            this.colOptionB3ID.Visible = true;
-            this.colOptionB3ID.VisibleIndex = 0;
-            // 
-            // colOptionISIN
-            // 
-            this.colOptionISIN.Caption = "ISIN";
-            this.colOptionISIN.FieldName = "ISIN";
-            this.colOptionISIN.Name = "colOptionISIN";
-            this.colOptionISIN.Visible = true;
-            this.colOptionISIN.VisibleIndex = 1;
-            // 
-            // colOptionDescription
-            // 
-            this.colOptionDescription.Caption = "Description";
-            this.colOptionDescription.FieldName = "Description";
-            this.colOptionDescription.Name = "colOptionDescription";
-            this.colOptionDescription.Visible = true;
-            this.colOptionDescription.VisibleIndex = 2;
-            // 
-            // colOptionTicker
-            // 
-            this.colOptionTicker.Caption = "Ticker";
-            this.colOptionTicker.FieldName = "Ticker";
-            this.colOptionTicker.Name = "colOptionTicker";
-            this.colOptionTicker.Visible = true;
-            this.colOptionTicker.VisibleIndex = 3;
-            // 
-            // colOptionStrike
-            // 
-            this.colOptionStrike.Caption = "Strike";
-            this.colOptionStrike.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionStrike.FieldName = "Strike";
-            this.colOptionStrike.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionStrike.Name = "colOptionStrike";
-            this.colOptionStrike.Visible = true;
-            this.colOptionStrike.VisibleIndex = 4;
-            // 
-            // colOptionStrikeCurrency
-            // 
-            this.colOptionStrikeCurrency.Caption = "Strike Currency";
-            this.colOptionStrikeCurrency.FieldName = "StrikeCurrency";
-            this.colOptionStrikeCurrency.Name = "colOptionStrikeCurrency";
-            this.colOptionStrikeCurrency.Visible = true;
-            this.colOptionStrikeCurrency.VisibleIndex = 5;
-            // 
-            // colOptionStrikeStyle
-            // 
-            this.colOptionStrikeStyle.Caption = "Style";
-            this.colOptionStrikeStyle.FieldName = "Style";
-            this.colOptionStrikeStyle.Name = "colOptionStrikeStyle";
-            this.colOptionStrikeStyle.Visible = true;
-            this.colOptionStrikeStyle.VisibleIndex = 6;
-            // 
-            // colOptionType
-            // 
-            this.colOptionType.Caption = "Type";
-            this.colOptionType.FieldName = "Type";
-            this.colOptionType.Name = "colOptionType";
-            this.colOptionType.Visible = true;
-            this.colOptionType.VisibleIndex = 7;
-            // 
-            // colOptionExpiration
-            // 
-            this.colOptionExpiration.Caption = "Expiration";
-            this.colOptionExpiration.DisplayFormat.FormatString = "d";
-            this.colOptionExpiration.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colOptionExpiration.FieldName = "Expiration";
-            this.colOptionExpiration.GroupFormat.FormatString = "d";
-            this.colOptionExpiration.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colOptionExpiration.Name = "colOptionExpiration";
-            this.colOptionExpiration.Visible = true;
-            this.colOptionExpiration.VisibleIndex = 8;
-            // 
-            // colOptionLoadDate
-            // 
-            this.colOptionLoadDate.Caption = "Load Date";
-            this.colOptionLoadDate.DisplayFormat.FormatString = "d";
-            this.colOptionLoadDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colOptionLoadDate.FieldName = "LoadDate";
-            this.colOptionLoadDate.GroupFormat.FormatString = "d";
-            this.colOptionLoadDate.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colOptionLoadDate.Name = "colOptionLoadDate";
-            this.colOptionLoadDate.Visible = true;
-            this.colOptionLoadDate.VisibleIndex = 9;
-            // 
-            // colOptionUnderlyingID
-            // 
-            this.colOptionUnderlyingID.Caption = "B3 ID Underlying";
-            this.colOptionUnderlyingID.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionUnderlyingID.FieldName = "B3IDUnderlying";
-            this.colOptionUnderlyingID.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colOptionUnderlyingID.Name = "colOptionUnderlyingID";
-            this.colOptionUnderlyingID.Visible = true;
-            this.colOptionUnderlyingID.VisibleIndex = 10;
-            // 
-            // mainOptionView
-            // 
-            this.mainOptionView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colOptionB3ID,
-            this.colOptionISIN,
-            this.colOptionDescription,
-            this.colOptionTicker,
-            this.colOptionStrike,
-            this.colOptionStrikeCurrency,
-            this.colOptionStrikeStyle,
-            this.colOptionType,
-            this.colOptionExpiration,
-            this.colOptionLoadDate,
-            this.colOptionUnderlyingID});
-            this.mainOptionView.GridControl = this.gridControl;
-            this.mainOptionView.Name = "mainOptionView";
             // 
             // EquityUserControl
             // 
@@ -600,7 +446,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).EndInit();
             this.gridSplitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.mainOptionView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -621,11 +466,9 @@
         private DevExpress.XtraBars.BarButtonItem bbiEdit;
         private DevExpress.XtraBars.BarButtonItem bbiDelete;
         private DevExpress.XtraBars.BarButtonItem bbiRefresh;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgEquity;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgEquity;        
         private DevExpress.XtraBars.BarButtonItem bbiStocks;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
+        private DevExpress.XtraBars.BarButtonItem bbiOptions;
         private DevExpress.XtraBars.BarButtonItem bbiFilter;
         private System.Windows.Forms.BindingSource bdsEquity;
         private DevExpress.XtraGrid.Columns.GridColumn colB3ID;
@@ -646,17 +489,6 @@
         private DevExpress.XtraBars.BarButtonItem bbiNextClose;
         private DevExpress.XtraBars.BarButtonItem bbiPreviousClose;
         private DevExpress.XtraGrid.GridSplitContainer gridSplitContainer1;
-        private DevExpress.XtraGrid.Views.Grid.GridView mainOptionView;
-        private DevExpress.XtraGrid.Columns.GridColumn colOptionB3ID;
-        private DevExpress.XtraGrid.Columns.GridColumn colOptionISIN;
-        private DevExpress.XtraGrid.Columns.GridColumn colOptionDescription;
-        private DevExpress.XtraGrid.Columns.GridColumn colOptionTicker;
-        private DevExpress.XtraGrid.Columns.GridColumn colOptionStrike;
-        private DevExpress.XtraGrid.Columns.GridColumn colOptionStrikeCurrency;
-        private DevExpress.XtraGrid.Columns.GridColumn colOptionStrikeStyle;
-        private DevExpress.XtraGrid.Columns.GridColumn colOptionType;
-        private DevExpress.XtraGrid.Columns.GridColumn colOptionExpiration;
-        private DevExpress.XtraGrid.Columns.GridColumn colOptionLoadDate;
-        private DevExpress.XtraGrid.Columns.GridColumn colOptionUnderlyingID;
+
     }
 }

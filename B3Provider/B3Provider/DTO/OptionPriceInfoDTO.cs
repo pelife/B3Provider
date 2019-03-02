@@ -1,24 +1,28 @@
 ﻿using B3Provider.Records;
 
 namespace B3Provider.DTO
-{
+{ 
     /// <summary>
     /// Class used to show equity detailed information and 
     /// price change data
     /// </summary>
-    public class EquityPriceInfoDTO
+public class OptionPriceInfoDTO
     {
         /// <summary>
-        /// Data about the equity 
+        /// Data about the Option
         /// </summary>
-        public B3EquityInfo Equity { get; set; }
+        public B3OptionOnEquityInfo Option { get; set; }
 
-        
+        /// <summary>
+        /// Option greeks 
+        /// </summary>
+        public OptionGreeksInfo Greeks { get; set; }
+
         #region "nominal variation"
         /// <summary>
         /// Nominal variation of 1 day
         /// </summary>
-        public double? DailyNominal {get;set;}
+        public double? DailyNominal { get; set; }
 
         /// <summary>
         /// Nominal variation of 1 week
