@@ -131,11 +131,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\InstrumentsUserControl.cs">
+    <Compile Include="Controls\GovBondUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\InstrumentsUserControl.Designer.cs">
-      <DependentUpon>InstrumentsUserControl.cs</DependentUpon>
+    <Compile Include="Controls\GovBondUserControl.Designer.cs">
+      <DependentUpon>GovBondUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FutureUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FutureUserControl.Designer.cs">
+      <DependentUpon>FutureUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OptionUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\OptionUserControl.Designer.cs">
+      <DependentUpon>OptionUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EquityUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EquityUserControl.Designer.cs">
+      <DependentUpon>EquityUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\QuotesUserControl.cs">
       <SubType>UserControl</SubType>
@@ -149,8 +167,6 @@
     <Compile Include="Controls\WaitForm1.Designer.cs">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
-    <Compile Include="DTO\OHCLVDTO.cs" />
-    <Compile Include="DTO\EquityPriceInfoDTO.cs" />
     <Compile Include="Logging\MemoryEventTarget.cs" />
     <Compile Include="PrincipalForm.cs">
       <SubType>Form</SubType>
@@ -167,8 +183,17 @@
       <DependentUpon>SplashScreen1.cs</DependentUpon>
     </Compile>
     <Content Include="time_is_money_3.ico" />
-    <EmbeddedResource Include="Controls\InstrumentsUserControl.resx">
-      <DependentUpon>InstrumentsUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\GovBondUserControl.resx">
+      <DependentUpon>GovBondUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FutureUserControl.resx">
+      <DependentUpon>FutureUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\OptionUserControl.resx">
+      <DependentUpon>OptionUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EquityUserControl.resx">
+      <DependentUpon>EquityUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\QuotesUserControl.resx">
       <DependentUpon>QuotesUserControl.cs</DependentUpon>

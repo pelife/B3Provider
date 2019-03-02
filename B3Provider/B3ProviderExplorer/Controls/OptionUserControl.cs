@@ -9,14 +9,14 @@
     using System.Threading.Tasks;
     using System.Windows.Forms;
 
-    public partial class InstrumentsUserControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class OptionUserControl : DevExpress.XtraEditors.XtraUserControl
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         private B3Provider.B3ProviderConfig providerClientConfig = null;
         private B3Provider.B3ProviderClient providerClient = null;
 
-        public InstrumentsUserControl()
+        public OptionUserControl()
         {
             InitializeComponent();
             providerClientConfig = new B3Provider.B3ProviderConfig();

@@ -1,0 +1,134 @@
+﻿namespace B3ProviderExplorer.Controls
+{
+    using DevExpress.XtraBars;
+    using DevExpress.XtraGrid.Views.Grid;
+    using NLog;
+    using System;
+    using System.Data;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+
+    public partial class EquityUserControl : DevExpress.XtraEditors.XtraUserControl
+    {
+        private readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
+        private B3Provider.B3ProviderConfig providerClientConfig = null;
+        private B3Provider.B3ProviderClient providerClient = null;
+
+        public EquityUserControl()
+        {
+            InitializeComponent();
+            providerClientConfig = new B3Provider.B3ProviderConfig();
+            providerClient = new B3Provider.B3ProviderClient(providerClientConfig);          
+        }
+
+        private void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            gridControl.ShowRibbonPrintPreview();
+        }
+
+
+        private void bbiRefresh_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void bbiStocks_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            gridControl.DataSource = providerClient.EquityInstruments;
+            bsiRecordsCount.Caption = "RECORDS : " + providerClient.EquityInstruments.Count;
+        }
+     
+        private void InstrumentsUserControl_Load(object sender, EventArgs e)
+        {
+            PreLoadData();
+            LoadData();
+        }
+
+        private void PreLoadData()
+        {
+            MainSplashScreenManager.ShowWaitForm();
+        }
+
+        private void LoadData()
+        {
+            Task.Factory.StartNew(() => { FetchData(new Action<string>(ChangeLoadingMessage)); }).ContinueWith((task) => { PostLoadData(task); });
+        }
+
+        private void FetchData(Action<string> loggingAction)
+        {
+            if (loggingAction != null)
+                loggingAction.BeginInvoke("Loading Instruments", null, null); //fire and forget
+            providerClient.LoadInstruments();
+
+            if (loggingAction != null)
+                loggingAction.BeginInvoke("Loading Quotes", null, null); //fire and forget
+            providerClient.LoadQuotes();
+
+            if (loggingAction != null)
+                loggingAction.BeginInvoke("Loading 2019", null, null); //fire and forget
+            providerClient.LoadHistoricQuotes(2019);
+
+            if (loggingAction != null)
+                loggingAction.BeginInvoke("Loading 2018", null, null); //fire and forget
+            providerClient.LoadHistoricQuotes(2018);
+
+            if (loggingAction != null)
+                loggingAction.BeginInvoke("Calculating changes", null, null); //fire and forget
+            providerClient.CalculateHistoricChanges();
+        }
+
+        private void ChangeLoadingMessage(string message)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)delegate { ShowAndLogMessage(message); });
+            }
+            else
+            {
+                ShowAndLogMessage(message);
+            }
+        }
+
+        private void ShowAndLogMessage(string message)
+        {
+            MainSplashScreenManager.SetWaitFormDescription(message);
+            _logger.Info(message);
+        }
+
+        private void PostLoadData(Task tarefa)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke((MethodInvoker)delegate { MainSplashScreenManager.CloseWaitForm(); });
+            }
+            else
+            {
+                MainSplashScreenManager.CloseWaitForm();
+            }            
+        }        
+
+        private void mainEquityView_MasterRowGetChildList(object sender, MasterRowGetChildListEventArgs e)
+        {
+            if (e.RowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+            {
+                var masterView = sender as GridView;
+                var masterRecord = masterView?.GetRow(e.RowHandle) as B3Provider.Records.B3EquityInfo;
+                var options = providerClient.OptionInstruments.Where(o => o.B3IDUnderlying == masterRecord?.B3ID).ToList();
+
+                e.ChildList = options;
+            }
+        }        
+
+        private void bbiPreviousClose_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void bbiNextClose_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+    }
+}

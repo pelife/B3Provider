@@ -80,7 +80,7 @@
 
         private void aceLoadInstruments_Click(object sender, EventArgs e)
         {
-            var instrumentForm = new Controls.InstrumentsUserControl();
+            var instrumentForm = new Controls.EquityUserControl();
             instrumentForm.Text = "Instruments";
             tabbedView.AddDocument(instrumentForm);
             tabbedView.ActivateDocument(instrumentForm);
