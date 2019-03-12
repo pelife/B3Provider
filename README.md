@@ -8,7 +8,13 @@ Try to provide a little organization to the mess of all sorts of files into a ge
 Please keep the observed current code style. Don't use your creativity here, put it somewhere else. I am sure you will find it pretty easy to follow.
 
 ## Screenshots
-N/A
+### B3 Explorer
+B3 Explorer is a project to allow the user of B3 provider to visualize the data it makes available.
+
+![One screen example](/img/B3_Explorer1.png?raw=true "B3 Explorer Screen 1")
+![Second screen example](/img/B3_Explorer2.png?raw=true "B3 Explorer Screen 2")
+
+      
 
 ## Tech/framework used
 For now N/A
@@ -25,6 +31,8 @@ But probably will use:
 - [x] Loading Historic Quotes Files
 - [x] Company Sector Classification Files
 - [ ] Loading Indexes Files
+- [ ] Loading Future Data
+- [ ] Loading Margin Call Files
 - [ ] Smart downloads (only when needed)
 - [ ] Save info to database
 - [ ] Load info from database
