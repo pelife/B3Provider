@@ -33,6 +33,9 @@ But probably will use:
 - [ ] Loading Indexes Files
 - [ ] Loading Future Data
 - [ ] Loading Margin Call Files
+- [ ] Loading Holiday Files (already in source code)
+- [ ] Include columns of price movement (1Day, WTD, MTD, YTD)(on progress)
+- [ ] Include columns of indicators (avg volume, atr, irf, mas)
 - [ ] Smart downloads (only when needed)
 - [ ] Save info to database
 - [ ] Load info from database
