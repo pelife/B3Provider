@@ -5,7 +5,7 @@ This project is intended to provide a way to access public availabe data of the 
 Try to provide a little organization to the mess of all sorts of files into a generic and comprehensive framework to be incorporated into client apllications of all sorts.
 
 ## Code style
-Please keep the observed current code style. Don't use your creativity here, put it somewhere else.
+Please keep the observed current code style. Don't use your creativity here, put it somewhere else. I am sure you will find it pretty easy to follow.
 
 ## Screenshots
 N/A
