@@ -94,7 +94,7 @@
             // 
             // bdsEquity
             // 
-            this.bdsEquity.DataSource = typeof(B3Provider.Records.B3EquityInfo);
+            this.bdsEquity.DataSource = typeof(B3Provider.DTO.EquityPriceInfo);
             // 
             // mainEquityView
             // 
@@ -116,6 +116,7 @@
             this.mainEquityView.Name = "mainEquityView";
             this.mainEquityView.OptionsBehavior.Editable = false;
             this.mainEquityView.OptionsBehavior.ReadOnly = true;
+            this.mainEquityView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.mainEquityView_FocusedRowChanged);
             // 
             // colCompanyName
             // 

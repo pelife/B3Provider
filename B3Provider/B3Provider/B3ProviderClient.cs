@@ -35,6 +35,7 @@
 namespace B3Provider
 {
     using B3Provider.Database;
+    using B3Provider.DTO;
     using B3Provider.Records;
     using B3Provider.Utils;
     using NLog;
@@ -76,6 +77,7 @@ namespace B3Provider
         public void CalculateHistoricChanges()
         {
             DateTime? today = DateTime.Today;
+            EquityPriceInfo equityPriceInfo = null;
 
             var utilDates = today.UtilDates(null);
 
@@ -89,6 +91,10 @@ namespace B3Provider
                         var oneEquityQuotes = HistoricMarketDataMap[oneEquityInstrument.Ticker];
                         if (oneEquityQuotes != null)
                         {
+
+                            equityPriceInfo = new EquityPriceInfo();
+                            equityPriceInfo.Equity = oneEquityInstrument;
+
                             var histociData = HistoricMarketData[utilDates.CurrentDate.Year];
                             var oneIntrumentHistory = histociData.Where(e => e.Ticker.Equals(oneEquityInstrument.Ticker, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
 
@@ -99,16 +105,38 @@ namespace B3Provider
                             var oneQuarteQuote = oneEquityQuotes.ContainsKey(utilDates.OneQuarterDate) ? oneEquityQuotes[utilDates.OneQuarterDate] : null;
                             var oneYearQuote = oneEquityQuotes.ContainsKey(utilDates.OneYearDate) ? oneEquityQuotes[utilDates.OneYearDate] : null;
 
+                            var varAbsDiaria = ((currentQuote?.Last ?? 1) - (oneDayQuote?.Last ?? 1));
+                            var varAbsSemanal = ((currentQuote?.Last ?? 1) - (oneWeekQuote?.Last ?? 1));
+                            var varAbsMensal = ((currentQuote?.Last ?? 1) - (oneMonthQuote?.Last ?? 1));
+                            var varAbsTrimestral = ((currentQuote?.Last ?? 1) - (oneQuarteQuote?.Last ?? 1));
+                            var varAbsAnual = ((currentQuote?.Last ?? 1) - (oneYearQuote?.Last ?? 1));
+
                             var varDiaria = ((currentQuote?.Last ?? 1) / (oneDayQuote?.Last ?? 1)) - 1;
                             var varSemanal = ((currentQuote?.Last ?? 1) / (oneWeekQuote?.Last ?? 1)) - 1;
                             var varMensal = ((currentQuote?.Last ?? 1) / (oneMonthQuote?.Last ?? 1)) - 1;
                             var varTrimestral = ((currentQuote?.Last ?? 1) / (oneQuarteQuote?.Last ?? 1)) - 1;
                             var varAnual = ((currentQuote?.Last ?? 1) / (oneYearQuote?.Last ?? 1)) - 1;
 
+                            equityPriceInfo.DailyNominal = varAbsDiaria;
+                            equityPriceInfo.WeeklyNominal = varAbsSemanal;
+                            equityPriceInfo.MonthlyNominal = varAbsMensal;
+                            equityPriceInfo.QuaterlyNominal = varAbsTrimestral;
+                            equityPriceInfo.YearlyNominal = varAbsAnual;
+                            equityPriceInfo.DailyPercentage = varDiaria;
+                            equityPriceInfo.WeeklyPercentage = varSemanal;
+                            equityPriceInfo.MonthlyPercentage = varMensal;
+                            equityPriceInfo.QuaterlyPercentage = varTrimestral;
+                            equityPriceInfo.YearlyPercentage = varAnual;
+
                             var WTDQuote = oneEquityQuotes.ContainsKey(utilDates.WTDDate) ? oneEquityQuotes[utilDates.WTDDate] : null;
                             var MTDQuote = oneEquityQuotes.ContainsKey(utilDates.MTDDate) ? oneEquityQuotes[utilDates.MTDDate] : null;
                             var QTDQuote = oneEquityQuotes.ContainsKey(utilDates.QTDDate) ? oneEquityQuotes[utilDates.QTDDate] : null;
                             var YTDQuote = oneEquityQuotes.ContainsKey(utilDates.YTDDate) ? oneEquityQuotes[utilDates.YTDDate] : null;
+
+                            if (!HistoricPriceMovingInfoDataMap.ContainsKey(oneEquityInstrument.Ticker))
+                                HistoricPriceMovingInfoDataMap[oneEquityInstrument.Ticker] = new Dictionary<DateTime, EquityPriceInfo>();
+
+                            HistoricPriceMovingInfoDataMap[oneEquityInstrument.Ticker][utilDates.CurrentDate] = equityPriceInfo;
                         }
                     }
                 });
@@ -142,6 +170,11 @@ namespace B3Provider
         /// Historic market data past princes map
         /// </summary>
         public Dictionary<string, Dictionary<DateTime, B3HistoricMarketDataInfo>> HistoricMarketDataMap { get; set; } = null;
+
+        /// <summary>
+        /// Historic market data past princes moving map
+        /// </summary>
+        public Dictionary<string, Dictionary<DateTime, EquityPriceInfo>> HistoricPriceMovingInfoDataMap { get; set; } = new Dictionary<string, Dictionary<DateTime, EquityPriceInfo>>();
 
         /// <summary>
         /// Index to convert an instrument ticker to internal ID

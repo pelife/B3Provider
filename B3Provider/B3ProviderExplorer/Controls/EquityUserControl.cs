@@ -19,6 +19,7 @@
         private B3Provider.B3ProviderConfig providerClientConfig = null;
         private B3Provider.B3ProviderClient providerClient = null;
         private List<B3OptionOnEquityInfo> selectedOptions = null;
+        private OptionUserControl optionsControl = null;
 
         public TabbedView ParentView { get; set; }
 
@@ -65,39 +66,20 @@
 
         private void FetchData(Action<string> loggingAction)
         {
-            if (loggingAction != null)
-            {
-                loggingAction.BeginInvoke("Loading Instruments", null, null); //fire and forget
-            }
-
+            loggingAction?.BeginInvoke("Loading Instruments", null, null); //fire and forget
             providerClient.LoadInstruments();
 
-            if (loggingAction != null)
-            {
-                loggingAction.BeginInvoke("Loading Quotes", null, null); //fire and forget
-            }
-
+            loggingAction?.BeginInvoke("Loading Quotes", null, null); //fire and forget
             providerClient.LoadQuotes();
 
-            if (loggingAction != null)
-            {
-                loggingAction.BeginInvoke("Loading 2019", null, null); //fire and forget
-            }
 
+            loggingAction?.BeginInvoke("Loading 2019", null, null); //fire and forget
             providerClient.LoadHistoricQuotes(2019);
 
-            if (loggingAction != null)
-            {
-                loggingAction.BeginInvoke("Loading 2018", null, null); //fire and forget
-            }
-
+            loggingAction?.BeginInvoke("Loading 2018", null, null); //fire and forget
             providerClient.LoadHistoricQuotes(2018);
 
-            if (loggingAction != null)
-            {
-                loggingAction.BeginInvoke("Calculating changes", null, null); //fire and forget
-            }
-
+            loggingAction?.BeginInvoke("Calculating changes", null, null); //fire and forget
             providerClient.CalculateHistoricChanges();
         }
 
@@ -169,11 +151,15 @@
             if (e.FocusedRowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
             {
                 var masterView = sender as GridView;
-                var masterRecord = masterView?.GetRow(e.FocusedRowHandle) as B3EquityInfo;
-                var options = providerClient.OptionInstruments.Where(o => o.B3IDUnderlying == masterRecord?.B3ID).ToList();
+                if (masterView != null)
+                {
+                    var masterRecord = masterView.IsDataRow(e.FocusedRowHandle) ? masterView.GetRow(e.FocusedRowHandle) as B3EquityInfo : null;
+                    var options = (masterRecord != null) ? providerClient.OptionInstruments.Where(o => o.B3IDUnderlying == masterRecord?.B3ID).ToList() : null;
 
-                //bbiOptions.Enabled = (options != null && options.Count > 0) ? true : false;
-                //selectedOptions = (options != null && options.Count > 0) ? options : null;
+                    bbiOptions.Enabled = (options != null && options.Count > 0) ? true : false;
+                    selectedOptions = (options != null && options.Count > 0) ? options : null;
+                    ShowOptions(selectedOptions);
+                }
             }
         }
 
@@ -183,19 +169,23 @@
             {
                 return;
             }
-            //todo: 
-            // 1 -check if the options view está aberta
-            // 1.1 - se fechada, abra e defina o ativo
-            // 1.2 - se aberta, mude o ativo e mande atualizar
+
+            if (optionsControl == null)
+            {
+                return;
+            }
+
+            optionsControl.ShowOptions(options);
         }
 
         private void bbiOptions_ItemClick(object sender, ItemClickEventArgs e)
         {
             DocumentGroup optionsGroup = null;
 
-            if (ParentView == null)            
+            if (ParentView == null)
+            {
                 return;
-            
+            }
 
             if (ParentView.DocumentGroups.Count == 1)
             {
@@ -208,10 +198,21 @@
                 optionsGroup = ParentView.DocumentGroups[1];
             }
 
-            var instrumentForm = new Controls.OptionUserControl();
-            instrumentForm.Text = "Options";
-            var document = (Document)ParentView.AddDocument(instrumentForm);
-            ParentView.Controller.Dock(document, optionsGroup);
+            if (optionsControl == null)
+            {
+                optionsControl = new OptionUserControl();
+                optionsControl.Text = "Options";
+                var document = (Document)ParentView.AddDocument(optionsControl);
+                ParentView.Controller.Dock(document, optionsGroup);
+                document.Disposed += OptioDocument_Disposed;
+            }
+
+            ShowOptions(selectedOptions);
+        }
+
+        private void OptioDocument_Disposed(object sender, EventArgs e)
+        {
+            optionsControl = null;
         }
     }
 }

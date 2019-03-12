@@ -58,30 +58,18 @@
             this.ridClosingDate = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.bbiNextClose = new DevExpress.XtraBars.BarButtonItem();
             this.bbiPreviousClose = new DevExpress.XtraBars.BarButtonItem();
+            this.btsOTM = new DevExpress.XtraBars.BarToggleSwitchItem();
+            this.btsATM = new DevExpress.XtraBars.BarToggleSwitchItem();
+            this.btsITM = new DevExpress.XtraBars.BarToggleSwitchItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgOption = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.colCompanyName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTicker = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colLastPrice = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colB3ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMarketCapitalization = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSectorClassificationSetorEconomico = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSectorClassificationSubsetorEconomico = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSectorClassificationSegmentoEconomico = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colLoadDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colISIN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.MainSplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::B3ProviderExplorer.Controls.WaitForm1), true, true, typeof(System.Windows.Forms.UserControl), true);
             this.gridSplitContainer1 = new DevExpress.XtraGrid.GridSplitContainer();
-            this.btsOTM = new DevExpress.XtraBars.BarToggleSwitchItem();
-            this.btsATM = new DevExpress.XtraBars.BarToggleSwitchItem();
-            this.btsITM = new DevExpress.XtraBars.BarToggleSwitchItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainOptionView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsOption)).BeginInit();
@@ -108,6 +96,10 @@
             this.colOptionUnderlyingID});
             this.mainOptionView.GridControl = this.gridControl;
             this.mainOptionView.Name = "mainOptionView";
+            this.mainOptionView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.mainOptionView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.mainOptionView.OptionsBehavior.Editable = false;
+            this.mainOptionView.OptionsBehavior.ReadOnly = true;
             // 
             // colOptionB3ID
             // 
@@ -354,6 +346,24 @@
             this.bbiPreviousClose.Name = "bbiPreviousClose";
             this.bbiPreviousClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiPreviousClose_ItemClick);
             // 
+            // btsOTM
+            // 
+            this.btsOTM.Caption = "OTM";
+            this.btsOTM.Id = 32;
+            this.btsOTM.Name = "btsOTM";
+            // 
+            // btsATM
+            // 
+            this.btsATM.Caption = "ATM";
+            this.btsATM.Id = 33;
+            this.btsATM.Name = "btsATM";
+            // 
+            // btsITM
+            // 
+            this.btsITM.Caption = "ITM";
+            this.btsITM.Id = 34;
+            this.btsITM.Name = "btsITM";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -400,113 +410,6 @@
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
             this.ribbonStatusBar.Size = new System.Drawing.Size(800, 27);
             // 
-            // colCompanyName
-            // 
-            this.colCompanyName.Caption = "Company Name";
-            this.colCompanyName.FieldName = "CompanyName";
-            this.colCompanyName.Name = "colCompanyName";
-            this.colCompanyName.Visible = true;
-            this.colCompanyName.VisibleIndex = 2;
-            // 
-            // colTicker
-            // 
-            this.colTicker.Caption = "Ticker";
-            this.colTicker.FieldName = "Ticker";
-            this.colTicker.Name = "colTicker";
-            this.colTicker.Visible = true;
-            this.colTicker.VisibleIndex = 4;
-            // 
-            // colLastPrice
-            // 
-            this.colLastPrice.DisplayFormat.FormatString = "C2";
-            this.colLastPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colLastPrice.FieldName = "LastPrice";
-            this.colLastPrice.GroupFormat.FormatString = "C2";
-            this.colLastPrice.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colLastPrice.Name = "colLastPrice";
-            this.colLastPrice.Visible = true;
-            this.colLastPrice.VisibleIndex = 7;
-            // 
-            // colB3ID
-            // 
-            this.colB3ID.Caption = "B3 ID";
-            this.colB3ID.FieldName = "B3ID";
-            this.colB3ID.Name = "colB3ID";
-            this.colB3ID.Visible = true;
-            this.colB3ID.VisibleIndex = 0;
-            // 
-            // colMarketCapitalization
-            // 
-            this.colMarketCapitalization.Caption = "Market Cap.";
-            this.colMarketCapitalization.DisplayFormat.FormatString = "N";
-            this.colMarketCapitalization.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colMarketCapitalization.FieldName = "MarketCapitalization";
-            this.colMarketCapitalization.GroupFormat.FormatString = "N";
-            this.colMarketCapitalization.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colMarketCapitalization.Name = "colMarketCapitalization";
-            this.colMarketCapitalization.Visible = true;
-            this.colMarketCapitalization.VisibleIndex = 6;
-            // 
-            // colSectorClassificationSetorEconomico
-            // 
-            this.colSectorClassificationSetorEconomico.Caption = "Economic Sector";
-            this.colSectorClassificationSetorEconomico.FieldName = "SectorClassification.EconomicSector";
-            this.colSectorClassificationSetorEconomico.Name = "colSectorClassificationSetorEconomico";
-            this.colSectorClassificationSetorEconomico.Visible = true;
-            this.colSectorClassificationSetorEconomico.VisibleIndex = 9;
-            // 
-            // colSectorClassificationSubsetorEconomico
-            // 
-            this.colSectorClassificationSubsetorEconomico.Caption = "Econ. Subsector";
-            this.colSectorClassificationSubsetorEconomico.FieldName = "SectorClassification.EconomicSubSector";
-            this.colSectorClassificationSubsetorEconomico.Name = "colSectorClassificationSubsetorEconomico";
-            this.colSectorClassificationSubsetorEconomico.Visible = true;
-            this.colSectorClassificationSubsetorEconomico.VisibleIndex = 10;
-            // 
-            // colSectorClassificationSegmentoEconomico
-            // 
-            this.colSectorClassificationSegmentoEconomico.Caption = "Segmnet";
-            this.colSectorClassificationSegmentoEconomico.FieldName = "SectorClassification.EconomicSegment";
-            this.colSectorClassificationSegmentoEconomico.Name = "colSectorClassificationSegmentoEconomico";
-            this.colSectorClassificationSegmentoEconomico.Visible = true;
-            this.colSectorClassificationSegmentoEconomico.VisibleIndex = 11;
-            // 
-            // colCurrency
-            // 
-            this.colCurrency.Caption = "Ccy";
-            this.colCurrency.FieldName = "Currency";
-            this.colCurrency.Name = "colCurrency";
-            this.colCurrency.Visible = true;
-            this.colCurrency.VisibleIndex = 5;
-            // 
-            // colDescription
-            // 
-            this.colDescription.Caption = "Description";
-            this.colDescription.FieldName = "Description";
-            this.colDescription.Name = "colDescription";
-            this.colDescription.Visible = true;
-            this.colDescription.VisibleIndex = 3;
-            // 
-            // colLoadDate
-            // 
-            this.colLoadDate.Caption = "Load";
-            this.colLoadDate.DisplayFormat.FormatString = "d";
-            this.colLoadDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colLoadDate.FieldName = "LoadDate";
-            this.colLoadDate.GroupFormat.FormatString = "d";
-            this.colLoadDate.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colLoadDate.Name = "colLoadDate";
-            this.colLoadDate.Visible = true;
-            this.colLoadDate.VisibleIndex = 8;
-            // 
-            // colISIN
-            // 
-            this.colISIN.Caption = "ISIN";
-            this.colISIN.FieldName = "ISIN";
-            this.colISIN.Name = "colISIN";
-            this.colISIN.Visible = true;
-            this.colISIN.VisibleIndex = 1;
-            // 
             // barButtonItem1
             // 
             this.barButtonItem1.Caption = "New";
@@ -536,24 +439,6 @@
             this.gridSplitContainer1.Panel1.Controls.Add(this.gridControl);
             this.gridSplitContainer1.Size = new System.Drawing.Size(800, 457);
             this.gridSplitContainer1.TabIndex = 5;
-            // 
-            // btsOTM
-            // 
-            this.btsOTM.Caption = "OTM";
-            this.btsOTM.Id = 32;
-            this.btsOTM.Name = "btsOTM";
-            // 
-            // btsATM
-            // 
-            this.btsATM.Caption = "ATM";
-            this.btsATM.Id = 33;
-            this.btsATM.Name = "btsATM";
-            // 
-            // btsITM
-            // 
-            this.btsITM.Caption = "ITM";
-            this.btsITM.Id = 34;
-            this.btsITM.Name = "btsITM";
             // 
             // OptionUserControl
             // 
@@ -595,19 +480,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgOption;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private System.Windows.Forms.BindingSource bdsOption;
-        private DevExpress.XtraGrid.Columns.GridColumn colB3ID;
-        private DevExpress.XtraGrid.Columns.GridColumn colISIN;
-        private DevExpress.XtraGrid.Columns.GridColumn colCompanyName;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescription;
-        private DevExpress.XtraGrid.Columns.GridColumn colTicker;
-        private DevExpress.XtraGrid.Columns.GridColumn colCurrency;
-        private DevExpress.XtraGrid.Columns.GridColumn colMarketCapitalization;
-        private DevExpress.XtraGrid.Columns.GridColumn colLastPrice;
-        private DevExpress.XtraGrid.Columns.GridColumn colLoadDate;
-        private DevExpress.XtraGrid.Columns.GridColumn colSectorClassificationSetorEconomico;
-        private DevExpress.XtraGrid.Columns.GridColumn colSectorClassificationSubsetorEconomico;
-        private DevExpress.XtraGrid.Columns.GridColumn colSectorClassificationSegmentoEconomico;
+        private System.Windows.Forms.BindingSource bdsOption;       
         private DevExpress.XtraGrid.Views.Grid.GridView mainOptionView;
         private DevExpress.XtraGrid.Columns.GridColumn colOptionB3ID;
         private DevExpress.XtraGrid.Columns.GridColumn colOptionISIN;

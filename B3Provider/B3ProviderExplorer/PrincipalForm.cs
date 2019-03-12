@@ -25,7 +25,7 @@
             InitializeComponent();
             employeesUserControl = CreateUserControl("Employees");
             customersUserControl = CreateUserControl("Customers");
-            accordionControl.SelectedElement = acgBovespa;
+            //accordionControl.SelectedElement = acgBovespa;
         }
         XtraUserControl CreateUserControl(string text)
         {
@@ -53,7 +53,7 @@
         void barButtonNavigation_ItemClick(object sender, ItemClickEventArgs e)
         {
             int barItemIndex = barSubItemNavigation.ItemLinks.IndexOf(e.Link);
-            accordionControl.SelectedElement = mainAccordionGroup.Elements[barItemIndex];
+            //accordionControl.SelectedElement = mainAccordionGroup.Elements[barItemIndex];
         }
         void tabbedView_DocumentClosed(object sender, DocumentEventArgs e)
         {
@@ -64,12 +64,12 @@
         {
             if (tabbedView.Documents.Count != 0)
             {
-                if (e.Document.Caption == "Employees") accordionControl.SelectedElement = aceLoadInstruments;
-                else accordionControl.SelectedElement = acgBovespa;
+                //if (e.Document.Caption == "Employees") accordionControl.SelectedElement = aceLoadInstruments;
+                //else accordionControl.SelectedElement = acgBovespa;
             }
             else
             {
-                accordionControl.SelectedElement = null;
+                //accordionControl.SelectedElement = null;
             }
         }
         void RecreateUserControls(DocumentEventArgs e)

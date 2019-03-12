@@ -1,9 +1,11 @@
 ﻿namespace B3ProviderExplorer.Controls
 {
+    using B3Provider.Records;
     using DevExpress.XtraBars;
     using DevExpress.XtraGrid.Views.Grid;
     using NLog;
     using System;
+    using System.Collections.Generic;
     using System.Data;
     using System.Linq;
     using System.Threading.Tasks;
@@ -157,6 +159,15 @@
         private void bbiNextClose_ItemClick(object sender, ItemClickEventArgs e)
         {
 
+        }
+
+        internal void ShowOptions(List<B3OptionOnEquityInfo> options)
+        {
+            if (options == null || options.Count == 0)
+                return;
+
+            gridControl.DataSource = options;
+            bsiRecordsCount.Caption = String.Format("RECORDS : {0}", options.Count);
         }
     }
 }

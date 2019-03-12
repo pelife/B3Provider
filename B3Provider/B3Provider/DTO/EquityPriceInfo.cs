@@ -6,7 +6,7 @@ namespace B3Provider.DTO
     /// Class used to show equity detailed information and 
     /// price change data
     /// </summary>
-    public class EquityPriceInfoDTO
+    public class EquityPriceInfo
     {
         /// <summary>
         /// Data about the equity 
