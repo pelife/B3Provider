@@ -132,5 +132,22 @@
         {
 
         }
+
+        private void loggingGridView_RowCountChanged(object sender, EventArgs e)
+        {
+            loggingGridView.MoveFirst();
+        }
+
+        private void loggingGridView_RowLoaded(object sender, DevExpress.XtraGrid.Views.Base.RowEventArgs e)
+        {
+
+        }
+
+        private void ImportHollidaysButton_Click(object sender, EventArgs e)
+        {
+            if (HolidaysInputFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+            }
+        }
     }
 };

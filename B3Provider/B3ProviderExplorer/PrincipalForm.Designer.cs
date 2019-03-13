@@ -43,6 +43,9 @@
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrincipalForm));
+            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.skinRibbonGalleryBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barSubItemNavigation = new DevExpress.XtraBars.BarSubItem();
@@ -50,19 +53,22 @@
             this.customersBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.beiDataReferencia = new DevExpress.XtraBars.BarEditItem();
             this.riDataReferencia = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.bbiStaticData = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiMarketData = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupNavigation = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgDate = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgSyncronize = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.dockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.ExploreMenu = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.ExploreMenuBarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.dockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.DatesDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.controlContainer1 = new DevExpress.XtraBars.Docking.ControlContainer();
             this.MainDateNavigator = new DevExpress.XtraScheduler.DateNavigator();
@@ -88,14 +94,16 @@
             this.exceptionGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.ExploreMenu = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.bbiStaticData = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiMarketData = new DevExpress.XtraBars.BarButtonItem();
+            this.backstageViewTabItem1 = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
+            this.DatesMenuPanel = new System.Windows.Forms.Panel();
+            this.ImportHollidaysButton = new DevExpress.XtraEditors.SimpleButton();
+            this.HolidaysInputFile = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExploreMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenuBarManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
             this.DatesDockPanel.SuspendLayout();
             this.controlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainDateNavigator)).BeginInit();
@@ -109,7 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.loggingGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ExploreMenu)).BeginInit();
+            this.DatesMenuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainSplashScreenManager
@@ -129,7 +137,7 @@
             this.bbiStaticData,
             this.bbiMarketData});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 4;
+            this.ribbonControl.MaxItemId = 1;
             this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -137,8 +145,8 @@
             this.ribbonControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.riDataReferencia});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
-            this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(790, 143);
+            this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.True;
+            this.ribbonControl.Size = new System.Drawing.Size(790, 162);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -186,6 +194,18 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.riDataReferencia.Name = "riDataReferencia";
             // 
+            // bbiStaticData
+            // 
+            this.bbiStaticData.Caption = "Static data";
+            this.bbiStaticData.Id = 2;
+            this.bbiStaticData.Name = "bbiStaticData";
+            // 
+            // bbiMarketData
+            // 
+            this.bbiMarketData.Caption = "Market data";
+            this.bbiMarketData.Id = 3;
+            this.bbiMarketData.Name = "bbiMarketData";
+            // 
             // ribbonPage
             // 
             this.ribbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -193,7 +213,7 @@
             this.ribbonPageGroup,
             this.rpgDate,
             this.rpgSyncronize});
-            this.ribbonPage.MergeOrder = 0;
+            this.ribbonPage.MergeOrder = 99;
             this.ribbonPage.Name = "ribbonPage";
             this.ribbonPage.Text = "View";
             // 
@@ -229,29 +249,23 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 568);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 573);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(790, 31);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(790, 26);
             // 
-            // dockManager
+            // ExploreMenu
             // 
-            this.dockManager.Form = this;
-            this.dockManager.MenuManager = this.ExploreMenuBarManager;
-            this.dockManager.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
-            this.DatesDockPanel,
-            this.NavigationDockPanel,
-            this.LoggingDockPanel});
-            this.dockManager.TopZIndexControls.AddRange(new string[] {
-            "DevExpress.XtraBars.BarDockControl",
-            "DevExpress.XtraBars.StandaloneBarDockControl",
-            "System.Windows.Forms.StatusBar",
-            "System.Windows.Forms.MenuStrip",
-            "System.Windows.Forms.StatusStrip",
-            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
-            "DevExpress.XtraBars.Ribbon.RibbonControl",
-            "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
-            "DevExpress.XtraBars.Navigation.TileNavPane"});
+            this.ExploreMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
+            this.ExploreMenu.Manager = this.ExploreMenuBarManager;
+            this.ExploreMenu.Name = "ExploreMenu";
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "NewWatchListBarButtonItem";
+            this.barButtonItem1.Id = 0;
+            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // ExploreMenuBarManager
             // 
@@ -297,30 +311,44 @@
             this.barDockControlRight.Manager = this.ExploreMenuBarManager;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 599);
             // 
-            // barButtonItem1
+            // dockManager
             // 
-            this.barButtonItem1.Caption = "NewWatchListBarButtonItem";
-            this.barButtonItem1.Id = 0;
-            this.barButtonItem1.Name = "barButtonItem1";
+            this.dockManager.Form = this;
+            this.dockManager.MenuManager = this.ExploreMenuBarManager;
+            this.dockManager.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
+            this.DatesDockPanel,
+            this.NavigationDockPanel,
+            this.LoggingDockPanel});
+            this.dockManager.TopZIndexControls.AddRange(new string[] {
+            "DevExpress.XtraBars.BarDockControl",
+            "DevExpress.XtraBars.StandaloneBarDockControl",
+            "System.Windows.Forms.StatusBar",
+            "System.Windows.Forms.MenuStrip",
+            "System.Windows.Forms.StatusStrip",
+            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
+            "DevExpress.XtraBars.Ribbon.RibbonControl",
+            "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
+            "DevExpress.XtraBars.Navigation.TileNavPane"});
             // 
             // DatesDockPanel
             // 
             this.DatesDockPanel.Controls.Add(this.controlContainer1);
             this.DatesDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
             this.DatesDockPanel.ID = new System.Guid("27fe6c15-da22-4360-b0ea-94655f9eb030");
-            this.DatesDockPanel.Location = new System.Drawing.Point(590, 143);
+            this.DatesDockPanel.Location = new System.Drawing.Point(590, 162);
             this.DatesDockPanel.Name = "DatesDockPanel";
             this.DatesDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
             this.DatesDockPanel.SavedSizeFactor = 0D;
-            this.DatesDockPanel.Size = new System.Drawing.Size(200, 425);
+            this.DatesDockPanel.Size = new System.Drawing.Size(200, 411);
             this.DatesDockPanel.Text = "Dates";
             // 
             // controlContainer1
             // 
             this.controlContainer1.Controls.Add(this.MainDateNavigator);
-            this.controlContainer1.Location = new System.Drawing.Point(5, 23);
+            this.controlContainer1.Controls.Add(this.DatesMenuPanel);
+            this.controlContainer1.Location = new System.Drawing.Point(4, 30);
             this.controlContainer1.Name = "controlContainer1";
-            this.controlContainer1.Size = new System.Drawing.Size(191, 398);
+            this.controlContainer1.Size = new System.Drawing.Size(193, 378);
             this.controlContainer1.TabIndex = 0;
             // 
             // MainDateNavigator
@@ -331,9 +359,9 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.MainDateNavigator.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainDateNavigator.FirstDayOfWeek = System.DayOfWeek.Sunday;
-            this.MainDateNavigator.Location = new System.Drawing.Point(0, 0);
+            this.MainDateNavigator.Location = new System.Drawing.Point(0, 30);
             this.MainDateNavigator.Name = "MainDateNavigator";
-            this.MainDateNavigator.Size = new System.Drawing.Size(191, 398);
+            this.MainDateNavigator.Size = new System.Drawing.Size(193, 348);
             this.MainDateNavigator.TabIndex = 0;
             this.MainDateNavigator.CustomDrawDayNumberCell += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.MainDateNavigator_CustomDrawDayNumberCell);
             // 
@@ -342,19 +370,19 @@
             this.NavigationDockPanel.Controls.Add(this.dockPanel_Container);
             this.NavigationDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.NavigationDockPanel.ID = new System.Guid("a045df26-1503-4d9a-99c1-a531310af22b");
-            this.NavigationDockPanel.Location = new System.Drawing.Point(0, 143);
+            this.NavigationDockPanel.Location = new System.Drawing.Point(0, 162);
             this.NavigationDockPanel.Name = "NavigationDockPanel";
             this.NavigationDockPanel.OriginalSize = new System.Drawing.Size(204, 200);
             this.NavigationDockPanel.SavedSizeFactor = 0D;
-            this.NavigationDockPanel.Size = new System.Drawing.Size(204, 425);
+            this.NavigationDockPanel.Size = new System.Drawing.Size(204, 411);
             this.NavigationDockPanel.Text = "Navigation";
             // 
             // dockPanel_Container
             // 
             this.dockPanel_Container.Controls.Add(this.accordionControl);
-            this.dockPanel_Container.Location = new System.Drawing.Point(4, 23);
+            this.dockPanel_Container.Location = new System.Drawing.Point(3, 30);
             this.dockPanel_Container.Name = "dockPanel_Container";
-            this.dockPanel_Container.Size = new System.Drawing.Size(195, 398);
+            this.dockPanel_Container.Size = new System.Drawing.Size(197, 378);
             this.dockPanel_Container.TabIndex = 0;
             // 
             // accordionControl
@@ -365,7 +393,7 @@
             this.mainAccordionGroup});
             this.accordionControl.Location = new System.Drawing.Point(0, 0);
             this.accordionControl.Name = "accordionControl";
-            this.accordionControl.Size = new System.Drawing.Size(195, 398);
+            this.accordionControl.Size = new System.Drawing.Size(197, 378);
             this.accordionControl.TabIndex = 0;
             this.accordionControl.Text = "accordionControl";
             // 
@@ -463,7 +491,7 @@
             this.LoggingDockPanel.Controls.Add(this.dockPanel1_Container);
             this.LoggingDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
             this.LoggingDockPanel.ID = new System.Guid("e42bd751-e192-43eb-ba4b-9f45ec351f22");
-            this.LoggingDockPanel.Location = new System.Drawing.Point(204, 368);
+            this.LoggingDockPanel.Location = new System.Drawing.Point(204, 373);
             this.LoggingDockPanel.Name = "LoggingDockPanel";
             this.LoggingDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
             this.LoggingDockPanel.SavedSizeFactor = 0D;
@@ -473,9 +501,9 @@
             // dockPanel1_Container
             // 
             this.dockPanel1_Container.Controls.Add(this.loggingGridControl);
-            this.dockPanel1_Container.Location = new System.Drawing.Point(4, 24);
+            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 31);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(378, 172);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(380, 166);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // loggingGridControl
@@ -485,7 +513,7 @@
             this.loggingGridControl.MainView = this.loggingGridView;
             this.loggingGridControl.MenuManager = this.ribbonControl;
             this.loggingGridControl.Name = "loggingGridControl";
-            this.loggingGridControl.Size = new System.Drawing.Size(378, 172);
+            this.loggingGridControl.Size = new System.Drawing.Size(380, 166);
             this.loggingGridControl.TabIndex = 0;
             this.loggingGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.loggingGridView});
@@ -501,6 +529,12 @@
             this.exceptionGridColumn});
             this.loggingGridView.GridControl = this.loggingGridControl;
             this.loggingGridView.Name = "loggingGridView";
+            this.loggingGridView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.loggingGridView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.loggingGridView.OptionsBehavior.Editable = false;
+            this.loggingGridView.OptionsBehavior.ReadOnly = true;
+            this.loggingGridView.RowLoaded += new DevExpress.XtraGrid.Views.Base.RowEventHandler(this.loggingGridView_RowLoaded);
+            this.loggingGridView.RowCountChanged += new System.EventHandler(this.loggingGridView_RowCountChanged);
             // 
             // sequenceIDgridColumn
             // 
@@ -509,8 +543,10 @@
             this.sequenceIDgridColumn.FieldName = "SequenceID";
             this.sequenceIDgridColumn.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.sequenceIDgridColumn.Name = "sequenceIDgridColumn";
-            this.sequenceIDgridColumn.Visible = true;
+            this.sequenceIDgridColumn.Visible = false;
             this.sequenceIDgridColumn.VisibleIndex = 0;
+            //this.sequenceIDgridColumn.SortIndex = 0;
+            //this.sequenceIDgridColumn.SortOrder = DevExpress.Data.ColumnSortOrder.Descending;            
             // 
             // loggerNamegridColumn
             // 
@@ -539,6 +575,8 @@
             this.timeLoggergridColumn.Name = "timeLoggergridColumn";
             this.timeLoggergridColumn.Visible = true;
             this.timeLoggergridColumn.VisibleIndex = 2;
+            this.timeLoggergridColumn.SortIndex = 0;
+            this.timeLoggergridColumn.SortOrder = DevExpress.Data.ColumnSortOrder.Descending;            
             // 
             // messageGridColumn
             // 
@@ -569,24 +607,43 @@
             this.documentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedView});
             // 
-            // ExploreMenu
+            // backstageViewTabItem1
             // 
-            this.ExploreMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
-            this.ExploreMenu.Manager = this.ExploreMenuBarManager;
-            this.ExploreMenu.Name = "ExploreMenu";
+            this.backstageViewTabItem1.Caption = "backstageViewTabItem1";
+            this.backstageViewTabItem1.ContentControl = null;
+            this.backstageViewTabItem1.Name = "backstageViewTabItem1";
             // 
-            // bbiStaticData
+            // DatesMenuPanel
             // 
-            this.bbiStaticData.Caption = "Static data";
-            this.bbiStaticData.Id = 2;
-            this.bbiStaticData.Name = "bbiStaticData";
+            this.DatesMenuPanel.Controls.Add(this.ImportHollidaysButton);
+            this.DatesMenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DatesMenuPanel.Location = new System.Drawing.Point(0, 0);
+            this.DatesMenuPanel.Name = "DatesMenuPanel";
+            this.DatesMenuPanel.Size = new System.Drawing.Size(193, 30);
+            this.DatesMenuPanel.TabIndex = 1;
             // 
-            // bbiMarketData
+            // ImportHollidaysButton
             // 
-            this.bbiMarketData.Caption = "Market data";
-            this.bbiMarketData.Id = 3;
-            this.bbiMarketData.Name = "bbiMarketData";
+            this.ImportHollidaysButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.ImportHollidaysButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ImportHollidaysButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ImportHollidaysButton.ImageOptions.Image")));
+            this.ImportHollidaysButton.Location = new System.Drawing.Point(170, 0);
+            this.ImportHollidaysButton.Name = "ImportHollidaysButton";
+            this.ImportHollidaysButton.Size = new System.Drawing.Size(23, 30);
+            toolTipTitleItem5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            toolTipTitleItem5.Text = "Import holidays";
+            toolTipItem5.LeftIndent = 6;
+            toolTipItem5.Text = "input a list of holidays into the systems to make it \r\ncalculate accruals accordi" +
+    "ngly.";
+            superToolTip5.Items.Add(toolTipTitleItem5);
+            superToolTip5.Items.Add(toolTipItem5);
+            this.ImportHollidaysButton.SuperTip = superToolTip5;
+            this.ImportHollidaysButton.TabIndex = 0;
+            this.ImportHollidaysButton.Click += new System.EventHandler(this.ImportHollidaysButton_Click);
+            // 
+            // HolidaysInputFile
+            // 
+            this.HolidaysInputFile.FileName = "xtraOpenFileDialog1";
             // 
             // PrincipalForm
             // 
@@ -610,8 +667,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExploreMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenuBarManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();
             this.DatesDockPanel.ResumeLayout(false);
             this.controlContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MainDateNavigator.CalendarTimeProperties)).EndInit();
@@ -625,7 +683,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.loggingGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ExploreMenu)).EndInit();
+            this.DatesMenuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -680,5 +738,9 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgSyncronize;
         private DevExpress.XtraBars.BarButtonItem bbiStaticData;
         private DevExpress.XtraBars.BarButtonItem bbiMarketData;
+        private DevExpress.XtraBars.Ribbon.BackstageViewTabItem backstageViewTabItem1;
+        private System.Windows.Forms.Panel DatesMenuPanel;
+        private DevExpress.XtraEditors.SimpleButton ImportHollidaysButton;
+        private DevExpress.XtraEditors.XtraOpenFileDialog HolidaysInputFile;
     }
 }

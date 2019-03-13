@@ -33,6 +33,9 @@
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
             this.gridControl = new DevExpress.XtraGrid.GridControl();
             this.bdsEquity = new System.Windows.Forms.BindingSource(this.components);
             this.mainEquityView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -62,10 +65,17 @@
             this.ridClosingDate = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.bbiNextClose = new DevExpress.XtraBars.BarButtonItem();
             this.bbiPreviousClose = new DevExpress.XtraBars.BarButtonItem();
+            this.DownloadStaticData = new DevExpress.XtraBars.BarButtonItem();
+            this.DownloadMarketData = new DevExpress.XtraBars.BarButtonItem();
+            this.DownloadHistory = new DevExpress.XtraBars.BarButtonItem();
+            this.YearHistoryDownload = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryYearHistoryDownload = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.DownloadAll = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgEquity = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ToolsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.MainSplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::B3ProviderExplorer.Controls.WaitForm1), true, true, typeof(System.Windows.Forms.UserControl), true);
             this.gridSplitContainer1 = new DevExpress.XtraGrid.GridSplitContainer();
@@ -75,6 +85,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryYearHistoryDownload)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).BeginInit();
             this.gridSplitContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -87,7 +98,7 @@
             this.gridControl.MainView = this.mainEquityView;
             this.gridControl.MenuManager = this.ribbonControl;
             this.gridControl.Name = "gridControl";
-            this.gridControl.Size = new System.Drawing.Size(800, 457);
+            this.gridControl.Size = new System.Drawing.Size(800, 442);
             this.gridControl.TabIndex = 2;
             this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.mainEquityView});
@@ -241,17 +252,23 @@
             this.bbiFilter,
             this.bbiClosingDate,
             this.bbiNextClose,
-            this.bbiPreviousClose});
+            this.bbiPreviousClose,
+            this.DownloadStaticData,
+            this.DownloadMarketData,
+            this.DownloadHistory,
+            this.YearHistoryDownload,
+            this.DownloadAll});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 30;
+            this.ribbonControl.MaxItemId = 35;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.ribbonControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.ridClosingDate});
+            this.ridClosingDate,
+            this.repositoryYearHistoryDownload});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(800, 116);
+            this.ribbonControl.Size = new System.Drawing.Size(800, 132);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -370,12 +387,63 @@
             this.bbiPreviousClose.Name = "bbiPreviousClose";
             this.bbiPreviousClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiPreviousClose_ItemClick);
             // 
+            // DownloadStaticData
+            // 
+            this.DownloadStaticData.Caption = "Static";
+            this.DownloadStaticData.Id = 30;
+            this.DownloadStaticData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DownloadStaticData.ImageOptions.Image")));
+            this.DownloadStaticData.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DownloadStaticData.ImageOptions.LargeImage")));
+            this.DownloadStaticData.Name = "DownloadStaticData";
+            // 
+            // DownloadMarketData
+            // 
+            this.DownloadMarketData.Caption = "Market";
+            this.DownloadMarketData.Id = 31;
+            this.DownloadMarketData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DownloadMarketData.ImageOptions.Image")));
+            this.DownloadMarketData.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DownloadMarketData.ImageOptions.LargeImage")));
+            this.DownloadMarketData.Name = "DownloadMarketData";
+            // 
+            // DownloadHistory
+            // 
+            this.DownloadHistory.Caption = "History";
+            this.DownloadHistory.Id = 32;
+            this.DownloadHistory.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DownloadHistory.ImageOptions.Image")));
+            this.DownloadHistory.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DownloadHistory.ImageOptions.LargeImage")));
+            this.DownloadHistory.Name = "DownloadHistory";
+            // 
+            // YearHistoryDownload
+            // 
+            this.YearHistoryDownload.Caption = "Year";
+            this.YearHistoryDownload.Edit = this.repositoryYearHistoryDownload;
+            this.YearHistoryDownload.EditWidth = 70;
+            this.YearHistoryDownload.Id = 33;
+            this.YearHistoryDownload.Name = "YearHistoryDownload";
+            // 
+            // repositoryYearHistoryDownload
+            // 
+            this.repositoryYearHistoryDownload.AutoHeight = false;
+            this.repositoryYearHistoryDownload.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryYearHistoryDownload.IsFloatValue = false;
+            this.repositoryYearHistoryDownload.Mask.EditMask = "N00";
+            this.repositoryYearHistoryDownload.Name = "repositoryYearHistoryDownload";
+            // 
+            // DownloadAll
+            // 
+            this.DownloadAll.Caption = "All";
+            this.DownloadAll.Id = 34;
+            this.DownloadAll.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DownloadAll.ImageOptions.Image")));
+            this.DownloadAll.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DownloadAll.ImageOptions.LargeImage")));
+            this.DownloadAll.Name = "DownloadAll";
+            this.DownloadAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.DownloadAll_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroup2,
-            this.rpgEquity});
+            this.rpgEquity,
+            this.ToolsRibbonPageGroup});
             this.ribbonPage1.MergeOrder = 1;
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Home";
@@ -407,13 +475,31 @@
             this.rpgEquity.Name = "rpgEquity";
             this.rpgEquity.Text = "Equity";
             // 
+            // ToolsRibbonPageGroup
+            // 
+            this.ToolsRibbonPageGroup.ItemLinks.Add(this.DownloadAll);
+            this.ToolsRibbonPageGroup.ItemLinks.Add(this.DownloadStaticData);
+            this.ToolsRibbonPageGroup.ItemLinks.Add(this.DownloadMarketData);
+            this.ToolsRibbonPageGroup.ItemLinks.Add(this.DownloadHistory);
+            this.ToolsRibbonPageGroup.ItemLinks.Add(this.YearHistoryDownload);
+            this.ToolsRibbonPageGroup.ItemsLayout = DevExpress.XtraBars.Ribbon.RibbonPageGroupItemsLayout.TwoRows;
+            this.ToolsRibbonPageGroup.Name = "ToolsRibbonPageGroup";
+            toolTipTitleItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            toolTipTitleItem2.Text = "Tools";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "Import files, load into the provider, save to database";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
+            this.ToolsRibbonPageGroup.SuperTip = superToolTip2;
+            this.ToolsRibbonPageGroup.Text = "Tools";
+            // 
             // ribbonStatusBar
             // 
             this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 573);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 574);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(800, 27);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(800, 26);
             // 
             // MainSplashScreenManager
             // 
@@ -423,10 +509,10 @@
             // 
             this.gridSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridSplitContainer1.Grid = this.gridControl;
-            this.gridSplitContainer1.Location = new System.Drawing.Point(0, 116);
+            this.gridSplitContainer1.Location = new System.Drawing.Point(0, 132);
             this.gridSplitContainer1.Name = "gridSplitContainer1";
             this.gridSplitContainer1.Panel1.Controls.Add(this.gridControl);
-            this.gridSplitContainer1.Size = new System.Drawing.Size(800, 457);
+            this.gridSplitContainer1.Size = new System.Drawing.Size(800, 442);
             this.gridSplitContainer1.TabIndex = 5;
             // 
             // EquityUserControl
@@ -445,6 +531,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ridClosingDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryYearHistoryDownload)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).EndInit();
             this.gridSplitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -490,6 +577,12 @@
         private DevExpress.XtraBars.BarButtonItem bbiNextClose;
         private DevExpress.XtraBars.BarButtonItem bbiPreviousClose;
         private DevExpress.XtraGrid.GridSplitContainer gridSplitContainer1;
-
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ToolsRibbonPageGroup;
+        private DevExpress.XtraBars.BarButtonItem DownloadStaticData;
+        private DevExpress.XtraBars.BarButtonItem DownloadMarketData;
+        private DevExpress.XtraBars.BarButtonItem DownloadHistory;
+        private DevExpress.XtraBars.BarEditItem YearHistoryDownload;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryYearHistoryDownload;
+        private DevExpress.XtraBars.BarButtonItem DownloadAll;
     }
 }

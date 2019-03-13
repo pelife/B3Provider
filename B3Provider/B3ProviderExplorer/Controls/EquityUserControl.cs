@@ -50,6 +50,23 @@
 
         private void InstrumentsUserControl_Load(object sender, EventArgs e)
         {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            SetupYearSpin();
+        }
+
+        private void SetupYearSpin()
+        {
+            repositoryYearHistoryDownload.MaxValue = DateTime.Today.Year;
+            repositoryYearHistoryDownload.MinValue = DateTime.Today.Year - 10;
+            YearHistoryDownload.EditValue = DateTime.Today.Year;
+        }
+
+        private void LoadAllData()
+        {
             PreLoadData();
             LoadData();
         }
@@ -213,6 +230,11 @@
         private void OptioDocument_Disposed(object sender, EventArgs e)
         {
             optionsControl = null;
+        }
+
+        private void DownloadAll_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.LoadAllData();
         }
     }
 }
