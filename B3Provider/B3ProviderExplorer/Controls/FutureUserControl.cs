@@ -25,7 +25,7 @@
 
         private void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
         {
-            gridControl.ShowRibbonPrintPreview();
+            FuturesGridControl.ShowRibbonPrintPreview();
         }
 
 
@@ -34,15 +34,9 @@
 
         }
 
-        private void bbiStocks_ItemClick(object sender, ItemClickEventArgs e)
+        private void bbiFuture_ItemClick(object sender, ItemClickEventArgs e)
         {
-            gridControl.DataSource = providerClient.EquityInstruments;
-            bsiRecordsCount.Caption = "RECORDS : " + providerClient.EquityInstruments.Count;
-        }
-
-        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            gridControl.DataSource = providerClient.OptionInstruments;
+            FuturesGridControl.DataSource = providerClient.FutureInstruments;
             bsiRecordsCount.Caption = "RECORDS : " + providerClient.EquityInstruments.Count;
         }
 

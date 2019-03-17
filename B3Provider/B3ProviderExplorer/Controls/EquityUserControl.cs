@@ -96,8 +96,8 @@
             loggingAction?.BeginInvoke("Loading 2018", null, null); //fire and forget
             providerClient.LoadHistoricQuotes(2018);
 
-            loggingAction?.BeginInvoke("Calculating changes", null, null); //fire and forget
-            providerClient.CalculateHistoricChanges();
+            //loggingAction?.BeginInvoke("Calculating changes", null, null); //fire and forget
+            //providerClient.CalculateHistoricChanges();
         }
 
         private void ChangeLoadingMessage(string message)

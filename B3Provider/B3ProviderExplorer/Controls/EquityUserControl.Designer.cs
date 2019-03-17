@@ -394,6 +394,7 @@
             this.DownloadStaticData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DownloadStaticData.ImageOptions.Image")));
             this.DownloadStaticData.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DownloadStaticData.ImageOptions.LargeImage")));
             this.DownloadStaticData.Name = "DownloadStaticData";
+            this.DownloadStaticData.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             // 
             // DownloadMarketData
             // 
@@ -402,6 +403,7 @@
             this.DownloadMarketData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DownloadMarketData.ImageOptions.Image")));
             this.DownloadMarketData.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DownloadMarketData.ImageOptions.LargeImage")));
             this.DownloadMarketData.Name = "DownloadMarketData";
+            this.DownloadMarketData.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             // 
             // DownloadHistory
             // 
@@ -410,6 +412,7 @@
             this.DownloadHistory.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DownloadHistory.ImageOptions.Image")));
             this.DownloadHistory.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DownloadHistory.ImageOptions.LargeImage")));
             this.DownloadHistory.Name = "DownloadHistory";
+            this.DownloadHistory.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // YearHistoryDownload
             // 
@@ -435,6 +438,7 @@
             this.DownloadAll.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DownloadAll.ImageOptions.Image")));
             this.DownloadAll.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DownloadAll.ImageOptions.LargeImage")));
             this.DownloadAll.Name = "DownloadAll";
+            this.DownloadAll.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.DownloadAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.DownloadAll_ItemClick);
             // 
             // ribbonPage1

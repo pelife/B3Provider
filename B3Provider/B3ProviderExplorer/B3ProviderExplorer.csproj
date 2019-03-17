@@ -230,6 +230,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\B3Provider.DTO.EquityPriceInfo.datasource" />
     <None Include="Properties\DataSources\B3Provider.Records.B3EquityInfo.datasource" />
+    <None Include="Properties\DataSources\B3Provider.Records.B3FutureInfo.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

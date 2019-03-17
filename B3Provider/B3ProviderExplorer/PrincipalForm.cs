@@ -149,5 +149,31 @@
             {
             }
         }
+
+        private void aceStocks_Click(object sender, EventArgs e)
+        {
+            var instrumentForm = new Controls.EquityUserControl(tabbedView);
+            instrumentForm.Text = "Stocks";
+            tabbedView.AddDocument(instrumentForm);
+            tabbedView.ActivateDocument(instrumentForm);
+        }
+
+        private void aceFuture_Click(object sender, EventArgs e)
+        {
+            var instrumentForm = new Controls.FutureUserControl();
+            instrumentForm.Text = "Futures";
+            tabbedView.AddDocument(instrumentForm);
+            tabbedView.ActivateDocument(instrumentForm);
+        }
+
+        private void aceOption_Click(object sender, EventArgs e)
+        {
+            var instrumentForm = new Controls.OptionUserControl();
+            instrumentForm.Text = "Options";
+            tabbedView.AddDocument(instrumentForm);
+            tabbedView.ActivateDocument(instrumentForm);
+
+            instrumentForm.ShowOptions(null);
+        }
     }
 };
