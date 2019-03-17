@@ -42,13 +42,19 @@ namespace B3Provider.Readers
     /// <typeparam name="T">Type os the register the Readers is supposed to return</typeparam>
     public abstract class AbstractReader<T> : IReader<T>
     {
+        #region "constantes"
+        const char CR = '\r';
+        const char LF = '\n';
+        const char NULL = (char)0;
+        #endregion
+
         #region "common IReader<T> implementation"
         /// <summary>
         /// Strategy to read files, what should the system do in case there are many files or.
         /// </summary>
         public ReadStrategy ReadStrategy { get; set; } = ReadStrategy.ZipFileReadMostRecent;
         #endregion
-        
+
         #region "specific IReader<T> implementation"
         /// <summary>
         /// Abstract method that every reader must implement in order to function properly
@@ -72,7 +78,9 @@ namespace B3Provider.Readers
         protected string[] UnzipFile(string zipFilePath, string destinationPath)
         {
             if (ReadStrategy == B3Provider.ReadStrategy.ZipFileReadAllOverrideRepeated)
+            {
                 return UnzipAllFiles(zipFilePath, destinationPath);
+            }
 
             var filePath = UnzipLatestFile(zipFilePath, destinationPath);
             return new string[] { filePath };
@@ -99,8 +107,51 @@ namespace B3Provider.Readers
             Directory.CreateDirectory(tempDirectory);
             return tempDirectory;
         }
+
+        /// <summary>
+        /// Returns the number of lines in the given <paramref name="stream"/>.
+        /// </summary>        
+        public long CountLines(Stream stream)
+        {
+            //http://www.nimaara.com/2018/03/20/counting-lines-of-a-text-file/
+            //https://github.com/NimaAra/Easy.Common/blob/master/Easy.Common/Extensions/StreamExtensions.cs
+
+            var lineCount = 0L;
+            var byteBuffer = new byte[1024 * 1024];
+            var detectedEOL = NULL;
+            var currentChar = NULL;
+
+            int bytesRead;
+            while ((bytesRead = stream.Read(byteBuffer, 0, byteBuffer.Length)) > 0)
+            {
+                for (var i = 0; i < bytesRead; i++)
+                {
+                    currentChar = (char)byteBuffer[i];
+
+                    if (detectedEOL != NULL)
+                    {
+                        if (currentChar == detectedEOL)
+                        {
+                            lineCount++;
+                        }
+                    }
+                    else if (currentChar == LF || currentChar == CR)
+                    {
+                        detectedEOL = currentChar;
+                        lineCount++;
+                    }
+                }
+            }
+
+            if (currentChar != LF && currentChar != CR && currentChar != NULL)
+            {
+                lineCount++;
+            }
+
+            return lineCount;
+        }
         #endregion
-        
+
         #region "private methods"
         /// <summary>
         /// Method that will extract from file only the most recent file.
@@ -118,7 +169,7 @@ namespace B3Provider.Readers
             {
                 var latestFile = zip.Entries.OrderByDescending(e => e.LastWriteTime).FirstOrDefault();
                 if (latestFile != null)
-                {   
+                {
                     destinationFilePath = Path.GetFullPath(Path.Combine(destinationPath, latestFile.FullName));
                     latestFile.ExtractToFile(destinationFilePath);
                 }
@@ -136,9 +187,9 @@ namespace B3Provider.Readers
         /// returns the file path of all the files extracted from zip.
         /// </returns>
         private string[] UnzipAllFiles(string zipFilePath, string destinationPath)
-        {   
+        {
             ZipFile.ExtractToDirectory(zipFilePath, destinationPath);
-            return Directory.GetFiles(destinationPath); 
+            return Directory.GetFiles(destinationPath);
         }
         #endregion
 

@@ -1,4 +1,6 @@
-﻿namespace B3ProviderExplorer
+﻿using B3ProviderExplorer.Controls;
+
+namespace B3ProviderExplorer
 {
     partial class PrincipalForm
     {
@@ -30,26 +32,31 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraSplashScreen.SplashScreenManager MainSplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::B3ProviderExplorer.SplashScreen1), true, true, true);
-            DevExpress.Utils.SuperToolTip superToolTip8 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem8 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem8 = new DevExpress.Utils.ToolTipItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrincipalForm));
-            DevExpress.Utils.SuperToolTip superToolTip9 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem9 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem9 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip10 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem10 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem10 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip11 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem11 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem11 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem7 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip12 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem12 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem12 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
+            this.bccB3ProviderConfiguration = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
+            this.bccAbout = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
+            this.bvtAbout = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
+            this.bvtB3ProviderConfig = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
             this.skinRibbonGalleryBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barSubItemNavigation = new DevExpress.XtraBars.BarSubItem();
             this.employeesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -85,8 +92,15 @@
             this.aceLoadInstruments = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.aceLoadCurrentMarketData = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.aceLoadHistory = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.aceStocks = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.aceFuture = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.aceOption = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.acgExplore = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.aceAll = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.IdeasAccordionGroup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.PortfolioAccordionGroup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.AccountAccordionGroup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.AccountingAccordionGroup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.LoggingDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.loggingGridControl = new DevExpress.XtraGrid.GridControl();
@@ -99,13 +113,11 @@
             this.exceptionGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.backstageViewTabItem1 = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
             this.HolidaysInputFile = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.aceStocks = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.aceFuture = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.aceOption = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
+            this.backstageViewControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenu)).BeginInit();
@@ -133,6 +145,7 @@
             // 
             // ribbonControl
             // 
+            this.ribbonControl.ApplicationButtonDropDownControl = this.backstageViewControl1;
             this.ribbonControl.ExpandCollapseItem.Id = 0;
             this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
@@ -156,6 +169,51 @@
             this.ribbonControl.Size = new System.Drawing.Size(790, 162);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
+            // 
+            // backstageViewControl1
+            // 
+            this.backstageViewControl1.Controls.Add(this.bccB3ProviderConfiguration);
+            this.backstageViewControl1.Controls.Add(this.bccAbout);
+            this.backstageViewControl1.Items.Add(this.bvtAbout);
+            this.backstageViewControl1.Items.Add(this.bvtB3ProviderConfig);
+            this.backstageViewControl1.Location = new System.Drawing.Point(21, 36);
+            this.backstageViewControl1.Name = "backstageViewControl1";
+            this.backstageViewControl1.OwnerControl = this.ribbonControl;
+            this.backstageViewControl1.SelectedTab = this.bvtB3ProviderConfig;
+            this.backstageViewControl1.SelectedTabIndex = 1;
+            this.backstageViewControl1.Size = new System.Drawing.Size(713, 509);
+            this.backstageViewControl1.TabIndex = 10;
+            // 
+            // bccB3ProviderConfiguration
+            // 
+            this.bccB3ProviderConfiguration.Location = new System.Drawing.Point(185, 63);
+            this.bccB3ProviderConfiguration.Name = "bccB3ProviderConfiguration";
+            this.bccB3ProviderConfiguration.Size = new System.Drawing.Size(527, 445);
+            this.bccB3ProviderConfiguration.TabIndex = 2;
+            // 
+            // bccAbout
+            // 
+            this.bccAbout.Location = new System.Drawing.Point(185, 63);
+            this.bccAbout.Name = "bccAbout";
+            this.bccAbout.Size = new System.Drawing.Size(527, 445);
+            this.bccAbout.TabIndex = 1;
+            // 
+            // bvtAbout
+            // 
+            this.bvtAbout.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("bvtAbout.Appearance.Image")));
+            this.bvtAbout.Appearance.Options.UseImage = true;
+            this.bvtAbout.Caption = "About";
+            this.bvtAbout.ContentControl = this.bccAbout;
+            this.bvtAbout.Name = "bvtAbout";
+            // 
+            // bvtB3ProviderConfig
+            // 
+            this.bvtB3ProviderConfig.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("bvtB3ProviderConfig.Appearance.Image")));
+            this.bvtB3ProviderConfig.Appearance.Options.UseImage = true;
+            this.bvtB3ProviderConfig.Caption = "B3 Provider Config";
+            this.bvtB3ProviderConfig.ContentControl = this.bccB3ProviderConfiguration;
+            this.bvtB3ProviderConfig.Name = "bvtB3ProviderConfig";
+            this.bvtB3ProviderConfig.Selected = true;
             // 
             // skinRibbonGalleryBarItem
             // 
@@ -389,14 +447,14 @@
             this.ImportHollidaysButton.Location = new System.Drawing.Point(170, 0);
             this.ImportHollidaysButton.Name = "ImportHollidaysButton";
             this.ImportHollidaysButton.Size = new System.Drawing.Size(23, 30);
-            toolTipTitleItem8.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            toolTipTitleItem8.Text = "Import holidays";
-            toolTipItem8.LeftIndent = 6;
-            toolTipItem8.Text = "input a list of holidays into the systems to make it \r\ncalculate accruals accordi" +
+            toolTipTitleItem5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            toolTipTitleItem5.Text = "Import holidays";
+            toolTipItem5.LeftIndent = 6;
+            toolTipItem5.Text = "input a list of holidays into the systems to make it \r\ncalculate accruals accordi" +
     "ngly.";
-            superToolTip8.Items.Add(toolTipTitleItem8);
-            superToolTip8.Items.Add(toolTipItem8);
-            this.ImportHollidaysButton.SuperTip = superToolTip8;
+            superToolTip5.Items.Add(toolTipTitleItem5);
+            superToolTip5.Items.Add(toolTipItem5);
+            this.ImportHollidaysButton.SuperTip = superToolTip5;
             this.ImportHollidaysButton.TabIndex = 0;
             this.ImportHollidaysButton.Click += new System.EventHandler(this.ImportHollidaysButton_Click);
             // 
@@ -425,10 +483,16 @@
             this.accordionControl.AllowItemSelection = true;
             this.accordionControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.accordionControl.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.mainAccordionGroup});
+            this.mainAccordionGroup,
+            this.IdeasAccordionGroup,
+            this.PortfolioAccordionGroup,
+            this.AccountAccordionGroup,
+            this.AccountingAccordionGroup});
             this.accordionControl.Location = new System.Drawing.Point(0, 0);
             this.accordionControl.Name = "accordionControl";
             this.accordionControl.RootDisplayMode = DevExpress.XtraBars.Navigation.AccordionControlRootDisplayMode.Footer;
+            this.accordionControl.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Hidden;
+            this.accordionControl.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
             this.accordionControl.Size = new System.Drawing.Size(197, 378);
             this.accordionControl.TabIndex = 0;
             this.accordionControl.Text = "accordionControl";
@@ -442,8 +506,9 @@
             this.acgExplore});
             this.mainAccordionGroup.Expanded = true;
             this.mainAccordionGroup.HeaderVisible = false;
+            this.mainAccordionGroup.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("mainAccordionGroup.ImageOptions.Image")));
             this.mainAccordionGroup.Name = "mainAccordionGroup";
-            this.mainAccordionGroup.Text = "mainGroup";
+            this.mainAccordionGroup.Text = "Explore";
             // 
             // acgBovespa
             // 
@@ -467,12 +532,12 @@
             // 
             this.aceLoadInstruments.Name = "aceLoadInstruments";
             this.aceLoadInstruments.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem9.Text = "Load instruments";
-            toolTipItem9.LeftIndent = 6;
-            toolTipItem9.Text = "Load intrument information from source";
-            superToolTip9.Items.Add(toolTipTitleItem9);
-            superToolTip9.Items.Add(toolTipItem9);
-            this.aceLoadInstruments.SuperTip = superToolTip9;
+            toolTipTitleItem1.Text = "Load instruments";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "Load intrument information from source";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            this.aceLoadInstruments.SuperTip = superToolTip1;
             this.aceLoadInstruments.Text = "Intruments";
             this.aceLoadInstruments.Visible = false;
             this.aceLoadInstruments.Click += new System.EventHandler(this.aceLoadInstruments_Click);
@@ -481,12 +546,12 @@
             // 
             this.aceLoadCurrentMarketData.Name = "aceLoadCurrentMarketData";
             this.aceLoadCurrentMarketData.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem10.Text = "Load prices";
-            toolTipItem10.LeftIndent = 6;
-            toolTipItem10.Text = "Load current intrument price information from source";
-            superToolTip10.Items.Add(toolTipTitleItem10);
-            superToolTip10.Items.Add(toolTipItem10);
-            this.aceLoadCurrentMarketData.SuperTip = superToolTip10;
+            toolTipTitleItem2.Text = "Load prices";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "Load current intrument price information from source";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
+            this.aceLoadCurrentMarketData.SuperTip = superToolTip2;
             this.aceLoadCurrentMarketData.Text = "Prices";
             this.aceLoadCurrentMarketData.Visible = false;
             this.aceLoadCurrentMarketData.Click += new System.EventHandler(this.aceLoadCurrentMarketData_Click);
@@ -495,15 +560,36 @@
             // 
             this.aceLoadHistory.Name = "aceLoadHistory";
             this.aceLoadHistory.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem11.Text = "Load historic";
-            toolTipItem11.LeftIndent = 6;
-            toolTipItem11.Text = "Load historic prices of intruments from source";
-            superToolTip11.Items.Add(toolTipTitleItem11);
-            superToolTip11.Items.Add(toolTipItem11);
-            this.aceLoadHistory.SuperTip = superToolTip11;
+            toolTipTitleItem3.Text = "Load historic";
+            toolTipItem3.LeftIndent = 6;
+            toolTipItem3.Text = "Load historic prices of intruments from source";
+            superToolTip3.Items.Add(toolTipTitleItem3);
+            superToolTip3.Items.Add(toolTipItem3);
+            this.aceLoadHistory.SuperTip = superToolTip3;
             this.aceLoadHistory.Text = "Historic";
             this.aceLoadHistory.Visible = false;
             this.aceLoadHistory.Click += new System.EventHandler(this.aceLoadHistory_Click);
+            // 
+            // aceStocks
+            // 
+            this.aceStocks.Name = "aceStocks";
+            this.aceStocks.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.aceStocks.Text = "Stocks";
+            this.aceStocks.Click += new System.EventHandler(this.aceStocks_Click);
+            // 
+            // aceFuture
+            // 
+            this.aceFuture.Name = "aceFuture";
+            this.aceFuture.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.aceFuture.Text = "Futures";
+            this.aceFuture.Click += new System.EventHandler(this.aceFuture_Click);
+            // 
+            // aceOption
+            // 
+            this.aceOption.Name = "aceOption";
+            this.aceOption.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.aceOption.Text = "Options";
+            this.aceOption.Click += new System.EventHandler(this.aceOption_Click);
             // 
             // acgExplore
             // 
@@ -516,12 +602,12 @@
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl),
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons)});
             this.acgExplore.Name = "acgExplore";
-            toolTipTitleItem7.Text = "Explore";
-            toolTipItem7.LeftIndent = 6;
-            toolTipItem7.Text = "Discover what is happening to instruments";
-            superToolTip7.Items.Add(toolTipTitleItem7);
-            superToolTip7.Items.Add(toolTipItem7);
-            this.acgExplore.SuperTip = superToolTip7;
+            toolTipTitleItem4.Text = "Explore";
+            toolTipItem4.LeftIndent = 6;
+            toolTipItem4.Text = "Discover what is happening to instruments";
+            superToolTip4.Items.Add(toolTipTitleItem4);
+            superToolTip4.Items.Add(toolTipItem4);
+            this.acgExplore.SuperTip = superToolTip4;
             this.acgExplore.Text = "Explore";
             // 
             // aceAll
@@ -529,6 +615,30 @@
             this.aceAll.Name = "aceAll";
             this.aceAll.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.aceAll.Text = "All";
+            // 
+            // IdeasAccordionGroup
+            // 
+            this.IdeasAccordionGroup.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("IdeasAccordionGroup.ImageOptions.Image")));
+            this.IdeasAccordionGroup.Name = "IdeasAccordionGroup";
+            this.IdeasAccordionGroup.Text = "Ideas";
+            // 
+            // PortfolioAccordionGroup
+            // 
+            this.PortfolioAccordionGroup.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("PortfolioAccordionGroup.ImageOptions.Image")));
+            this.PortfolioAccordionGroup.Name = "PortfolioAccordionGroup";
+            this.PortfolioAccordionGroup.Text = "Portfolio";
+            // 
+            // AccountAccordionGroup
+            // 
+            this.AccountAccordionGroup.ImageOptions.Image = global::B3ProviderExplorer.Properties.Resources.gold_32;
+            this.AccountAccordionGroup.Name = "AccountAccordionGroup";
+            this.AccountAccordionGroup.Text = "Accounts";
+            // 
+            // AccountingAccordionGroup
+            // 
+            this.AccountingAccordionGroup.ImageOptions.Image = global::B3ProviderExplorer.Properties.Resources.accounting_32;
+            this.AccountingAccordionGroup.Name = "AccountingAccordionGroup";
+            this.AccountingAccordionGroup.Text = "Accounting";
             // 
             // LoggingDockPanel
             // 
@@ -649,12 +759,6 @@
             this.documentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedView});
             // 
-            // backstageViewTabItem1
-            // 
-            this.backstageViewTabItem1.Caption = "backstageViewTabItem1";
-            this.backstageViewTabItem1.ContentControl = null;
-            this.backstageViewTabItem1.Name = "backstageViewTabItem1";
-            // 
             // HolidaysInputFile
             // 
             this.HolidaysInputFile.FileName = "xtraOpenFileDialog1";
@@ -663,34 +767,13 @@
             // 
             this.accordionControlElement1.Name = "accordionControlElement1";
             this.accordionControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem12.Text = "Load instruments";
-            toolTipItem12.LeftIndent = 6;
-            toolTipItem12.Text = "Load intrument information from source";
-            superToolTip12.Items.Add(toolTipTitleItem12);
-            superToolTip12.Items.Add(toolTipItem12);
-            this.accordionControlElement1.SuperTip = superToolTip12;
+            toolTipTitleItem6.Text = "Load instruments";
+            toolTipItem6.LeftIndent = 6;
+            toolTipItem6.Text = "Load intrument information from source";
+            superToolTip6.Items.Add(toolTipTitleItem6);
+            superToolTip6.Items.Add(toolTipItem6);
+            this.accordionControlElement1.SuperTip = superToolTip6;
             this.accordionControlElement1.Text = "Intruments";
-            // 
-            // aceStocks
-            // 
-            this.aceStocks.Name = "aceStocks";
-            this.aceStocks.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.aceStocks.Text = "Stocks";
-            this.aceStocks.Click += new System.EventHandler(this.aceStocks_Click);
-            // 
-            // aceFuture
-            // 
-            this.aceFuture.Name = "aceFuture";
-            this.aceFuture.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.aceFuture.Text = "Futures";
-            this.aceFuture.Click += new System.EventHandler(this.aceFuture_Click);
-            // 
-            // aceOption
-            // 
-            this.aceOption.Name = "aceOption";
-            this.aceOption.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.aceOption.Text = "Options";
-            this.aceOption.Click += new System.EventHandler(this.aceOption_Click);
             // 
             // PrincipalForm
             // 
@@ -702,6 +785,7 @@
             this.Controls.Add(this.DatesDockPanel);
             this.Controls.Add(this.ribbonControl);
             this.Controls.Add(this.ribbonStatusBar);
+            this.Controls.Add(this.backstageViewControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -712,6 +796,8 @@
             this.StatusBar = this.ribbonStatusBar;
             this.Load += new System.EventHandler(this.PrincipalForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).EndInit();
+            this.backstageViewControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riDataReferencia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExploreMenu)).EndInit();
@@ -784,8 +870,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgDate;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgSyncronize;
         private DevExpress.XtraBars.BarButtonItem bbiStaticData;
-        private DevExpress.XtraBars.BarButtonItem bbiMarketData;
-        private DevExpress.XtraBars.Ribbon.BackstageViewTabItem backstageViewTabItem1;
+        private DevExpress.XtraBars.BarButtonItem bbiMarketData;        
         private System.Windows.Forms.Panel DatesMenuPanel;
         private DevExpress.XtraEditors.SimpleButton ImportHollidaysButton;
         private DevExpress.XtraEditors.XtraOpenFileDialog HolidaysInputFile;
@@ -793,5 +878,14 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement aceFuture;
         private DevExpress.XtraBars.Navigation.AccordionControlElement aceOption;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
+        private DevExpress.XtraBars.Ribbon.BackstageViewControl backstageViewControl1;
+        private DevExpress.XtraBars.Ribbon.BackstageViewClientControl bccAbout;
+        private DevExpress.XtraBars.Ribbon.BackstageViewTabItem bvtAbout;
+        private DevExpress.XtraBars.Ribbon.BackstageViewClientControl bccB3ProviderConfiguration;
+        private DevExpress.XtraBars.Ribbon.BackstageViewTabItem bvtB3ProviderConfig;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement IdeasAccordionGroup;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement PortfolioAccordionGroup;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement AccountAccordionGroup;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement AccountingAccordionGroup;
     }
 }

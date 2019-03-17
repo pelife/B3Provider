@@ -186,6 +186,8 @@
     <Compile Include="SplashScreen1.Designer.cs">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
     </Compile>
+    <None Include="Images\gold_32.png" />
+    <None Include="Images\accounting_32.png" />
     <Content Include="time_is_money_3.ico" />
     <EmbeddedResource Include="Controls\GovBondUserControl.resx">
       <DependentUpon>GovBondUserControl.cs</DependentUpon>
