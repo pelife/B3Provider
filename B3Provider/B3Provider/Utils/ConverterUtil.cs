@@ -57,6 +57,31 @@ namespace B3Provider.Utils
             return result;
         }
 
+        public static T To<T>(this string s) where T : struct
+        {
+            T result = default(T);
+            try
+            {
+                if (!string.IsNullOrEmpty(s) && s.Trim().Length > 0)
+                {
+                    TypeConverter conv = TypeDescriptor.GetConverter(typeof(T));
+                    result = (T)conv.ConvertFrom(s);
+                }
+            }
+            catch { }
+            return result;
+        }
+
+        public static T To<T>(this string s, CultureInfo cultureToSet) where T : struct
+        {
+            var currentCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = cultureToSet;
+            var result = s.To<T>();
+            Thread.CurrentThread.CurrentCulture = currentCulture;
+            return result;
+        }
+
+
         public static Nullable<T> ToNullable<T>(this string s, CultureInfo cultureToSet) where T : struct
         {
             var currentCulture = Thread.CurrentThread.CurrentCulture;

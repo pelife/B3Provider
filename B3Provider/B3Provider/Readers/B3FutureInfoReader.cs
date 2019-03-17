@@ -1,13 +1,56 @@
-﻿using B3Provider.Records;
-using B3Provider.Utils;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Xml;
+﻿#region License
+/*
+ * B3FutureInfoReader.cs
+ *
+ * The MIT License
+ *
+ * Copyright (c) 2019 Felipe Bahiana Almeida
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * 
+ * Contributors:
+ * - Felipe Bahiana Almeida <felipe.almeida@gmail.com> https://www.linkedin.com/in/felipe-almeida-ba222577
+ */
+#endregion
 
 namespace B3Provider.Readers
 {
+    using B3Provider.Records;
+    using B3Provider.Utils;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Xml;
+
+    /// <summary>
+    /// Method responsible for reading all the options on future info from B3 instrument file
+    /// </summary>
     public class B3FutureInfoReader : AbstractReader<B3FutureInfo>
     {
+        #region "public methods"
+        /// <summary>
+        /// Method responsible to read records from file
+        /// </summary>
+        /// <param name="filePath">File to read records from</param>
+        /// <returns>
+        /// List of all options on future instruments found
+        /// </returns>
         public override IList<B3FutureInfo> ReadRecords(string filePath)
         {
             var listOfFuture = new List<B3FutureInfo>();
@@ -26,13 +69,22 @@ namespace B3Provider.Readers
             DeleteDirectory(temporaryPath);
             return listOfFuture;
         }
+        #endregion
 
+        #region "private methods"
+        /// <summary>
+        /// Internal private file responsible to read records of futures from file
+        /// </summary>
+        /// <param name="filePath">File path to read futre records from</param>
+        /// <returns>
+        /// All futures found in file
+        /// </returns>
         private IList<B3FutureInfo> ReadFile(string filePath)
         {
             IList<B3FutureInfo> futureInfo = null;
 
-            var cultureNumericAmerica = new CultureInfo("en-US");
 
+            var cultureNumericAmerica = new CultureInfo("en-US");
             var futureInfoDocument = new XmlDocument();
             var relevantFutureInfoQuery = "//instrument:FinInstrmAttrCmon[instrument:Mkt=2 and instrument:Sgmt=5]/..//instrument:FutrCtrctsInf";
 
@@ -57,368 +109,66 @@ namespace B3Provider.Readers
                     var noAvo = oneFutureNode.ParentNode?.ParentNode;
                     var noIdInterno = noAvo?.SelectSingleNode("./instrument:FinInstrmId/instrument:OthrId/instrument:Id", nameSpaceManager);
                     var noDescricao = noAvo?.SelectSingleNode("./instrument:FinInstrmAttrCmon/instrument:Desc", nameSpaceManager);
-                    var underlyingID = oneFutureNode.SelectSingleNode("./instrument:UndrlygInstrmId/instrument:OthrId/instrument:Id", nameSpaceManager);
+                    var noDescricaoAsset = noAvo?.SelectSingleNode("./instrument:FinInstrmAttrCmon/instrument:AsstDesc", nameSpaceManager);
+                    var noNameAsset = noAvo?.SelectSingleNode("./instrument:FinInstrmAttrCmon/instrument:Asst", nameSpaceManager);
+                    var underlyingData = oneFutureNode.SelectSingleNode("./instrument:UndrlygInstrmId", nameSpaceManager);
+                    var settlementData = oneFutureNode.SelectSingleNode("./instrument:AsstSttlmInd", nameSpaceManager);
 
                     oneFutureInfo.B3ID = noIdInterno.InnerText.ToNullable<long>();
-                    oneFutureInfo.ISIN = oneFutureNode["ISIN"].InnerText;
+                    oneFutureInfo.AssetName = noNameAsset.InnerText.RemoveMultipleSpaces().Trim();
+                    oneFutureInfo.AssetDescription = noDescricaoAsset.InnerText.RemoveMultipleSpaces().Trim();
                     oneFutureInfo.Description = noDescricao.InnerText.RemoveMultipleSpaces().Trim();
 
+                    oneFutureInfo.ISIN = oneFutureNode["ISIN"].InnerText;
+                    oneFutureInfo.SecurityCategoryCode = oneFutureNode["SctyCtgy"].InnerText.To<int>();
+                    oneFutureInfo.Ticker = oneFutureNode["TckrSymb"].InnerText;
+                    oneFutureInfo.Expiration = oneFutureNode["XprtnDt"].InnerText.To<DateTime>();
+                    oneFutureInfo.ExpirationCode = oneFutureNode["XprtnCd"].InnerText;
+                    oneFutureInfo.TradeStart = oneFutureNode["TradgStartDt"].InnerText.To<DateTime>();
+                    oneFutureInfo.TradeEnd = oneFutureNode["TradgEndDt"].InnerText.To<DateTime>();
+                    oneFutureInfo.ValueTypeCode = oneFutureNode["ValTpCd"].InnerText.To<int>();
+                    oneFutureInfo.DaycountBase = oneFutureNode["BaseCd"]?.InnerText.ToNullable<int>();
+                    oneFutureInfo.ConversionCriteriaCode = oneFutureNode["ConvsCrit"]?.InnerText.ToNullable<int>();
+                    oneFutureInfo.MaturityContractValueInPoints = oneFutureNode["MtrtyDtTrgtPt"]?.InnerText.ToNullable<double>(cultureNumericAmerica);
+                    oneFutureInfo.RequiredConversionIndicator = oneFutureNode["ReqrdConvsInd"]?.InnerText.To<bool>();
+                    oneFutureInfo.CFICategoryCode = oneFutureNode["CFICd"].InnerText.Trim();
+                    oneFutureInfo.DeliveryTypeCode = oneFutureNode["DlvryTp"].InnerText.To<int>();
+                    oneFutureInfo.DeliveryNoticeStart = oneFutureNode["DlvryNtceStartDt"] != null ? oneFutureNode["DlvryNtceStartDt"].InnerText.ToNullable<DateTime>() : null;
+                    oneFutureInfo.DeliveryNoticeEnd = oneFutureNode["DlvryNtceEndDt"] != null ? oneFutureNode["DlvryNtceEndDt"].InnerText.ToNullable<DateTime>() : null;
+                    oneFutureInfo.PaymentTypeCode = oneFutureNode["PmtTp"].InnerText.To<int>();
+                    oneFutureInfo.ContractMultiplier = oneFutureNode["CtrctMltplr"].InnerText.To<double>(cultureNumericAmerica);
+                    oneFutureInfo.AssetQuotationQuantity = oneFutureNode["AsstQtnQty"].InnerText.To<double>(cultureNumericAmerica);
+
+                    if (settlementData != null)
+                    {
+                        oneFutureInfo.SettlementIndexInfo = new B3FutureDerivativeInfo();
+                        oneFutureInfo.SettlementIndexInfo.Identifier = settlementData.SelectSingleNode("./instrument:OthrId/instrument:Id", nameSpaceManager).InnerText.To<long>();
+                        oneFutureInfo.SettlementIndexInfo.IdentifierTypeCode = settlementData.SelectSingleNode("./instrument:OthrId/instrument:Tp/instrument:Prtry", nameSpaceManager).InnerText.To<int>();
+                        oneFutureInfo.SettlementIndexInfo.PlaceOfListing = settlementData.SelectSingleNode("./instrument:PlcOfListg/instrument:MktIdrCd", nameSpaceManager).InnerText;
+                    }
+
+                    oneFutureInfo.AllocationRoundLot = oneFutureNode["AllcnRndLot"].InnerText.To<double>(cultureNumericAmerica);
+                    oneFutureInfo.Currency = oneFutureNode["TradgCcy"].InnerText;
+
+                    if (underlyingData != null)
+                    {
+                        oneFutureInfo.UnderlyingIntrument = new B3FutureDerivativeInfo();
+                        oneFutureInfo.UnderlyingIntrument.Identifier = underlyingData.SelectSingleNode("./instrument:OthrId/instrument:Id", nameSpaceManager).InnerText.To<long>();
+                        oneFutureInfo.UnderlyingIntrument.IdentifierTypeCode = underlyingData.SelectSingleNode("./instrument:OthrId/instrument:Tp/instrument:Prtry", nameSpaceManager).InnerText.To<int>();
+                        oneFutureInfo.UnderlyingIntrument.PlaceOfListing = underlyingData.SelectSingleNode("./instrument:PlcOfListg/instrument:MktIdrCd", nameSpaceManager).InnerText;
+                    }
+
+                    oneFutureInfo.WithdrawalDays = oneFutureNode["WdrwlDays"].InnerText.To<int>();
+                    oneFutureInfo.WorkingDays = oneFutureNode["WrkgDays"].InnerText.To<int>();
+                    oneFutureInfo.CalendarDays = oneFutureNode["ClnrDays"].InnerText.To<int>();
+
+                    oneFutureInfo.LoadDate = dateNode.InnerText.ToNullable<DateTime>();
+                    futureInfo.Add(oneFutureInfo);
                 }
             }
 
             return futureInfo;
-
         }
+        #endregion
     }
 }
-
-/*
-<Instrm>
-            <RptParams>
-              <ActvtyInd>true</ActvtyInd>
-              <Frqcy>DAIL</Frqcy>
-              <NetPosId>XXXX</NetPosId>
-              <RptDtAndTm>
-                <Dt>2019-03-12</Dt>
-              </RptDtAndTm>
-              <UpdTp>COMP</UpdTp>
-            </RptParams>
-            <FinInstrmId>
-              <OthrId>
-                <Id>100000090002</Id>
-                <Tp>
-                  <Prtry>8</Prtry>
-                </Tp>
-              </OthrId>
-              <PlcOfListg>
-                <MktIdrCd>BVMF</MktIdrCd>
-              </PlcOfListg>
-            </FinInstrmId>
-            <FinInstrmAttrCmon>
-              <Asst>WIN</Asst>
-              <AsstDesc>Minicontrato de Ibovespa</AsstDesc>
-              <Mkt>2</Mkt>
-              <Sgmt>5</Sgmt>
-              <Desc>IBOVESPA MINI</Desc>
-            </FinInstrmAttrCmon>
-            <InstrmInf>
-              <FutrCtrctsInf>
-                <SctyCtgy>0</SctyCtgy>
-                <XprtnDt>2019-04-17</XprtnDt>
-                <TckrSymb>WINJ19</TckrSymb>
-                <XprtnCd>J19</XprtnCd>
-                <TradgStartDt>2017-07-11</TradgStartDt>
-                <TradgEndDt>2019-04-17</TradgEndDt>
-                <ValTpCd>1</ValTpCd>
-                <ISIN>BRBMEFWIN2E6</ISIN>
-                <CFICd>FXXXXX</CFICd>
-                <DlvryTp>1</DlvryTp>
-                <PmtTp>0</PmtTp>
-                <CtrctMltplr>0.200000000</CtrctMltplr>
-                <AsstQtnQty>1.000000000</AsstQtnQty>
-                <AllcnRndLot>1</AllcnRndLot>
-                <TradgCcy>BRL</TradgCcy>
-                <UndrlygInstrmId>
-                  <OthrId>
-                    <Id>100000090000</Id>
-                    <Tp>
-                      <Prtry>8</Prtry>
-                    </Tp>
-                  </OthrId>
-                  <PlcOfListg>
-                    <MktIdrCd>BVMF</MktIdrCd>
-                  </PlcOfListg>
-                </UndrlygInstrmId>
-                <WdrwlDays>26</WdrwlDays>
-                <WrkgDays>26</WrkgDays>
-                <ClnrDays>36</ClnrDays>
-              </FutrCtrctsInf>
-            </InstrmInf>
-          </Instrm>
-
-    <Instrm>
-            <RptParams>
-              <ActvtyInd>true</ActvtyInd>
-              <Frqcy>DAIL</Frqcy>
-              <NetPosId>XXXX</NetPosId>
-              <RptDtAndTm>
-                <Dt>2019-03-12</Dt>
-              </RptDtAndTm>
-              <UpdTp>COMP</UpdTp>
-            </RptParams>
-            <FinInstrmId>
-              <OthrId>
-                <Id>467174</Id>
-                <Tp>
-                  <Prtry>8</Prtry>
-                </Tp>
-              </OthrId>
-              <PlcOfListg>
-                <MktIdrCd>BVMF</MktIdrCd>
-              </PlcOfListg>
-            </FinInstrmId>
-            <FinInstrmAttrCmon>
-              <Asst>WDO</Asst>
-              <AsstDesc>Minicontrato de Dólar Comercial</AsstDesc>
-              <Mkt>2</Mkt>
-              <Sgmt>5</Sgmt>
-              <Desc>DOLAR MINI</Desc>
-            </FinInstrmAttrCmon>
-            <InstrmInf>
-              <FutrCtrctsInf>
-                <SctyCtgy>0</SctyCtgy>
-                <XprtnDt>2019-04-01</XprtnDt>
-                <TckrSymb>WDOJ19</TckrSymb>
-                <XprtnCd>J19</XprtnCd>
-                <TradgStartDt>2016-04-01</TradgStartDt>
-                <TradgEndDt>2019-03-29</TradgEndDt>
-                <ValTpCd>1</ValTpCd>
-                <ISIN>BRBMEFWDO287</ISIN>
-                <CFICd>FXXXXX</CFICd>
-                <DlvryTp>1</DlvryTp>
-                <PmtTp>0</PmtTp>
-                <CtrctMltplr>10.000000000</CtrctMltplr>
-                <AsstQtnQty>1000.000000000</AsstQtnQty>
-                <AllcnRndLot>1</AllcnRndLot>
-                <TradgCcy>BRL</TradgCcy>
-                <UndrlygInstrmId>
-                  <OthrId>
-                    <Id>467034</Id>
-                    <Tp>
-                      <Prtry>8</Prtry>
-                    </Tp>
-                  </OthrId>
-                  <PlcOfListg>
-                    <MktIdrCd>BVMF</MktIdrCd>
-                  </PlcOfListg>
-                </UndrlygInstrmId>
-                <WdrwlDays>14</WdrwlDays>
-                <WrkgDays>14</WrkgDays>
-                <ClnrDays>20</ClnrDays>
-              </FutrCtrctsInf>
-            </InstrmInf>
-          </Instrm>
-
-    <Instrm>
-            <RptParams>
-              <ActvtyInd>true</ActvtyInd>
-              <Frqcy>DAIL</Frqcy>
-              <NetPosId>XXXX</NetPosId>
-              <RptDtAndTm>
-                <Dt>2019-03-12</Dt>
-              </RptDtAndTm>
-              <UpdTp>COMP</UpdTp>
-            </RptParams>
-            <FinInstrmId>
-              <OthrId>
-                <Id>200000235664</Id>
-                <Tp>
-                  <Prtry>8</Prtry>
-                </Tp>
-              </OthrId>
-              <PlcOfListg>
-                <MktIdrCd>BVMF</MktIdrCd>
-              </PlcOfListg>
-            </FinInstrmId>
-            <FinInstrmAttrCmon>
-              <Asst>DI1</Asst>
-              <AsstDesc>Taxa Média de Depósitos Interfinanceiros de Um Dia</AsstDesc>
-              <Mkt>2</Mkt>
-              <Sgmt>5</Sgmt>
-              <Desc>DI DE 1 DIA</Desc>
-            </FinInstrmAttrCmon>
-            <InstrmInf>
-              <FutrCtrctsInf>
-                <SctyCtgy>0</SctyCtgy>
-                <XprtnDt>2031-01-02</XprtnDt>
-                <TckrSymb>DI1F31</TckrSymb>
-                <XprtnCd>F31</XprtnCd>
-                <TradgStartDt>2018-12-10</TradgStartDt>
-                <TradgEndDt>2030-12-30</TradgEndDt>
-                <ValTpCd>0</ValTpCd>
-                <BaseCd>252</BaseCd>
-                <ConvsCrit>2</ConvsCrit>
-                <MtrtyDtTrgtPt>100000</MtrtyDtTrgtPt>
-                <ReqrdConvsInd>true</ReqrdConvsInd>
-                <ISIN>BRBMEFD1I686</ISIN>
-                <CFICd>FFDCSX</CFICd>
-                <DlvryTp>1</DlvryTp>
-                <PmtTp>0</PmtTp>
-                <CtrctMltplr>1.000000000</CtrctMltplr>
-                <AsstQtnQty>1.000000000</AsstQtnQty>
-                <AllcnRndLot>1</AllcnRndLot>
-                <TradgCcy>BRL</TradgCcy>
-                <UndrlygInstrmId>
-                  <OthrId>
-                    <Id>9800334</Id>
-                    <Tp>
-                      <Prtry>8</Prtry>
-                    </Tp>
-                  </OthrId>
-                  <PlcOfListg>
-                    <MktIdrCd>BVMF</MktIdrCd>
-                  </PlcOfListg>
-                </UndrlygInstrmId>
-                <WdrwlDays>2968</WdrwlDays>
-                <WrkgDays>2921</WrkgDays>
-                <ClnrDays>4314</ClnrDays>
-              </FutrCtrctsInf>
-            </InstrmInf>
-          </Instrm>
-
-    <Instrm>
-            <RptParams>
-              <ActvtyInd>true</ActvtyInd>
-              <Frqcy>DAIL</Frqcy>
-              <NetPosId>XXXX</NetPosId>
-              <RptDtAndTm>
-                <Dt>2019-03-12</Dt>
-              </RptDtAndTm>
-              <UpdTp>COMP</UpdTp>
-            </RptParams>
-            <FinInstrmId>
-              <OthrId>
-                <Id>200000235665</Id>
-                <Tp>
-                  <Prtry>8</Prtry>
-                </Tp>
-              </OthrId>
-              <PlcOfListg>
-                <MktIdrCd>BVMF</MktIdrCd>
-              </PlcOfListg>
-            </FinInstrmId>
-            <FinInstrmAttrCmon>
-              <Asst>DDI</Asst>
-              <AsstDesc>Cupom Cambial de DI1</AsstDesc>
-              <Mkt>2</Mkt>
-              <Sgmt>5</Sgmt>
-              <Desc>CUPOM CAMBIAL</Desc>
-            </FinInstrmAttrCmon>
-            <InstrmInf>
-              <FutrCtrctsInf>
-                <SctyCtgy>0</SctyCtgy>
-                <XprtnDt>2031-01-02</XprtnDt>
-                <TckrSymb>DDIF31</TckrSymb>
-                <XprtnCd>F31</XprtnCd>
-                <TradgStartDt>2018-12-10</TradgStartDt>
-                <TradgEndDt>2030-12-30</TradgEndDt>
-                <ValTpCd>0</ValTpCd>
-                <BaseCd>360</BaseCd>
-                <ConvsCrit>1</ConvsCrit>
-                <MtrtyDtTrgtPt>100000</MtrtyDtTrgtPt>
-                <ReqrdConvsInd>true</ReqrdConvsInd>
-                <ISIN>BRBMEFDDI693</ISIN>
-                <CFICd>FFCCSX</CFICd>
-                <DlvryTp>1</DlvryTp>
-                <PmtTp>0</PmtTp>
-                <CtrctMltplr>0.500000000</CtrctMltplr>
-                <AsstQtnQty>1.000000000</AsstQtnQty>
-                <AsstSttlmInd>
-                  <OthrId>
-                    <Id>9800342</Id>
-                    <Tp>
-                      <Prtry>8</Prtry>
-                    </Tp>
-                  </OthrId>
-                  <PlcOfListg>
-                    <MktIdrCd>BVMF</MktIdrCd>
-                  </PlcOfListg>
-                </AsstSttlmInd>
-                <AllcnRndLot>1</AllcnRndLot>
-                <TradgCcy>BRL</TradgCcy>
-                <UndrlygInstrmId>
-                  <OthrId>
-                    <Id>9800011</Id>
-                    <Tp>
-                      <Prtry>8</Prtry>
-                    </Tp>
-                  </OthrId>
-                  <PlcOfListg>
-                    <MktIdrCd>BVMF</MktIdrCd>
-                  </PlcOfListg>
-                </UndrlygInstrmId>
-                <WdrwlDays>2968</WdrwlDays>
-                <WrkgDays>2921</WrkgDays>
-                <ClnrDays>4314</ClnrDays>
-              </FutrCtrctsInf>
-            </InstrmInf>
-          </Instrm>
-
-    <Instrm>
-            <RptParams>
-              <ActvtyInd>true</ActvtyInd>
-              <Frqcy>DAIL</Frqcy>
-              <NetPosId>XXXX</NetPosId>
-              <RptDtAndTm>
-                <Dt>2019-03-12</Dt>
-              </RptDtAndTm>
-              <UpdTp>COMP</UpdTp>
-            </RptParams>
-            <FinInstrmId>
-              <OthrId>
-                <Id>430339</Id>
-                <Tp>
-                  <Prtry>8</Prtry>
-                </Tp>
-              </OthrId>
-              <PlcOfListg>
-                <MktIdrCd>BVMF</MktIdrCd>
-              </PlcOfListg>
-            </FinInstrmId>
-            <FinInstrmAttrCmon>
-              <Asst>DAP</Asst>
-              <AsstDesc>Cupom de IPCA</AsstDesc>
-              <Mkt>2</Mkt>
-              <Sgmt>5</Sgmt>
-              <Desc>CUPOM DE IPCA</Desc>
-            </FinInstrmAttrCmon>
-            <InstrmInf>
-              <FutrCtrctsInf>
-                <SctyCtgy>0</SctyCtgy>
-                <XprtnDt>2021-05-17</XprtnDt>
-                <TckrSymb>DAPK21</TckrSymb>
-                <XprtnCd>K21</XprtnCd>
-                <TradgStartDt>2016-02-02</TradgStartDt>
-                <TradgEndDt>2021-05-14</TradgEndDt>
-                <ValTpCd>0</ValTpCd>
-                <BaseCd>252</BaseCd>
-                <ConvsCrit>2</ConvsCrit>
-                <MtrtyDtTrgtPt>100000</MtrtyDtTrgtPt>
-                <ReqrdConvsInd>true</ReqrdConvsInd>
-                <ISIN>BRBMEFDAP1K4</ISIN>
-                <CFICd>FFFCSX</CFICd>
-                <DlvryTp>1</DlvryTp>
-                <PmtTp>0</PmtTp>
-                <CtrctMltplr>0.000250000</CtrctMltplr>
-                <AsstQtnQty>1.000000000</AsstQtnQty>
-                <AsstSttlmInd>
-                  <OthrId>
-                    <Id>10008992</Id>
-                    <Tp>
-                      <Prtry>8</Prtry>
-                    </Tp>
-                  </OthrId>
-                  <PlcOfListg>
-                    <MktIdrCd>BVMF</MktIdrCd>
-                  </PlcOfListg>
-                </AsstSttlmInd>
-                <AllcnRndLot>1</AllcnRndLot>
-                <TradgCcy>BRL</TradgCcy>
-                <UndrlygInstrmId>
-                  <OthrId>
-                    <Id>9800003</Id>
-                    <Tp>
-                      <Prtry>8</Prtry>
-                    </Tp>
-                  </OthrId>
-                  <PlcOfListg>
-                    <MktIdrCd>BVMF</MktIdrCd>
-                  </PlcOfListg>
-                </UndrlygInstrmId>
-                <WdrwlDays>548</WdrwlDays>
-                <WrkgDays>539</WrkgDays>
-                <ClnrDays>797</ClnrDays>
-              </FutrCtrctsInf>
-            </InstrmInf>
-          </Instrm>
-*/

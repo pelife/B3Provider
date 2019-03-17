@@ -56,9 +56,11 @@ namespace B3ProviderTesting
 
             Assert.IsNotNull(client.EquityInstruments);
             Assert.IsNotNull(client.OptionInstruments);
+            Assert.IsNotNull(client.FutureInstruments);
 
             Assert.AreNotEqual(0, client.EquityInstruments.Count);
             Assert.AreNotEqual(0, client.OptionInstruments.Count);
+            Assert.AreNotEqual(0, client.FutureInstruments.Count);            
         }
 
         [TestMethod]
