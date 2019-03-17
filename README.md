@@ -83,4 +83,4 @@ If you hit bugs, fill issues on github.
 Feel free to fork, modify and have fun with it :)
 
 
-MIT © [Felipe Bahiana Almeida]()
+MIT © [Felipe Bahiana Almeida](https://www.linkedin.com/in/felipe-almeida-ba222577/)
