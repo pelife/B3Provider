@@ -11,8 +11,9 @@ Please keep the observed current code style. Don't use your creativity here, put
 ### B3 Explorer
 B3 Explorer is a project to allow the user of B3 provider to visualize the data it makes available.
 
-![One screen example](/img/B3_Explorer1.png?raw=true "B3 Explorer Screen 1")
-![Second screen example](/img/B3_Explorer2.png?raw=true "B3 Explorer Screen 2")
+![Options screen example](/img/B3_Explorer1.png?raw=true "B3 Explorer Options Screen")
+![Stocks screen example](/img/B3_Explorer2.png?raw=true "B3 Explorer Stocks Screen")
+![Futures screen example](/img/B3_Explorer3.png?raw=true "B3 Explorer Futures Screen")
 
       
 
