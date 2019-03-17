@@ -96,6 +96,7 @@
     <Compile Include="DTO\OptionPriceInfoDTO.cs" />
     <Compile Include="DTO\EquityPriceInfo.cs" />
     <Compile Include="DTO\OHCLVDTO.cs" />
+    <Compile Include="Readers\B3FutureInfoReader.cs" />
     <Compile Include="Readers\B3SectorClassifcationInfoReader.cs" />
     <Compile Include="Records\B3HistoricMarketDataContentInfo.cs" />
     <Compile Include="Records\B3HistoricMarketDataHeaderInfo.cs" />

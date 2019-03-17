@@ -70,6 +70,10 @@ namespace B3Provider
             {
                 return (IReader<T>)new B3SectorClassifcationInfoReader();
             }
+            if (typeof(T) == typeof(B3FutureInfo))
+            {
+                return (IReader<T>)new B3FutureInfoReader();
+            }
 
             throw new InvalidOperationException();
         }

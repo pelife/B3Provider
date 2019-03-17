@@ -157,6 +157,11 @@ namespace B3Provider
         public IList<B3OptionOnEquityInfo> OptionInstruments { get; set; } = null;
 
         /// <summary>
+        /// All futures found in a file.
+        /// </summary>
+        public IList<B3FutureInfo> FutureInstruments { get; set; } = null;
+
+        /// <summary>
         /// Current market data (princes in the same day of the instruments file)
         /// </summary>
         public IList<B3MarketDataInfo> CurrentMarketData { get; set; } = null;
@@ -222,6 +227,10 @@ namespace B3Provider
             _logger.Info("reading options");
             var optionsReader = ReaderFactory.CreateReader<B3OptionOnEquityInfo>(_configuration.ReadStrategy);
             OptionInstruments = optionsReader.ReadRecords(filePath);
+
+            _logger.Info("reading futures");
+            var futuresReader = ReaderFactory.CreateReader<B3FutureInfo>(_configuration.ReadStrategy);
+            FutureInstruments = futuresReader.ReadRecords(filePath);
 
             _logger.Info("indexing options");
             tickerIDIndexDictionary = OptionInstruments
