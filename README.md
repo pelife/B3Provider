@@ -42,6 +42,10 @@ But probably will use:
 - [ ] Load info from database
 - [ ] Support to asynchronous operations
 
+Infelizmente não consigo mais encontrar a documentação do arquivo no site oficial da B3 ou IPN. 
+Obrigado ao genio que publicou em um site alternativo:
+[Manual de mensagens](https://manualzz.com/doc/5991070/cat%C3%A1logo-de-mensagens-cadastro-de-instrumento)
+
 ## Code Example
 
 ```csharp
