@@ -46,6 +46,10 @@ Infelizmente não consigo mais encontrar a documentação do arquivo no site ofi
 Obrigado ao genio que publicou em um site alternativo:
 [Manual de mensagens](https://manualzz.com/doc/5991070/cat%C3%A1logo-de-mensagens-cadastro-de-instrumento)
 
+**Alguma coisa me diz que os manuais terem desaparecido está relacionado com isso (não estou afirmando):**
+![Up2DataPrice](/img/B3_ExplorerComptetitorPrice.png?raw=true "B3 Up 2 Data price")
+[Politica Comercial Up2Data](http://www.b3.com.br/data/files/F5/91/68/FC/2F2656104E775456AC094EA8/20180821-Politica-Comercial-UP2DATA.pdf)
+
 ## Code Example
 
 ```csharp
