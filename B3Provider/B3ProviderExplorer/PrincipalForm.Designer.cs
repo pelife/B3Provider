@@ -33,9 +33,6 @@ namespace B3ProviderExplorer
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraSplashScreen.SplashScreenManager MainSplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::B3ProviderExplorer.SplashScreen1), true, true, true);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrincipalForm));
-            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
@@ -48,6 +45,9 @@ namespace B3ProviderExplorer
             DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
             DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
@@ -149,6 +149,7 @@ namespace B3ProviderExplorer
             this.ribbonControl.ExpandCollapseItem.Id = 0;
             this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
+            this.ribbonControl.SearchEditItem,
             this.skinRibbonGalleryBarItem,
             this.barSubItemNavigation,
             this.employeesBarButtonItem,
@@ -166,36 +167,37 @@ namespace B3ProviderExplorer
             this.riDataReferencia});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.True;
-            this.ribbonControl.Size = new System.Drawing.Size(790, 162);
+            this.ribbonControl.Size = new System.Drawing.Size(1046, 158);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
             // backstageViewControl1
             // 
-            this.backstageViewControl1.Controls.Add(this.bccB3ProviderConfiguration);
             this.backstageViewControl1.Controls.Add(this.bccAbout);
+            this.backstageViewControl1.Controls.Add(this.bccB3ProviderConfiguration);
             this.backstageViewControl1.Items.Add(this.bvtAbout);
             this.backstageViewControl1.Items.Add(this.bvtB3ProviderConfig);
-            this.backstageViewControl1.Location = new System.Drawing.Point(21, 36);
+            this.backstageViewControl1.Location = new System.Drawing.Point(223, 228);
             this.backstageViewControl1.Name = "backstageViewControl1";
             this.backstageViewControl1.OwnerControl = this.ribbonControl;
             this.backstageViewControl1.SelectedTab = this.bvtB3ProviderConfig;
             this.backstageViewControl1.SelectedTabIndex = 1;
             this.backstageViewControl1.Size = new System.Drawing.Size(713, 509);
             this.backstageViewControl1.TabIndex = 10;
+            this.backstageViewControl1.VisibleInDesignTime = true;
             // 
             // bccB3ProviderConfiguration
             // 
-            this.bccB3ProviderConfiguration.Location = new System.Drawing.Point(185, 63);
+            this.bccB3ProviderConfiguration.Location = new System.Drawing.Point(180, 63);
             this.bccB3ProviderConfiguration.Name = "bccB3ProviderConfiguration";
-            this.bccB3ProviderConfiguration.Size = new System.Drawing.Size(527, 445);
+            this.bccB3ProviderConfiguration.Size = new System.Drawing.Size(532, 445);
             this.bccB3ProviderConfiguration.TabIndex = 2;
             // 
             // bccAbout
             // 
-            this.bccAbout.Location = new System.Drawing.Point(185, 63);
+            this.bccAbout.Location = new System.Drawing.Point(180, 62);
             this.bccAbout.Name = "bccAbout";
-            this.bccAbout.Size = new System.Drawing.Size(527, 445);
+            this.bccAbout.Size = new System.Drawing.Size(533, 447);
             this.bccAbout.TabIndex = 1;
             // 
             // bvtAbout
@@ -291,18 +293,18 @@ namespace B3ProviderExplorer
             // ribbonPageGroup
             // 
             this.ribbonPageGroup.AllowTextClipping = false;
+            this.ribbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonPageGroup.ItemLinks.Add(this.skinRibbonGalleryBarItem);
             this.ribbonPageGroup.Name = "ribbonPageGroup";
-            this.ribbonPageGroup.ShowCaptionButton = false;
             this.ribbonPageGroup.Text = "Appearance";
             // 
             // rpgDate
             // 
-            this.rpgDate.AllowMinimize = false;
             this.rpgDate.AllowTextClipping = false;
             this.rpgDate.ItemLinks.Add(this.beiDataReferencia);
             this.rpgDate.ItemsLayout = DevExpress.XtraBars.Ribbon.RibbonPageGroupItemsLayout.TwoRows;
             this.rpgDate.Name = "rpgDate";
+            this.rpgDate.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.rpgDate.Text = "Date";
             // 
             // rpgSyncronize
@@ -314,10 +316,10 @@ namespace B3ProviderExplorer
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 573);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 697);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(790, 26);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1046, 24);
             // 
             // ExploreMenu
             // 
@@ -350,15 +352,15 @@ namespace B3ProviderExplorer
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.ExploreMenuBarManager;
-            this.barDockControlTop.Size = new System.Drawing.Size(790, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1046, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 599);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 721);
             this.barDockControlBottom.Manager = this.ExploreMenuBarManager;
-            this.barDockControlBottom.Size = new System.Drawing.Size(790, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1046, 0);
             // 
             // barDockControlLeft
             // 
@@ -366,15 +368,15 @@ namespace B3ProviderExplorer
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.ExploreMenuBarManager;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 599);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 721);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(790, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1046, 0);
             this.barDockControlRight.Manager = this.ExploreMenuBarManager;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 599);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 721);
             // 
             // dockManager
             // 
@@ -400,20 +402,19 @@ namespace B3ProviderExplorer
             this.DatesDockPanel.Controls.Add(this.controlContainer1);
             this.DatesDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
             this.DatesDockPanel.ID = new System.Guid("27fe6c15-da22-4360-b0ea-94655f9eb030");
-            this.DatesDockPanel.Location = new System.Drawing.Point(590, 162);
+            this.DatesDockPanel.Location = new System.Drawing.Point(846, 158);
             this.DatesDockPanel.Name = "DatesDockPanel";
             this.DatesDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
-            this.DatesDockPanel.SavedSizeFactor = 0D;
-            this.DatesDockPanel.Size = new System.Drawing.Size(200, 411);
+            this.DatesDockPanel.Size = new System.Drawing.Size(200, 539);
             this.DatesDockPanel.Text = "Dates";
             // 
             // controlContainer1
             // 
             this.controlContainer1.Controls.Add(this.MainDateNavigator);
             this.controlContainer1.Controls.Add(this.DatesMenuPanel);
-            this.controlContainer1.Location = new System.Drawing.Point(4, 30);
+            this.controlContainer1.Location = new System.Drawing.Point(4, 26);
             this.controlContainer1.Name = "controlContainer1";
-            this.controlContainer1.Size = new System.Drawing.Size(193, 378);
+            this.controlContainer1.Size = new System.Drawing.Size(193, 510);
             this.controlContainer1.TabIndex = 0;
             // 
             // MainDateNavigator
@@ -426,7 +427,7 @@ namespace B3ProviderExplorer
             this.MainDateNavigator.FirstDayOfWeek = System.DayOfWeek.Sunday;
             this.MainDateNavigator.Location = new System.Drawing.Point(0, 30);
             this.MainDateNavigator.Name = "MainDateNavigator";
-            this.MainDateNavigator.Size = new System.Drawing.Size(193, 348);
+            this.MainDateNavigator.Size = new System.Drawing.Size(193, 480);
             this.MainDateNavigator.TabIndex = 0;
             this.MainDateNavigator.CustomDrawDayNumberCell += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.MainDateNavigator_CustomDrawDayNumberCell);
             // 
@@ -447,14 +448,14 @@ namespace B3ProviderExplorer
             this.ImportHollidaysButton.Location = new System.Drawing.Point(170, 0);
             this.ImportHollidaysButton.Name = "ImportHollidaysButton";
             this.ImportHollidaysButton.Size = new System.Drawing.Size(23, 30);
-            toolTipTitleItem5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            toolTipTitleItem5.Text = "Import holidays";
-            toolTipItem5.LeftIndent = 6;
-            toolTipItem5.Text = "input a list of holidays into the systems to make it \r\ncalculate accruals accordi" +
+            toolTipTitleItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            toolTipTitleItem1.Text = "Import holidays";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "input a list of holidays into the systems to make it \r\ncalculate accruals accordi" +
     "ngly.";
-            superToolTip5.Items.Add(toolTipTitleItem5);
-            superToolTip5.Items.Add(toolTipItem5);
-            this.ImportHollidaysButton.SuperTip = superToolTip5;
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            this.ImportHollidaysButton.SuperTip = superToolTip1;
             this.ImportHollidaysButton.TabIndex = 0;
             this.ImportHollidaysButton.Click += new System.EventHandler(this.ImportHollidaysButton_Click);
             // 
@@ -463,19 +464,18 @@ namespace B3ProviderExplorer
             this.NavigationDockPanel.Controls.Add(this.dockPanel_Container);
             this.NavigationDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.NavigationDockPanel.ID = new System.Guid("a045df26-1503-4d9a-99c1-a531310af22b");
-            this.NavigationDockPanel.Location = new System.Drawing.Point(0, 162);
+            this.NavigationDockPanel.Location = new System.Drawing.Point(0, 158);
             this.NavigationDockPanel.Name = "NavigationDockPanel";
             this.NavigationDockPanel.OriginalSize = new System.Drawing.Size(204, 200);
-            this.NavigationDockPanel.SavedSizeFactor = 0D;
-            this.NavigationDockPanel.Size = new System.Drawing.Size(204, 411);
+            this.NavigationDockPanel.Size = new System.Drawing.Size(204, 539);
             this.NavigationDockPanel.Text = "Navigation";
             // 
             // dockPanel_Container
             // 
             this.dockPanel_Container.Controls.Add(this.accordionControl);
-            this.dockPanel_Container.Location = new System.Drawing.Point(3, 30);
+            this.dockPanel_Container.Location = new System.Drawing.Point(3, 26);
             this.dockPanel_Container.Name = "dockPanel_Container";
-            this.dockPanel_Container.Size = new System.Drawing.Size(197, 378);
+            this.dockPanel_Container.Size = new System.Drawing.Size(197, 510);
             this.dockPanel_Container.TabIndex = 0;
             // 
             // accordionControl
@@ -493,7 +493,7 @@ namespace B3ProviderExplorer
             this.accordionControl.RootDisplayMode = DevExpress.XtraBars.Navigation.AccordionControlRootDisplayMode.Footer;
             this.accordionControl.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Hidden;
             this.accordionControl.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
-            this.accordionControl.Size = new System.Drawing.Size(197, 378);
+            this.accordionControl.Size = new System.Drawing.Size(197, 510);
             this.accordionControl.TabIndex = 0;
             this.accordionControl.Text = "accordionControl";
             // 
@@ -532,12 +532,12 @@ namespace B3ProviderExplorer
             // 
             this.aceLoadInstruments.Name = "aceLoadInstruments";
             this.aceLoadInstruments.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem1.Text = "Load instruments";
-            toolTipItem1.LeftIndent = 6;
-            toolTipItem1.Text = "Load intrument information from source";
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            superToolTip1.Items.Add(toolTipItem1);
-            this.aceLoadInstruments.SuperTip = superToolTip1;
+            toolTipTitleItem2.Text = "Load instruments";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "Load intrument information from source";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
+            this.aceLoadInstruments.SuperTip = superToolTip2;
             this.aceLoadInstruments.Text = "Intruments";
             this.aceLoadInstruments.Visible = false;
             this.aceLoadInstruments.Click += new System.EventHandler(this.aceLoadInstruments_Click);
@@ -546,12 +546,12 @@ namespace B3ProviderExplorer
             // 
             this.aceLoadCurrentMarketData.Name = "aceLoadCurrentMarketData";
             this.aceLoadCurrentMarketData.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem2.Text = "Load prices";
-            toolTipItem2.LeftIndent = 6;
-            toolTipItem2.Text = "Load current intrument price information from source";
-            superToolTip2.Items.Add(toolTipTitleItem2);
-            superToolTip2.Items.Add(toolTipItem2);
-            this.aceLoadCurrentMarketData.SuperTip = superToolTip2;
+            toolTipTitleItem3.Text = "Load prices";
+            toolTipItem3.LeftIndent = 6;
+            toolTipItem3.Text = "Load current intrument price information from source";
+            superToolTip3.Items.Add(toolTipTitleItem3);
+            superToolTip3.Items.Add(toolTipItem3);
+            this.aceLoadCurrentMarketData.SuperTip = superToolTip3;
             this.aceLoadCurrentMarketData.Text = "Prices";
             this.aceLoadCurrentMarketData.Visible = false;
             this.aceLoadCurrentMarketData.Click += new System.EventHandler(this.aceLoadCurrentMarketData_Click);
@@ -560,12 +560,12 @@ namespace B3ProviderExplorer
             // 
             this.aceLoadHistory.Name = "aceLoadHistory";
             this.aceLoadHistory.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem3.Text = "Load historic";
-            toolTipItem3.LeftIndent = 6;
-            toolTipItem3.Text = "Load historic prices of intruments from source";
-            superToolTip3.Items.Add(toolTipTitleItem3);
-            superToolTip3.Items.Add(toolTipItem3);
-            this.aceLoadHistory.SuperTip = superToolTip3;
+            toolTipTitleItem4.Text = "Load historic";
+            toolTipItem4.LeftIndent = 6;
+            toolTipItem4.Text = "Load historic prices of intruments from source";
+            superToolTip4.Items.Add(toolTipTitleItem4);
+            superToolTip4.Items.Add(toolTipItem4);
+            this.aceLoadHistory.SuperTip = superToolTip4;
             this.aceLoadHistory.Text = "Historic";
             this.aceLoadHistory.Visible = false;
             this.aceLoadHistory.Click += new System.EventHandler(this.aceLoadHistory_Click);
@@ -602,12 +602,12 @@ namespace B3ProviderExplorer
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl),
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons)});
             this.acgExplore.Name = "acgExplore";
-            toolTipTitleItem4.Text = "Explore";
-            toolTipItem4.LeftIndent = 6;
-            toolTipItem4.Text = "Discover what is happening to instruments";
-            superToolTip4.Items.Add(toolTipTitleItem4);
-            superToolTip4.Items.Add(toolTipItem4);
-            this.acgExplore.SuperTip = superToolTip4;
+            toolTipTitleItem5.Text = "Explore";
+            toolTipItem5.LeftIndent = 6;
+            toolTipItem5.Text = "Discover what is happening to instruments";
+            superToolTip5.Items.Add(toolTipTitleItem5);
+            superToolTip5.Items.Add(toolTipItem5);
+            this.acgExplore.SuperTip = superToolTip5;
             this.acgExplore.Text = "Explore";
             // 
             // aceAll
@@ -645,19 +645,18 @@ namespace B3ProviderExplorer
             this.LoggingDockPanel.Controls.Add(this.dockPanel1_Container);
             this.LoggingDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
             this.LoggingDockPanel.ID = new System.Guid("e42bd751-e192-43eb-ba4b-9f45ec351f22");
-            this.LoggingDockPanel.Location = new System.Drawing.Point(204, 373);
+            this.LoggingDockPanel.Location = new System.Drawing.Point(204, 497);
             this.LoggingDockPanel.Name = "LoggingDockPanel";
             this.LoggingDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
-            this.LoggingDockPanel.SavedSizeFactor = 0D;
-            this.LoggingDockPanel.Size = new System.Drawing.Size(386, 200);
+            this.LoggingDockPanel.Size = new System.Drawing.Size(642, 200);
             this.LoggingDockPanel.Text = "Logging";
             // 
             // dockPanel1_Container
             // 
             this.dockPanel1_Container.Controls.Add(this.loggingGridControl);
-            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 31);
+            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 27);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(380, 166);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(636, 170);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // loggingGridControl
@@ -667,7 +666,7 @@ namespace B3ProviderExplorer
             this.loggingGridControl.MainView = this.loggingGridView;
             this.loggingGridControl.MenuManager = this.ribbonControl;
             this.loggingGridControl.Name = "loggingGridControl";
-            this.loggingGridControl.Size = new System.Drawing.Size(380, 166);
+            this.loggingGridControl.Size = new System.Drawing.Size(636, 170);
             this.loggingGridControl.TabIndex = 0;
             this.loggingGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.loggingGridView});
@@ -779,18 +778,18 @@ namespace B3ProviderExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 599);
+            this.ClientSize = new System.Drawing.Size(1046, 721);
+            this.Controls.Add(this.backstageViewControl1);
+            this.Controls.Add(this.DatesDockPanel);
             this.Controls.Add(this.LoggingDockPanel);
             this.Controls.Add(this.NavigationDockPanel);
-            this.Controls.Add(this.DatesDockPanel);
             this.Controls.Add(this.ribbonControl);
             this.Controls.Add(this.ribbonStatusBar);
-            this.Controls.Add(this.backstageViewControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("PrincipalForm.IconOptions.Icon")));
             this.Name = "PrincipalForm";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;
