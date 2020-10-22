@@ -60,7 +60,7 @@ namespace B3ProviderTesting
 
             Assert.AreNotEqual(0, client.EquityInstruments.Count);
             Assert.AreNotEqual(0, client.OptionInstruments.Count);
-            Assert.AreNotEqual(0, client.FutureInstruments.Count);            
+            Assert.AreNotEqual(0, client.FutureInstruments.Count);
         }
 
         [TestMethod]
@@ -99,7 +99,6 @@ namespace B3ProviderTesting
         public void B3ProviderMustDownloadHistoricQuoteFilesGetUtilDates()
         {
             Logger logger = TestLogManager.Instance.GetLogger("B3ProviderTester");
-
             logger.Info("teste");
 
 
@@ -209,7 +208,7 @@ namespace B3ProviderTesting
             var logger = TestLogManager.Instance.GetLogger("B3ProviderTesting");
 
             //var summary = BenchmarkRunner.Run<BenchmarkDownloader>();
-            
+
 
             // create a configuration instance
             var config = new B3ProviderConfig();
@@ -233,7 +232,7 @@ namespace B3ProviderTesting
             stopWatch.Stop();
             logger.Info(string.Format("loaded in: {0:hh\\:mm\\:ss\\.fff}", stopWatch.Elapsed));
 
-            
+
 
         }
 
@@ -252,8 +251,26 @@ namespace B3ProviderTesting
             client.LoadSectorClassification();
 
             Assert.IsNotNull(client.SectorClassification);
-
             Assert.AreNotEqual(0, client.SectorClassification.Count);
+        }
+
+        [TestMethod]
+        public void B3ProviderShouldCalculateChange()
+        {
+            var config = new B3ProviderConfig();
+
+            // define properties
+            config.ReplaceExistingFiles = true;
+
+            // create an instance of the client
+            var client = new B3ProviderClient(config);
+
+            client.LoadInstruments();
+            //client.LoadInstruments();
+            client.LoadHistoricQuotes(2019);
+            client.LoadHistoricQuotes(2018);
+
+            client.CalculateHistoricChanges();
         }
 
 
