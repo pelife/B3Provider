@@ -76,72 +76,92 @@ namespace B3Provider
 
         public void CalculateHistoricChanges()
         {
-            DateTime? today = DateTime.Today;
+            DateTime? today = null;
+
+            if (DateTime.Now.Hour >= 0 && DateTime.Now.Hour <= 20)
+            {
+                today = DateTime.Today;
+                today = today.NBusinessDaysAgo(1, null);
+            }
+            else
+                today = DateTime.Today;
+
+
             EquityPriceInfo equityPriceInfo = null;
 
             var utilDates = today.UtilDates(null);
 
             if (utilDates != null && EquityInstruments != null && HistoricMarketDataMap != null) // if I have the dates to look for quotes, the instruments and historic prices, it is possible to calculate the changes
             {
-                Parallel.ForEach(EquityInstruments, (oneEquityInstrument) =>
-                {
-
-                    if (HistoricMarketDataMap.ContainsKey(oneEquityInstrument.Ticker))
-                    {
-                        var oneEquityQuotes = HistoricMarketDataMap[oneEquityInstrument.Ticker];
-                        if (oneEquityQuotes != null)
-                        {
-
-                            equityPriceInfo = new EquityPriceInfo();
-                            equityPriceInfo.Equity = oneEquityInstrument;
-
-                            var histociData = HistoricMarketData[utilDates.CurrentDate.Year];
-                            var oneIntrumentHistory = histociData.Where(e => e.Ticker.Equals(oneEquityInstrument.Ticker, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-
-                            var currentQuote = oneEquityQuotes.ContainsKey(utilDates.CurrentDate) ? oneEquityQuotes[utilDates.CurrentDate] : null;
-                            var oneDayQuote = oneEquityQuotes.ContainsKey(utilDates.OneDayDate) ? oneEquityQuotes[utilDates.OneDayDate] : null;
-                            var oneWeekQuote = oneEquityQuotes.ContainsKey(utilDates.OneWeekDate) ? oneEquityQuotes[utilDates.OneWeekDate] : null;
-                            var oneMonthQuote = oneEquityQuotes.ContainsKey(utilDates.OneMonthDate) ? oneEquityQuotes[utilDates.OneMonthDate] : null;
-                            var oneQuarteQuote = oneEquityQuotes.ContainsKey(utilDates.OneQuarterDate) ? oneEquityQuotes[utilDates.OneQuarterDate] : null;
-                            var oneYearQuote = oneEquityQuotes.ContainsKey(utilDates.OneYearDate) ? oneEquityQuotes[utilDates.OneYearDate] : null;
-
-                            var varAbsDiaria = ((currentQuote?.Last ?? 1) - (oneDayQuote?.Last ?? 1));
-                            var varAbsSemanal = ((currentQuote?.Last ?? 1) - (oneWeekQuote?.Last ?? 1));
-                            var varAbsMensal = ((currentQuote?.Last ?? 1) - (oneMonthQuote?.Last ?? 1));
-                            var varAbsTrimestral = ((currentQuote?.Last ?? 1) - (oneQuarteQuote?.Last ?? 1));
-                            var varAbsAnual = ((currentQuote?.Last ?? 1) - (oneYearQuote?.Last ?? 1));
-
-                            var varDiaria = ((currentQuote?.Last ?? 1) / (oneDayQuote?.Last ?? 1)) - 1;
-                            var varSemanal = ((currentQuote?.Last ?? 1) / (oneWeekQuote?.Last ?? 1)) - 1;
-                            var varMensal = ((currentQuote?.Last ?? 1) / (oneMonthQuote?.Last ?? 1)) - 1;
-                            var varTrimestral = ((currentQuote?.Last ?? 1) / (oneQuarteQuote?.Last ?? 1)) - 1;
-                            var varAnual = ((currentQuote?.Last ?? 1) / (oneYearQuote?.Last ?? 1)) - 1;
-
-                            equityPriceInfo.DailyNominal = varAbsDiaria;
-                            equityPriceInfo.WeeklyNominal = varAbsSemanal;
-                            equityPriceInfo.MonthlyNominal = varAbsMensal;
-                            equityPriceInfo.QuaterlyNominal = varAbsTrimestral;
-                            equityPriceInfo.YearlyNominal = varAbsAnual;
-                            equityPriceInfo.DailyPercentage = varDiaria;
-                            equityPriceInfo.WeeklyPercentage = varSemanal;
-                            equityPriceInfo.MonthlyPercentage = varMensal;
-                            equityPriceInfo.QuaterlyPercentage = varTrimestral;
-                            equityPriceInfo.YearlyPercentage = varAnual;
-
-                            var WTDQuote = oneEquityQuotes.ContainsKey(utilDates.WTDDate) ? oneEquityQuotes[utilDates.WTDDate] : null;
-                            var MTDQuote = oneEquityQuotes.ContainsKey(utilDates.MTDDate) ? oneEquityQuotes[utilDates.MTDDate] : null;
-                            var QTDQuote = oneEquityQuotes.ContainsKey(utilDates.QTDDate) ? oneEquityQuotes[utilDates.QTDDate] : null;
-                            var YTDQuote = oneEquityQuotes.ContainsKey(utilDates.YTDDate) ? oneEquityQuotes[utilDates.YTDDate] : null;
-
-                            if (!HistoricPriceMovingInfoDataMap.ContainsKey(oneEquityInstrument.Ticker))
-                                HistoricPriceMovingInfoDataMap[oneEquityInstrument.Ticker] = new Dictionary<DateTime, EquityPriceInfo>();
-
-                            HistoricPriceMovingInfoDataMap[oneEquityInstrument.Ticker][utilDates.CurrentDate] = equityPriceInfo;
-                        }
-                    }
-                });
             }
+            Parallel.ForEach(EquityInstruments, (oneEquityInstrument) =>
+            {
+               //foreach (var oneEquityInstrument in EquityInstruments)
+               //{
+               if (HistoricMarketDataMap.ContainsKey(oneEquityInstrument.Ticker))
+               {
+                   var oneEquityQuotes = HistoricMarketDataMap[oneEquityInstrument.Ticker];
+                   if (oneEquityQuotes != null)
+                   {
+
+                       equityPriceInfo = new EquityPriceInfo();
+                       equityPriceInfo.Equity = oneEquityInstrument;
+
+                       var histociData = HistoricMarketData[utilDates.CurrentDate.Year];
+                       var oneIntrumentHistory = histociData.Where(e => e.Ticker.Equals(oneEquityInstrument.Ticker, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+
+                       var currentQuote = oneEquityQuotes.ContainsKey(utilDates.CurrentDate) ? oneEquityQuotes[utilDates.CurrentDate] : null;
+                       var oneDayQuote = oneEquityQuotes.ContainsKey(utilDates.OneDayDate) ? oneEquityQuotes[utilDates.OneDayDate] : null;
+                       var oneWeekQuote = oneEquityQuotes.ContainsKey(utilDates.OneWeekDate) ? oneEquityQuotes[utilDates.OneWeekDate] : null;
+                       var oneMonthQuote = oneEquityQuotes.ContainsKey(utilDates.OneMonthDate) ? oneEquityQuotes[utilDates.OneMonthDate] : null;
+                       var oneQuarteQuote = oneEquityQuotes.ContainsKey(utilDates.OneQuarterDate) ? oneEquityQuotes[utilDates.OneQuarterDate] : null;
+                       var oneYearQuote = oneEquityQuotes.ContainsKey(utilDates.OneYearDate) ? oneEquityQuotes[utilDates.OneYearDate] : null;
+
+                       var varAbsDiaria = ((currentQuote?.Last ?? 1) - (oneDayQuote?.Last ?? currentQuote?.Last ?? 0));
+                       var varAbsSemanal = ((currentQuote?.Last ?? 1) - (oneWeekQuote?.Last ?? currentQuote?.Last ?? 0));
+                       var varAbsMensal = ((currentQuote?.Last ?? 1) - (oneMonthQuote?.Last ?? currentQuote?.Last ?? 0));
+                       var varAbsTrimestral = ((currentQuote?.Last ?? 1) - (oneQuarteQuote?.Last ?? currentQuote?.Last ?? 0));
+                       var varAbsAnual = ((currentQuote?.Last ?? 1) - (oneYearQuote?.Last ?? currentQuote?.Last ?? 0));
+
+                       //var varDiaria = varAbsDiaria/ ((currentQuote?.Last ?? 1));
+                       //var varSemanal = varAbsSemanal/ ((currentQuote?.Last ?? 1));
+                       //var varMensal = varAbsMensal / ((currentQuote?.Last ?? 1));
+                       //var varTrimestral = varAbsTrimestral / ((currentQuote?.Last ?? 1));
+                       //var varAnual = varAbsAnual / ((currentQuote?.Last ?? 1)) ;
+
+
+                       var varDiaria = ((currentQuote?.Last ?? 1) / (oneDayQuote?.Last ?? 1)) - 1;
+                       var varSemanal = ((currentQuote?.Last ?? 1) / (oneWeekQuote?.Last ?? 1)) - 1;
+                       var varMensal = ((currentQuote?.Last ?? 1) / (oneMonthQuote?.Last ?? 1)) - 1;
+                       var varTrimestral = ((currentQuote?.Last ?? 1) / (oneQuarteQuote?.Last ?? 1)) - 1;
+                       var varAnual = ((currentQuote?.Last ?? 1) / (oneYearQuote?.Last ?? 1)) - 1;
+
+                       equityPriceInfo.DailyNominal = varAbsDiaria;
+                       equityPriceInfo.WeeklyNominal = varAbsSemanal;
+                       equityPriceInfo.MonthlyNominal = varAbsMensal;
+                       equityPriceInfo.QuaterlyNominal = varAbsTrimestral;
+                       equityPriceInfo.YearlyNominal = varAbsAnual;
+                       equityPriceInfo.DailyPercentage = varDiaria;
+                       equityPriceInfo.WeeklyPercentage = varSemanal;
+                       equityPriceInfo.MonthlyPercentage = varMensal;
+                       equityPriceInfo.QuaterlyPercentage = varTrimestral;
+                       equityPriceInfo.YearlyPercentage = varAnual;
+
+                       //var WTDQuote = oneEquityQuotes.ContainsKey(utilDates.WTDDate) ? oneEquityQuotes[utilDates.WTDDate] : null;
+                       //var MTDQuote = oneEquityQuotes.ContainsKey(utilDates.MTDDate) ? oneEquityQuotes[utilDates.MTDDate] : null;
+                       //var QTDQuote = oneEquityQuotes.ContainsKey(utilDates.QTDDate) ? oneEquityQuotes[utilDates.QTDDate] : null;
+                       //var YTDQuote = oneEquityQuotes.ContainsKey(utilDates.YTDDate) ? oneEquityQuotes[utilDates.YTDDate] : null;
+
+                       if (!HistoricPriceMovingInfoDataMap.ContainsKey(oneEquityInstrument.Ticker))
+                           HistoricPriceMovingInfoDataMap[oneEquityInstrument.Ticker] = new Dictionary<DateTime, EquityPriceInfo>();
+
+                       HistoricPriceMovingInfoDataMap[oneEquityInstrument.Ticker][utilDates.CurrentDate] = equityPriceInfo;
+                   }
+               }
+               //}
+           });
         }
+
 
         #endregion
 
@@ -179,7 +199,7 @@ namespace B3Provider
         /// <summary>
         /// Historic market data past princes moving map
         /// </summary>
-        public Dictionary<string, Dictionary<DateTime, EquityPriceInfo>> HistoricPriceMovingInfoDataMap { get; set; } = new Dictionary<string, Dictionary<DateTime, EquityPriceInfo>>();
+        public static Dictionary<string, Dictionary<DateTime, EquityPriceInfo>> HistoricPriceMovingInfoDataMap { get; set; } = new Dictionary<string, Dictionary<DateTime, EquityPriceInfo>>();
 
         /// <summary>
         /// Index to convert an instrument ticker to internal ID
@@ -526,9 +546,6 @@ namespace B3Provider
         {
 
         }
-
-
-
         #endregion
 
     }

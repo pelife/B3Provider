@@ -31,10 +31,13 @@
 
 namespace B3Provider.Readers
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.IO.Compression;
     using System.Linq;
+    using System.Reflection;
+    using ZipFile = System.IO.Compression.ZipFile;
 
     /// <summary>
     /// Class that implement common methods to all readers to inherit from
@@ -165,16 +168,25 @@ namespace B3Provider.Readers
         {
             string destinationFilePath = string.Empty;
 
-            using (ZipArchive zip = ZipFile.Open(zipFilePath, ZipArchiveMode.Read))
+            using (ZipArchive zip = new ZipArchive(File.OpenRead(zipFilePath), ZipArchiveMode.Read))
             {
-                var latestFile = zip.Entries.OrderByDescending(e => e.LastWriteTime).FirstOrDefault();
-                if (latestFile != null)
+                if (zip.Entries != null && zip.Entries.Count > 0)
                 {
+                    var latestFile = zip.Entries.OrderByDescending(e => e.LastWriteTime).FirstOrDefault();
                     destinationFilePath = Path.GetFullPath(Path.Combine(destinationPath, latestFile.FullName));
                     latestFile.ExtractToFile(destinationFilePath);
+
+                    if (zip.Entries.Count == 1 && Path.GetExtension(latestFile.Name).Equals(".zip", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        using (ZipArchive zipInterno = new ZipArchive(File.OpenRead(destinationFilePath), ZipArchiveMode.Read))
+                        {
+                            latestFile = zipInterno.Entries.OrderByDescending(e => e.LastWriteTime).FirstOrDefault();
+                            destinationFilePath = Path.GetFullPath(Path.Combine(destinationPath, latestFile.FullName));
+                            latestFile.ExtractToFile(destinationFilePath);
+                        }
+                    }
                 }
             }
-
             return destinationFilePath;
         }
 

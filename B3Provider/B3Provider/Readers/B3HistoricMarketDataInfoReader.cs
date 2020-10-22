@@ -88,6 +88,7 @@ namespace B3Provider.Readers
             using (var stream = new FileInfo(filePath).Open(FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 var numberOfLines = CountLines(stream);
+                stream.Position = 0;
                 var resultado = ReadStream(stream);
                 historicQuote = resultado.Records;
             }

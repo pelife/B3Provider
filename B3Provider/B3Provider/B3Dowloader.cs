@@ -82,9 +82,11 @@ namespace B3Provider
         {
             var dateDowload = DefineDateIfNotDefined(dateToDownload);
             var fileName = string.Format("IR{0:yyMMdd}.zip", dateDowload);
-            var fileDirectory = "IPN/GPS/BVBG.087.01/";
+            //var fileDirectory = "IPN/GPS/BVBG.087.01/";
 
-            return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
+            //return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
+
+            return DownloadHTTPFile(@"http://www.b3.com.br/pesquisapregao/download?filelist=", fileName, string.Empty, replaceIfExists);        
         }
 
         /// <summary>
@@ -99,9 +101,10 @@ namespace B3Provider
         {
             var dateDowload = DefineDateIfNotDefined(dateToDownload);
             var fileName = string.Format("II{0:yyMMdd}.zip", dateDowload);
-            var fileDirectory = "IPN/TS/BVBG.029.02/";
+            //var fileDirectory = "IPN/TS/BVBG.029.02/";
 
-            return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
+            //return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
+            return DownloadHTTPFile(@"http://www.b3.com.br/pesquisapregao/download?filelist=", fileName, string.Empty, replaceIfExists);
         }
 
         /// <summary>
@@ -116,9 +119,10 @@ namespace B3Provider
         {
             var dateDowload = DefineDateIfNotDefined(dateToDownload);
             var fileName = string.Format("IN{0:yyMMdd}.zip", dateDowload);
-            var fileDirectory = "IPN/TS/BVBG.028.02/";
+            //var fileDirectory = "IPN/TS/BVBG.028.02/";
 
-            return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
+            //return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
+            return DownloadHTTPFile(@"http://www.b3.com.br/pesquisapregao/download?filelist=", fileName, string.Empty, replaceIfExists);
         }
 
         /// <summary>
@@ -133,9 +137,10 @@ namespace B3Provider
         {
             var dateDowload = DefineDateIfNotDefined(dateToDownload);
             var fileName = string.Format("PR{0:yyMMdd}.zip", dateDowload);
-            var fileDirectory = "IPN/TRS/BVBG.086.01/";
+            //var fileDirectory = "IPN/TRS/BVBG.086.01/";
 
-            return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
+            //return DownloadFTPFile(fileDirectory, fileName, string.Empty, replaceIfExists);
+            return DownloadHTTPFile(@"http://www.b3.com.br/pesquisapregao/download?filelist=", fileName, string.Empty, replaceIfExists);
         }
 
         /// <summary>
@@ -390,7 +395,7 @@ namespace B3Provider
 
             return detinationPath;
         }
-
+       
         /// <summary>
         /// Method that query size of the file to the server
         /// </summary>
